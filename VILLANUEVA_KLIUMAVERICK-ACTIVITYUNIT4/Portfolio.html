@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio of Kliu Maverick D. Villanueva, a BS Information Technology student at West Visayas State University focused on cybersecurity and networking." />
+  <title>Kliu Maverick D. Villanueva | IT Portfolio</title>
+  <link rel="stylesheet" href="Style.css?v=11" />
+</head>
+<body>
+  <aside class="cube-navigation" id="cubeNavigation" aria-label="Portfolio navigation">
+    <button class="navigation-toggle" id="navigationToggle" type="button" aria-label="Hide navigation" aria-expanded="true" aria-controls="navigationPanel">
+      <span aria-hidden="true">&rarr;</span>
+    </button>
+    <div class="navigation-panel" id="navigationPanel">
+      <div class="cube-heading">
+        <span>NAVIGATION</span>
+        <span class="cube-status" id="cubeStatus" aria-live="polite">MOVE TO EXPLORE</span>
+      </div>
+      <div class="cube-stage" id="cubeStage">
+        <canvas id="cubeCanvas" aria-hidden="true"></canvas>
+        <nav class="cube-face-links" aria-label="Cube faces">
+          <a class="cube-face-link" data-section="education" href="#education">Education</a>
+          <a class="cube-face-link" data-section="skills" href="#skills">Skills</a>
+          <a class="cube-face-link" data-section="contact" href="#contact">Contact</a>
+          <a class="cube-face-link" data-section="projects" href="#projects">Projects</a>
+          <a class="cube-face-link" data-section="about" href="#about">About</a>
+          <a class="cube-face-link" data-action="reveal-all" href="#all">Know more</a>
+        </nav>
+      </div>
+    </div>
+  </aside>
+
+  <div class="page" id="top">
+    <header class="hero">
+      <p class="eyebrow">Portfolio</p>
+      <h1>Kliu Maverick D. Villanueva</h1>
+      <p class="subtitle">
+        BS Information Technology 3rd Year tracked in Cybersecurity and currently studying Networking.
+      </p>
+    </header>
+
+    <main class="content">
+      <section id="about" class="panel is-visible">
+        <div class="section-label">01 — About</div>
+        <h2>A recent graduate with a focus on cybersecurity and networking.</h2>
+        <p class="intro">
+          I am a Bachelor of Science in Information Technology 3rd Year student from West Visayas State University. My academic journey has been centered on cybersecurity and networking, with my projects providing practical experience in backend development, databases, web applications, and full-stack development.
+        </p>
+        <blockquote class="quote">
+          I am continuing to strengthen my foundations in programming and systems development while working toward a future in cybersecurity and networking.
+        </blockquote>
+      </section>
+
+      <section id="education" class="panel is-visible">
+        <div class="section-label">02 — Education</div>
+        <h2>Academic Background</h2>
+
+        <article class="education-item">
+          <h3>West Visayas State University</h3>
+          <p> Bachelor of Science in Information Technology · College of Information and Communications Technology</p>
+          <p>Expected Graduation: 2028</p>
+        </article>
+
+        <article class="education-item">
+          <h3>Capiz National High School</h3>
+          <p>Senior High School · STEM Strand</p>
+          <p>Graduated: 2024</p>
+          <p class="honors">Graduated with Honors</p>
+        </article>
+
+        <aside class="focus-box">
+          <div class="section-label">Academic Focus</div>
+          <h3>Cybersecurity &amp; Networking</h3>
+          <p>
+            Building foundational knowledge in secure systems, networks, software development, and the technologies that support modern IT infrastructure.
+          </p>
+        </aside>
+      </section>
+
+      <section id="skills" class="panel">
+        <div class="section-label">03 — Technical Skills</div>
+        <h2>Current Working Knowledge</h2>
+        <ul class="skills-list">
+          <li>C++ <span>Beginner</span></li>
+          <li>Java <span>Beginner</span></li>
+          <li>Python <span>Beginner</span></li>
+          <li>JavaScript <span>Beginner</span></li>
+          <li>HTML / CSS <span>Beginner</span></li>
+          <li>PHP <span>Beginner</span></li>
+          <li>SQL <span>Beginner</span></li>
+          <li>React <span>Beginner</span></li>
+          <li>MariaDB / MySQL <span>Used in project work</span></li>
+          <li>Bootstrap <span>Used in project work</span></li>
+        </ul>
+      </section>
+
+      <section id="projects" class="panel">
+        <div class="section-label">04 — Selected Projects</div>
+        <h2>Project Experience</h2>
+
+        <article class="project-card">
+          <h3>PlayPoint</h3>
+          <p class="role">API Developer</p>
+          <p>Inventory and management kiosk system designed for gaming cafes, with a focus on managing operational data and inventory through a structured application backend.</p>
+          <div class="project-gallery">
+            <img src="Assets/5.png" alt="PlayPoint admin panel main menu" loading="lazy" decoding="async" />
+          </div>
+          <p class="tech">Technologies: Java, SQL</p>
+        </article>
+
+        <article class="project-card">
+          <h3>SchoGMS</h3>
+          <p class="role">Back-End Developer</p>
+          <p>Web-based scholarship and grants management system for state universities, built to support the handling and organization of scholarship-related information.</p>
+          <div class="project-gallery">
+            <img src="Assets/1.png" alt="SchoGMS scholarship system sign-in screen" loading="lazy" decoding="async" />
+          </div>
+          <p class="tech">Technologies: PHP, MySQL / MariaDB</p>
+        </article>
+
+        <article class="project-card">
+          <h3>WVSUConnects</h3>
+          <p class="role">Back-End Developer</p>
+          <p>Campus-wide marketplace for students, designed to provide a platform for student-to-student listings and transactions within the university community.</p>
+          <div class="project-gallery">
+            <img src="Assets/2.png" alt="WVSUConnects campus marketplace home page" loading="lazy" decoding="async" />
+          </div>
+          <p class="tech">Technologies: Bootstrap, PHP, MariaDB / MySQL</p>
+        </article>
+
+        <article class="project-card">
+          <h3>Interactive Audio Visualizers</h3>
+          <p class="role">Full-Stack Developer</p>
+          <p>A personal project for Playlistz that combines interactive web development with audio visualization, creating a dynamic interface around music and playlists.</p>
+          <div class="project-gallery project-gallery--pair">
+            <img src="Assets/3.png" alt="Playlistz interactive music and playlist page" loading="lazy" decoding="async" />
+            <img src="Assets/4.png" alt="Playlistz blue audio visualizer in playback" loading="lazy" decoding="async" />
+          </div>
+          <p class="tech">Technologies: React, JavaScript</p>
+        </article>
+      </section>
+
+      <section id="contact" class="panel">
+        <div class="section-label">05 — Contact</div>
+        <h2>Let's Connect</h2>
+        <p class="intro">
+          For academic collaboration, project discussions, or professional opportunities, you can reach me through my university email.
+        </p>
+        <a class="contact-email" href="mailto:kliumaverick.villanueva@wvsu.edu.ph">kliumaverick.villanueva@wvsu.edu.ph</a>
+      </section>
+    </main>
+
+    <footer>
+      <span>© 2026 Kliu Maverick D. Villanueva</span>
+      <span>BS Information Technology · WVSU CICT</span>
+    </footer>
+  </div>
+
+  <script type="module" src="maze.js?v=13"></script>
+</body>
+</html>
