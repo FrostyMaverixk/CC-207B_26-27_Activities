@@ -1,4 +1,4 @@
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js';
+import * as THREE from './Assets/three.module.js';
 
 const navigation = document.getElementById('cubeNavigation');
 const navigationPanel = document.getElementById('navigationPanel');
