@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sales Reports — Blume Daily Admin</title>
+<link rel="stylesheet" href="admin.css">
+<style>
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;}
+.period-tabs{display:flex;gap:0;margin-bottom:22px;}
+.period-tab{font-family:var(--fb);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:8px 18px;border:1px solid rgba(0,0,0,.1);background:none;cursor:pointer;color:var(--mocha);transition:all .2s;margin-right:-1px;}
+.period-tab.active{background:var(--rose);color:#fff;border-color:var(--rose);z-index:1;}
+.period-tab:hover:not(.active){background:var(--parchment);}
+.chart-area{padding:20px 22px;}
+.chart-wrap{display:flex;align-items:flex-end;justify-content:space-around;height:150px;gap:8px;padding-top:8px;}
+.chart-bar-col{display:flex;flex-direction:column;align-items:center;gap:5px;flex:1;}
+.chart-bar{width:100%;background:var(--rose-muted);transition:background .2s;cursor:pointer;}
+.chart-bar:hover{background:var(--rose);}
+.chart-bar.hi{background:var(--rose);}
+.chart-lbl{font-size:9px;color:var(--mocha-light);letter-spacing:.06em;}
+.chart-val{font-size:9px;color:var(--mocha-light);}
+.top-prod-row{display:flex;align-items:center;justify-content:space-between;padding:12px 22px;border-bottom:1px solid rgba(0,0,0,.05);}
+.top-prod-row:last-child{border-bottom:none;}
+.top-prod-rank{width:22px;height:22px;border-radius:50%;background:var(--ivory);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:400;color:var(--mocha);flex-shrink:0;}
+.top-prod-rank.gold{background:var(--gold);color:#fff;}
+.top-prod-name{flex:1;margin-left:12px;font-size:13px;font-weight:300;}
+.top-prod-sales{font-size:12px;color:var(--mocha-light);}
+.top-prod-rev{font-size:13px;font-weight:400;color:var(--ink);}
+.section-divider{display:flex;align-items:center;gap:14px;margin:32px 0 20px;}
+.section-divider-label{font-family:var(--fb);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mocha-light);white-space:nowrap;}
+.section-divider-line{flex:1;height:1px;background:rgba(0,0,0,.07);}
+.waste-two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;}
+.waste-stat-row{display:flex;align-items:center;justify-content:space-between;padding:11px 22px;border-bottom:1px solid rgba(0,0,0,.05);}
+.waste-stat-row:last-child{border-bottom:none;}
+.waste-stat-label{font-size:13px;font-weight:300;color:var(--ink);}
+.waste-stat-sub{font-size:11px;color:var(--mocha-light);margin-top:2px;}
+.waste-stat-val{font-size:14px;font-weight:400;color:var(--ink);}
+.waste-tag{display:inline-flex;align-items:center;gap:4px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:20px;font-family:var(--fb);}
+.waste-tag-compost{background:#e8f5e9;color:#2e7d32;}
+.waste-tag-donation{background:#e3f2fd;color:#1565c0;}
+.waste-tag-discard{background:#fce4ec;color:#b71c1c;}
+.waste-tag-mulch{background:#f3e5f5;color:#6a1b9a;}
+.diversion-bar-wrap{padding:18px 22px 20px;}
+.diversion-bar-row{display:flex;align-items:center;gap:12px;margin-bottom:13px;}
+.diversion-bar-row:last-child{margin-bottom:0;}
+.diversion-bar-name{font-size:12px;color:var(--mocha);width:70px;flex-shrink:0;}
+.diversion-bar-track{flex:1;height:7px;background:var(--parchment);}
+.diversion-bar-fill{height:100%;transition:width .5s ease;}
+.diversion-bar-pct{font-size:11px;color:var(--mocha-light);width:36px;text-align:right;flex-shrink:0;}
+.log-form-row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px;align-items:end;padding:16px 22px;border-bottom:1px solid rgba(0,0,0,.06);}
+.log-field{display:flex;flex-direction:column;gap:5px;}
+.log-field-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mocha-light);font-family:var(--fb);}
+.log-input{font-family:var(--fb);font-size:13px;color:var(--ink);background:var(--ivory);border:1px solid rgba(0,0,0,.1);padding:7px 11px;outline:none;width:100%;}
+.log-input:focus{border-color:var(--rose-muted);}
+.log-select{font-family:var(--fb);font-size:13px;color:var(--ink);background:var(--ivory);border:1px solid rgba(0,0,0,.1);padding:7px 11px;outline:none;width:100%;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23b08080' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;}
+.log-select:focus{border-color:var(--rose-muted);}
+</style>
+</head>
+<body>
+<aside class="sidebar" id="sidebar"></aside>
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-left">
+      <h1>Sales Reports</h1>
+      <p>Revenue overview and performance metrics</p>
+    </div>
+    <div class="topbar-right">
+      <button class="topbar-icon-btn" title="Notifications">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <div class="notif-dot"></div>
+      </button>
+      <a href="index.html" target="_blank" class="topbar-visit-btn">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        View Website
+      </a>
+      <button class="topbar-user-btn">B</button>
+    </div>
+  </div>
+  <div class="page">
+    <div class="period-tabs">
+      <button class="period-tab active" onclick="setPeriod(this,'week')">This Week</button>
+      <button class="period-tab" onclick="setPeriod(this,'month')">This Month</button>
+      <button class="period-tab" onclick="setPeriod(this,'quarter')">This Quarter</button>
+      <button class="period-tab" onclick="setPeriod(this,'year')">This Year</button>
+    </div>
+    <div class="stat-grid stat-grid-4">
+      <div class="s-card"><div class="s-card-accent" style="background:var(--rose);"></div><div class="s-card-label">Total Revenue</div><div class="s-card-value">₱18,450</div><div class="s-card-sub">↑ 13.9% vs last week</div></div>
+      <div class="s-card"><div class="s-card-accent" style="background:var(--sage);"></div><div class="s-card-label">Orders Completed</div><div class="s-card-value">24</div><div class="s-card-sub">↑ 4 more than last week</div></div>
+      <div class="s-card"><div class="s-card-accent" style="background:var(--gold);"></div><div class="s-card-label">Average Order Value</div><div class="s-card-value">₱768</div><div class="s-card-sub">↑ ₱48 from last week</div></div>
+      <div class="s-card"><div class="s-card-accent" style="background:var(--rose-muted);"></div><div class="s-card-label">New Customers</div><div class="s-card-value">9</div><div class="s-card-sub">This week</div></div>
+    </div>
+
+    <div class="two-col">
+      <!-- REVENUE CHART -->
+      <div class="sec-card">
+        <div class="sec-head">
+          <div class="sec-head-title">Daily Revenue</div>
+          <button class="btn-primary" onclick="alert('Exported!')" style="padding:7px 14px;font-size:9px;">Export CSV</button>
+        </div>
+        <div class="chart-area">
+          <div class="chart-wrap">
+            <div class="chart-bar-col"><div class="chart-val">₱2,100</div><div class="chart-bar" style="height:57%;"></div><div class="chart-lbl">Mon</div></div>
+            <div class="chart-bar-col"><div class="chart-val">₱2,900</div><div class="chart-bar" style="height:78%;"></div><div class="chart-lbl">Tue</div></div>
+            <div class="chart-bar-col"><div class="chart-val">₱1,650</div><div class="chart-bar" style="height:44%;"></div><div class="chart-lbl">Wed</div></div>
+            <div class="chart-bar-col"><div class="chart-val">₱3,300</div><div class="chart-bar hi" style="height:90%;"></div><div class="chart-lbl">Thu</div></div>
+            <div class="chart-bar-col"><div class="chart-val">₱2,650</div><div class="chart-bar" style="height:71%;"></div><div class="chart-lbl">Fri</div></div>
+            <div class="chart-bar-col"><div class="chart-val">₱3,680</div><div class="chart-bar hi" style="height:100%;"></div><div class="chart-lbl">Sat</div></div>
+            <div class="chart-bar-col"><div class="chart-val">₱2,170</div><div class="chart-bar" style="height:58%;"></div><div class="chart-lbl">Sun</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOP PRODUCTS -->
+      <div class="sec-card">
+        <div class="sec-head">
+          <div class="sec-head-title">Top Products</div>
+        </div>
+        <div class="top-prod-row">
+          <div class="top-prod-rank gold">1</div>
+          <div class="top-prod-name">Garden Luxe</div>
+          <div class="top-prod-sales" style="margin-right:16px;">5 sold</div>
+          <div class="top-prod-rev">₱9,000</div>
+        </div>
+        <div class="top-prod-row">
+          <div class="top-prod-rank">2</div>
+          <div class="top-prod-name">Eternal White</div>
+          <div class="top-prod-sales" style="margin-right:16px;">4 sold</div>
+          <div class="top-prod-rev">₱4,800</div>
+        </div>
+        <div class="top-prod-row">
+          <div class="top-prod-rank">3</div>
+          <div class="top-prod-name">Eternal White</div>
+          <div class="top-prod-sales" style="margin-right:16px;">3 sold</div>
+          <div class="top-prod-rev">₱4,200</div>
+        </div>
+        <div class="top-prod-row">
+          <div class="top-prod-rank">4</div>
+          <div class="top-prod-name">Crimson Affair</div>
+          <div class="top-prod-sales" style="margin-right:16px;">2 sold</div>
+          <div class="top-prod-rev">₱2,700</div>
+        </div>
+        <div class="top-prod-row">
+          <div class="top-prod-rank">5</div>
+          <div class="top-prod-name">Rose Medley</div>
+          <div class="top-prod-sales" style="margin-right:16px;">3 sold</div>
+          <div class="top-prod-rev">₱2,460</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRANSACTIONS TABLE -->
+    <div class="sec-card">
+      <div class="sec-head">
+        <div class="sec-head-title">Recent Transactions</div>
+        <a href="admin-orders.html" class="sec-head-action">View All Orders</a>
+      </div>
+      <table class="tbl">
+        <thead><tr><th>Order ID</th><th>Customer</th><th>Arrangement</th><th>Date</th><th>Payment</th><th>Amount</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><strong>BD-005</strong></td><td>Kurt Dayao</td><td>Garden Luxe</td><td>Apr 26</td><td>GCash</td><td>₱1,800</td><td><span class="badge badge-pending"><span class="badge-dot"></span>Pending</span></td></tr>
+          <tr><td><strong>BD-002</strong></td><td>Ysabella Tumlos</td><td>Eternal White</td><td>Apr 26</td><td>GCash</td><td>₱1,200</td><td><span class="badge badge-confirmed"><span class="badge-dot"></span>Confirmed</span></td></tr>
+          <tr><td><strong>BD-007</strong></td><td>Jose Reyes</td><td>Eternal White</td><td>Apr 25</td><td>COD</td><td>₱1,400</td><td><span class="badge badge-preparing"><span class="badge-dot"></span>Preparing</span></td></tr>
+          <tr><td><strong>BD-012</strong></td><td>Elena Flores</td><td>Crimson Affair</td><td>Apr 24</td><td>GCash</td><td>₱1,350</td><td><span class="badge badge-delivered"><span class="badge-dot"></span>Delivered</span></td></tr>
+          <tr><td><strong>BD-004</strong></td><td>Jahna Lagne</td><td>Ivory Dream</td><td>Apr 25</td><td>COD</td><td>₱980</td><td><span class="badge badge-delivered"><span class="badge-dot"></span>Delivered</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- WASTE & SUSTAINABILITY DIVIDER -->
+    <div class="section-divider">
+      <div class="section-divider-line"></div>
+      <div class="section-divider-label">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="vertical-align:-1px;margin-right:5px;"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+        Waste &amp; Sustainability
+      </div>
+      <div class="section-divider-line"></div>
+    </div>
+
+    <!-- WASTE SUMMARY STATS -->
+    <div class="stat-grid stat-grid-4" style="margin-bottom:20px;">
+      <div class="s-card"><div class="s-card-accent" style="background:#81c784;"></div><div class="s-card-label">Total Spoilage</div><div class="s-card-value" id="ws-total-stems">38</div><div class="s-card-sub">Stems this week</div></div>
+      <div class="s-card"><div class="s-card-accent" style="background:#4db6ac;"></div><div class="s-card-label">Diverted from Landfill</div><div class="s-card-value" id="ws-diverted-pct">76%</div><div class="s-card-sub">Composted, donated, mulched</div></div>
+      <div class="s-card"><div class="s-card-accent" style="background:#aed581;"></div><div class="s-card-label">Composted</div><div class="s-card-value" id="ws-composted">18</div><div class="s-card-sub">Stems → compost</div></div>
+      <div class="s-card"><div class="s-card-accent" style="background:#f48fb1;"></div><div class="s-card-label">Donated</div><div class="s-card-value" id="ws-donated">11</div><div class="s-card-sub">Stems to community</div></div>
+    </div>
+
+    <div class="waste-two-col">
+      <!-- DIVERSION BREAKDOWN -->
+      <div class="sec-card">
+        <div class="sec-head">
+          <div class="sec-head-title">Green Waste Diversion Breakdown</div>
+          <button class="btn-primary" onclick="exportWasteReport()" style="padding:7px 14px;font-size:9px;">Export Report</button>
+        </div>
+        <div class="diversion-bar-wrap">
+          <div class="diversion-bar-row">
+            <div class="diversion-bar-name">Composted</div>
+            <div class="diversion-bar-track"><div class="diversion-bar-fill" style="width:47%;background:#81c784;"></div></div>
+            <div class="diversion-bar-pct">47%</div>
+          </div>
+          <div class="diversion-bar-row">
+            <div class="diversion-bar-name">Donated</div>
+            <div class="diversion-bar-track"><div class="diversion-bar-fill" style="width:29%;background:#64b5f6;"></div></div>
+            <div class="diversion-bar-pct">29%</div>
+          </div>
+          <div class="diversion-bar-row">
+            <div class="diversion-bar-name">Mulched</div>
+            <div class="diversion-bar-track"><div class="diversion-bar-fill" style="width:0%;background:#ce93d8;"></div></div>
+            <div class="diversion-bar-pct" id="mulch-pct">0%</div>
+          </div>
+          <div class="diversion-bar-row">
+            <div class="diversion-bar-name">Discarded</div>
+            <div class="diversion-bar-track"><div class="diversion-bar-fill" style="width:24%;background:#ef9a9a;"></div></div>
+            <div class="diversion-bar-pct">24%</div>
+          </div>
+        </div>
+        <div style="padding:0 22px 18px;">
+          <div style="font-size:11px;color:var(--mocha-light);line-height:1.6;">
+            <strong style="color:var(--ink);font-weight:400;">76%</strong> of this week's spoilage was diverted from landfill.
+            Goal: <strong style="color:var(--ink);font-weight:400;">80%</strong> diversion rate by end of month.
+          </div>
+          <div style="margin-top:10px;height:5px;background:var(--parchment);">
+            <div style="height:100%;width:76%;background:linear-gradient(90deg,#81c784,#4db6ac);transition:width .5s;"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--mocha-light);margin-top:4px;"><span>0%</span><span>Goal: 80%</span><span>100%</span></div>
+        </div>
+      </div>
+
+      <!-- SPOILAGE BY FLOWER -->
+      <div class="sec-card">
+        <div class="sec-head">
+          <div class="sec-head-title">Spoilage by Flower</div>
+        </div>
+        <div id="spoilage-by-flower">
+          <div class="waste-stat-row"><div><div class="waste-stat-label">Red Roses</div><div class="waste-stat-sub">Unsold stock</div></div><div style="text-align:right;"><div class="waste-stat-val">9 stems</div></div></div>
+          <div class="waste-stat-row"><div><div class="waste-stat-label">Pink Tulips</div><div class="waste-stat-sub">Daily spoilage</div></div><div style="text-align:right;"><div class="waste-stat-val">7 stems</div></div></div>
+          <div class="waste-stat-row"><div><div class="waste-stat-label">Lavender Stems</div><div class="waste-stat-sub">Daily spoilage</div></div><div style="text-align:right;"><div class="waste-stat-val">6 stems</div></div></div>
+          <div class="waste-stat-row"><div><div class="waste-stat-label">Blush Peonies</div><div class="waste-stat-sub">Unsold stock</div></div><div style="text-align:right;"><div class="waste-stat-val">5 stems</div></div></div>
+          <div class="waste-stat-row"><div><div class="waste-stat-label">White Lilies</div><div class="waste-stat-sub">Daily spoilage</div></div><div style="text-align:right;"><div class="waste-stat-val">4 stems</div></div></div>
+          <div class="waste-stat-row"><div><div class="waste-stat-label">Purple Orchids</div><div class="waste-stat-sub">Unsold stock</div></div><div style="text-align:right;"><div class="waste-stat-val">4 stems</div></div></div>
+          <div class="waste-stat-row"><div><div class="waste-stat-label">Yellow Daffodils</div><div class="waste-stat-sub">Daily spoilage</div></div><div style="text-align:right;"><div class="waste-stat-val">3 stems</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPOILAGE LOG -->
+    <div class="sec-card">
+      <div class="sec-head">
+        <div class="sec-head-title">Daily Spoilage Log</div>
+        <button class="btn-primary" onclick="exportWasteReport()" style="padding:7px 14px;font-size:9px;">Export CSV</button>
+      </div>
+      <!-- Log Entry Form -->
+      <div class="log-form-row">
+        <div class="log-field">
+          <div class="log-field-label">Flower</div>
+          <select class="log-select" id="log-flower">
+            <option value="">Select flower…</option>
+            <option>Red Roses</option><option>White Lilies</option><option>Blush Peonies</option>
+            <option>Sunflowers</option><option>Lavender Stems</option><option>Baby's Breath</option>
+            <option>Green Ferns</option><option>Pink Tulips</option><option>Purple Orchids</option>
+            <option>Yellow Daffodils</option><option>Orange Roses</option><option>Blue Hydrangeas</option>
+            <option>White Chrysanthemums</option><option>Pink Carnations</option>
+          </select>
+        </div>
+        <div class="log-field">
+          <div class="log-field-label">Stems</div>
+          <input class="log-input" id="log-stems" type="number" min="1" placeholder="e.g. 5">
+        </div>
+        <div class="log-field">
+          <div class="log-field-label">Disposal Method</div>
+          <select class="log-select" id="log-method">
+            <option value="">Select method…</option>
+            <option value="compost">Compost</option>
+            <option value="donation">Donation</option>
+            <option value="mulch">Mulch</option>
+            <option value="discard">Discard</option>
+          </select>
+        </div>
+        <button class="btn-primary" onclick="addWasteLog()" style="padding:8px 18px;white-space:nowrap;">+ Log Entry</button>
+      </div>
+      <!-- Log Table -->
+      <table class="tbl">
+        <thead><tr><th>Date</th><th>Flower</th><th>Stems</th><th>Type</th><th>Disposal</th></tr></thead>
+        <tbody id="waste-log-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="admin-shared.js"></script>
+<script>
+initAdmin('reports');
+function setPeriod(btn,p){
+  document.querySelectorAll('.period-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// Waste log data
+const wasteLog = [
+  {date:'Apr 26',flower:'Red Roses',stems:9,type:'Unsold Stock',method:'compost'},
+  {date:'Apr 26',flower:'Pink Tulips',stems:7,type:'Daily Spoilage',method:'donation'},
+  {date:'Apr 25',flower:'Lavender Stems',stems:6,type:'Daily Spoilage',method:'compost'},
+  {date:'Apr 25',flower:'Blush Peonies',stems:5,type:'Unsold Stock',method:'donation'},
+  {date:'Apr 24',flower:'White Lilies',stems:4,type:'Daily Spoilage',method:'discard'},
+  {date:'Apr 24',flower:'Purple Orchids',stems:4,type:'Unsold Stock',method:'discard'},
+  {date:'Apr 23',flower:'Yellow Daffodils',stems:3,type:'Daily Spoilage',method:'compost'},
+];
+
+const methodLabel = {compost:'Compost',donation:'Donation',mulch:'Mulch',discard:'Discard'};
+const methodClass = {compost:'waste-tag-compost',donation:'waste-tag-donation',mulch:'waste-tag-mulch',discard:'waste-tag-discard'};
+
+function renderWasteLog(){
+  document.getElementById('waste-log-body').innerHTML = wasteLog.map(r=>`
+    <tr>
+      <td style="color:var(--mocha-light);">${r.date}</td>
+      <td><strong>${r.flower}</strong></td>
+      <td>${r.stems}</td>
+      <td style="font-size:11px;color:var(--mocha-light);">${r.type}</td>
+      <td><span class="waste-tag ${methodClass[r.method]}">${methodLabel[r.method]}</span></td>
+    </tr>`).join('');
+}
+
+function addWasteLog(){
+  const flower = document.getElementById('log-flower').value;
+  const stems = parseInt(document.getElementById('log-stems').value);
+  const method = document.getElementById('log-method').value;
+  if(!flower||!stems||!method){adminToast('Please fill in all fields.');return;}
+  wasteLog.unshift({date:'Apr 26',flower,stems,type:'Daily Spoilage',method});
+  document.getElementById('log-flower').value='';
+  document.getElementById('log-stems').value='';
+  document.getElementById('log-method').value='';
+  renderWasteLog();
+  adminToast('Spoilage entry logged.');
+}
+
+function exportWasteReport(){
+  const rows=[['Date','Flower','Stems','Type','Disposal'],...wasteLog.map(r=>[r.date,r.flower,r.stems,r.type,methodLabel[r.method]])];
+  const csv=rows.map(r=>r.join(',')).join('\n');
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download='blume-daily-waste-report.csv';
+  a.click();
+  adminToast('Waste report exported.');
+}
+
+renderWasteLog();
+</script>
+</body>
+</html>

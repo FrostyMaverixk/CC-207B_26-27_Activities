@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products — Blume Daily Admin</title>
+<link rel="stylesheet" href="admin.css">
+<style>
+.toolbar{display:flex;align-items:center;gap:10px;margin-bottom:22px;flex-wrap:wrap;}
+.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.prod-card{background:var(--warm-white);border:1px solid rgba(0,0,0,.07);overflow:hidden;transition:box-shadow .3s,transform .25s;}
+.prod-card:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(30,26,21,.1);}
+
+/* Fixed square image container */
+.prod-img{
+  width:100%;
+  aspect-ratio:1/1;
+  overflow:hidden;
+  position:relative;
+  display:block;
+  flex-shrink:0;
+  background:var(--parchment);
+}
+.prod-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  position:absolute;
+  top:0;left:0;
+}
+.prod-img-ph{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:8px;background:var(--parchment);
+}
+.prod-img-ph span{font-size:10px;color:rgba(122,21,48,.3);letter-spacing:.08em;}
+.prod-status-dot{position:absolute;top:10px;right:10px;width:9px;height:9px;border-radius:50%;border:1.5px solid #fff;z-index:2;}
+
+.prod-body{padding:13px 15px 8px;}
+.prod-name{font-family:var(--fd);font-size:14px;font-weight:500;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.prod-price{font-size:13px;font-weight:400;color:var(--rose-deep);margin-bottom:4px;}
+.prod-cat{font-size:10px;font-weight:300;letter-spacing:.12em;text-transform:uppercase;color:var(--mocha-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.prod-actions{display:flex;gap:6px;padding:8px 15px 13px;}
+.prod-btn{flex:1;padding:7px;font-family:var(--fb);font-size:10px;font-weight:300;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border:1px solid rgba(0,0,0,.12);background:none;color:var(--mocha);transition:all .2s;}
+.prod-btn:hover{border-color:var(--rose-muted);color:var(--rose);}
+.prod-btn.danger:hover{border-color:#e05555;color:#e05555;}
+</style>
+</head>
+<body>
+<aside class="sidebar" id="sidebar"></aside>
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-left">
+      <h1>Products</h1>
+      <p>Manage your floral arrangements and listings</p>
+    </div>
+    <div class="topbar-right">
+      <button class="topbar-icon-btn" title="Notifications">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <div class="notif-dot"></div>
+      </button>
+      <a href="index.html" target="_blank" class="topbar-visit-btn">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        View Website
+      </a>
+      <button class="topbar-user-btn">B</button>
+    </div>
+  </div>
+  <div class="page">
+    <div class="toolbar">
+      <input class="search-input" placeholder="Search products…" oninput="searchProds(this.value)" style="max-width:260px;">
+      <button class="filter-btn active" onclick="filterProds(this,'all')">All</button>
+      <button class="filter-btn" onclick="filterProds(this,'Birthday')">Birthday</button>
+      <button class="filter-btn" onclick="filterProds(this,'Wedding')">Wedding</button>
+      <button class="filter-btn" onclick="filterProds(this,'Romance')">Romance</button>
+      <button class="filter-btn" onclick="filterProds(this,'Congratulations')">Congratulations</button>
+      <button class="btn-primary" style="margin-left:auto;" onclick="openAdd()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Add Product
+      </button>
+    </div>
+    <div class="prod-grid" id="prod-grid"></div>
+  </div>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-overlay" id="prod-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-title">Edit Product</div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="field-row">
+        <div class="field"><label>Product Name *</label><input type="text" id="f-name"></div>
+        <div class="field"><label>Price (₱) *</label><input type="number" id="f-price"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Category</label>
+          <select id="f-cat"><option>Birthday</option><option>Wedding</option><option>Romance</option><option>Congratulations</option><option>Corporate</option><option>Custom</option></select>
+        </div>
+        <div class="field"><label>Status</label>
+          <select id="f-status"><option>Active</option><option>Hidden</option><option>Out of Stock</option></select>
+        </div>
+      </div>
+      <div class="field"><label>Description</label><textarea id="f-desc" rows="3"></textarea></div>
+      <div class="field"><label>Image URL</label><input type="text" id="f-img" placeholder="https://…"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-secondary" onclick="closeModal()">Cancel</button>
+      <button class="btn-primary" onclick="saveProduct()">Save Product</button>
+    </div>
+  </div>
+</div>
+
+<script src="admin-shared.js"></script>
+<script>
+initAdmin('products');
+
+
+
+const products = [
+  {id:1, name:'Rosy Romance',      price:1250,  cat:'Romance · Birthday',        status:'Active', img:'https://www.thelachryme.com/cdn/shop/files/11AFEA84-DD51-4F80-81AF-8FA5674737CB.jpg?v=1741699569&width=990', desc:'Classic red rose arrangement perfect for romantic occasions.'},
+  {id:2, name:'Eternal White',     price:2000, cat:'Wedding',                    status:'Active', img:'https://i.pinimg.com/originals/a4/2e/63/a42e6344d54a9a06c00a9f9dfca52f60.jpg', desc:'Elegant white orchid cascade, ideal for weddings and formal celebrations.'},
+  {id:3, name:'Forest Whisper',    price:1450,  cat:'Wedding',                           status:'Active', img:'https://clientassets.floristtouch.co.uk/user/site491/productImages/1003/lrg-p1003-3.jpg?v=1.03', desc:'Earthy greens and wildflowers — a fresh, natural arrangement.'},
+  {id:4, name:'Garden Luxe',       price:4500, cat:'Birthday · Corporate · Congratulations', status:'Active', img:'https://i.pinimg.com/736x/31/75/fc/3175fc6ef66f75728e0d89f7418e3c1d.jpg', desc:'A premium mixed bloom arrangement for grand milestone occasions.'},
+  {id:13,name:'Thumbelina',        price:2980,  cat:'Birthday · Romance · Congratulations', status:'Active', img:'https://i.pinimg.com/webp80/1200x/e3/fb/a3/e3fba377f0eefa8fd5246daed0169ba8.webp', desc:'A charming mixed wildflower bouquet perfect for birthdays and romance.'},
+  {id:6, name:'Ivory Dream',       price:1700, cat:'Birthday · Congratulations',        status:'Active', img:'https://i.pinimg.com/736x/ad/17/9f/ad179fba5d179354be9d32f7b8155de1.jpg', desc:'White lilies and roses in a structured box arrangement for weddings.'},
+  {id:7, name:'Blossom Basket',    price:1500, cat:'Birthday · Congratulations',        status:'Active', img:'https://i.pinimg.com/736x/72/1c/fa/721cfaa02ddc35576110bf1242434904.jpg', desc:'A full wicker basket of mixed blooms, perfect for birthdays and gifting.'},
+  {id:8, name:'Blush Peony Bunch', price:1850,  cat:'Birthday · Romance · Congratulations', status:'Active', img:'https://i.pinimg.com/736x/05/9b/8b/059b8b0d214b857dedf5cb36baf9375b.jpg', desc:'Blush peonies and ranunculus for romantic and celebratory occasions.'},
+  {id:9, name:'Lily Dream',        price:3080,  cat:'Birthday · Congratulations',        status:'Active', img:'https://i.pinimg.com/736x/39/de/af/39deaf0ae73caba2015fb0272eb8c618.jpg', desc:'Soft toned lilies perfect for birthdays and congratulatory occasions.'},
+  {id:10,name:'Sunflower Bliss',   price:1750,  cat:'Birthday · Corporate',       status:'Active', img:'https://i.pinimg.com/736x/a2/7e/2d/a27e2d6d5908bae12dafdfcc0b1a37a3.jpg', desc:'Cheerful sunflowers and warm blooms for birthdays and corporate gifts.'},
+  {id:11,name:'Crimson Affair',    price:2000, cat:'Romance · Birthday',           status:'Active', img:'https://www.prettythingsvancouver.ca/cdn/shop/files/8BDF1A97-0E2F-460E-AE5B-FBC69510D6C1.jpg?v=1715056680', desc:'Bold red and blush roses wrapped in dark paper for a dramatic statement.'},
+  {id:12,name:'Rose Medley',       price:3800,  cat:'Birthday · Romance',                status:'Active', img:'https://i.pinimg.com/736x/ec/0f/ba/ec0fba3fd134176ad0f9f133c83882b7.jpg', desc:'A soft mix of pink roses and blooms, great for everyday gifting.'},
+];
+
+let currentFilter='all', currentSearch='', editIdx=null;
+
+function statusColor(s){return{Active:'var(--sage)',Hidden:'var(--mocha-light)','Out of Stock':'var(--rose)'}[s]||'var(--mocha-light)';}
+
+function renderCard(p, idx) {
+  return `<div class="prod-card">
+    <div class="prod-img">
+      <img src="${p.img}" alt="${p.name}" loading="lazy" referrerpolicy="no-referrer"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="prod-img-ph" style="display:none;">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(122,21,48,0.2)" stroke-width="1"><path d="M12 2C7 2 5 7 5 10c0 4 3.5 7 7 10 3.5-3 7-6 7-10 0-3-2-8-7-8z"/><circle cx="12" cy="10" r="2"/></svg>
+        <span>No Image</span>
+      </div>
+      <div class="prod-status-dot" style="background:${statusColor(p.status)};"></div>
+    </div>
+    <div class="prod-body">
+      <div class="prod-name">${p.name}</div>
+      <div class="prod-price">₱${p.price.toLocaleString()}</div>
+      <div class="prod-cat">${p.cat}</div>
+    </div>
+    <div class="prod-actions">
+      <button class="prod-btn" onclick="openEdit(${idx})">Edit</button>
+      <button class="prod-btn danger" onclick="toggleHide(${idx})">${p.status==='Hidden'?'Show':'Hide'}</button>
+    </div>
+  </div>`;
+}
+
+function renderProds(){
+  const grid = document.getElementById('prod-grid');
+  const list = products.filter(p => {
+    const mc = currentFilter==='all' || p.cat.toLowerCase().includes(currentFilter.toLowerCase());
+    const ms = !currentSearch || p.name.toLowerCase().includes(currentSearch.toLowerCase());
+    return mc && ms;
+  });
+  if(!list.length){grid.innerHTML='<p style="color:var(--mocha-light);font-size:13px;padding:20px;">No products found.</p>';return;}
+  grid.innerHTML = list.map(p => renderCard(p, products.indexOf(p))).join('');
+}
+
+function filterProds(btn,f){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter=f; renderProds();
+}
+function searchProds(q){currentSearch=q; renderProds();}
+
+function openEdit(idx){
+  editIdx=idx; const p=products[idx];
+  document.getElementById('modal-title').textContent='Edit Product';
+  document.getElementById('f-name').value=p.name;
+  document.getElementById('f-price').value=p.price;
+  document.getElementById('f-desc').value=p.desc;
+  document.getElementById('f-img').value=p.img||'';
+  document.getElementById('f-status').value=p.status;
+  document.getElementById('f-cat').value=p.cat.split('·')[0].trim();
+  document.getElementById('prod-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function openAdd(){
+  editIdx=null;
+  document.getElementById('modal-title').textContent='Add Product';
+  ['f-name','f-price','f-desc','f-img'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('f-status').value='Active';
+  document.getElementById('prod-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('prod-modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+function saveProduct(){
+  const name=document.getElementById('f-name').value.trim();
+  const price=parseInt(document.getElementById('f-price').value)||0;
+  if(!name){alert('Product name is required.');return;}
+  const data = {
+    name, price,
+    cat: document.getElementById('f-cat').value,
+    status: document.getElementById('f-status').value,
+    desc: document.getElementById('f-desc').value,
+    img: document.getElementById('f-img').value.trim(),
+  };
+  if(editIdx!==null){Object.assign(products[editIdx],data);}
+  else{products.push({id:Date.now(),...data});}
+  closeModal(); renderProds();
+}
+function toggleHide(idx){
+  products[idx].status=products[idx].status==='Hidden'?'Active':'Hidden';
+  renderProds();
+}
+document.getElementById('prod-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
+renderProds();
+</script>
+</body>
+</html>

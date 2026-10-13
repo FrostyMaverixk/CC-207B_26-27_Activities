@@ -1,0 +1,996 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Eliza May Calisa | Portfolio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Outfit:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #faf7ff;
+        --surface: #fff;
+        --ink: #241638;
+        --muted: #5d4d78;
+        --accent: #7b2ff7;
+        --accent2: #c77dff;
+        --soft: #efe6ff;
+        --line: #ddd0f5;
+        --onaccent: #fff;
+        --band: #f3eaff;
+        --head: "Fraunces", Georgia, serif;
+        --body: "Outfit", system-ui, sans-serif;
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --bg: #12081f;
+          --surface: #1d1031;
+          --ink: #f3ecff;
+          --muted: #bba8da;
+          --accent: #a35cff;
+          --accent2: #d9b3ff;
+          --soft: #2a1848;
+          --line: #3a2561;
+          --band: #231340;
+        }
+      }
+      :root[data-theme="dark"] {
+        --bg: #12081f;
+        --surface: #1d1031;
+        --ink: #f3ecff;
+        --muted: #bba8da;
+        --accent: #a35cff;
+        --accent2: #d9b3ff;
+        --soft: #2a1848;
+        --line: #3a2561;
+        --band: #231340;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: calc(72px + env(safe-area-inset-top, 0px));
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 400 1.05rem/1.65 var(--body);
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: var(--head);
+        line-height: 1.15;
+        margin: 0 0 0.5em;
+      }
+      h2 {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+      }
+      a {
+        color: var(--accent);
+      }
+      :focus-visible {
+        outline: 3px solid var(--accent2);
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+      .wrap {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      section {
+        padding: 72px 0;
+      }
+      /* nav */
+      nav {
+        position: sticky;
+        top: env(safe-area-inset-top, 0px);
+        z-index: 10;
+        background: color-mix(in srgb, var(--bg) 88%, transparent);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--line);
+      }
+      nav .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 60px;
+      }
+      .logo {
+        font-family: var(--head);
+        font-weight: 700;
+        text-decoration: none;
+        color: var(--ink);
+      }
+      .links {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+      .links a {
+        color: var(--muted);
+        text-decoration: none;
+        padding: 6px 12px;
+        border-radius: 99px;
+        font-size: 0.95rem;
+      }
+      .links a:hover,
+      .links a.active {
+        background: var(--soft);
+        color: var(--ink);
+      }
+      button {
+        font: inherit;
+        cursor: pointer;
+      }
+      .icon-btn {
+        background: var(--soft);
+        color: var(--ink);
+        border: 1px solid var(--line);
+        border-radius: 99px;
+        padding: 6px 12px;
+      }
+      #menu {
+        display: none;
+      }
+      .burger {
+        width: 44px;
+        height: 40px;
+        padding: 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+      }
+      .burger span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: var(--ink);
+        border-radius: 2px;
+        transition:
+          transform 0.3s,
+          opacity 0.3s;
+      }
+      .burger[aria-expanded="true"] span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .burger[aria-expanded="true"] span:nth-child(2) {
+        opacity: 0;
+      }
+      .burger[aria-expanded="true"] span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      .about img.photo{
+        object-fit:cover
+    }
+
+      @media (max-width: 720px) {
+        #menu {
+          display: flex;
+        }
+        .links {
+          display: none;
+          position: absolute;
+          top: 60px;
+          left: 0;
+          right: 0;
+          flex-direction: column;
+          align-items: stretch;
+          background: var(--bg);
+          padding: 12px 20px;
+          border-bottom: 1px solid var(--line);
+        }
+        .links.open {
+          display: flex;
+        }
+      }
+      /* hero */
+      .hero {
+        position: relative;
+        overflow: hidden;
+        min-height: 78vh;
+        display: flex;
+        align-items: center;
+        color: #f3ecff;
+        background:
+          radial-gradient(ellipse at 75% 20%, #7b2ff7 0%, transparent 55%),
+          radial-gradient(ellipse at 10% 90%, #c77dff55 0%, transparent 50%),
+          #150a28;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: -20%;
+        background:
+          radial-gradient(circle at 30% 40%, #9d4edd66 0, transparent 35%),
+          radial-gradient(circle at 70% 65%, #5a189a88 0, transparent 40%);
+        animation: drift 40s ease-in-out infinite alternate;
+      }
+      @keyframes drift {
+        from {
+          transform: translate(-4%, -3%) scale(1);
+        }
+        to {
+          transform: translate(4%, 3%) scale(1.12);
+        }
+      }
+      @keyframes pan {
+        to {
+          background-position: 520px 400px;
+        }
+      }
+      @keyframes panback {
+        to {
+          background-position: -390px -300px;
+        }
+      }
+      .stars.two {
+        background-image:
+          radial-gradient(1px 1px at 40px 60px, #fff, transparent),
+          radial-gradient(1.5px 1.5px at 130px 150px, #f0d9ff, transparent),
+          radial-gradient(1px 1px at 200px 20px, #fff, transparent);
+        background-size: 300px 220px;
+        opacity: 0.6;
+        animation: panback 160s linear infinite;
+      }
+      .stars {
+        position: absolute;
+        inset: 0;
+        background-image:
+          radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
+          radial-gradient(1px 1px at 90px 120px, #e9d5ff, transparent),
+          radial-gradient(2px 2px at 160px 60px, #fff, transparent),
+          radial-gradient(1px 1px at 230px 170px, #d9b3ff, transparent);
+        background-size: 260px 200px;
+        opacity: 0.8;
+        animation:
+          twinkle 5s ease-in-out infinite alternate,
+          pan 120s linear infinite;
+      }
+      @keyframes twinkle {
+        from {
+          opacity: 0.35;
+        }
+        to {
+          opacity: 0.9;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .stars,
+        .stars.two,
+        .hero::before {
+          animation: none;
+        }
+        html {
+          scroll-behavior: auto;
+        }
+      }
+      .hero .wrap {
+        position: relative;
+      }
+      .hero h1 {
+        font-size: clamp(2.8rem, 9vw, 5.6rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        max-width: 11ch;
+      }
+      .hero p {
+        max-width: 34em;
+        color: #ddd0f5;
+        font-size: 1.15rem;
+      }
+      .btn {
+        display: inline-block;
+        background: #fff;
+        color: #3b0f8c;
+        font-weight: 600;
+        padding: 12px 24px;
+        border-radius: 99px;
+        text-decoration: none;
+        margin: 8px 10px 0 0;
+      }
+      .btn.ghost {
+        background: transparent;
+        color: #fff;
+        border: 1.5px solid #c9a9ff;
+      }
+      /* about */
+      .about {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 32px;
+        align-items: center;
+      }
+      .photo {
+        width: 200px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font: 700 3.2rem var(--head);
+      }
+      @media (max-width: 640px) {
+        .about {
+          grid-template-columns: 1fr;
+          justify-items: start;
+        }
+      }
+      .muted {
+        color: var(--muted);
+      }
+      /* skills */
+      .skillgrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 24px;
+      }
+      .skill {
+        margin: 14px 0;
+      }
+      .skill div.row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.95rem;
+      }
+      .bar {
+        height: 8px;
+        background: var(--soft);
+        border-radius: 99px;
+        overflow: hidden;
+        margin-top: 4px;
+      }
+      .bar i {
+        display: block;
+        height: 100%;
+        width: 0;
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+        border-radius: 99px;
+        transition: width 1.1s ease;
+      }
+      /* timeline */
+      .tl {
+        border-left: 2px solid var(--line);
+        padding-left: 24px;
+        margin: 0;
+      }
+      .tl li {
+        list-style: none;
+        position: relative;
+        margin-bottom: 28px;
+      }
+      .tl li::before {
+        content: "";
+        position: absolute;
+        left: -31px;
+        top: 8px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+      .tl h3 {
+        font-size: 1.15rem;
+        margin: 0;
+      }
+      /* project */
+      .case {
+        display: grid;
+        gap: 16px;
+      }
+      .shot {
+        border: 2px dashed var(--line);
+        border-radius: 16px;
+        min-height: 200px;
+        display: grid;
+        place-items: center;
+        color: var(--muted);
+        background: var(--soft);
+        text-align: center;
+        padding: 16px;
+      }
+      .case-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 16px;
+      }
+      .tags span {
+        display: inline-block;
+        background: var(--soft);
+        border: 1px solid var(--line);
+        border-radius: 99px;
+        padding: 2px 12px;
+        margin: 0 6px 6px 0;
+        font-size: 0.9rem;
+      }
+      /* contact */
+      form {
+        display: grid;
+        gap: 14px;
+      }
+      label {
+        font-weight: 500;
+        display: grid;
+        gap: 4px;
+      }
+      input,
+      textarea {
+        font: inherit;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1.5px solid var(--line);
+        background: var(--surface);
+        color: var(--ink);
+      }
+      .err {
+        color: #c0264b;
+        font-size: 0.9rem;
+        min-height: 1.2em;
+      }
+      :root[data-theme="dark"] .err {
+        color: #ff8fab;
+      }
+      #status {
+        font-weight: 600;
+        color: var(--accent);
+      }
+      .btn.solid {
+        background: var(--accent);
+        color: var(--onaccent);
+        border: 0;
+        justify-self: start;
+      }
+      footer {
+        text-align: center;
+        padding: 32px 20px;
+        color: var(--muted);
+        border-top: 1px solid var(--line);
+      }
+      .fade {
+        opacity: 0;
+        transform: translateY(14px);
+        transition:
+          opacity 0.7s,
+          transform 0.7s;
+      }
+      .fade.in {
+        opacity: 1;
+        transform: none;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .fade {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        .bar i {
+          transition: none;
+        }
+      }
+
+      body {
+        background: #12081f;
+      }
+      section {
+        padding: 100px 0;
+      }
+      /* fixed galaxy behind every section */
+      .galaxy {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        overflow: hidden;
+        background:
+          radial-gradient(ellipse at 80% 10%, #6a22d055, transparent 55%),
+          radial-gradient(ellipse at 10% 85%, #9d4edd44, transparent 50%),
+          #12081f;
+      }
+      .galaxy i {
+        position: absolute;
+        inset: -20% 0;
+        will-change: transform;
+        transform: translate3d(0, calc(var(--sy, 0) * var(--r) * 1px), 0);
+      }
+      .galaxy .g1 {
+        --r: -0.08;
+        background-image:
+          radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
+          radial-gradient(1px 1px at 90px 120px, #e9d5ff, transparent),
+          radial-gradient(2px 2px at 160px 60px, #fff, transparent);
+        background-size: 260px 200px;
+        opacity: 0.75;
+        animation: pan 160s linear infinite;
+      }
+      .galaxy .g2 {
+        --r: -0.2;
+        background-image:
+          radial-gradient(1px 1px at 40px 60px, #fff, transparent),
+          radial-gradient(2px 2px at 150px 150px, #f0d9ff, transparent);
+        background-size: 340px 260px;
+        opacity: 0.6;
+        animation: panback 220s linear infinite;
+      }
+      /* section bands */
+      .band-dark {
+        --ink: #f3ecff;
+        --muted: #c9b8e6;
+        --surface: #1d1031cc;
+        --soft: #2f1a52;
+        --line: #4a3078;
+        --accent: #c9a0ff;
+        color: var(--ink);
+        position: relative;
+      }
+      .band-light {
+        background: var(--band);
+        margin: -30px 0;
+        padding: 130px 0;
+        position: relative;
+        z-index: 1;
+        clip-path: polygon(0 30px, 100% 0, 100% calc(100% - 30px), 0 100%);
+      }
+      footer.band-dark {
+        border-top: 0;
+      }
+      /* progress bar */
+      #prog {
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        height: 3px;
+        width: 100%;
+        background: linear-gradient(90deg, #7b2ff7, #d9b3ff);
+        transform: scaleX(0);
+        transform-origin: 0 50%;
+      }
+      /* about showpiece */
+      .about .photo {
+        position: relative;
+        background: linear-gradient(135deg, #7b2ff7, #c77dff);
+        box-shadow:
+          0 0 0 6px #2a1848,
+          0 0 0 9px #c77dff,
+          0 0 50px 8px #9d4edd88;
+        opacity: 0;
+        transform: translateX(-50px);
+        transition:
+          opacity 0.9s,
+          transform 0.9s;
+      }
+      .about .txt {
+        opacity: 0;
+        transform: translateX(50px);
+        transition:
+          opacity 0.9s 0.15s,
+          transform 0.9s 0.15s;
+      }
+      .in .about .photo,
+      .in .about .txt {
+        opacity: 1;
+        transform: none;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .about .photo,
+        .about .txt {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        .galaxy i {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="galaxy" aria-hidden="true">
+      <i class="g1"></i><i class="g2"></i>
+    </div>
+    <nav aria-label="Main">
+      <div class="wrap">
+        <a class="logo" href="#top">Eliza May Calisa</a>
+        <div style="display: flex; gap: 8px; align-items: center">
+          <div class="links" id="links">
+            <a href="#about">About</a><a href="#goal">Goal</a
+            ><a href="#skills">Skills</a><a href="#education">Education</a
+            ><a href="#project">Project</a><a href="#contact">Contact</a>
+          </div>
+          <button
+            class="icon-btn"
+            id="theme"
+            aria-label="Switch light or dark mode"
+          >
+            Light/Dark
+          </button>
+          <button
+            class="icon-btn burger"
+            id="menu"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="links"
+          >
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <div id="prog" aria-hidden="true"></div>
+    </nav>
+
+    <header class="hero" id="top">
+      <div class="stars" aria-hidden="true"></div>
+      <div class="stars two" aria-hidden="true"></div>
+      <div class="wrap">
+        <h1>Eliza May Calisa</h1>
+        <p>
+          BSIT student who turns plans into organized, user-friendly systems, with a focus on project management and human-centered design.
+        </p>
+        <a class="btn" href="#project">See my project</a
+        ><a class="btn ghost" href="#contact">Get in touch</a>
+      </div>
+    </header>
+
+    <main>
+      <section id="about" class="band-dark">
+        <div class="wrap fade">
+          <div class="about">
+            <img
+              class="photo"
+              src="portfolio.jpg"
+              alt="Photo of Eliza May Calisa"
+            />
+            <div class="txt">
+              <h2>About me</h2>
+              <p>
+                I'm a third-year Bachelor of Science in Information Technology
+                student at West Visayas State University. I'm drawn to the parts
+                of IT that make work run smoothly: managing tasks and time,
+                organizing information, and shaping interfaces that people can
+                use without a manual.
+              </p>
+              <p class="muted">Based in Iloilo, Philippines.</p>
+              <div class="tags">
+                <span>Management</span><span>Organization</span><span>HCI</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="goal" class="band-light">
+        <div class="wrap fade">
+          <h2>My goal</h2>
+          <div class="card">
+            <p>
+              I want a career on the people side of technology: leading
+              projects, keeping teams and information organized, and making sure
+              the things we build are easy and pleasant to use. I'd rather be
+              the one who plans the work, talks to users, and shapes the
+              experience than the one writing the backend code.
+            </p>
+            <div class="tags">
+              <span>Project coordination</span><span>UX and HCI</span
+              ><span>Process and organization</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="band-dark">
+        <div class="wrap fade">
+          <h2>Skills</h2>
+          <div class="skillgrid" id="skillgrid"></div>
+        </div>
+      </section>
+
+      <section id="education" class="band-light">
+        <div class="wrap fade">
+          <h2>Education</h2>
+          <ul class="tl">
+            <li>
+              <h3>BS Information Technology, Year 3, Section A</h3>
+              <div class="muted">West Visayas State University, Iloilo</div>
+              <p>
+                Currently taking courses in Human-Computer Interaction, IT Project Management,and App and Web Development.
+              </p>
+            </li>
+            <li>
+              <h3>Independent Project Developer</h3>
+              <div class="muted">2026</div>
+              <p>
+                Planned, designed, and built a personal project from start to finish.
+              </p>
+            </li>
+            <li>
+              <h3>CCNA: Introduction to Networks(Course Completion)</h3>
+              <div class="muted">2026</div>
+              <p>
+                Learned how networks are built and connected, including IP addressing, network devices, and basic troubleshooting.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="project" class="band-dark">
+        <div class="wrap fade">
+          <h2>Project: Personal Finance Tracker</h2>
+          <p class="muted">
+            An individual project, planned, designed, and built by me.
+          </p>
+          <div class="case">
+            <img
+              class="shot"
+              src="pennywise-login.png"
+              alt="Screenshot of the finance tracker app"
+            />
+            <div class="case-grid">
+              <div class="card">
+                <h3>The problem</h3>
+                <p>
+                  Tracking money in notes or from memory is easy to forget and hard to review. PennyWise gives students a simple place to log income and expenses and see where their money goes.
+                </p>
+              </div>
+              <div class="card">
+                <h3>My role</h3>
+                <p>
+                  Solo: I set the scope, scheduled the work, designed the screens for both users and an admin, and built the app.
+                </p>
+              </div>
+              <div class="card">
+                <h3>Process</h3>
+                <p>
+                  I separated the app into a user side and an admin side, planned each screen around one clear task, then built features one at a time, from sign-up and login to charts and transaction editing.
+                </p>
+              </div>
+              <div class="card">
+                <h3>For Users</h3>
+                <ul>
+                    <li>Dashboard with total balance, income, and expenses at a glance</li>
+                    <li>Spending trend (last 7 days) and monthly expenses by category charts</li>
+                    <li>Quick transaction entry with category, date, and note</li>
+                    <li>Filter recent transactions by all, income, or expense</li>
+                    <li>Double-click a transaction to edit or delete it</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>For Admins</h3>
+                <ul>
+                    <li>Overview of registered, active, and recent users</li>
+                    <li>User management to view and remove accounts</li>
+                    <li>Customizable income and expense categories</li>
+                    <li>Login logs for transparency and security</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3>What I learned</h3>
+                <p>
+                  Clear screens and instant feedback, like confirmation messages and charts that update right away, make an app easier to trust. A written plan also keeps a solo project on schedule.
+                </p>
+              </div>
+              <div class="card">
+                <h3>Tools</h3>
+                <div class="tags">
+                  <span>Java Desktop Application (Swing Framework)</span><span>MySQL (phpMyAdmin)</span
+                  ><span>Apache NetBeans</span>
+                </div>
+              </div>
+            </div>
+            <p>
+              <a
+                href="#"
+                aria-label="View finance tracker project (link coming soon)"
+                >View project (link coming soon)</a
+              >
+            </p>
+            <p class="muted">More projects are on the way.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="band-light">
+        <div class="wrap fade">
+          <h2>Contact</h2>
+          <p>
+            Want to work together or just say hello?
+            <a href="mailto:your@email.com">elizacalisa@gmail.com</a>
+          </p>
+          <form id="form" novalidate>
+            <label
+              >Name<input id="n" autocomplete="name" /><span
+                class="err"
+                id="en"
+              ></span
+            ></label>
+            <label
+              >Email<input id="e" type="email" autocomplete="email" /><span
+                class="err"
+                id="ee"
+              ></span
+            ></label>
+            <label
+              >Message<textarea id="m" rows="4"></textarea
+              ><span class="err" id="em"></span
+            ></label>
+            <button class="btn solid" type="submit">Send message</button>
+            <div id="status" role="status"></div>
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer class="band-dark">
+      &copy; 2026 Eliza May Calisa. Made with a purple heart.
+    </footer>
+
+    <script>
+      /* ===== EDIT YOUR SKILLS HERE (level is 0-100) ===== */
+      const SKILLS = {
+        Management: [
+          ["Project planning", 67],
+          ["Time management", 63],
+          ["Team coordination", 69],
+          ["Task prioritization", 65],
+        ],
+        Organization: [
+          ["Documentation", 62],
+          ["Workflow planning", 68],
+          ["Scheduling", 64],
+          ["Data and file organization", 70],
+        ],
+        "HCI and UX": [
+          ["Wireframing", 66],
+          ["Prototyping", 61],
+          ["Usability testing", 68],
+          ["Accessibility", 63],
+        ],
+      };
+      /* ================================================== */
+      const grid = document.getElementById("skillgrid");
+      for (const [group, list] of Object.entries(SKILLS)) {
+        const c = document.createElement("div");
+        c.className = "card";
+        c.innerHTML =
+          "<h3>" +
+          group +
+          "</h3>" +
+          list
+            .map(
+              ([n, l]) =>
+                '<div class="skill"><div class="row"><span>' +
+                n +
+                "</span><span>" +
+                l +
+                '%</span></div><div class="bar" role="progressbar" aria-label="' +
+                n +
+                '" aria-valuenow="' +
+                l +
+                '" aria-valuemin="0" aria-valuemax="100"><i data-w="' +
+                l +
+                '"></i></div></div>',
+            )
+            .join("");
+        grid.appendChild(c);
+      }
+      /* reveal on scroll + animate bars */
+      const io = new IntersectionObserver(
+        (es) =>
+          es.forEach((x) => {
+            if (x.isIntersecting) {
+              x.target.classList.add("in");
+              x.target
+                .querySelectorAll("i[data-w]")
+                .forEach((b) => (b.style.width = b.dataset.w + "%"));
+              io.unobserve(x.target);
+            }
+          }),
+        { threshold: 0.15 },
+      );
+      document.querySelectorAll(".fade").forEach((el) => io.observe(el));
+      /* active nav link */
+      const links = [...document.querySelectorAll(".links a")];
+      const so = new IntersectionObserver(
+        (es) =>
+          es.forEach((x) => {
+            if (x.isIntersecting) {
+              links.forEach((a) =>
+                a.classList.toggle(
+                  "active",
+                  a.getAttribute("href") === "#" + x.target.id,
+                ),
+              );
+            }
+          }),
+        { rootMargin: "-40% 0px -55% 0px" },
+      );
+      document.querySelectorAll("main section").forEach((s) => so.observe(s));
+      /* theme toggle (in memory only) */
+      const root = document.documentElement;
+      document.getElementById("theme").onclick = () => {
+        const dark = root.dataset.theme
+          ? root.dataset.theme === "dark"
+          : matchMedia("(prefers-color-scheme:dark)").matches;
+        root.dataset.theme = dark ? "light" : "dark";
+      };
+      /* mobile menu */
+      const menu = document.getElementById("menu"),
+        nav = document.getElementById("links");
+      menu.onclick = () => {
+        const o = nav.classList.toggle("open");
+        menu.setAttribute("aria-expanded", o);
+      };
+      nav.onclick = () => {
+        nav.classList.remove("open");
+        menu.setAttribute("aria-expanded", false);
+      };
+      /* contact form validation (no real sending) */
+      document.getElementById("form").onsubmit = (ev) => {
+        ev.preventDefault();
+        const v = (id) => document.getElementById(id).value.trim();
+        const set = (id, t) => {
+          document.getElementById(id).textContent = t;
+          return !t;
+        };
+        const a = set("en", v("n") ? "" : "Enter your name.");
+        const b = set(
+          "ee",
+          /^\S+@\S+\.\S+$/.test(v("e"))
+            ? ""
+            : "Enter a valid email, like name@example.com.",
+        );
+        const c = set(
+          "em",
+          v("m").length >= 10
+            ? ""
+            : "Write a message of at least 10 characters.",
+        );
+        document.getElementById("status").textContent =
+          a && b && c
+            ? "Thanks! Your message is ready (this demo does not send emails yet)."
+            : "";
+      };
+
+      /* scroll progress + galaxy parallax */
+      const prog = document.getElementById("prog"),
+        still = matchMedia("(prefers-reduced-motion:reduce)").matches;
+      let tick = false;
+      function onScroll() {
+        const y = scrollY,
+          max = document.documentElement.scrollHeight - innerHeight;
+        prog.style.transform =
+          "scaleX(" + (max > 0 ? Math.min(y / max, 1) : 0) + ")";
+        if (!still) root.style.setProperty("--sy", y);
+        tick = false;
+      }
+      addEventListener(
+        "scroll",
+        () => {
+          if (!tick) {
+            tick = true;
+            requestAnimationFrame(onScroll);
+          }
+        },
+        { passive: true },
+      );
+      onScroll();
+    </script>
+  </body>
+</html>

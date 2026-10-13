@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>[Your Name] | Student Portfolio</title>
+  <meta name="description" content="Personal portfolio of Ellen Mae Tacleon - about me, skills, and goals." />
+  <meta name="theme-color" content="#cfe3c2" />
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-code" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></symbol>
+      <symbol id="i-hash" viewBox="0 0 24 24"><path d="M4 9h16M4 15h16M10 3 8 21M16 3l-2 18"/></symbol>
+      <symbol id="i-braces" viewBox="0 0 24 24"><path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5a2 2 0 0 0 2 2h1M16 3h1a2 2 0 0 1 2 2v5a2 2 0 0 0 2 2 2 2 0 0 0-2 2v5a2 2 0 0 1-2 2h-1"/></symbol>
+      <symbol id="i-layout" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></symbol>
+      <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+      <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2V17h6v-.3c0-.8.4-1.5 1-2A7 7 0 0 0 12 2z"/></symbol>
+      <symbol id="i-star" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9 12 2"/></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M20 17v4H6.5A2.5 2.5 0 0 1 4 18.5"/></symbol>
+      <symbol id="i-sprout" viewBox="0 0 24 24"><path d="M12 22V11M12 11C12 7 9 5 4 5c0 4 3 6 8 6zM12 14c0-3 2.5-5 8-5 0 4-3 5-8 5z"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+      <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+      <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.2 7.8 14.1 14.1 7.8 16.2 9.9 9.9 16.2 7.8"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="bg" aria-hidden="true">
+    <div class="blob-layer" data-depth="18"><div class="blob blob--green"></div></div>
+    <div class="blob-layer" data-depth="-26"><div class="blob blob--yellow"></div></div>
+    <div class="blob-layer" data-depth="12"><div class="blob blob--sage"></div></div>
+    <canvas id="fireflies"></canvas>
+  </div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="header-bar">
+      <a class="brand" href="#home"><span class="ph">Ellen Mae Tacleon</span></a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#about" class="nav-link">About Me</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#goals" class="nav-link">Goals</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="home" class="hero">
+      <div class="hero-inner">
+        <h1 class="hero-heading">
+          <span class="hero-greeting">Hello, I'm <span class="ph">Ellen Mae!</span></span>
+          <span class="hero-title">Welcome to My Digital Space</span>
+        </h1>
+
+        <p class="hero-intro">
+          I'm a student at <span class="ph">West Visayas State University</span>, taking <span class="ph">BS in Information Technology</span>.
+          This is a small corner of the internet where you can learn about me, the skills I'm building,
+          and where I hope to go next.
+        </p>
+
+        <ul class="hero-chips" aria-label="Quick facts">
+          <li><span class="ph">WVSU</span></li>
+          <li><span class="ph">BSIT</span></li>
+          <li><span class="ph">20</span> years old</li>
+        </ul>
+
+        <a href="#about" class="btn btn-glass">About Me</a>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <header class="section-head reveal">
+          <h2>About Me</h2>
+          <p>A quick look at who I am.</p>
+        </header>
+
+        <article class="card about-card reveal">
+          <div class="avatar" aria-hidden="true">
+            <img src="photo1.jpe" alt="Photo of Ellen Mae Tacleon" /> 
+            <span>[Photo]</span>
+          </div>
+
+          <div class="about-body">
+            <p class="about-bio"><span class="ph">I am a 3rd-year IT student. I am motivated by my goal of becoming successful in the future and doing my best in everything I work on. I continuously strive to improve my skills, learn new things, and produce work that I can be proud of.</span></p>
+
+          <dl class="info-list">
+            <div class="info-item">
+              <dt>Full name</dt>
+              <dd><span class="ph">Ellen Mae Tacleon</span></dd>
+            </div>
+            <div class="info-item">
+              <dt>Age</dt>
+              <dd><span class="ph">20 years old</span></dd>
+            </div>
+            <div class="info-item">
+              <dt>Birthday</dt>
+              <dd><span class="ph">May 23, 2006</span></dd>
+            </div>
+            <div class="info-item">
+              <dt>Address</dt>
+              <dd><span class="ph">Tubungan, Iloilo</span></dd>
+            </div>
+            <div class="info-item">
+              <dt>School</dt>
+              <dd><span class="ph">West Visayas State University</span></dd>
+            </div>
+            <div class="info-item">
+              <dt>Course / Strand</dt>
+              <dd><span class="ph">BS in Information Technology</span></dd>
+            </div>
+          </dl>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="container">
+        <header class="section-head reveal">
+          <h2>Skills</h2>
+          <p>Things I'm learning and practicing. <span class="ph">I am developing strong technical, creative, and interpersonal skills through school projects and hands-on practice, with a focus on web development, teamwork, communication, and continuous learning.</span></p>
+        </header>
+
+        <div class="skills-grid">
+          <article class="card reveal">
+            <h3>Technical Skills</h3>
+            <ul class="skill-list">
+              <li class="skill-card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-code"/></svg><span>HTML</span></li>
+              <li class="skill-card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-hash"/></svg><span>CSS</span></li>
+              <li class="skill-card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-braces"/></svg><span>JavaScript</span></li>
+              <li class="skill-card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-layout"/></svg><span>Basic Web Design</span></li>
+              <li class="skill-card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-monitor"/></svg><span>Basic Computer Skills</span></li>
+            </ul>
+            <p class="skill-note"><span class="ph">I have developed my skills in HTML, CSS, and JavaScript through school projects from my first year to my third year. I have also gained experience in basic web design and improved my computer skills through self-learning and hands-on exploration.</span></p>
+          </article>
+
+          <article class="card reveal">
+            <h3>Soft Skills</h3>
+            <ul class="skill-list">
+              <li class="skill-card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-users"/></svg><span>Teamwork</span></li>
+              <li class="skill-card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clock"/></svg><span>Time Management</span></li>
+              <li class="skill-card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg><span>Creativity</span></li>
+              <li class="skill-card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sprout"/></svg><span>Willingness to Learn</span></li>
+            </ul>
+            <p class="skill-note"><span class="ph">I have developed teamwork, communication, time management, and creativity through group projects and school activities. I contribute ideas, complete assigned tasks responsibly, and work effectively with others to meet project deadlines.</span></p>
+          </article>
+
+          <article class="card reveal">
+            <h3>Tools &amp; Software</h3>
+            <ul class="skill-list">
+              <li class="skill-card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-code"/></svg><span>Visual Studio Code</span></li>
+              <li class="skill-card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-book"/></svg><span>Microsoft Word</span></li>
+               <li class="skill-card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-layout"/></svg><span>Figma</span></li>
+              <li class="skill-card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-monitor"/></svg><span>Canva</span></li>
+            </ul>
+            <p class="skill-note"><span class="ph">Visual Studio Code is primarily used for coding and web development because of its simple interface and efficient features. Microsoft Word is used for academic documentation, while Canva is used for presentations and visual materials. Figma is also used to design prototypes and plan project interfaces.</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="goals" class="section">
+      <div class="container">
+        <header class="section-head reveal">
+          <h2>Goals &amp; Objectives</h2>
+          <p>What I'm working toward.</p>
+        </header>
+
+        <div class="goals-grid">
+          <article class="card goal-card reveal">
+            <div class="goal-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-target"/></svg></div>
+            <h3>Short-Term Goals</h3>
+            <p>I want to improve my technical skills, gain more experience, and become more confident in creating websites and digital projects.</p>
+          </article>
+
+          <article class="card goal-card reveal">
+            <div class="goal-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-compass"/></svg></div>
+            <h3>Long-Term Goals</h3>
+            <p>My long-term goal is to continue developing my knowledge and skills and build a career related to technology and my chosen field.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 <span class="ph">Tacleon</span>. All Rights Reserved.</p>
+    <p class="footer-sub">Made with HTML, CSS &amp; JavaScript</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
+}
+
+/* ---- the export dialog panel -------------------------------------------------- */
+.dialog {
+  width: 100%;
+  max-width: 560px;
+  padding: var(--space-4);
+  background: var(--bg-1);
+  border: 1px solid var(--line-0);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.title {
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--line-0);
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  font-weight: 400;
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-0);
+}
+
+/* ---- NLE export rows: label left, control right -------------------------------- */
+.row {
+  display: grid;
+  grid-template-columns: minmax(130px, 0.35fr) 1fr;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.rowTop {
+  align-items: start;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-1);
+}
+
+.static {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-2);
+}
+
+.control {
+  width: 100%;
+  padding: var(--space-2);
+  background: var(--bg-2);
+  border: 1px solid var(--line-0);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  color: var(--text-0);
+}
+
+.control:hover {
+  border-color: var(--line-1);
+}
+
+.control::placeholder {
+  color: var(--text-2);
+  opacity: 1;
+}
+
+.notes {
+  resize: vertical;
+  min-height: 96px;
+}
+
+/* ---- honeypot: visually hidden, still in the DOM -------------------------------- */
+.honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---- submit = render-queue button ------------------------------------------------ */
+.submit {
+  position: relative;
+  width: 100%;
+  min-height: 44px;
+  margin-top: var(--space-2);
+  overflow: hidden;
+  background: var(--accent-orange);
+  border: 1px solid var(--accent-orange);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: var(--tracking-mono);
+  color: var(--bg-0);
+}
+
+.submit:disabled {
+  background: var(--bg-2);
+  border-color: var(--line-0);
+  color: var(--text-0);
+  cursor: progress;
+}
+
+.submitFill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0%;
+  background: color-mix(in srgb, var(--accent-orange) 35%, transparent);
+}
+
+.submitLabel {
+  position: relative;
+}
+
+/* ---- secondary CTA: Messenger "quick export" (outlined, below the primary) -------- */
+.quickExport {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 44px;
+  background: transparent;
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-1);
+  text-decoration: none;
+}
+
+.quickExport:hover {
+  border-color: var(--accent-teal);
+  color: var(--accent-teal);
+}
+
+/* ---- status stamp ------------------------------------------------------------------ */
+.status {
+  min-height: 1.2em;
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: var(--tracking-mono);
+  text-align: right;
+}
+
+.statusOk {
+  color: var(--accent-teal);
+}
+
+.statusFailed {
+  color: var(--accent-red);
+}
+
+/* ---- footer micro-strip -------------------------------------------------------------- */
+.footer {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-2);
+  text-align: center;
+}
+
+@media (max-width: 639px) {
+  .dialog {
+    max-width: none;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+    gap: var(--space-1);
+  }
+}

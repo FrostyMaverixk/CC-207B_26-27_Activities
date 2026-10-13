@@ -1,0 +1,174 @@
+<!doctype html>
+<!--
+  EDIT BAY — og:image source (1200×630). The hero identity as a share card:
+  ruler + playhead, the joke filename, JERRICKHO in the display face, mono
+  metadata. Fonts load straight from node_modules (Fontsource), so render
+  AFTER `npm install`. Regenerate public/assets/og.png when the name,
+  tagline, or hero filename changes:
+
+  & "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --headless --disable-gpu `
+      --allow-file-access-from-files --hide-scrollbars --virtual-time-budget=5000 `
+      --window-size=1200,630 --screenshot="<repo>\video-portfolio\public\assets\og.png" `
+      "<repo>\video-portfolio\brand\og-card.html"
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      @font-face {
+        font-family: 'Space Grotesk Variable';
+        font-weight: 300 700;
+        src: url('../node_modules/@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2')
+          format('woff2-variations');
+        font-display: block;
+      }
+      @font-face {
+        font-family: 'JetBrains Mono Variable';
+        font-weight: 100 800;
+        src: url('../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2')
+          format('woff2-variations');
+        font-display: block;
+      }
+
+      /* tokens.css values, hard-coded — this file renders standalone */
+      body {
+        position: relative;
+        width: 1200px;
+        height: 630px;
+        margin: 0;
+        overflow: hidden;
+        background: #0b0c0f;
+        font-family: 'JetBrains Mono Variable', monospace;
+      }
+
+      /* ---- ruler band across the top ---- */
+      .ruler {
+        position: absolute;
+        inset: 0 0 auto;
+        height: 56px;
+        background: #1a1d24;
+        border-bottom: 2px solid #262a33;
+      }
+      .ticks {
+        position: absolute;
+        inset: auto 0 0;
+        height: 16px;
+        background: repeating-linear-gradient(
+          to right,
+          #343a46 0 3px,
+          transparent 3px 60px
+        );
+      }
+      .tc {
+        position: absolute;
+        top: 12px;
+        left: 24px;
+        font-size: 18px;
+        letter-spacing: 0.08em;
+        color: #76819a;
+      }
+
+      /* ---- faint track hairlines ---- */
+      .track {
+        position: absolute;
+        inset-inline: 0;
+        height: 3px;
+        background: #262a33;
+      }
+
+      /* ---- the playhead, parked right of the text ---- */
+      .playhead {
+        position: absolute;
+        top: 0;
+        left: 1020px;
+        fill: #ff8a3d;
+      }
+
+      /* ---- monitor corner ticks ---- */
+      .corners {
+        position: absolute;
+        inset: 12px;
+        background:
+          linear-gradient(#343a46, #343a46) left top / 24px 2px,
+          linear-gradient(#343a46, #343a46) left top / 2px 24px,
+          linear-gradient(#343a46, #343a46) right top / 24px 2px,
+          linear-gradient(#343a46, #343a46) right top / 2px 24px,
+          linear-gradient(#343a46, #343a46) left bottom / 24px 2px,
+          linear-gradient(#343a46, #343a46) left bottom / 2px 24px,
+          linear-gradient(#343a46, #343a46) right bottom / 24px 2px,
+          linear-gradient(#343a46, #343a46) right bottom / 2px 24px;
+        background-repeat: no-repeat;
+      }
+
+      /* ---- title block ---- */
+      .title {
+        position: absolute;
+        top: 196px;
+        left: 80px;
+      }
+      .filename {
+        font-size: 26px;
+        letter-spacing: 0.08em;
+        color: #9aa3b2;
+      }
+      .caret {
+        color: #ff8a3d;
+      }
+      .name {
+        margin: 8px 0 18px -8px;
+        font-family: 'Space Grotesk Variable', sans-serif;
+        font-size: 170px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        color: #e7e9ee;
+      }
+      .tagline {
+        font-size: 28px;
+        letter-spacing: 0.08em;
+        color: #9aa3b2;
+      }
+
+      /* ---- bottom meta row, like the hero's ---- */
+      .meta {
+        position: absolute;
+        inset: auto 80px 28px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 20px;
+        letter-spacing: 0.08em;
+        color: #76819a;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="track" style="top: 340px"></div>
+    <div class="track" style="top: 470px"></div>
+
+    <div class="ruler">
+      <div class="ticks"></div>
+      <span class="tc">01:00:00:00</span>
+    </div>
+
+    <!-- stem stops above the meta row — the status bar sits below the timeline -->
+    <svg class="playhead" width="96" height="630" viewBox="0 0 96 630">
+      <path d="M0 8h96v48L48 100 0 56z" />
+      <rect x="40" y="8" width="16" height="532" />
+    </svg>
+
+    <div class="corners"></div>
+
+    <div class="title">
+      <div class="filename">JERRICKHO_REEL_v12_FINAL_final2.mp4<span class="caret">_</span></div>
+      <div class="name">JERRICKHO</div>
+      <div class="tagline">editor — short film · ads · reels · AMV · motion</div>
+    </div>
+
+    <div class="meta">
+      <span>24</span>
+      <span>1080P</span>
+      <span>DAVINCI YRGB</span>
+      <span>REC.709</span>
+    </div>
+  </body>
+</html>

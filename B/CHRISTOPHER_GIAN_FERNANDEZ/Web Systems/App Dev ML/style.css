@@ -1,0 +1,81 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #f2f2f2;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+/* =========================
+   GAME
+========================= */
+
+#game {
+  position: relative;
+
+  width: 800px;
+  height: 400px;
+
+  margin: 20px auto;
+
+  background: skyblue;
+
+  border: 4px solid #333;
+
+  overflow: hidden;
+}
+
+/* Player */
+
+#player {
+  position: absolute;
+
+  font-size: 50px;
+
+  left: 100px;
+  bottom: 20px;
+}
+
+/* Obstacle */
+
+#obstacle {
+  position: absolute;
+
+  font-size: 50px;
+
+  right: 50px;
+  bottom: 20px;
+}
+
+/* =========================
+   CAMERA
+========================= */
+
+#camera {
+  margin-top: 20px;
+}
+
+#webcam-container {
+  margin: 10px auto;
+}
+
+.camera-feed {
+  display: block;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  object-fit: cover;
+}
+
+#prediction {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+#confidence {
+  font-size: 18px;
+}

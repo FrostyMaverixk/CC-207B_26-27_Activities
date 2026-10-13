@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Winbealle Baylon | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="#home" class="logo">Winbealle Baylon<span>.</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+    <nav id="nav">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <button id="themeToggle" class="theme-btn" aria-label="Toggle dark mode">🌙</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="hero-text">
+      <p class="eyebrow">Hello, I'm</p>
+      <h1>Winbealle Baylon</h1>
+      <h2>I'm a <span id="typed"></span><span class="cursor">|</span></h2>
+      <p class="lead">I build clean, simple and useful things for the web.</p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn">View My Work</a>
+        <a href="#contact" class="btn btn-outline">Contact Me</a>
+      </div>
+      </div>
+
+      <div class="avatar">
+        <span class="avatar-fallback">🙂</span>
+        <img src="IMG_0784.png" alt="My Memoji" onerror="this.style.display='none'" />
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section reveal">
+      <h3 class="section-title">About Me</h3>
+      <p class="about-text">
+        Write a short introduction here. Talk about who you are, what you do,
+        and what you're passionate about. Keep it friendly and to the point.
+      </p>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section reveal">
+      <h3 class="section-title">Projects</h3>
+      <div class="grid">
+        <article class="card">
+          <div class="card-img">🚀</div>
+          <h4>Project One</h4>
+          <p>A short description of what this project does and the problem it solves.</p>
+          <a href="#" class="link">View project →</a>
+        </article>
+        <article class="card">
+          <div class="card-img">🛒</div>
+          <h4>Project Two</h4>
+          <p>A short description of what this project does and the problem it solves.</p>
+          <a href="#" class="link">View project →</a>
+        </article>
+        <article class="card">
+          <div class="card-img">📱</div>
+          <h4>Project Three</h4>
+          <p>A short description of what this project does and the problem it solves.</p>
+          <a href="#" class="link">View project →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section reveal">
+      <h3 class="section-title">Skills</h3>
+      <ul class="skills">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>Git</li>
+        <li>Responsive Design</li>
+        <li>UI Design</li>
+      </ul>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section reveal">
+      <h3 class="section-title">Get In Touch</h3>
+      <form id="contactForm" class="form">
+        <input type="text" id="name" placeholder="Your name" required />
+        <input type="email" id="email" placeholder="Your email" required />
+        <textarea id="message" rows="5" placeholder="Your message" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+        <p id="formStatus" class="form-status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> Your Name. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

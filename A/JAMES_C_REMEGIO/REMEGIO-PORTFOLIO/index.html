@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>James C. Remegio — Portfolio</title>
+  <meta name="description" content="Portfolio of James C. Remegio, BSIT student, student leader, and builder of software, robotics, and research projects at West Visayas State University." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-grid" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="mark" href="#top">
+      <span class="joint"></span>
+      JCR
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#skills">Index</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <p class="header-meta mono">
+      <span>10.6592° N</span>
+      <span class="dot">/</span>
+      <span>122.9511° E</span>
+    </p>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <p class="eyebrow mono">
+        <span class="status"></span>
+        UNIT 01 — HUMAN × MACHINE
+      </p>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1>
+            James C.<br />
+            Remegio
+          </h1>
+          <p class="lede">
+            I build systems where human need and machine craft meet — software, robotics, and research with a purpose.
+          </p>
+          <p class="hero-role mono">
+            BSIT 3A · WVSU · University Student Councilor · AY 2026–2027
+          </p>
+        </div>
+        <div class="hero-mech" aria-hidden="true">
+          <canvas id="mechanism" width="720" height="560"></canvas>
+          <div class="mech-label top-left mono">REF 01.04</div>
+          <div class="mech-label bottom-right mono">CURSOR → JOINT Δ</div>
+        </div>
+      </div>
+      <div class="hero-photo-row">
+        <figure class="portrait">
+          <img src="assets/james.png" alt="Portrait of James C. Remegio" />
+          <figcaption class="mono">FIG. 01 — SUBJECT / BUILDER</figcaption>
+        </figure>
+        <div class="hero-notes">
+          <p class="note-kicker mono">01 / STATEMENT</p>
+          <p>Curious, ambitious, and precise. Technology enthusiast, student leader, and innovator working at the seam of leadership and making.</p>
+          <div class="note-coords">
+            <span class="mono">ILOILO CITY</span>
+            <span class="line"></span>
+            <span class="mono">PH</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section about">
+      <div class="section-head">
+        <p class="mono kicker">02 / ABOUT</p>
+        <h2>A builder who treats leadership like engineering.</h2>
+      </div>
+      <div class="about-body">
+        <p>
+          James C. Remegio is a Bachelor of Science in Information Technology student at West Visayas State University and currently serves as a University Student Councilor for A.Y. 2026–2027. He is passionate about software development, robotics, research, and using technology to solve real-world problems.
+        </p>
+        <p>
+          His leadership includes serving as Board Member for Research and Development of the Cyb Robotics Organization, Assistant Secretary of the CICT Student Council, and Vice Chairperson of the CICT Junior Student Council.
+        </p>
+        <p>
+          Beyond student governance, he placed 1st in RealiTy XIII: METROPOLIS — IDEATHON, organized by WVSU Link.exe, and became champion of a National Robotics Competition held in Pampanga in 2020.
+        </p>
+      </div>
+      <ul class="spec-list" aria-label="Profile specifications">
+        <li><span class="mono">FIELD</span> Information Technology</li>
+        <li><span class="mono">INST</span> West Visayas State University</li>
+        <li><span class="mono">ROLE</span> University Student Councilor</li>
+        <li><span class="mono">MODE</span> Build · Research · Lead</li>
+      </ul>
+    </section>
+
+    <section id="work" class="section work">
+      <div class="section-head">
+        <p class="mono kicker">03 / SELECTED WORK</p>
+        <h2>Projects documented as prototypes, not templates.</h2>
+      </div>
+
+      <article class="case" data-case="01">
+        <div class="case-visual">
+          <div class="proto proto-gloves">
+            <div class="proto-grid"></div>
+            <div class="glove">
+              <span class="joint j1"></span>
+              <span class="joint j2"></span>
+              <span class="joint j3"></span>
+              <span class="finger f1"></span>
+              <span class="finger f2"></span>
+              <span class="finger f3"></span>
+              <span class="finger f4"></span>
+            </div>
+            <p class="proto-tag mono">WEARABLE / SENSOR ARRAY</p>
+          </div>
+          <p class="frame-label mono">PLATE 01 · 1:8 · ASSISTIVE</p>
+        </div>
+        <div class="case-copy">
+          <p class="mono case-id">01 — 2024</p>
+          <h3>Sign Language Translation Gloves</h3>
+          <p>
+            A wearable system for deaf and hard-of-hearing communication. Gesture detection maps sensor input into understandable output — hardware, firmware, and assistive design in one device.
+          </p>
+          <dl class="meta">
+            <div><dt>Role</dt><dd>Hardware + software</dd></div>
+            <div><dt>Tools</dt><dd>Sensors, embedded, UX</dd></div>
+            <div><dt>Outcome</dt><dd>Accessible translation prototype</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="case invert" data-case="02">
+        <div class="case-copy">
+          <p class="mono case-id">02 — 2025</p>
+          <h3>WVSUConnects</h3>
+          <p>
+            A student-centered marketplace connecting sellers and buyers inside the West Visayas State University community — structured discovery instead of scattered posts.
+          </p>
+          <dl class="meta">
+            <div><dt>Role</dt><dd>Product + development</dd></div>
+            <div><dt>Tools</dt><dd>Web, marketplace logic</dd></div>
+            <div><dt>Outcome</dt><dd>Campus trade, organized</dd></div>
+          </dl>
+        </div>
+        <div class="case-visual">
+          <div class="proto proto-market">
+            <div class="mod m1"><span class="mono">SELL</span></div>
+            <div class="mod m2"><span class="mono">BUY</span></div>
+            <div class="mod m3"><span class="mono">CAMPUS</span></div>
+            <svg class="connectors" viewBox="0 0 400 280" aria-hidden="true">
+              <line x1="70" y1="70" x2="250" y2="90" />
+              <line x1="250" y1="90" x2="180" y2="210" />
+              <line x1="70" y1="70" x2="180" y2="210" />
+              <circle cx="70" cy="70" r="4" />
+              <circle cx="250" cy="90" r="4" />
+              <circle cx="180" cy="210" r="4" />
+            </svg>
+            <p class="proto-tag mono">NODE MAP / MARKET GRAPH</p>
+          </div>
+          <p class="frame-label mono">PLATE 02 · CAMPUS GRAPH</p>
+        </div>
+      </article>
+
+      <article class="case" data-case="03">
+        <div class="case-visual">
+          <div class="proto proto-robot">
+            <div class="chassis"></div>
+            <div class="wheel w-l"></div>
+            <div class="wheel w-r"></div>
+            <div class="sensor-bar"></div>
+            <p class="proto-tag mono">SUMO / LINE TRACE / AUTONOMY</p>
+          </div>
+          <p class="frame-label mono">PLATE 03 · COMP. 2020</p>
+        </div>
+        <div class="case-copy">
+          <p class="mono case-id">03 — 2020–PRESENT</p>
+          <h3>Robotics Projects</h3>
+          <p>
+            SumoBot, line-tracing robots, and other autonomous systems. Design, programming, sensor integration, testing, and competitive troubleshooting — under pressure and on a clock.
+          </p>
+          <dl class="meta">
+            <div><dt>Role</dt><dd>Design + programming</dd></div>
+            <div><dt>Tools</dt><dd>Robotics, sensors, C / embedded</dd></div>
+            <div><dt>Outcome</dt><dd>National champion, Pampanga 2020</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="case invert" data-case="04">
+        <div class="case-copy">
+          <p class="mono case-id">04 — 2025</p>
+          <h3>DENGUESS</h3>
+          <p>
+            A machine-learning dengue prediction project. Patterns in climate and case data support monitoring — research turned into a data-driven instrument, not a black box.
+          </p>
+          <dl class="meta">
+            <div><dt>Role</dt><dd>ML research + engineering</dd></div>
+            <div><dt>Tools</dt><dd>Python, models, climate data</dd></div>
+            <div><dt>Outcome</dt><dd>Prediction + outbreak insight</dd></div>
+          </dl>
+        </div>
+        <div class="case-visual">
+          <div class="proto proto-data">
+            <div class="bars">
+              <span style="--h:38%"></span>
+              <span style="--h:62%"></span>
+              <span style="--h:44%"></span>
+              <span style="--h:78%"></span>
+              <span style="--h:55%"></span>
+              <span style="--h:91%"></span>
+              <span style="--h:48%"></span>
+            </div>
+            <p class="proto-tag mono">SERIES / PREDICTION TRACE</p>
+          </div>
+          <p class="frame-label mono">PLATE 04 · ML / PUBLIC HEALTH</p>
+        </div>
+      </article>
+
+      <article class="case" data-case="05">
+        <div class="case-visual">
+          <div class="proto proto-sys">
+            <div class="sys-row"><span></span><span></span><span></span></div>
+            <div class="sys-row tall"><span></span><span class="wide"></span></div>
+            <div class="sys-row"><span class="wide"></span><span></span></div>
+            <p class="proto-tag mono">CENTRAL LEDGER / OPS</p>
+          </div>
+          <p class="frame-label mono">PLATE 05 · INFORMATION SYS.</p>
+        </div>
+        <div class="case-copy">
+          <p class="mono case-id">05 — 2025</p>
+          <h3>SCHOGMS</h3>
+          <p>
+            A structured digital system for managing information, processes, and organizational operations from a single platform — order instead of scattered records.
+          </p>
+          <dl class="meta">
+            <div><dt>Role</dt><dd>Software development</dd></div>
+            <div><dt>Tools</dt><dd>Web application, databases</dd></div>
+            <div><dt>Outcome</dt><dd>Centralized operations</dd></div>
+          </dl>
+        </div>
+      </article>
+    </section>
+
+    <section id="skills" class="section skills">
+      <div class="section-head">
+        <p class="mono kicker">04 / CAPABILITY INDEX</p>
+        <h2>Tools, not tropes.</h2>
+      </div>
+      <p class="skills-intro">
+        Experience in robotics competitions and system development — from national championship work in 2020 to machine learning and software that turn ideas into working instruments.
+      </p>
+      <ul class="skill-grid">
+        <li><span class="mono">S01</span> Robotics Design and Programming</li>
+        <li><span class="mono">S02</span> Web and Software Development</li>
+        <li><span class="mono">S03</span> Machine Learning and AI</li>
+        <li><span class="mono">S04</span> Front-End Development</li>
+        <li><span class="mono">S05</span> Hardware–Software Integration</li>
+        <li><span class="mono">S06</span> Rapid Prototyping</li>
+        <li><span class="mono">S07</span> Research and Development</li>
+        <li><span class="mono">S08</span> UI/UX Design</li>
+        <li><span class="mono">S09</span> Problem Solving and Innovation</li>
+        <li><span class="mono">S10</span> Project Development</li>
+        <li><span class="mono">S11</span> Leadership and Collaboration</li>
+        <li><span class="mono">S12</span> Technical Presentation</li>
+      </ul>
+    </section>
+
+    <section class="section leadership">
+      <div class="section-head">
+        <p class="mono kicker">05 / ASSEMBLY LOG</p>
+        <h2>Offices, labs, and competitions.</h2>
+      </div>
+      <ol class="log">
+        <li>
+          <span class="mono">2026–27</span>
+          <strong>University Student Councilor</strong>
+          <em>West Visayas State University</em>
+        </li>
+        <li>
+          <span class="mono">R&amp;D</span>
+          <strong>Board Member, Research and Development</strong>
+          <em>Cyb Robotics Organization</em>
+        </li>
+        <li>
+          <span class="mono">CICT SC</span>
+          <strong>Assistant Secretary</strong>
+          <em>CICT Student Council</em>
+        </li>
+        <li>
+          <span class="mono">JSC</span>
+          <strong>Vice Chairperson</strong>
+          <em>CICT Junior Student Council</em>
+        </li>
+        <li>
+          <span class="mono">2024+</span>
+          <strong>1st Place — RealiTy XIII: METROPOLIS IDEATHON</strong>
+          <em>WVSU Link.exe</em>
+        </li>
+        <li>
+          <span class="mono">2020</span>
+          <strong>Champion — National Robotics Competition</strong>
+          <em>Pampanga</em>
+        </li>
+      </ol>
+    </section>
+
+    <section id="contact" class="section contact">
+      <div class="section-head">
+        <p class="mono kicker">06 / SIGNAL</p>
+        <h2>Open channel.</h2>
+      </div>
+      <p class="contact-copy">If the work should meet, send a line.</p>
+      <ul class="contact-list">
+        <li>
+          <span class="mono">FB</span>
+          <a href="https://www.facebook.com/search/top?q=James%20Remegio" target="_blank" rel="noopener noreferrer">James Remegio</a>
+        </li>
+        <li>
+          <span class="mono">IG</span>
+          <a href="https://instagram.com/santiagodgrt" target="_blank" rel="noopener noreferrer">santiagodgrt</a>
+        </li>
+        <li>
+          <span class="mono">GH</span>
+          <a href="https://github.com/santiagocrab" target="_blank" rel="noopener noreferrer">santiagocrab</a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span class="joint"></span>
+    <p class="mono">JCR · PORTFOLIO · <span id="year"></span> · BUILT WITH INTENT</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

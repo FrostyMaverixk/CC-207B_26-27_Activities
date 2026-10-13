@@ -1,0 +1,12 @@
+# SPA fallback for hosts that don't honour `public/_redirects` (Netlify-style,
+# already supported) or Cloudflare Pages' `_redirects`: e.g. a raw Apache drop
+# of the build output. Serves index.html for any route that isn't a real file
+# or directory, so React Router can re-render the deep link client-side.
+# (Netlify/CF Pages ignore this file; it only affects Apache.)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ /index.html [L]
+</IfModule>

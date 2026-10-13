@@ -1,0 +1,5 @@
+DROP MEDIA HERE — game edits filmstrip sprites (hover-scrub)
+Expected (one per project): strip-gameedits-<slug>.jpg
+  12 frames tiled 1x12, 320px per frame, <=300KB
+  If a strip is not 12 frames, set `stripFrames` on that project.
+Referenced by the `strip` field of src/data/projects.js.

@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="./assets/HLF-logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to my Portfolio! // HANNAH LEIGH FERNANDEZ</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Pinyon+Script&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Scrolling browser-tab title -->
+    <script>
+      (function titleScroller(text) {
+        document.title = text;
+        setTimeout(() => titleScroller(text.slice(1) + text[0]), 500);
+      })(" Welcome to my Portfolio! // HANNAH LEIGH FERNANDEZ ");
+    </script>
+  </head>
+
+  <body>
+    <main class="app" data-theme="light">
+      <header class="toolbar">
+        <button class="theme-toggle" id="theme-toggle" type="button"></button>
+      </header>
+
+      <h1 class="visually-hidden">Web Developer portfolio: Hannah Leigh Fernandez</h1>
+
+      <div class="stage" id="stage">
+        <!-- Back folder -->
+        <div class="back-tab" aria-hidden="true">Information</div>
+        <div class="back">
+          <div class="back-fit" id="back-fit">
+            <section id="folder-content" class="info" aria-label="Portfolio contents">
+              <div class="info-bar">
+                <div role="tablist" aria-label="Portfolio sections" id="tablist">
+                  <button type="button" role="tab" id="tab-0" aria-selected="true" aria-controls="panel-0" tabindex="0">About</button>
+                  <button type="button" role="tab" id="tab-1" aria-selected="false" aria-controls="panel-1" tabindex="-1">Skills</button>
+                  <button type="button" role="tab" id="tab-2" aria-selected="false" aria-controls="panel-2" tabindex="-1">Contact</button>
+                </div>
+                <button type="button" class="btn btn-quiet" id="close-btn">Close folder</button>
+              </div>
+
+              <!-- About -->
+              <div role="tabpanel" id="panel-0" aria-labelledby="tab-0" tabindex="0" class="panel">
+                <h2>About me: Hannah Leigh Fernandez!</h2>
+                <p class="lede">Hello! I am a beginner Front-end web developer.</p>
+                <p>
+                  I am a student of West Visayas State University - Main Campus, currently pursuing a
+                  Bachelor of Science in Information Technology (BSIT). I have a strong interest in
+                  graphic and layout design and have been honing my skills in this field through various
+                  projects and coursework. I am interested in creating websites that are accessible and
+                  user-friendly while also allowing you to showcase your full personality. I believe that
+                  we are capable of bringing websites that fully express personality without compromising
+                  on functionality and accessibility.
+                </p>
+              </div>
+
+              <!-- Skills -->
+              <div role="tabpanel" id="panel-1" aria-labelledby="tab-1" tabindex="0" class="panel" hidden>
+                <h2>Skills</h2>
+                <ul class="chips">
+                  <li>Typography</li>
+                  <li>Brand identity</li>
+                  <li>Layout &amp; editorial</li>
+                  <li>Illustration</li>
+                  <li>Figma</li>
+                  <li>Frontend: HTML, CSS, JavaScript, React</li>
+                  <li>Live2D animation</li>
+                  <li>Motion graphics</li>
+                  <li>Video editing</li>
+                </ul>
+              </div>
+
+              <!-- Contact -->
+              <div role="tabpanel" id="panel-2" aria-labelledby="tab-2" tabindex="0" class="panel" hidden>
+                <h2>Contact</h2>
+                <p>
+                  I'm looking for an internship or opportunity to further enhance my skills and contribute
+                  to a dynamic team. Email is the quickest way to reach me.
+                </p>
+                <p>
+                  <a class="btn email-link" href="mailto:hannahleigh.fernandez@wvsu.edu.ph">
+                    <svg class="email-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path d="M3 5.5h18v13H3zM3.5 6l8.5 7 8.5-7" />
+                    </svg>
+                    Email hannahleigh.fernandez@wvsu.edu.ph
+                  </a>
+                </p>
+                <ul class="link-list">
+                  <li>
+                    <a href="https://github.com/idiaphile" target="_blank" rel="noopener noreferrer">
+                      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2.1c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.6-1.3-1.6-1.1-.8.1-.8.1-.8 1.2.1 1.8 1.3 1.8 1.3 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11.2 11.2 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.3.7 1 .7 2v2.7c0 .3.2.7.8.6A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
+                      </svg>
+                      GitHub
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.linkedin.com/in/hannah-leigh-fernandez" target="_blank" rel="noopener noreferrer">
+                      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.44-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.43v6.31ZM5.36 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.14 20.45H3.58V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z" />
+                      </svg>
+                      LinkedIn
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://fernandez-resume.tiiny.site" target="_blank" rel="noopener noreferrer">
+                      <svg class="resume-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M6 2.75h7l5 5v13.5H6zM13 2.75v5h5M9 12h6M9 15.5h6M9 19h4" />
+                      </svg>
+                      Résumé (PDF)
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <!-- Front folder -->
+        <div class="front">
+          <span class="front-tab" aria-hidden="true">
+            <span class="front-tab-name">Hannah Leigh Fernandez</span>
+          </span>
+          <p class="title" aria-hidden="true">
+            <span class="big">Web Developer</span>
+            <span class="script">portfolio</span>
+          </p>
+          <button
+            type="button"
+            class="btn open-btn"
+            id="open-btn"
+            aria-expanded="false"
+            aria-controls="folder-content"
+          >
+            Tap to open folder <span aria-hidden="true">↓</span>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

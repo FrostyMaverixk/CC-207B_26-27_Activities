@@ -12,7 +12,7 @@ For video instruction, you can refer to this vidoes:
 Before submitting any activities, especially if it is your first time, please do the following:
 1. Fork this repository
 2. Clone the repository in your local device 
-3. Once cloned, navigate to your respective folder (CS 2A), and create a new folder with the name "FULL_NAME" (all caps, no spaces, _ as the delimiter), i.e. TOPE_MATEO
+3. Once cloned, navigate to your respective section folder, and create a new folder with the name "FULL_NAME" (all caps, no spaces, _ as the delimiter), i.e. TOPE_MATEO
 
 Every time you submit a coding activity, make sure to the following:
 1. Your file name should have the format: LAST_NAME-ACTIVITY_NAME, i.e. (MATEO-EXERCISE_1). If your activity/exercise contains multiple files, create a folder with the stated name formatting.

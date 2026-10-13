@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jose Emmanuel Sariego — Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio of Jose Emmanuel Sariego, computing student and web developer."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500&display=swap"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="#top">Jose Emmanuel Sariego</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav">
+        Menu
+      </button>
+      <nav id="nav" aria-label="Main">
+        <a href="#about">About</a><a href="#projects">Projects</a
+        ><a href="#skills">Skills</a><a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="hero-text">
+          <h1>I build clear, useful things for the web.</h1>
+          <p class="lead">
+            I'm a BSIT student who turns research questions and messy ideas into
+            working software.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="#projects">See my projects</a>
+            <a class="btn" href="#contact">Get in touch</a>
+          </div>
+        </div>
+        <img
+          class="avatar"
+          src="JOSE.jpg"
+          alt="Portrait placeholder of Your Name"
+          width="400"
+          height="400"
+        />
+      </section>
+
+      <section id="about">
+        <h2>About me</h2>
+        <p>
+          Hi, I'm Jose Emmanuel, a student in Iloilo studying Bachelor of
+          Science in Information Technology. I like projects where design and
+          logic meet: clean interfaces, careful research, and code that other
+          people can read.
+        </p>
+        <p>
+          Outside class, I enjoy exploring new technologies, working on personal
+          projects, and improving my programming skills. I am a curious and
+          hardworking person who enjoys learning through hands-on experience and
+          challenges.
+        </p>
+      </section>
+
+      <section id="projects">
+        <h2>Projects</h2>
+        <div class="filters" role="group" aria-label="Filter projects">
+          <button class="chip active" data-filter="all">All</button>
+          <button class="chip" data-filter="web">Web</button>
+          <button class="chip" data-filter="research">Research</button>
+        </div>
+        <div class="grid">
+          <article class="card" data-type="web">
+            <img src="STUDY.jpg" alt="Project 1 preview" loading="lazy" />
+            <h3>Class Schedule App</h3>
+            <p>A simple planner that shows deadlines and exams in one view.</p>
+            <a href="#">View project</a>
+          </article>
+          <article class="card" data-type="research">
+            <img src="SCHED.jpg" alt="Project 2 preview" loading="lazy" />
+            <h3>Study on Student Apps</h3>
+            <p>A survey on how students choose and use productivity tools.</p>
+            <a href="#">Read paper</a>
+          </article>
+          <article class="card" data-type="web">
+            <img src="POS.jpg" alt="Project 3 preview" loading="lazy" />
+            <h3>E-Store POS System</h3>
+            <p>
+              A desktop point-of-sale application for managing products,
+              quantities, and totals.
+            </p>
+            <a href="#">View project</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="skills">
+        <h2>Skills</h2>
+        <ul class="skills">
+          <li>HTML &amp; CSS</li>
+          <li>JavaScript</li>
+          <li>Java</li>
+          <li>Git &amp; GitHub</li>
+          <li>Research methods</li>
+          <li>Presentation</li>
+        </ul>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>
+          Have an idea or an opportunity? Send a message and I'll reply by
+          email.
+        </p>
+        <form id="contact-form" novalidate>
+          <label>Name <input name="name" required autocomplete="name" /></label>
+          <label
+            >Email
+            <input name="email" type="email" required autocomplete="email"
+          /></label>
+          <label
+            >Message <textarea name="message" rows="5" required></textarea>
+          </label>
+          <p class="form-status" role="status" aria-live="polite"></p>
+          <button class="btn primary" type="submit">Send message</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        © <span id="year"></span> Jose Emmanuel Sariego. Built with HTML, CSS
+        and JavaScript.
+      </p>
+    </footer>
+    <script src="js/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,89 @@
+.slate {
+  position: relative;
+  overflow: hidden;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  background: var(--offline-red);
+  color: var(--text-0);
+  text-align: center;
+}
+
+/* Phase 6: corner timecode stamp (0.9 opacity keeps it ≥4.5:1 on the red) */
+.cornerTc {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  opacity: 0.9;
+}
+
+/* Phase 6: the 1-in-5 "?" film-slug texture — the giant question mark old
+   NLEs burned into unlinked clips. Behind the text, deliberately faint. */
+.slug {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: min(90svh, 70vw);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text-0);
+  opacity: 0.08;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* keep the text above the slug (z-index needs a positioned box) */
+.slate > :not(.slug):not(.cornerTc) {
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-family: var(--font-mono);
+  font-size: calc(var(--fs-h2) * 2);
+  letter-spacing: var(--tracking-mono);
+  font-weight: 700;
+}
+
+.subline {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: var(--tracking-mono);
+  max-width: 48ch;
+}
+
+.relink {
+  margin-top: var(--space-3);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--text-0);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-0);
+  transition: background var(--dur-hover) var(--ease-cut),
+    color var(--dur-hover) var(--ease-cut);
+}
+
+.relink:hover {
+  background: var(--text-0);
+  color: var(--offline-red);
+}
+
+.whisper {
+  margin-top: var(--space-5);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  opacity: 0.3;
+}

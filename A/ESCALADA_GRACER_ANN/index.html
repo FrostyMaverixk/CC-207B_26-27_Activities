@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gracer Ann Escalada | Portfolio</title>
+  <meta name="description" content="Portfolio of Gracer Ann Escalada, BSIT Software Development student, web developer, and photo editor.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="nav">
+    <a class="brand" href="#" data-view-link="home">Gracer Ann</a>
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">Menu</button>
+    <nav class="nav-links" aria-label="Main">
+      <button class="btn btn-sm" data-view-link="home">Home</button>
+      <button class="btn btn-sm" data-view-link="projects">Projects</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ================= HOME ================= -->
+    <div class="view active" id="view-home">
+
+      <section class="hero container">
+        <div class="hero-text">
+          <h1>Gracer Ann Escalada</h1>
+          <p class="lead">A software development student, web builder, and photo editor from Iloilo. A hustler with a hipster's taste.</p>
+          <div class="actions">
+            <button class="btn" data-view-link="projects">See my projects</button>
+            <a class="btn" href="#what-i-do">What I do</a>
+          </div>
+        </div>
+        <figure class="ph ph-portrait">
+          <img src="assets/profile.jpg" alt="Portrait of Gracer Ann Escalada">
+          <span>Add your photo<br>assets/profile.jpg</span>
+        </figure>
+      </section>
+
+      <section class="container section" id="about">
+        <h2>About me</h2>
+        <div class="about-grid">
+          <dl class="facts">
+            <div><dt>Name</dt><dd>Gracer Ann Escalada</dd></div>
+            <div><dt>Birthdate</dt><dd>December 19, 2005</dd></div>
+            <div><dt>School</dt><dd>West Visayas State University</dd></div>
+            <div><dt>Course</dt><dd>BSIT 3A, Software Development</dd></div>
+            <div><dt>Hometown</dt><dd>Molo, Iloilo City</dd></div>
+          </dl>
+          <div class="prose">
+            <p>I was born in Molo, Iloilo City, a district known for its heritage church, its pancit Molo, and a community that knows how to look out for each other. That is where I learned to be resourceful, to find a way, and to keep moving.</p>
+            <p>I'm a hustler: I take on a lot, from coding and editing to writing proposals, and I like seeing things through. I'm also a hipster: I like the off-beat, the well-made, and the details most people scroll past. Those two sides show up in everything I build.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="container section" id="hobbies">
+        <h2>Hobbies</h2>
+        <p class="section-intro">When I'm not coding or editing, I'm usually playing one of these.</p>
+        <div class="cards">
+          <article class="card">
+            <h3>Genshin Impact</h3>
+            <p>An open-world action RPG where I explore Teyvat, build teams, and chase every hidden corner of the map. It's my favorite way to wind down and enjoy world design and music.</p>
+          </article>
+          <article class="card">
+            <h3>Left 4 Dead 2</h3>
+            <p>A co-op zombie survival shooter. It's fast, chaotic, and all about teamwork: watch your squad's back, stay calm under pressure, and make it to the safe room.</p>
+          </article>
+          <article class="card">
+            <h3>Sherlock Holmes</h3>
+            <p>Detective adventure games built on clues, deduction, and connecting small details into the full story. It scratches the same itch as debugging.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="container section" id="what-i-do">
+        <h2>What I do</h2>
+
+        <h3 class="sub">I edit photos</h3>
+        <div class="carousel" role="region" aria-roledescription="carousel" aria-label="Photo edits">
+        <div class="gallery">
+          <figure class="ph"><img src="assets/edit1.jpg" alt="Edited photo 1"><span>assets/edit-1.jpg</span></figure>
+          <figure class="ph"><img src="assets/edit2.jpg" alt="Edited photo 2"><span>assets/edit-2.jpg</span></figure>
+          <figure class="ph"><img src="assets/edit3.jpg" alt="Edited photo 3"><span>assets/edit-3.jpg</span></figure>
+          <figure class="ph"><img src="assets/edit4.jpg" alt="Edited photo 4"><span>assets/edit-4.jpg</span></figure>
+          <figure class="ph"><img src="assets/edit5.jpg" alt="Edited photo 5"><span>assets/edit-5.jpg</span></figure>
+        </div>
+          <div class="carousel-controls">
+            <button class="btn btn-sm" data-dir="-1" aria-label="Previous photo">Previous</button>
+            <button class="btn btn-sm" data-dir="1" aria-label="Next photo">Next</button>
+          </div>
+        </div>
+        <p class="prose wide">I'm part of <strong>LINK.exe</strong>, the student organization under the College of Information and Communications Technology at WVSU, where I serve as the <strong>main editor</strong>. I shape how the org looks and feels, from event photos to posters and social media visuals.</p>
+
+        <h3 class="sub">I love making websites</h3>
+        <div class="prose wide">
+          <p>It started in my second year, second semester. That's when web development stopped being a subject and became something I wanted to do on my own time. I explored layouts, responsive design, JavaScript interactions, and modern tools like Next.js and Tailwind, and each new thing I learned led to three more I wanted to try.</p>
+          <p>What hooked me is that a website is a design and a working system at once. I can make something look good, then make it useful. That's why I enjoy building real systems, like the transport management system for Itransco, a bus cooperative, covering treasury, payroll, and driver and fleet records.</p>
+        </div>
+
+        <h3 class="sub">Random thoughts</h3>
+        <div class="prose wide">
+          <p>My ideas rarely arrive as a plan. They start as a small "wait, why is it like this?" while I'm watching how something works, such as how a cooperative handles its payroll, how people get help after a disaster, or how students stay safe online.</p>
+          <p>From there I ask "what if," keep tossing the thought around, and write it down before it disappears. I connect it to something I already know, whether that's code, design, or a game mechanic, and slowly the thought turns into a concept, then a proposal, then a project. It's messy, but it's how most of what's on my Projects page began.</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================= PROJECTS ================= -->
+    <div class="view" id="view-projects">
+      <section class="container section page-head">
+        <h1>Projects</h1>
+        <p class="lead">Systems I've built and programs I've helped plan, from code to community work.</p>
+      </section>
+
+      <section class="container projects">
+        <article class="project">
+          <span class="tag">Web system</span>
+          <h3>Itransco Management System</h3>
+          <p>A web app for a bus cooperative, built with Next.js and Tailwind. It handles treasury operations, payroll, and driver and fleet records in one place.</p>
+        </article>
+        <article class="project">
+          <span class="tag">LINK.exe</span>
+          <h3>Project ABOT</h3>
+          <p>The parent program for LINK.exe's extension work, bringing together a creative program, a digital safety initiative, and a disaster response initiative.</p>
+        </article>
+        <article class="project">
+          <span class="tag">LINK.exe</span>
+          <h3>Project CRAFT</h3>
+          <p>A photography, digital art, and graphic design program for Grade 1 to 12 learners, with a separate design track for LGUs and NGOs.</p>
+        </article>
+        <article class="project">
+          <span class="tag">LINK.exe</span>
+          <h3>Tulupaday</h3>
+          <p>The membership orientation program that welcomes new LINK.exe members, covering the proposal, schedule, and content.</p>
+        </article>
+        <article class="project">
+          <span class="tag">Concept</span>
+          <h3>Project MAE</h3>
+          <p>A thesis and hackathon concept: anonymous, offline Bluetooth Low Energy wearable beacons that help rescuers find people during disasters.</p>
+        </article>
+        <article class="project">
+          <span class="tag">Case challenge</span>
+          <h3>GCash Challenge</h3>
+          <p>A proposal on how GCash can become the financial backbone for Filipino entrepreneurs.</p>
+        </article>
+      </section>
+
+      <div class="container back">
+        <button class="btn" data-view-link="home">Back to home</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Gracer Ann Escalada. West Visayas State University, Iloilo City.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orders — Blume Daily Admin</title>
+<link rel="stylesheet" href="admin.css">
+<style>
+.modal-section{margin-bottom:22px;}
+.modal-section-label{font-size:10px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--rose);margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid rgba(0,0,0,.06);}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.detail-row{display:flex;flex-direction:column;gap:3px;}
+.detail-key{font-size:10px;font-weight:300;letter-spacing:.12em;text-transform:uppercase;color:var(--mocha-light);}
+.detail-val{font-size:13px;color:var(--ink);font-weight:300;}
+.status-select{width:100%;padding:10px 13px;border:1px solid rgba(0,0,0,.1);background:var(--ivory);font-family:var(--fb);font-size:13px;color:var(--ink);outline:none;cursor:pointer;margin-top:10px;}
+.btn-danger{flex:1;background:none;border:1px solid #e0aaaa;color:#c05555;font-family:var(--fb);font-size:10px;font-weight:300;letter-spacing:.16em;text-transform:uppercase;padding:12px;cursor:pointer;transition:all .2s;}
+.btn-danger:hover{background:#fdf0ee;}
+</style>
+</head>
+<body>
+<aside class="sidebar" id="sidebar"></aside>
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-left">
+      <h1>Order Management</h1>
+      <p>View, update, and manage all customer orders</p>
+    </div>
+    <div class="topbar-right">
+      <button class="topbar-icon-btn" title="Notifications">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <div class="notif-dot"></div>
+      </button>
+      <a href="index.html" target="_blank" class="topbar-visit-btn">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        View Website
+      </a>
+      <button class="topbar-user-btn">B</button>
+    </div>
+  </div>
+  <div class="page">
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterOrders(this,'all')">All</button>
+      <button class="filter-btn" onclick="filterOrders(this,'Pending')">Pending</button>
+      <button class="filter-btn" onclick="filterOrders(this,'Confirmed')">Confirmed</button>
+      <button class="filter-btn" onclick="filterOrders(this,'Preparing')">Preparing</button>
+      <button class="filter-btn" onclick="filterOrders(this,'Delivered')">Delivered</button>
+      <button class="filter-btn" onclick="filterOrders(this,'Rejected')">Rejected</button>
+      <input class="search-input" placeholder="Search by name, order ID…" oninput="searchOrders(this.value)" style="max-width:240px;margin-left:auto;">
+      <select class="sort-select" onchange="sortOrders(this.value)"><option value="newest">Sort: Newest First</option><option value="oldest">Sort: Oldest First</option><option value="hi">Total: High → Low</option><option value="lo">Total: Low → High</option></select>
+    </div>
+    <div class="tbl-card">
+      <table class="tbl">
+        <thead><tr><th>Order ID</th><th>Customer</th><th>Arrangement</th><th>Date</th><th>Fulfillment</th><th>Payment</th><th>Total</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody id="orders-body"></tbody>
+      </table>
+      <div class="pagination">
+        <span class="page-info" id="page-info"></span>
+        <div class="page-btns" id="page-btns"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ORDER DETAIL MODAL -->
+<div class="modal-overlay" id="order-modal">
+  <div class="modal" style="max-width:680px;">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-order-id">Order Details</div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <div class="modal-section-label">Customer Information</div>
+        <div class="detail-grid">
+          <div class="detail-row"><div class="detail-key">Name</div><div class="detail-val" id="d-name"></div></div>
+          <div class="detail-row"><div class="detail-key">Contact</div><div class="detail-val" id="d-contact"></div></div>
+          <div class="detail-row"><div class="detail-key">Address</div><div class="detail-val" id="d-address"></div></div>
+          <div class="detail-row"><div class="detail-key">Fulfillment</div><div class="detail-val" id="d-fulfillment"></div></div>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Order Details</div>
+        <div class="detail-grid">
+          <div class="detail-row"><div class="detail-key">Arrangement</div><div class="detail-val" id="d-arrangement"></div></div>
+          <div class="detail-row"><div class="detail-key">Total</div><div class="detail-val" id="d-total"></div></div>
+          <div class="detail-row"><div class="detail-key">Payment Method</div><div class="detail-val" id="d-payment"></div></div>
+          <div class="detail-row"><div class="detail-key">Date Placed</div><div class="detail-val" id="d-date"></div></div>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Update Status</div>
+        <select class="status-select" id="d-status-select">
+          <option>Pending</option><option>Confirmed</option><option>Preparing</option><option>Delivered</option><option>Rejected</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-danger" onclick="closeModal()">Cancel</button>
+      <button class="btn-secondary" onclick="closeModal()">Close</button>
+      <button class="btn-primary" onclick="saveStatus()" style="flex:2;justify-content:center;padding:12px;">Save Status</button>
+    </div>
+  </div>
+</div>
+
+<script src="admin-shared.js"></script>
+<script>
+initAdmin('orders');
+
+const orders = [
+  {id:'BD-001',customer:'Aecielle Cervantes',contact:'09171234567',address:'Lahug, Cebu City',arrangement:'Rosy Romance',date:'Apr 26, 2026',fulfillment:'Delivery',payment:'GCash',total:650,status:'Pending'},
+  {id:'BD-002',customer:'Ysabella Tumlos',contact:'09281234567',address:'Mabolo, Cebu City',arrangement:'Eternal White',date:'Apr 26, 2026',fulfillment:'Delivery',payment:'GCash',total:1200,status:'Confirmed'},
+  {id:'BD-003',customer:'Carl Calotes',contact:'09391234567',address:'IT Park, Cebu City',arrangement:'Garden Luxe',date:'Apr 25, 2026',fulfillment:'Pick-up',payment:'GCash',total:1800,status:'Preparing'},
+  {id:'BD-004',customer:'Jahna Lagne',contact:'09151234567',address:'Cebu Business Park',arrangement:'Ivory Dream',date:'Apr 25, 2026',fulfillment:'Delivery',payment:'Cash on Delivery',total:980,status:'Delivered'},
+  {id:'BD-005',customer:'Kurt Dayao',contact:'09261234567',address:'Banilad, Cebu City',arrangement:'Garden Luxe',date:'Apr 25, 2026',fulfillment:'Delivery',payment:'GCash',total:1800,status:'Pending'},
+  {id:'BD-006',customer:'Maria Santos',contact:'09371234567',address:'Guadalupe, Cebu City',arrangement:'Rose Medley',date:'Apr 24, 2026',fulfillment:'Pick-up',payment:'GCash',total:550,status:'Confirmed'},
+  {id:'BD-007',customer:'Jose Reyes',contact:'09181234567',address:'Talamban, Cebu City',arrangement:'Eternal White',date:'Apr 24, 2026',fulfillment:'Delivery',payment:'Cash on Delivery',total:1400,status:'Preparing'},
+  {id:'BD-008',customer:'Ana Cruz',contact:'09291234567',address:'Apas, Cebu City',arrangement:'Lily Dream',date:'Apr 23, 2026',fulfillment:'Delivery',payment:'GCash',total:680,status:'Delivered'},
+  {id:'BD-009',customer:'Pedro Valdez',contact:'09401234567',address:'Pari-an, Cebu City',arrangement:'Rose Medley',date:'Apr 23, 2026',fulfillment:'Pick-up',payment:'GCash',total:550,status:'Rejected'},
+  {id:'BD-010',customer:'Liza Mercado',contact:'09161234567',address:'Lahug, Cebu City',arrangement:'Sunflower Bliss',date:'Apr 22, 2026',fulfillment:'Delivery',payment:'GCash',total:750,status:'Delivered'},
+  {id:'BD-011',customer:'Ramon Torres',contact:'09271234567',address:'Nivel Hills, Cebu City',arrangement:'Blush Peony Bunch',date:'Apr 22, 2026',fulfillment:'Pick-up',payment:'Cash on Delivery',total:850,status:'Delivered'},
+  {id:'BD-012',customer:'Elena Flores',contact:'09381234567',address:'Mabolo, Cebu City',arrangement:'Crimson Affair',date:'Apr 21, 2026',fulfillment:'Delivery',payment:'GCash',total:1350,status:'Delivered'},
+];
+
+let filtered=[...orders],currentPage=1,pageSize=8,currentFilter='all',currentSearch='',currentSort='newest';
+
+function badgeClass(s){return{Pending:'badge-pending',Confirmed:'badge-confirmed',Preparing:'badge-preparing',Delivered:'badge-delivered',Rejected:'badge-rejected'}[s]||'badge-pending';}
+
+function applyFilters(){
+  filtered=orders.filter(o=>{
+    const mf=currentFilter==='all'||o.status===currentFilter;
+    const ms=!currentSearch||o.id.toLowerCase().includes(currentSearch)||o.customer.toLowerCase().includes(currentSearch);
+    return mf&&ms;
+  });
+  if(currentSort==='oldest') filtered=[...filtered].reverse();
+  else if(currentSort==='hi') filtered=[...filtered].sort((a,b)=>b.total-a.total);
+  else if(currentSort==='lo') filtered=[...filtered].sort((a,b)=>a.total-b.total);
+  currentPage=1;renderOrders();
+}
+
+let editOrderIdx=null;
+function renderOrders(){
+  const start=(currentPage-1)*pageSize,end=Math.min(start+pageSize,filtered.length);
+  const slice=filtered.slice(start,end);
+  document.getElementById('orders-body').innerHTML=slice.map(o=>`
+    <tr>
+      <td><strong>${o.id}</strong></td>
+      <td>${o.customer}</td>
+      <td>${o.arrangement}</td>
+      <td>${o.date}</td>
+      <td>${o.fulfillment}</td>
+      <td>${o.payment}</td>
+      <td>₱${o.total.toLocaleString()}</td>
+      <td><span class="badge ${badgeClass(o.status)}"><span class="badge-dot"></span>${o.status}</span></td>
+      <td><div class="tbl-actions">
+        <button class="tbl-btn" onclick="openOrder('${o.id}')">View</button>
+      </div></td>
+    </tr>`).join('');
+  document.getElementById('page-info').textContent=`Showing ${filtered.length?start+1:0}–${end} of ${filtered.length} orders`;
+  const totalPages=Math.max(1,Math.ceil(filtered.length/pageSize));
+  let btns='';
+  if(currentPage>1) btns+=`<button class="page-btn" onclick="goPage(${currentPage-1})">‹</button>`;
+  for(let i=1;i<=totalPages;i++) btns+=`<button class="page-btn${i===currentPage?' active':''}" onclick="goPage(${i})">${i}</button>`;
+  if(currentPage<totalPages) btns+=`<button class="page-btn" onclick="goPage(${currentPage+1})">›</button>`;
+  document.getElementById('page-btns').innerHTML=btns;
+}
+
+function goPage(p){currentPage=p;renderOrders();}
+function filterOrders(btn,f){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentFilter=f;applyFilters();}
+function searchOrders(q){currentSearch=q.toLowerCase();applyFilters();}
+function sortOrders(v){currentSort=v;applyFilters();}
+
+function openOrder(id){
+  const o=orders.find(x=>x.id===id);if(!o)return;
+  editOrderIdx=orders.indexOf(o);
+  document.getElementById('modal-order-id').textContent='Order '+o.id;
+  document.getElementById('d-name').textContent=o.customer;
+  document.getElementById('d-contact').textContent=o.contact;
+  document.getElementById('d-address').textContent=o.address;
+  document.getElementById('d-fulfillment').textContent=o.fulfillment;
+  document.getElementById('d-arrangement').textContent=o.arrangement;
+  document.getElementById('d-total').textContent='₱'+o.total.toLocaleString();
+  document.getElementById('d-payment').textContent=o.payment;
+  document.getElementById('d-date').textContent=o.date;
+  document.getElementById('d-status-select').value=o.status;
+  document.getElementById('order-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function saveStatus(){
+  if(editOrderIdx===null)return;
+  orders[editOrderIdx].status=document.getElementById('d-status-select').value;
+  closeModal();applyFilters();
+}
+function closeModal(){document.getElementById('order-modal').classList.remove('open');document.body.style.overflow='';}
+document.getElementById('order-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
+applyFilters();
+</script>
+</body>
+</html>

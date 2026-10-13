@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="LoginPage.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <link rel="stylesheet" href="Notification.css"/>
+    <link rel="stylesheet" href="Antinotification.css"/>
+
+    <title>Lagawan</title>
+    <link rel="icon" href="images/Web Layout.png">
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="nav">
+            <div class="nav-logo">
+                <p>LAGAWAN</p>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="homepage.css" class="link active">Go Back</a></li>
+                    <li><a href="CRUD.html" class="link">Dashboard</a></li>
+                    <li><a href="CRUD.html" class="link">Thread</a></li>
+                    <li><a href="LoginPage.html" class="link">Account</a></li>
+                </ul>
+            </div>
+            <div class="nav-button">
+                <button class="btn white-btn" id="loginBtn" onclick="loginTransition()">Sign In</button>
+                <button class="btn" id="registerBtn" onclick="registerTransition()">Sign Up</button>
+            </div>
+            <div class="nav-menu-btn">
+                <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+            </div>
+        </nav>
+
+        <div class="form-box">
+            <div class="login-container" id="login">
+                <div class="top">
+                    <span>Don't have an account? <a href="#" id="registerLink">Sign Up</a></span>                 
+                    <header>Login</header>
+                </div>
+                <div class="input-box">
+                    <input type="text" class="input-field" placeholder="Username or Email">
+                    <i class="bx bx-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" class="input-field" placeholder="Password">
+                    <i class="bx bx-lock-alt"></i>
+                </div>
+                <div class="input-box">
+                    <input list="user" type="usertype" class="input-field" placeholder="Select User Type">
+                    <datalist id="user">
+                        <option value="Admin">
+                        <option value="Regular">
+                    </datalist>
+                    <i class='bx bxs-down-arrow'></i>
+                </div>
+                <div class="input-box-wrapper">
+                    <input type="submit" class="submit" value="Sign In">
+                    <input type="submit" class="submit" id="guestLoginBtn" value="Sign In as Guest"> <!-- Add an ID for the guest login button -->
+                </div>
+                <div class="two-col">
+                    <div class="one">
+                        <input type="checkbox" id="login-check">
+                        <label for="login-check"> Remember Me</label>
+                    </div>
+                    <div class="two">
+                        <label><a>Reset</a></label> <!-- Updated the link text -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="register-container" id="register">
+                <div class="top">
+                    <span>Have an account? <a href="#" id="loginLink">Login</a></span>                    
+                    <header>Sign Up</header>
+                </div>
+                <div class="two-forms">
+                    <div class="input-box">
+                        <input type="text" class="input-field" placeholder="Firstname">
+                        <i class="bx bx-user"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" class="input-field" placeholder="Lastname">
+                        <i class="bx bx-user"></i>
+                    </div>
+                </div>
+                <div class="input-box">
+                    <input type="text" class="input-field" placeholder="Email">
+                    <i class="bx bx-envelope"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" class="input-field" placeholder="Password">
+                    <i class="bx bx-lock-alt"></i>
+                </div>
+                <div class="input-box">
+                    <input type="submit" class="submit" value="Register">
+                </div>
+                <div class="two-col">
+                    <div class="one">
+                        <input type="checkbox" id="register-check">
+                        <label for="register-check"> Remember Me</label>
+                    </div>
+                    <div class="two">
+                        <label><a href="CRUD.html">Terms & conditions</a></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+
+<!-- Blue Toast Notification -->
+<div class="toast">
+    <div class="toast-content">
+      <i class="fas fa-solid fa-check check"></i>
+      <div class="message">
+        <span class="text text-1">Success</span>
+        <span class="text text-2">Your changes have been saved</span>
+      </div>
+    </div>
+    <i class="fa-solid fa-xmark close"></i>
+    <div class="progress"></div>
+  </div>
+  
+  <!-- Red Toast Notification -->
+  <div class="toasty">
+    <div class="toasty-content">
+      <i class="fa-solid fa-x check"></i>
+      <div class="message">
+        <span class="text text-1">Notice</span>
+        <span class="text text-2">Your changes have been saved</span>
+      </div>
+    </div>
+    <i class="fa-solid fa-xmark close"></i>
+    <div class="progress"></div>
+  </div>
+  
+  
+
+    <script src="debug.js"></script>
+    
+</body>
+</html>

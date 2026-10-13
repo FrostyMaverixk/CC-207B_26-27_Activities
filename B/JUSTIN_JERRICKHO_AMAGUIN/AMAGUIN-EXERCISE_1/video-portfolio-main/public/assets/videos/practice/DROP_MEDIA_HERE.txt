@@ -1,0 +1,4 @@
+DROP MEDIA HERE — practice final videos
+Expected (one per project): practice-<slug>.mp4
+  H.264 mp4, <=1080p, -movflags +faststart, <=50MB ideal (95MB hard ceiling)
+Referenced by the `video` field of src/data/projects.js.

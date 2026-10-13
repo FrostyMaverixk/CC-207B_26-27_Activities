@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Christian's portfolio: a BSIT student at West Visayas State University learning to build thoughtful web experiences.">
+<meta name="theme-color" content="#f5f3ed">
+<title>Christian | BSIT Student Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&family=Instrument+Sans:wght@400;600&display=swap">
+<style>
+:root{color-scheme:light;--bg:#f5f4ef;--ink:#202522;--muted:#68716b;--accent:#ed604c;--soft:#d7eadc;--surface:#fffefa;--line:#dedfd8}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#1c2421;--ink:#f2f2e9;--muted:#b3beb5;--accent:#ff806b;--soft:#31483c;--surface:#252f2b;--line:#3b4942}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5rem}
+body{margin:0;background:var(--bg);color:var(--ink);font:1rem/1.7 "Instrument Sans",sans-serif;transition:background .25s,color .25s}
+h1,h2,h3,.logo{font-family:"Bricolage Grotesque",sans-serif;line-height:1.08}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+.bar{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.9rem max(1.5rem,calc((100vw - 1120px)/2));background:var(--bg);border-bottom:1px solid var(--line);z-index:5}
+.logo{font-weight:800;font-size:1.5rem;text-decoration:none;color:var(--accent)}
+nav{display:flex;gap:1.6rem;align-items:center;flex-wrap:wrap}
+nav a{text-decoration:none;font-size:.9rem}
+nav a:hover{color:var(--accent)}
+button{font:inherit;cursor:pointer}
+#theme{background:transparent;border:1px solid var(--line);color:var(--ink);padding:.3rem .75rem;border-radius:4px;font-size:.85rem}
+main{max-width:880px;margin:0 auto;padding:0 2rem}
+section{padding:5.5rem 0 1rem}
+.hero{min-height:610px;padding-top:8rem;display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+.hello,.eyebrow,.project-index{margin:0 0 1rem;color:var(--accent);font-size:.75rem;font-weight:600;letter-spacing:0}
+h1{font-size:7rem;font-weight:800;margin:0 0 1.2rem;letter-spacing:0}
+.period{color:var(--accent)}
+.role{max-width:590px;font-size:1.3rem;line-height:1.55;margin:0 0 1.7rem;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:1.4rem;background:var(--ink);color:var(--bg);padding:.8rem 1.2rem;text-decoration:none;border:0;border-radius:4px;font-weight:600;transition:transform .18s,background .18s}
+.btn:hover{background:var(--accent);color:#fff;transform:translateY(-2px)}
+.hero-note{display:flex;align-items:center;gap:.6rem;margin-top:2.5rem;color:var(--muted);font-size:.85rem}
+.status-dot{width:8px;height:8px;border-radius:50%;background:#4d9b6a;box-shadow:0 0 0 4px color-mix(in srgb,#4d9b6a 18%,transparent)}
+h2{font-size:2.8rem;margin:0 0 1.2rem;letter-spacing:0}
+#about>p:last-child,#contact>p:not(.eyebrow){max-width:620px;color:var(--muted)}
+.hint{color:var(--muted);margin-top:0}
+.skills{list-style:none;padding:0;margin:2rem 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line)}
+.skills li{display:flex;justify-content:space-between;gap:1rem;padding:.95rem 0;border-bottom:1px solid var(--line);font-weight:600}
+.skills li span{color:var(--muted);font-size:.85rem;font-weight:400}
+.project{display:grid;grid-template-columns:1fr 1fr;background:var(--surface);border:1px solid var(--line);margin-top:2rem}
+.project-art{min-height:300px;display:grid;place-items:center;background:var(--soft);overflow:hidden}
+.art-window{position:relative;display:flex;flex-direction:column;justify-content:center;width:76%;aspect-ratio:1.25;padding:2rem;background:var(--surface);box-shadow:14px 14px 0 color-mix(in srgb,var(--accent) 76%,transparent);transform:rotate(-3deg);animation:arrive .7s both}
+.art-window i{position:absolute;top:1rem;width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.art-window i:nth-child(2){left:2.1rem;opacity:.65}.art-window i:nth-child(3){left:2.9rem;opacity:.35}
+.art-window b{font:800 2rem/1.1 "Bricolage Grotesque",sans-serif;color:var(--ink)}
+.art-window small{margin-top:.6rem;color:var(--muted)}
+.project-copy{padding:2rem;align-self:center}
+.project-index{font-size:.68rem}
+.project-copy h3{font-size:1.8rem;margin:0 0 .7rem}
+.project-copy>p:not(.project-index){margin:0;color:var(--muted)}
+.stack{display:inline-block;margin-top:1rem;font-size:.85rem;font-weight:600}.stack span{color:var(--accent);padding:0 .25rem}
+.coming-soon{color:var(--muted);font-size:.9rem;margin-top:1rem}
+.contact-link{display:inline-flex;gap:1rem;margin-top:1rem;padding-bottom:.3rem;color:var(--accent);font-weight:600;text-decoration:none;border-bottom:1px solid var(--accent)}
+footer{display:flex;justify-content:space-between;max-width:880px;margin:5rem auto 0;padding:1.5rem 2rem;color:var(--muted);border-top:1px solid var(--line);font-size:.75rem;letter-spacing:0}
+@keyframes arrive{from{opacity:0;transform:translate(10px,12px) rotate(-3deg)}to{opacity:1;transform:rotate(-3deg)}}
+@media(max-width:650px){.bar{padding:.8rem 1rem;align-items:flex-start}.bar nav{justify-content:flex-end;gap:.65rem 1rem}.bar nav a{font-size:.82rem}main{padding:0 1.25rem}.hero{min-height:520px;padding-top:5rem}h1{font-size:4rem}.role{font-size:1.1rem}section{padding-top:4rem}h2{font-size:2.2rem}.skills{grid-template-columns:1fr}.project{grid-template-columns:1fr}.project-art{min-height:240px}.project-copy{padding:1.5rem}footer{margin-top:3rem;padding:1.25rem;}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <a href="#top" class="logo" aria-label="Christian, home">C.</a>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+    <button id="theme" aria-label="Toggle dark mode" title="Toggle color theme">Dark</button>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <p class="hello">PORTFOLIO / 2026</p>
+    <h1>Christian<span class="period">.</span></h1>
+    <p class="role">BSIT student at West Visayas State University, learning to make the web more useful, one project at a time.</p>
+    <a class="btn" href="#projects">Explore my work <span aria-hidden="true">↘</span></a>
+    <div class="hero-note"><span class="status-dot"></span> Open to learning, building, and collaborating</div>
+  </section>
+
+  <section id="about">
+    <p class="eyebrow">01 / A LITTLE ABOUT ME</p>
+    <h2>Curious by nature.<br>Building by practice.</h2>
+    <p>I'm a BSIT student at West Visayas State University, building a foundation in web development and problem-solving. I enjoy learning how the pieces of a website work together, then shaping them into something clear and easy to use.</p>
+  </section>
+
+  <section id="skills">
+    <p class="eyebrow">02 / TOOLS IN MY TOOLKIT</p>
+    <h2>Skills I’m growing</h2>
+    <p class="hint">A growing toolkit for designing, building, and sharing ideas.</p>
+    <ul class="skills">
+      <li>HTML <span>Structure</span></li>
+      <li>CSS <span>Styling</span></li>
+      <li>JavaScript <span>Interaction</span></li>
+      <li>Python <span>Programming</span></li>
+      <li>Git &amp; GitHub <span>Version control</span></li>
+    </ul>
+  </section>
+
+  <section id="projects">
+    <p class="eyebrow">03 / SELECTED WORK</p>
+    <h2>Learning in public</h2>
+    <article class="project">
+      <div class="project-art" aria-hidden="true"><span class="art-window"><i></i><i></i><i></i><b>hello, web.</b><small>Ideas become interfaces.</small></span></div>
+      <div class="project-copy"><p class="project-index">01 / PERSONAL WEBSITE</p><h3>A home for my work</h3><p>This portfolio is a small, ongoing project made with HTML, CSS, and JavaScript. It brings together what I’m learning and gives me a place to share what I build next.</p><span class="stack">HTML <span>·</span> CSS <span>·</span> JavaScript</span></div>
+    </article>
+    <p class="coming-soon">More projects will find their way here as I build them.</p>
+  </section>
+
+  <section id="contact">
+    <p class="eyebrow">04 / SAY HELLO</p>
+    <h2>Good things start<br>with a conversation.</h2>
+    <p>I’m always glad to connect with fellow learners and people making thoughtful things for the web.</p>
+    <a class="contact-link" href="https://github.com/" target="_blank" rel="noreferrer">Find me on GitHub <span aria-hidden="true">↗</span></a>
+  </section>
+</main>
+
+<footer><span>CHRISTIAN / PORTFOLIO</span><span>&copy; <span id="year"></span></span></footer>
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+const root = document.documentElement;
+const themeButton = document.getElementById("theme");
+
+function setTheme(theme){
+  root.dataset.theme = theme;
+  themeButton.textContent = theme === "dark" ? "Light" : "Dark";
+  themeButton.setAttribute("aria-label", "Switch to " + (theme === "dark" ? "light" : "dark") + " theme");
+  try { localStorage.setItem("theme", theme); } catch(error) {}
+}
+
+let savedTheme;
+try { savedTheme = localStorage.getItem("theme"); } catch(error) {}
+const preferredTheme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+setTheme(savedTheme || preferredTheme);
+
+themeButton.addEventListener("click", () => {
+  setTheme(root.dataset.theme === "dark" ? "light" : "dark");
+});
+</script>
+</body>
+</html>

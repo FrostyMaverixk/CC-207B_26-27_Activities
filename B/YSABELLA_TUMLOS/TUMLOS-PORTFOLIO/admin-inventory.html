@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inventory — Blume Daily Admin</title>
+<link rel="stylesheet" href="admin.css">
+<style>
+.stock-bar-wrap{display:flex;align-items:center;gap:11px;}
+.stock-bar{flex:1;height:5px;background:var(--parchment);max-width:110px;}
+.stock-bar-fill{height:100%;transition:width .3s;}
+.qty-input{width:68px;font-family:var(--fb);font-size:13px;color:var(--ink);background:var(--ivory);border:1px solid rgba(0,0,0,.1);padding:5px 9px;outline:none;}
+.qty-input:focus{border-color:var(--rose-muted);}
+</style>
+</head>
+<body>
+<aside class="sidebar" id="sidebar"></aside>
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-left">
+      <h1>Inventory</h1>
+      <p>Track and manage flower stock levels</p>
+    </div>
+    <div class="topbar-right">
+      <button class="topbar-icon-btn" title="Notifications">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <div class="notif-dot"></div>
+      </button>
+      <a href="index.html" target="_blank" class="topbar-visit-btn">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        View Website
+      </a>
+      <button class="topbar-user-btn">B</button>
+    </div>
+  </div>
+  <div class="page">
+    <div class="stat-grid stat-grid-4">
+      <div class="s-card"><div class="s-card-accent" style="background:var(--sage);"></div><div class="s-card-label">Total Items</div><div class="s-card-value">14</div><div class="s-card-sub">Across all flowers</div></div>
+      <div class="s-card"><div class="s-card-accent" style="background:var(--rose);"></div><div class="s-card-label">Low Stock</div><div class="s-card-value">3</div><div class="s-card-sub">Below 10 stems</div></div>
+      <div class="s-card"><div class="s-card-accent" style="background:var(--rose-muted);"></div><div class="s-card-label">Out of Stock</div><div class="s-card-value">1</div><div class="s-card-sub">Needs restocking</div></div>
+      <div class="s-card"><div class="s-card-accent" style="background:var(--gold);"></div><div class="s-card-label">Last Restocked</div><div class="s-card-value" style="font-size:16px;margin-top:4px;">Apr 22</div><div class="s-card-sub">4 days ago</div></div>
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterInv(this,'all')">All</button>
+      <button class="filter-btn" onclick="filterInv(this,'ok')">In Stock</button>
+      <button class="filter-btn" onclick="filterInv(this,'low')">Low Stock</button>
+      <button class="filter-btn" onclick="filterInv(this,'out')">Out of Stock</button>
+      <input class="search-input" placeholder="Search flowers…" oninput="searchInv(this.value)" style="max-width:220px;margin-left:auto;">
+      <button class="btn-primary" onclick="alert('Restock order placed!')">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
+        Order Restock
+      </button>
+    </div>
+    <div class="tbl-card">
+      <table class="tbl">
+        <thead><tr><th>Flower</th><th>Category</th><th>Stock (Stems)</th><th>Level</th><th>Min Stock</th><th>Status</th><th>Last Updated</th><th>Actions</th></tr></thead>
+        <tbody id="inv-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="admin-shared.js"></script>
+<script>
+initAdmin('inventory');
+const items=[
+  {name:'Red Roses',cat:'Romance',stock:48,min:20,updated:'Apr 26'},
+  {name:'White Lilies',cat:'Congratulations · Wedding',stock:32,min:15,updated:'Apr 26'},
+  {name:'Blush Peonies',cat:'Wedding · Romance',stock:18,min:10,updated:'Apr 25'},
+  {name:'Sunflowers',cat:'Birthday · Corporate',stock:25,min:12,updated:'Apr 25'},
+  {name:'Lavender Stems',cat:'Birthday · Congratulations',stock:4,min:10,updated:'Apr 24'},
+  {name:'Baby\'s Breath',cat:'All',stock:60,min:25,updated:'Apr 24'},
+  {name:'Green Ferns',cat:'All',stock:42,min:20,updated:'Apr 23'},
+  {name:'Pink Tulips',cat:'Birthday · Romance',stock:7,min:10,updated:'Apr 23'},
+  {name:'Purple Orchids',cat:'Corporate · Wedding',stock:14,min:8,updated:'Apr 22'},
+  {name:'Yellow Daffodils',cat:'Birthday',stock:0,min:10,updated:'Apr 21'},
+  {name:'Orange Roses',cat:'Romance · Birthday',stock:22,min:15,updated:'Apr 22'},
+  {name:'Blue Hydrangeas',cat:'Wedding · Congratulations',stock:11,min:8,updated:'Apr 21'},
+  {name:'White Chrysanthemums',cat:'Congratulations',stock:38,min:15,updated:'Apr 20'},
+  {name:'Pink Carnations',cat:'Birthday · Romance',stock:9,min:10,updated:'Apr 20'},
+];
+
+let filtered=[...items],currentFilter='all',currentSearch='';
+function getStatus(i){if(i.stock===0)return'out';if(i.stock<i.min)return'low';return'ok';}
+function badgeStatus(s){return{ok:'badge-ok',low:'badge-low',out:'badge-out'}[s];}
+function labelStatus(s){return{ok:'In Stock',low:'Low Stock',out:'Out of Stock'}[s];}
+function barColor(s){return{ok:'var(--sage)',low:'var(--gold)',out:'var(--rose)'}[s];}
+
+function applyFilters(){
+  filtered=items.filter(i=>{
+    const ms=getStatus(i);
+    const mf=currentFilter==='all'||ms===currentFilter;
+    const mq=!currentSearch||i.name.toLowerCase().includes(currentSearch);
+    return mf&&mq;
+  });render();
+}
+function render(){
+  document.getElementById('inv-body').innerHTML=filtered.map((item,i)=>{
+    const idx=items.indexOf(item);
+    const s=getStatus(item);
+    const pct=item.stock===0?0:Math.min(100,Math.round(item.stock/(item.min*3)*100));
+    return `<tr>
+      <td><strong>${item.name}</strong></td>
+      <td style="font-size:11px;color:var(--mocha-light);">${item.cat}</td>
+      <td><input class="qty-input" type="number" min="0" value="${item.stock}" onchange="updateStock(${idx},this.value)"></td>
+      <td><div class="stock-bar-wrap"><div class="stock-bar"><div class="stock-bar-fill" style="width:${pct}%;background:${barColor(s)};"></div></div><span style="font-size:11px;color:var(--mocha-light);">${pct}%</span></div></td>
+      <td style="color:var(--mocha-light);">${item.min}</td>
+      <td><span class="badge ${badgeStatus(s)}"><span class="badge-dot"></span>${labelStatus(s)}</span></td>
+      <td style="color:var(--mocha-light);">${item.updated}</td>
+      <td><div class="tbl-actions">
+        <button class="tbl-btn${s==='out'?' urgent':''}" onclick="restock(${idx})">Restock</button>
+      </div></td>
+    </tr>`;
+  }).join('');
+}
+function updateStock(idx,val){items[idx].stock=Math.max(0,parseInt(val)||0);items[idx].updated='Apr 26';applyFilters();}
+function restock(idx){items[idx].stock=items[idx].min*3;items[idx].updated='Apr 26';applyFilters();}
+function filterInv(btn,f){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentFilter=f;applyFilters();}
+function searchInv(q){currentSearch=q.toLowerCase();applyFilters();}
+applyFilters();
+</script>
+</body>
+</html>

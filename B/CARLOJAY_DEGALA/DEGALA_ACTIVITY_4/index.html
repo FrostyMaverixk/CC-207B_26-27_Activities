@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Morgan | Creative Developer & Designer</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main CSS stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navigation Header -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#hero" class="logo">
+                <span class="logo-badge">AM</span>
+                <span class="logo-text">Alex Morgan</span>
+            </a>
+
+            <nav class="nav-links" id="nav-links">
+                <a href="#hero" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <!-- Theme Switch Button -->
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle dark/light theme">
+                    <i class="fa-solid fa-moon moon-icon"></i>
+                    <i class="fa-solid fa-sun sun-icon"></i>
+                </button>
+
+                <!-- Mobile Navigation Toggle -->
+                <button id="mobile-toggle" class="mobile-toggle" aria-label="Toggle navigation menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <div class="status-pill">
+                        <span class="status-dot"></span>
+                        Available for Freelance & Full-time Roles
+                    </div>
+                    <h1 class="hero-title">
+                        Building modern <span class="text-gradient">digital experiences</span> with precision.
+                    </h1>
+                    <p class="hero-subtitle">
+                        Hi, I'm Alex—a Full Stack Developer & UI/UX Designer specializing in building scalable web applications and accessible, intuitive user interfaces.
+                    </p>
+                    <div class="hero-cta-group">
+                        <a href="#projects" class="btn btn-primary">
+                            Explore Works <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper">
+                    <div class="image-backdrop"></div>
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=600" 
+                         alt="Alex Morgan - Developer" 
+                         class="hero-img"
+                         onerror="this.src='https://placehold.co/400x400/6366f1/ffffff?text=Alex+Morgan'">
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section about-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="section-subtitle">Passionate about clean architecture and human-centered design</p>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-card glass-card">
+                        <i class="fa-solid fa-code card-icon"></i>
+                        <h3>Clean Frontend</h3>
+                        <p>Crafting semantic, accessible, and high-performance user interfaces using modern CSS, JavaScript, and React framework ecosystems.</p>
+                    </div>
+                    <div class="about-card glass-card">
+                        <i class="fa-solid fa-layer-group card-icon"></i>
+                        <h3>Scalable Systems</h3>
+                        <p>Architecting reliable backend services, REST API endpoints, and clean databases engineered for growth and maintainability.</p>
+                    </div>
+                    <div class="about-card glass-card">
+                        <i class="fa-solid fa-palette card-icon"></i>
+                        <h3>UI/UX Design</h3>
+                        <p>Designing user journeys, wireframes, and design systems in Figma with strict attention to typography, alignment, and modern aesthetic balance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section projects-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-subtitle">Explore selected projects filtered by technical domain</p>
+                </div>
+
+                <!-- Filter Tags -->
+                <div class="filter-wrapper">
+                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    <button class="filter-btn" data-filter="web">Web</button>
+                    <button class="filter-btn" data-filter="apps">Apps</button>
+                    <button class="filter-btn" data-filter="ui">UI Design</button>
+                </div>
+
+                <!-- Project Grid -->
+                <div class="projects-grid" id="projects-grid">
+                    <!-- Project 1 -->
+                    <article class="project-card glass-card" data-category="web">
+                        <div class="project-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=600" alt="Analytics Dashboard">
+                            <span class="project-badge">Web</span>
+                        </div>
+                        <div class="project-body">
+                            <h3 class="project-title">Analytics Cloud Dashboard</h3>
+                            <p class="project-description">Real-time data visualization platform with user behavior metrics and customizable reporting tools.</p>
+                            <div class="project-tech">
+                                <span>React</span>
+                                <span>TypeScript</span>
+                                <span>Tailwind CSS</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 2 -->
+                    <article class="project-card glass-card" data-category="apps">
+                        <div class="project-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=600" alt="Fintech Mobile App">
+                            <span class="project-badge">Apps</span>
+                        </div>
+                        <div class="project-body">
+                            <h3 class="project-title">Nova Banking Application</h3>
+                            <p class="project-description">Secure, cross-platform mobile wallet offering automated savings goals and instant peer transfers.</p>
+                            <div class="project-tech">
+                                <span>React Native</span>
+                                <span>Node.js</span>
+                                <span>MongoDB</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 3 -->
+                    <article class="project-card glass-card" data-category="ui">
+                        <div class="project-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=600" alt="Design System">
+                            <span class="project-badge">UI Design</span>
+                        </div>
+                        <div class="project-body">
+                            <h3 class="project-title">Aetherium UI Component Library</h3>
+                            <p class="project-description">Comprehensive Figma design system featuring 200+ accessible tokens, components, and layout templates.</p>
+                            <div class="project-tech">
+                                <span>Figma</span>
+                                <span>Design System</span>
+                                <span>WCAG 2.1</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 4 -->
+                    <article class="project-card glass-card" data-category="web">
+                        <div class="project-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=600" alt="E-Commerce Engine">
+                            <span class="project-badge">Web</span>
+                        </div>
+                        <div class="project-body">
+                            <h3 class="project-title">Headless Storefront Platform</h3>
+                            <p class="project-description">Lightning-fast e-commerce experience integrated with Stripe checkout and dynamic product search.</p>
+                            <div class="project-tech">
+                                <span>Next.js</span>
+                                <span>GraphQL</span>
+                                <span>Stripe API</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section skills-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Technical Stack & Skills</h2>
+                    <p class="section-subtitle">Technologies and methodologies I work with daily</p>
+                </div>
+
+                <div class="skills-grid">
+                    <!-- Skill 1 -->
+                    <div class="skill-card glass-card">
+                        <div class="skill-header">
+                            <i class="fa-brands fa-js skill-icon"></i>
+                            <span class="skill-name">JavaScript (ES6+)</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 92%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill 2 -->
+                    <div class="skill-card glass-card">
+                        <div class="skill-header">
+                            <i class="fa-brands fa-react skill-icon"></i>
+                            <span class="skill-name">React & Next.js</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 88%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill 3 -->
+                    <div class="skill-card glass-card">
+                        <div class="skill-header">
+                            <i class="fa-brands fa-css3-alt skill-icon"></i>
+                            <span class="skill-name">CSS3 & Sass / Tailwind</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 95%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill 4 -->
+                    <div class="skill-card glass-card">
+                        <div class="skill-header">
+                            <i class="fa-brands fa-node-js skill-icon"></i>
+                            <span class="skill-name">Node.js & Express</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 82%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill 5 -->
+                    <div class="skill-card glass-card">
+                        <div class="skill-header">
+                            <i class="fa-brands fa-figma skill-icon"></i>
+                            <span class="skill-name">Figma & UI Design</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Skill 6 -->
+                    <div class="skill-card glass-card">
+                        <div class="skill-header">
+                            <i class="fa-brands fa-git-alt skill-icon"></i>
+                            <span class="skill-name">Git & Version Control</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Get In Touch</h2>
+                    <p class="section-subtitle">Have a project or opportunity? Send me a message!</p>
+                </div>
+
+                <div class="contact-wrapper glass-card">
+                    <!-- Notification Banner -->
+                    <div id="form-alert" class="form-alert hidden"></div>
+
+                    <form id="contact-form" class="contact-form" novalidate>
+                        <div class="form-group-row">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" name="name" placeholder="John Doe" required>
+                                <span class="error-text" id="name-error">Please enter your name.</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                                <span class="error-text" id="email-error">Please enter a valid email address.</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" placeholder="Project Inquiry" required>
+                            <span class="error-text" id="subject-error">Please enter a subject.</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project or inquiry..." required></textarea>
+                            <span class="error-text" id="message-error">Please enter your message.</span>
+                        </div>
+
+                        <button type="submit" id="submit-btn" class="btn btn-primary btn-block">
+                            <span>Send Message</span>
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <p>&copy; <span id="year"></span> Alex Morgan. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- External Script File -->
+    <script src="script.js"></script>
+</body>
+</html>

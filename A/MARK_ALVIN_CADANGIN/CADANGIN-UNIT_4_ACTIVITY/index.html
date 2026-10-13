@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title>Mark Alvin Cadangin | Full-Stack Software Engineering Student</title>
+    <meta name="title" content="Mark Alvin Cadangin | Full-Stack Software Engineering Student" />
+    <meta name="description" content="3rd-Year BSIT student at West Visayas State University & DOST-SEI Scholar. Builds practical software systems, hardware controllers, and IoT." />
+    <meta name="author" content="Mark Alvin Cadangin" />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.markcadangin.me/" />
+    <meta property="og:title" content="Mark Alvin Cadangin | Full-Stack Software Engineering Student" />
+    <meta property="og:description" content="Portfolio showcasing full-stack systems, hardware controllers, and IoT projects." />
+    <meta property="og:image" content="assets/profile.jpeg" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              zinc: {
+                850: '#1e1f24',
+                950: '#0c0d12',
+              }
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="min-h-screen bg-[#090a0d] text-zinc-100 flex flex-col font-sans selection:bg-zinc-800 selection:text-white">
+
+    <!-- ============================================================
+         1. NAVBAR
+         ============================================================ -->
+    <header
+      id="main-header"
+      class="fixed top-0 left-0 right-0 z-50 transition-all duration-200 bg-transparent py-5"
+    >
+      <div class="max-w-3xl mx-auto px-5 flex items-center justify-between">
+        <!-- Brand -->
+        <a href="#" class="flex items-center gap-2.5 group shrink-0">
+          <div class="relative w-7 h-7 rounded-full overflow-hidden border border-zinc-700/80 shrink-0">
+            <img
+              src="assets/profile.jpeg"
+              alt="Mark Alvin Cadangin"
+              width="28"
+              height="28"
+              class="object-cover w-full h-full"
+            />
+          </div>
+          <span class="text-sm font-medium text-zinc-200 group-hover:text-white transition-colors whitespace-nowrap">
+            Mark Alvin Cadangin
+          </span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-4 lg:gap-5 text-xs lg:text-sm text-zinc-400 font-normal">
+          <a href="#work" class="hover:text-zinc-100 transition-colors whitespace-nowrap">Work</a>
+          <a href="#engineering" class="hover:text-zinc-100 transition-colors whitespace-nowrap">How I build</a>
+          <a href="#skills" class="hover:text-zinc-100 transition-colors whitespace-nowrap">Skills</a>
+          <a href="#about" class="hover:text-zinc-100 transition-colors whitespace-nowrap">About</a>
+          <a href="#contact" class="hover:text-zinc-100 transition-colors whitespace-nowrap">Contact</a>
+
+          <a
+            href="assets/resume.pdf"
+            target="_blank"
+            rel="noreferrer"
+            class="hover:text-zinc-100 transition-colors inline-flex items-center gap-1 whitespace-nowrap"
+          >
+            <span>Resume</span>
+            <svg class="w-3 h-3 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+
+          <a
+            href="mailto:markcadangin@gmail.com"
+            class="text-zinc-300 hover:text-white inline-flex items-center gap-1 transition-colors pl-3 border-l border-zinc-800 whitespace-nowrap"
+          >
+            <span>Email</span>
+            <svg class="w-3.5 h-3.5 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+        </nav>
+
+        <!-- Mobile Menu Hamburger Button -->
+        <button
+          id="mobile-menu-btn"
+          class="md:hidden p-2.5 min-w-11 min-h-11 inline-flex items-center justify-center text-zinc-400 hover:text-zinc-200 rounded-md"
+          aria-label="Toggle Menu"
+        >
+          <svg id="menu-icon" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+          <svg id="close-icon" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Mobile Drawer -->
+      <div id="mobile-drawer" class="hidden md:hidden bg-zinc-900 border-b border-zinc-800 px-5 py-4 space-y-3">
+        <a href="#work" class="block text-sm font-medium text-zinc-400 hover:text-white py-1">Work</a>
+        <a href="#engineering" class="block text-sm font-medium text-zinc-400 hover:text-white py-1">How I build</a>
+        <a href="#skills" class="block text-sm font-medium text-zinc-400 hover:text-white py-1">Skills</a>
+        <a href="#about" class="block text-sm font-medium text-zinc-400 hover:text-white py-1">About</a>
+        <a href="#contact" class="block text-sm font-medium text-zinc-400 hover:text-white py-1">Contact</a>
+        <a href="assets/resume.pdf" target="_blank" rel="noreferrer" class="block text-sm font-medium text-zinc-300 hover:text-white py-1">
+          Resume (PDF) ↗
+        </a>
+        <a href="mailto:markcadangin@gmail.com" class="block text-sm font-medium text-sky-400 pt-2 border-t border-zinc-800">
+          markcadangin@gmail.com →
+        </a>
+      </div>
+    </header>
+
+    <main class="flex-grow">
+
+      <!-- ============================================================
+           2. HERO
+           ============================================================ -->
+      <section class="pt-28 pb-12 md:pt-36 md:pb-16">
+        <div class="max-w-2xl mx-auto px-5">
+          <div class="flex items-center gap-4 sm:gap-5 mb-6">
+            <a
+              href="#about"
+              class="group relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border border-zinc-700/80 shrink-0 bg-zinc-900 hover:border-zinc-500 hover:ring-2 hover:ring-zinc-600/40 transition-all duration-200 cursor-pointer block"
+              title="View About Me"
+              aria-label="View About Me"
+            >
+              <img
+                src="assets/profile.jpeg"
+                alt="Mark Alvin Cadangin - 3rd Year BSIT Student"
+                class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-200"
+              />
+            </a>
+
+            <div>
+              <h1 class="text-xl sm:text-2xl font-semibold text-zinc-100 tracking-tight">
+                Mark Alvin Cadangin
+              </h1>
+
+              <p class="text-sm text-zinc-400 mt-0.5">
+                Software Development Technologies · West Visayas State University
+              </p>
+
+              <div class="flex items-center gap-1.5 text-xs text-zinc-500 mt-1">
+                <svg class="w-3.5 h-3.5 text-zinc-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>Leon, Iloilo, Philippines · DOST-SEI Scholar &apos;24</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-3.5 text-zinc-300 text-sm leading-relaxed mb-6">
+            <p class="text-zinc-100 font-medium">
+              I build practical systems from real problems.
+            </p>
+
+            <p>
+              I&apos;m a 3rd-year BSIT student from Leon, Iloilo. I write full-stack software and, when the problem needs it, firmware and hardware — including a pump controller installed at our house.
+            </p>
+
+            <p class="text-zinc-400">
+              Looking for a <span class="text-zinc-200 font-medium">full-stack software engineering internship</span>.
+            </p>
+          </div>
+
+          <!-- Proof Chips -->
+          <div class="flex flex-wrap items-center gap-2 mb-6">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-zinc-900 border border-zinc-800 text-xs text-zinc-300">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0"></span>
+              <span class="font-medium text-zinc-200">SmartFlow</span>
+              <span class="text-zinc-600">·</span>
+              <span>Running at 1 house in Leon</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-zinc-900 border border-zinc-800 text-xs text-zinc-300">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
+              <span class="font-medium text-zinc-200">Faith Laundry</span>
+              <span class="text-zinc-600">·</span>
+              <span>289 automated tests</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-zinc-900 border border-zinc-800 text-xs text-zinc-300">
+              <span class="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0"></span>
+              <span class="font-medium text-zinc-200">HavenStay</span>
+              <span class="text-zinc-600">·</span>
+              <span>45 MySQL audit triggers</span>
+            </span>
+          </div>
+
+          <!-- Action Buttons / Links -->
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-2.5 text-xs font-medium pt-4 border-t border-zinc-800">
+            <a
+              href="#work"
+              class="inline-flex items-center gap-1.5 text-zinc-100 hover:text-sky-400 transition-colors"
+            >
+              <span>Selected work</span>
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+            </a>
+
+            <a
+              href="assets/resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-zinc-800/90 hover:bg-zinc-700/90 border border-zinc-700 text-zinc-200 hover:text-white transition-colors"
+            >
+              <svg class="w-3.5 h-3.5 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+              <span>Resume (PDF)</span>
+              <svg class="w-3 h-3 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+            </a>
+
+            <a
+              href="https://github.com/markalvincadangin"
+              target="_blank"
+              rel="noreferrer"
+              class="inline-flex items-center gap-1.5 text-zinc-400 hover:text-zinc-200 transition-colors"
+            >
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              <span>GitHub</span>
+              <svg class="w-3 h-3 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/mark-alvin-cadangin"
+              target="_blank"
+              rel="noreferrer"
+              class="inline-flex items-center gap-1.5 text-zinc-400 hover:text-zinc-200 transition-colors"
+            >
+              <svg class="w-3.5 h-3.5 text-zinc-400" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              <span>LinkedIn</span>
+              <svg class="w-3 h-3 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+            </a>
+
+            <a
+              href="mailto:markcadangin@gmail.com"
+              class="inline-flex items-center gap-1.5 text-zinc-400 hover:text-zinc-200 transition-colors"
+            >
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <span>markcadangin@gmail.com</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           3. SELECTED WORK
+           ============================================================ -->
+      <section id="work" class="py-16 border-t border-zinc-800 scroll-mt-14">
+        <div class="max-w-2xl mx-auto px-5">
+          <div class="flex flex-col gap-4 mb-8">
+            <div>
+              <h2 class="text-base font-semibold text-zinc-100 tracking-tight">
+                Selected Work
+              </h2>
+              <p class="text-sm text-zinc-400 mt-1">
+                Personal systems, course work, and one team prototype.
+              </p>
+            </div>
+
+            <!-- Filter Pills -->
+            <div class="flex flex-wrap items-center gap-1.5 p-1 rounded-lg bg-zinc-900/90 border border-zinc-800/80 text-xs w-fit">
+              <button
+                class="filter-tab-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md transition-colors bg-zinc-100 text-zinc-900 font-semibold shadow-sm"
+                data-filter="all"
+              >
+                <span>All</span>
+                <span class="badge-counter text-[10px] px-1.5 py-0.5 rounded-full bg-zinc-200 text-zinc-800">5</span>
+              </button>
+              <button
+                class="filter-tab-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md transition-colors text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/60"
+                data-filter="personal"
+              >
+                <span>Personal</span>
+                <span class="badge-counter text-[10px] px-1.5 py-0.5 rounded-full bg-zinc-800 text-zinc-500">2</span>
+              </button>
+              <button
+                class="filter-tab-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md transition-colors text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/60"
+                data-filter="course"
+              >
+                <span>Course Work</span>
+                <span class="badge-counter text-[10px] px-1.5 py-0.5 rounded-full bg-zinc-800 text-zinc-500">2</span>
+              </button>
+              <button
+                class="filter-tab-btn inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md transition-colors text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/60"
+                data-filter="prototype"
+              >
+                <span>Prototypes</span>
+                <span class="badge-counter text-[10px] px-1.5 py-0.5 rounded-full bg-zinc-800 text-zinc-500">1</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Featured Projects List -->
+          <div class="space-y-8" id="featured-projects-container">
+
+            <!-- PROJECT 1: SmartFlow -->
+            <article class="project-item rounded-xl bg-zinc-900/40 border border-zinc-800 hover:border-zinc-700 transition-colors p-5 sm:p-6 flex flex-col justify-between" data-category="personal">
+              <div>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-1.5">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <div class="relative rounded-lg overflow-hidden border border-zinc-800 bg-zinc-950 shrink-0 flex items-center justify-center p-1 w-7 h-7 sm:w-8 sm:h-8">
+                      <img src="assets/smartflow-brandmark.png" alt="SmartFlow logo" class="w-full h-full object-contain" />
+                    </div>
+                    <h3 class="font-semibold text-zinc-100 tracking-tight text-base sm:text-lg">SmartFlow</h3>
+                    <span class="inline-flex items-center gap-1.5 rounded-full font-medium bg-zinc-800/80 text-zinc-300 border border-zinc-700/50 px-2 py-0.5 text-[11px]">
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0"></span>
+                      Field Installed (1 Site)
+                    </span>
+                  </div>
+                  <span class="text-xs font-mono text-zinc-500">2026</span>
+                </div>
+
+                <div class="text-zinc-400 mb-2 text-sm">
+                  <span>Automated controller for a residential deep-well water pump</span>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-1.5 mb-3">
+                  <span class="rounded bg-zinc-800/80 text-zinc-200 border border-zinc-700/50 font-medium px-2 py-0.5 text-xs">Solo developer</span>
+                  <span class="rounded bg-zinc-900/60 text-zinc-400 border border-zinc-800/80 px-2 py-0.5 text-xs">Leon, Iloilo · Residential Deep-Well Automation</span>
+                </div>
+
+                <figure class="mb-4">
+                  <div class="rounded-lg overflow-hidden border border-zinc-800">
+                    <img src="assets/smartflow-system-architecture.jpg" alt="SmartFlow system architecture" class="w-full h-auto object-cover" loading="lazy" />
+                  </div>
+                  <figcaption class="mt-1.5 flex flex-wrap items-center justify-between gap-1.5 px-1 text-[11px] text-zinc-500">
+                    <span>SmartFlow system architecture and hardware topology</span>
+                    <span class="italic text-zinc-500">(AI-generated conceptual graphic)</span>
+                  </figcaption>
+                </figure>
+
+                <p class="text-zinc-300 leading-relaxed text-sm mb-4">
+                  Deep-well water pumps easily burn out if they run dry or run too long unattended. To solve this for my home in Iloilo, I built a two-node automation system: an ESP32 master connected to a 1.5 HP motor contactor, and an ESP8266 at the 660L water tank with an ultrasonic sensor. They communicate over a 40-meter CAT6 wire using RS-485 to avoid motor electrical interference. Even if the home Wi-Fi disconnects, local firmware logic ensures the pump shuts off automatically before running dry.
+                </p>
+
+                <ul class="border-l border-zinc-800 text-zinc-400 space-y-1.5 text-xs mb-5 pl-3">
+                  <li class="leading-relaxed">• 40-meter wired RS-485 link with CRC checks to eliminate electrical noise from the motor.</li>
+                  <li class="leading-relaxed">• Local firmware safety timers that shut down the motor within 15 seconds if dry-run conditions are detected.</li>
+                  <li class="leading-relaxed">• Native Android app built with Kotlin and Jetpack Compose for Bluetooth setup and tank level monitoring.</li>
+                </ul>
+
+                <div class="flex flex-wrap gap-1.5 mb-5">
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-2 py-0.5 text-xs">ESP32</span>
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-2 py-0.5 text-xs">ESP8266</span>
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-2 py-0.5 text-xs">C++</span>
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-2 py-0.5 text-xs">Kotlin</span>
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-2 py-0.5 text-xs">Jetpack Compose</span>
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-2 py-0.5 text-xs">RS-485</span>
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-2 py-0.5 text-xs">Firebase</span>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-4 text-xs font-medium pt-3.5 border-t border-zinc-800">
+                <a href="https://www.markcadangin.me/projects/smartflow" target="_blank" rel="noreferrer" class="inline-flex items-center gap-1 text-sky-400 hover:text-sky-300 transition-colors font-semibold">
+                  <span>Read Case Study</span>
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                </a>
+                <a href="https://github.com/markalvincadangin/smart-water-pump-controller" target="_blank" rel="noreferrer" class="inline-flex items-center gap-1 text-zinc-400 hover:text-zinc-200 transition-colors">
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Code</span>
+                  <svg class="w-3.5 h-3.5 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <!-- PROJECT 2: CONVERA -->
+            <article class="project-item rounded-xl bg-zinc-900/40 border border-zinc-800 hover:border-zinc-700 transition-colors p-5 sm:p-6 flex flex-col justify-between" data-category="personal">
+              <div>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-1.5">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <div class="relative rounded-lg overflow-hidden border border-zinc-800 bg-zinc-950 shrink-0 flex items-center justify-center p-1 w-7 h-7 sm:w-8 sm:h-8">
+                      <img src="assets/convera-brandmark.png" alt="CONVERA logo" class="w-full h-full object-contain" />
+                    </div>
+                    <h3 class="font-semibold text-zinc-100 tracking-tight text-base sm:text-lg">CONVERA</h3>
+                    <span class="inline-flex items-center gap-1.5 rounded-full font-medium bg-zinc-800/80 text-zinc-300 border border-zinc-700/50 px-2 py-0.5 text-[11px]">
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0"></span>
+                      Active Development
+                    </span>
+                  </div>
+                  <span class="text-xs font-mono text-zinc-500">2026 – Present</span>
+                </div>
+
+                <div class="text-zinc-400 mb-2 text-sm">
+                  <span>Research &amp; project proposal validation platform</span>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-1.5 mb-3">
+                  <span class="rounded bg-zinc-800/80 text-zinc-200 border border-zinc-700/50 font-medium px-2 py-0.5 text-xs">Solo developer</span>
+                  <span class="rounded bg-zinc-900/60 text-zinc-400 border border-zinc-800/80 px-2 py-0.5 text-xs">Independent Research · Requirements Validation Engine</span>
+                </div>
+
+                <figure class="mb-4">
+                  <div class="rounded-lg overflow-hidden border border-zinc-800">
+                    <img src="assets/convera-lockup-white.png" alt="CONVERA brand lockup" class="w-full h-auto object-cover" loading="lazy" />
+                  </div>
+                  <figcaption class="mt-1.5 flex flex-wrap items-center justify-between gap-1.5 px-1 text-[11px] text-zinc-500">
+                    <span>Official CONVERA brandmark identity and dark theme design token asset</span>
+                  </figcaption>
+                </figure>
+
+                <p class="text-zinc-300 leading-relaxed text-sm mb-4">
+                  Student teams and computing researchers often generate ideas and raw notes faster than they can validate whether they are worth building. CONVERA is a research validation platform designed to organize problem interviews, scholarly citations, and requirements into structured proposals. It evaluates assumptions against recognized computing frameworks (including IEEE 830 and CHED CICT guidelines) to test feasibility and identify gaps before coding starts.
+                </p>
+
+                <ul class="border-l border-zinc-800 text-zinc-400 space-y-1.5 text-xs mb-5 pl-3">
+                  <li class="leading-relaxed">• Dual validation workflows: a 7-phase path for startup discovery and an 8-stage path for computing research (March &amp; Smith DSR).</li>
+                  <li class="leading-relaxed">• Interactive evidence graph that maps research papers and interview claims down to functional software requirements.</li>
+                  <li class="leading-relaxed">• Direct export integration with Notion, Zotero (BibTeX &amp; CSL-JSON), and GitHub Issues with local audit logs.</li>
+                  <li class="leading-relaxed">• 38 relational SQLite tables in WAL mode backed by 338 automated offline backend tests.</li>
+                </ul>
+
+                <div class="flex flex-wrap gap-1.5 mb-5">
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-2 py-0.5 text-xs">Next.js 15.2</span>
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-2 py-0.5 text-xs">FastAPI</span>
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-2 py-0.5 text-xs">Python 3.12</span>
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-2 py-0.5 text-xs">SQLite WAL</span>
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-2 py-0.5 text-xs">TypeScript</span>
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-2 py-0.5 text-xs">Tailwind CSS v4</span>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-4 text-xs font-medium pt-3.5 border-t border-zinc-800">
+                <a href="https://www.markcadangin.me/projects/convera" target="_blank" rel="noreferrer" class="inline-flex items-center gap-1 text-sky-400 hover:text-sky-300 transition-colors font-semibold">
+                  <span>Read Case Study</span>
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                </a>
+                <a href="https://github.com/markalvincadangin/CONVERA" target="_blank" rel="noreferrer" class="inline-flex items-center gap-1 text-zinc-400 hover:text-zinc-200 transition-colors">
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Code</span>
+                  <svg class="w-3.5 h-3.5 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                </a>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- Coursework & Prototypes Divider -->
+          <div id="coursework-section" class="pt-10 mt-10 border-t border-zinc-800/80 mb-6">
+            <h3 class="text-sm font-semibold text-zinc-200 tracking-tight">
+              Coursework &amp; Interactive Prototypes
+            </h3>
+            <p class="text-xs text-zinc-400 mt-0.5">
+              Capstones and prototypes modeled around local workflows in Leon and Iloilo City.
+            </p>
+          </div>
+
+          <!-- Coursework 2-Column Compact Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+            <!-- PROJECT 3: HavenStay -->
+            <article class="project-item rounded-xl bg-zinc-900/40 border border-zinc-800 hover:border-zinc-700 transition-colors p-4 sm:p-5 h-full flex flex-col justify-between" data-category="course">
+              <div>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-1.5">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <div class="relative rounded-lg overflow-hidden border border-zinc-800 bg-zinc-950 shrink-0 flex items-center justify-center p-1 w-6 h-6">
+                      <img src="assets/havenstay-logo.svg" alt="HavenStay logo" class="w-full h-full object-contain" />
+                    </div>
+                    <h3 class="font-semibold text-zinc-100 tracking-tight text-base">HavenStay BHMS</h3>
+                    <span class="inline-flex items-center gap-1.5 rounded-full font-medium bg-zinc-800/80 text-zinc-300 border border-zinc-700/50 px-2 py-0.5 text-[10px]">
+                      <span class="w-1.5 h-1.5 rounded-full bg-zinc-400 shrink-0"></span>
+                      Course Project
+                    </span>
+                  </div>
+                  <span class="text-xs font-mono text-zinc-500">2026</span>
+                </div>
+
+                <div class="text-zinc-400 mb-2 text-xs">
+                  <span>Bed-level rental management and utility billing for student boarding houses</span>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-1.5 mb-2">
+                  <span class="rounded bg-zinc-800/80 text-zinc-200 border border-zinc-700/50 font-medium px-2 py-0.5 text-[11px]">Solo developer</span>
+                  <span class="rounded bg-zinc-900/60 text-zinc-400 border border-zinc-800/80 px-2 py-0.5 text-[11px]">Information Management Coursework · Student Housing</span>
+                </div>
+
+                <!-- Browser Frame -->
+                <figure class="mb-3">
+                  <div class="rounded-lg overflow-hidden border border-zinc-800 bg-zinc-950 shadow-2xl transition-colors hover:border-zinc-700">
+                    <div class="flex items-center justify-between px-3 py-2 bg-zinc-900/90 border-b border-zinc-800/80 select-none">
+                      <div class="flex items-center gap-1.5 shrink-0">
+                        <span class="w-2.5 h-2.5 rounded-full bg-zinc-700/80 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-zinc-700/80 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-zinc-700/80 inline-block"></span>
+                      </div>
+                      <div class="flex items-center justify-center mx-2 px-3 py-0.5 rounded bg-zinc-950/80 border border-zinc-800/80 text-[11px] font-mono text-zinc-400 truncate max-w-[240px] sm:max-w-[320px]">
+                        <span class="text-zinc-600 mr-1.5 select-none">https://</span>
+                        <span class="truncate">havenstay-theta.vercel.app/dashboard</span>
+                      </div>
+                      <div class="w-9 shrink-0"></div>
+                    </div>
+                    <div class="relative bg-zinc-950">
+                      <img src="assets/havenstay-dashboard.png" alt="HavenStay dashboard" class="w-full h-auto object-cover" loading="lazy" />
+                    </div>
+                  </div>
+                </figure>
+
+                <p class="text-zinc-300 leading-relaxed text-xs mb-3">
+                  Built as solo coursework for Information Management, HavenStay is modeled around student boarding houses near universities. Most rental software assumes whole apartments, but boarding houses rent by individual bed spaces and share water and electric meters. I designed HavenStay to track bed-level vacancies and assignments, split shared utilities fairly among occupants, and enforce audit records using 45 MySQL triggers so transaction histories cannot be altered or lost.
+                </p>
+
+                <ul class="border-l border-zinc-800 text-zinc-400 space-y-1 text-[11px] mb-3.5 pl-2.5">
+                  <li class="leading-relaxed">• Bed-level inventory tracking for individual bed vacancies, deposits, and lease terms.</li>
+                  <li class="leading-relaxed">• Automated utility calculation that splits shared water and electric sub-meters fairly among tenants.</li>
+                </ul>
+
+                <div class="flex flex-wrap gap-1.5 mb-4">
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-1.5 py-0.5 text-[11px]">Next.js 16</span>
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-1.5 py-0.5 text-[11px]">React 19</span>
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-1.5 py-0.5 text-[11px]">Laravel 13</span>
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-1.5 py-0.5 text-[11px]">MySQL 8.4</span>
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-1.5 py-0.5 text-[11px]">Docker</span>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-3 text-[11px] font-medium pt-3 border-t border-zinc-800">
+                <a href="https://havenstay-theta.vercel.app" target="_blank" rel="noreferrer" class="inline-flex items-center gap-1 text-sky-400 hover:text-sky-300 transition-colors font-medium">
+                  <span>Live Demo</span>
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                </a>
+                <a href="https://github.com/markalvincadangin/havenstay" target="_blank" rel="noreferrer" class="inline-flex items-center gap-1 text-zinc-400 hover:text-zinc-200 transition-colors">
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Code</span>
+                  <svg class="w-3.5 h-3.5 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <!-- PROJECT 4: Faith Laundry Shop -->
+            <article class="project-item rounded-xl bg-zinc-900/40 border border-zinc-800 hover:border-zinc-700 transition-colors p-4 sm:p-5 h-full flex flex-col justify-between" data-category="course">
+              <div>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-1.5">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <div class="relative rounded-lg overflow-hidden border border-zinc-800 bg-zinc-950 shrink-0 flex items-center justify-center p-1 w-6 h-6">
+                      <img src="assets/faith-logo.png" alt="Faith Laundry logo" class="w-full h-full object-contain" />
+                    </div>
+                    <h3 class="font-semibold text-zinc-100 tracking-tight text-base">Faith Laundry Shop</h3>
+                    <span class="inline-flex items-center gap-1.5 rounded-full font-medium bg-zinc-800/80 text-zinc-300 border border-zinc-700/50 px-2 py-0.5 text-[10px]">
+                      <span class="w-1.5 h-1.5 rounded-full bg-zinc-400 shrink-0"></span>
+                      Course Project
+                    </span>
+                  </div>
+                  <span class="text-xs font-mono text-zinc-500">2026</span>
+                </div>
+
+                <div class="text-zinc-400 mb-2 text-xs">
+                  <span>Order management and customer tracking for a neighborhood laundry business</span>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-1.5 mb-2">
+                  <span class="rounded bg-zinc-800/80 text-zinc-200 border border-zinc-700/50 font-medium px-2 py-0.5 text-[11px]">Solo developer</span>
+                  <span class="rounded bg-zinc-900/60 text-zinc-400 border border-zinc-800/80 px-2 py-0.5 text-[11px]">Iloilo City · Systems Analysis &amp; Design Capstone</span>
+                </div>
+
+                <!-- Browser Frame -->
+                <figure class="mb-3">
+                  <div class="rounded-lg overflow-hidden border border-zinc-800 bg-zinc-950 shadow-2xl transition-colors hover:border-zinc-700">
+                    <div class="flex items-center justify-between px-3 py-2 bg-zinc-900/90 border-b border-zinc-800/80 select-none">
+                      <div class="flex items-center gap-1.5 shrink-0">
+                        <span class="w-2.5 h-2.5 rounded-full bg-zinc-700/80 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-zinc-700/80 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-zinc-700/80 inline-block"></span>
+                      </div>
+                      <div class="flex items-center justify-center mx-2 px-3 py-0.5 rounded bg-zinc-950/80 border border-zinc-800/80 text-[11px] font-mono text-zinc-400 truncate max-w-[240px] sm:max-w-[320px]">
+                        <span class="text-zinc-600 mr-1.5 select-none">https://</span>
+                        <span class="truncate">laundry-shop-management-system.vercel.app/track</span>
+                      </div>
+                      <div class="w-9 shrink-0"></div>
+                    </div>
+                    <div class="relative bg-zinc-950">
+                      <img src="assets/faith-dashboard.png" alt="Faith Laundry dashboard" class="w-full h-auto object-cover" loading="lazy" />
+                    </div>
+                  </div>
+                </figure>
+
+                <p class="text-zinc-300 leading-relaxed text-xs mb-3">
+                  Built as a course capstone based on the daily operations of Faith Laundry Shop in Iloilo. The shop relied on handwritten paper notebooks that risked getting lost or damaged. I worked with the owner's workflow to build a management system: a pricing calculator for weight tiers and wash types, a public customer portal where clients scan their receipt QR code to check status, and an offline-first Windows installer so the shop computer runs reliably even when the local internet drops.
+                </p>
+
+                <ul class="border-l border-zinc-800 text-zinc-400 space-y-1 text-[11px] mb-3.5 pl-2.5">
+                  <li class="leading-relaxed">• Pricing calculator based on weight and fabric type, snapshotting the rate at checkout so older receipts never change.</li>
+                  <li class="leading-relaxed">• Public order tracking page with zero login required — customers simply scan their paper receipt QR code.</li>
+                </ul>
+
+                <div class="flex flex-wrap gap-1.5 mb-4">
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-1.5 py-0.5 text-[11px]">Next.js</span>
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-1.5 py-0.5 text-[11px]">Spring Boot</span>
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-1.5 py-0.5 text-[11px]">Java 21</span>
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-1.5 py-0.5 text-[11px]">PostgreSQL</span>
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-1.5 py-0.5 text-[11px]">Inno Setup</span>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-3 text-[11px] font-medium pt-3 border-t border-zinc-800">
+                <a href="https://laundry-shop-management-system.vercel.app" target="_blank" rel="noreferrer" class="inline-flex items-center gap-1 text-sky-400 hover:text-sky-300 transition-colors font-medium">
+                  <span>Live Demo</span>
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                </a>
+                <a href="https://github.com/markalvincadangin/laundry-shop-management-system" target="_blank" rel="noreferrer" class="inline-flex items-center gap-1 text-zinc-400 hover:text-zinc-200 transition-colors">
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Code</span>
+                  <svg class="w-3.5 h-3.5 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                </a>
+              </div>
+            </article>
+
+            <!-- PROJECT 5: TriageSense -->
+            <article class="project-item rounded-xl bg-zinc-900/40 border border-zinc-800 hover:border-zinc-700 transition-colors p-4 sm:p-5 h-full flex flex-col justify-between sm:col-span-2" data-category="prototype">
+              <div>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-1.5">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <div class="relative rounded-lg overflow-hidden border border-zinc-800 bg-zinc-950 shrink-0 flex items-center justify-center p-1 w-6 h-6">
+                      <img src="assets/triagesense-logo.png" alt="TriageSense logo" class="w-full h-full object-contain" />
+                    </div>
+                    <h3 class="font-semibold text-zinc-100 tracking-tight text-base">TriageSense</h3>
+                    <span class="inline-flex items-center gap-1.5 rounded-full font-medium bg-zinc-800/80 text-zinc-300 border border-zinc-700/50 px-2 py-0.5 text-[10px]">
+                      <span class="w-1.5 h-1.5 rounded-full bg-zinc-400 shrink-0"></span>
+                      Academic Prototype
+                    </span>
+                  </div>
+                  <span class="text-xs font-mono text-zinc-500">2026</span>
+                </div>
+
+                <div class="text-zinc-400 mb-2 text-xs">
+                  <span>Emergency department patient intake and triage support system</span>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-1.5 mb-2">
+                  <span class="rounded bg-zinc-800/80 text-zinc-200 border border-zinc-700/50 font-medium px-2 py-0.5 text-[11px]">Frontend Developer &amp; UI Designer</span>
+                  <span class="rounded bg-zinc-900/60 text-zinc-400 border border-zinc-800/80 px-2 py-0.5 text-[11px]">WVSU Medical Center · Emergency Intake Prototype</span>
+                </div>
+
+                <p class="text-[11px] text-zinc-400/90 mb-3 italic">
+                  CIT 213 team: Acebuche, Ardeña, Benjamin, Cadangin, Tamaño · Instructor: Janine Defante
+                </p>
+
+                <p class="text-zinc-300 leading-relaxed text-xs mb-3">
+                  A course team prototype for CIT 213 (Human-Computer Interaction 2), modeled around the clinical intake workflow at West Visayas State University Medical Center (WVSUMC). Built by Acebuche, Ardeña, Benjamin, Cadangin, and Tamaño. I designed and built the frontend: a 5-step touch kiosk for self-service patient check-in and a triage staff workstation with a live intake queue, nurse-controlled ESI triage scoring, and simulated vitals telemetry. All vitals telemetry and clinical data use simulated demo datasets.
+                </p>
+
+                <ul class="border-l border-zinc-800 text-zinc-400 space-y-1 text-[11px] mb-3.5 pl-2.5">
+                  <li class="leading-relaxed">• 5-step patient kiosk check-in with regional dialect support, an anatomical symptom body map, and numeric pain rating.</li>
+                  <li class="leading-relaxed">• Triage staff workstation featuring live patient queue management, nurse-controlled ESI assessment, and simulated telemetry display.</li>
+                </ul>
+
+                <div class="flex flex-wrap gap-1.5 mb-4">
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-1.5 py-0.5 text-[11px]">React</span>
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-1.5 py-0.5 text-[11px]">TypeScript</span>
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-1.5 py-0.5 text-[11px]">Vite</span>
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-1.5 py-0.5 text-[11px]">Tailwind CSS</span>
+                  <span class="rounded text-zinc-300 bg-zinc-800/60 border border-zinc-700/40 px-1.5 py-0.5 text-[11px]">Lucide Icons</span>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-3 text-[11px] font-medium pt-3 border-t border-zinc-800">
+                <a href="https://markalvincadangin.github.io/triagesense/" target="_blank" rel="noreferrer" class="inline-flex items-center gap-1 text-sky-400 hover:text-sky-300 transition-colors font-medium">
+                  <span>Live Demo</span>
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                </a>
+                <a href="https://github.com/markalvincadangin/triagesense" target="_blank" rel="noreferrer" class="inline-flex items-center gap-1 text-zinc-400 hover:text-zinc-200 transition-colors">
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>Code</span>
+                  <svg class="w-3.5 h-3.5 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                </a>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           4. HOW I BUILD (ENGINEERING PRACTICES)
+           ============================================================ -->
+      <section id="engineering" class="py-16 border-t border-zinc-800 scroll-mt-14">
+        <div class="max-w-2xl mx-auto px-5">
+          <div class="mb-8">
+            <h2 class="text-base font-semibold text-zinc-100 tracking-tight">
+              How I build
+            </h2>
+            <p class="text-sm text-zinc-400 mt-1">
+              Habits I actually use, tied to work in the repos.
+            </p>
+          </div>
+
+          <div class="mb-6 p-4 rounded-xl bg-zinc-900/40 border border-zinc-800/80">
+            <p class="text-sm text-zinc-300 leading-relaxed">
+              I notice a problem, read enough to try something, break it into parts, build a small version, test it, and go back to the docs when I get stuck.
+            </p>
+          </div>
+
+          <div class="space-y-3.5 text-sm">
+            <div class="p-4 rounded-xl bg-zinc-950 border border-zinc-800/80 space-y-1.5">
+              <h3 class="text-zinc-200 font-semibold">
+                Put important rules in the database
+              </h3>
+              <p class="text-zinc-400 leading-relaxed text-sm">
+                App code can skip a path. In HavenStay, 45 MySQL triggers write before-and-after snapshots when balances or room assignments change. CONVERA keeps session checkpoints in SQLite.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-zinc-950 border border-zinc-800/80 space-y-1.5">
+              <h3 class="text-zinc-200 font-semibold">
+                If it can burn a motor, the shutdown stays on the device
+              </h3>
+              <p class="text-zinc-400 leading-relaxed text-sm">
+                SmartFlow decides dry-run timeouts, run limits, and a lost tank-node link in C++ on the ESP32, switching a CJX2 contactor. If Wi-Fi or Firebase is down, the pump still stops.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-zinc-950 border border-zinc-800/80 space-y-1.5">
+              <h3 class="text-zinc-200 font-semibold">
+                Tests and a real run, not just a demo
+              </h3>
+              <p class="text-zinc-400 leading-relaxed text-sm">
+                CONVERA has 338 offline backend tests. Faith Laundry has 289 automated tests (199 JUnit, 90 Vitest). HavenStay has Pest checks on architecture boundaries. SmartFlow ran for days at home with multimeter checks before I left it unattended.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-zinc-950 border border-zinc-800/80 space-y-1.5">
+              <h3 class="text-zinc-200 font-semibold">
+                I use AI, then I check the work
+              </h3>
+              <p class="text-zinc-400 leading-relaxed text-sm">
+                I use it for drafts, test ideas, and explanations. I do not paste from it into a repo until I have read the docs, compiled, and tried the path myself.
+              </p>
+            </div>
+          </div>
+
+          <p class="mt-4 p-3.5 rounded-lg bg-zinc-900/30 border border-zinc-800/50 text-sm text-zinc-400">
+            I still overbuild when I am interested. Hardware and course deadlines have been the main things that force me to ship the part that is actually needed.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           5. TECHNOLOGIES & TOOLS (SKILLS)
+           ============================================================ -->
+      <section id="skills" class="py-16 border-t border-zinc-800 scroll-mt-14">
+        <div class="max-w-2xl mx-auto px-5">
+          <div class="mb-8">
+            <h2 class="text-base font-semibold text-zinc-100 tracking-tight">
+              Technologies &amp; Tools
+            </h2>
+            <p class="text-sm text-zinc-400 mt-1">
+              What I used across the projects on this site. Not a skill rating.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Languages -->
+            <div class="p-4 sm:p-5 rounded-xl bg-zinc-900/40 border border-zinc-800 hover:border-zinc-700/80 transition-colors flex flex-col justify-between">
+              <div>
+                <div class="mb-3">
+                  <div class="flex items-center gap-2">
+                    <svg class="w-3.5 h-3.5 text-sky-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+                    <h3 class="text-xs font-semibold text-zinc-200 uppercase tracking-wide">Languages</h3>
+                  </div>
+                  <p class="text-xs text-zinc-500 mt-1.5 leading-relaxed">Used across the five projects on this site.</p>
+                </div>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">TypeScript</span>
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">JavaScript</span>
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">Kotlin</span>
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">Java</span>
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">PHP</span>
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">C / C++</span>
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">Python</span>
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">SQL</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Frontend & Mobile -->
+            <div class="p-4 sm:p-5 rounded-xl bg-zinc-900/40 border border-zinc-800 hover:border-zinc-700/80 transition-colors flex flex-col justify-between">
+              <div>
+                <div class="mb-3">
+                  <div class="flex items-center gap-2">
+                    <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                    <h3 class="text-xs font-semibold text-zinc-200 uppercase tracking-wide">Frontend &amp; Mobile</h3>
+                  </div>
+                  <p class="text-xs text-zinc-500 mt-1.5 leading-relaxed">HavenStay, CONVERA, TriageSense, and the SmartFlow Android app.</p>
+                </div>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">Next.js</span>
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">React</span>
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">Tailwind CSS</span>
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">Jetpack Compose</span>
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">HTML5 &amp; CSS3</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Backend & APIs -->
+            <div class="p-4 sm:p-5 rounded-xl bg-zinc-900/40 border border-zinc-800 hover:border-zinc-700/80 transition-colors flex flex-col justify-between">
+              <div>
+                <div class="mb-3">
+                  <div class="flex items-center gap-2">
+                    <svg class="w-3.5 h-3.5 text-amber-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>
+                    <h3 class="text-xs font-semibold text-zinc-200 uppercase tracking-wide">Backend &amp; APIs</h3>
+                  </div>
+                  <p class="text-xs text-zinc-500 mt-1.5 leading-relaxed">CONVERA (FastAPI), Faith Laundry (Spring Boot), HavenStay (Laravel).</p>
+                </div>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">FastAPI</span>
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">Spring Boot</span>
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">Laravel</span>
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">REST APIs</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Databases & Tools -->
+            <div class="p-4 sm:p-5 rounded-xl bg-zinc-900/40 border border-zinc-800 hover:border-zinc-700/80 transition-colors flex flex-col justify-between">
+              <div>
+                <div class="mb-3">
+                  <div class="flex items-center gap-2">
+                    <svg class="w-3.5 h-3.5 text-purple-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
+                    <h3 class="text-xs font-semibold text-zinc-200 uppercase tracking-wide">Databases &amp; DevOps</h3>
+                  </div>
+                  <p class="text-xs text-zinc-500 mt-1.5 leading-relaxed">MySQL in HavenStay, PostgreSQL in Faith Laundry, SQLite in CONVERA, Firebase in SmartFlow.</p>
+                </div>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">MySQL</span>
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">PostgreSQL</span>
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">SQLite</span>
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">Firebase</span>
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">Docker Compose</span>
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">Linux / Bash</span>
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">Git</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hardware & IoT (full-width on sm) -->
+            <div class="p-4 sm:p-5 rounded-xl bg-zinc-900/40 border border-zinc-800 hover:border-zinc-700/80 transition-colors flex flex-col justify-between sm:col-span-2">
+              <div>
+                <div class="mb-3">
+                  <div class="flex items-center gap-2">
+                    <svg class="w-3.5 h-3.5 text-rose-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>
+                    <h3 class="text-xs font-semibold text-zinc-200 uppercase tracking-wide">Hardware &amp; IoT</h3>
+                  </div>
+                  <p class="text-xs text-zinc-500 mt-1.5 leading-relaxed">SmartFlow only — pump controller installed at home.</p>
+                </div>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">ESP32</span>
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">ESP8266</span>
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">RS-485</span>
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">BLE</span>
+                  <span class="px-2 py-0.5 rounded text-xs text-zinc-300 bg-zinc-800/60 border border-zinc-700/40">Sensors &amp; contactors</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           6. ABOUT
+           ============================================================ -->
+      <section id="about" class="py-16 border-t border-zinc-800 scroll-mt-14">
+        <div class="max-w-2xl mx-auto px-5">
+          <div class="mb-8">
+            <h2 class="text-base font-semibold text-zinc-100 tracking-tight">
+              About
+            </h2>
+            <p class="text-sm text-zinc-400 mt-1">
+              Background, school, and how I spend time outside class.
+            </p>
+          </div>
+
+          <div class="space-y-4 text-sm text-zinc-300 leading-relaxed">
+            <p>
+              I grew up in Leon, Iloilo. I learn faster by building and testing than by memorizing. I&apos;m a third-year <span class="text-zinc-100 font-medium">BSIT student in Software Development Technologies at West Visayas State University</span>, a <span class="text-zinc-100 font-medium">DOST-SEI Scholar (Batch 2024)</span>, with <span class="text-zinc-100 font-medium">CICT Parangal Gold (1st year) · Silver (2nd year)</span> honors.
+            </p>
+
+            <p>
+              I like software that matches how people actually work: a pump that should not run dry, a boarding house that rents by the bed, a laundry shop that still used paper notebooks.
+            </p>
+
+            <p>
+              In senior high I worked on pine-needle cellulose bioplastic and whether it could slow fruit spoilage. I still like that kind of problem; it is not software work.
+            </p>
+
+            <p>
+              I play basketball as a point guard and shooting guard in barangay, SK, and inter-town leagues.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           7. CONTACT
+           ============================================================ -->
+      <section id="contact" class="py-16 border-t border-zinc-800 scroll-mt-14">
+        <div class="max-w-2xl mx-auto px-5">
+          <div class="mb-8">
+            <h2 class="text-base font-semibold text-zinc-100 tracking-tight">
+              Contact
+            </h2>
+            <p class="text-sm text-zinc-400 mt-1">
+              Email, GitHub, LinkedIn, and resume. Open to a full-stack internship.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-xl bg-zinc-900/40 border border-zinc-800 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-zinc-800">
+              <div>
+                <span class="text-xs text-zinc-500 uppercase tracking-wide block mb-1">
+                  Direct Email
+                </span>
+                <a
+                  href="mailto:markcadangin@gmail.com"
+                  class="text-base font-medium text-zinc-100 hover:text-sky-400 transition-colors"
+                >
+                  markcadangin@gmail.com
+                </a>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <button
+                  id="copy-email-btn"
+                  class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-xs text-zinc-300 transition-colors"
+                  title="Copy email address"
+                >
+                  <svg id="copy-icon" class="w-3.5 h-3.5 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                  <svg id="check-icon" class="w-3.5 h-3.5 text-emerald-400 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                  <span id="copy-text">Copy</span>
+                </button>
+
+                <a
+                  href="mailto:markcadangin@gmail.com"
+                  class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-md bg-zinc-100 text-zinc-900 hover:bg-white text-xs font-medium transition-colors"
+                >
+                  <span>Write Email</span>
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-4 text-xs">
+              <div class="flex items-center gap-5">
+                <a
+                  href="https://github.com/markalvincadangin"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="inline-flex items-center gap-1.5 text-zinc-400 hover:text-zinc-200 transition-colors"
+                >
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  <span>GitHub</span>
+                  <svg class="w-3 h-3 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/in/mark-alvin-cadangin"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="inline-flex items-center gap-1.5 text-zinc-400 hover:text-zinc-200 transition-colors"
+                >
+                  <svg class="w-3.5 h-3.5 text-zinc-400" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                  <span>LinkedIn</span>
+                  <svg class="w-3 h-3 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                </a>
+
+                <a
+                  href="assets/resume.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="inline-flex items-center gap-1.5 text-zinc-400 hover:text-zinc-200 transition-colors"
+                >
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+                  <span>Resume (PDF)</span>
+                  <svg class="w-3 h-3 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                </a>
+              </div>
+
+              <div class="flex items-center gap-1.5 text-zinc-500 font-mono text-[11px]">
+                <svg class="w-3.5 h-3.5 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span id="ph-time">Iloilo, PH · UTC+8</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ============================================================
+         8. FOOTER
+         ============================================================ -->
+    <footer class="py-12 border-t border-zinc-800/80 text-xs text-zinc-500">
+      <div class="max-w-2xl mx-auto px-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-center sm:text-left">
+        <div>
+          <p class="text-zinc-400 font-medium">
+            Mark Alvin Cadangin · 2026
+          </p>
+          <p class="text-[11px] text-zinc-500 mt-0.5">
+            Software Development Technologies · West Visayas State University
+          </p>
+        </div>
+        <div class="flex flex-col sm:items-end gap-1 text-[11px]">
+          <span class="text-zinc-400">DOST-SEI Scholar (Batch 2024)</span>
+          <a
+            href="#"
+            class="text-zinc-500 hover:text-zinc-300 transition-colors inline-flex items-center gap-1 mt-0.5"
+          >
+            <span>Back to top</span>
+            <span aria-hidden="true">↑</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Main JavaScript -->
+    <script src="script.js"></script>
+
+  </body>
+</html>

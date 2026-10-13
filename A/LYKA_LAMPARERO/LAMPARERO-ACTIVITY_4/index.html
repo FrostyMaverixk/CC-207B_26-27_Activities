@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfolio of Lyka R. Lamparero, BSIT Software Development student at WVSU-CICT."
+    />
+    <title>eysikiel | Lyka R. Lamparero</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&family=Unbounded:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <!-- LEFT SIDEBAR -->
+      <aside class="sidebar">
+        <a href="#about" class="logo">eysikiel</a>
+        <button id="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+        <nav id="nav-links">
+          <a href="#about" class="active">About</a>
+          <a href="#work">Projects</a>
+          <a href="#stack">Stack</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </aside>
+
+      <div class="main">
+        <!-- ABOUT AREA: photo + about details -->
+        <div class="about-area" id="about">
+          <section class="profile">
+            <div class="photo">
+              <img
+                src="images/profile.png"
+                alt="Photo of Lyka R. Lamparero"
+                onerror="this.parentElement.classList.add('no-photo')"
+              />
+            </div>
+            <h1>Lyka R. Lamparero</h1>
+            <p class="handle">@eysikiel</p>
+            <p class="role">3rd Year BSIT Student</p>
+            <ul class="profile-info">
+              <li>
+                <svg
+                  class="info-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"
+                  />
+                  <circle cx="12" cy="10" r="2.5" />
+                </svg>
+                <span>Iloilo City, Philippines</span>
+              </li>
+              <li>
+                <svg
+                  class="info-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"
+                  />
+                  <path d="M14 3v5h5M9 13h6M9 17h6" />
+                </svg>
+                <a
+                  href="assets/Lamparero_Resume.pdf"
+                  id="resume-open"
+                  target="_blank"
+                  rel="noopener"
+                  >resume/lyka-lamparero</a>
+              </li>
+            </ul>
+            <a
+              href="#contact"
+              class="btn"
+              style="display: block; width: 100%; text-align: center"
+              >Get in touch</a
+            >
+          </section>
+
+          <div class="about-content">
+            <section class="block reveal">
+              <p class="label">About Me</p>
+              <p class="lead">
+                Hi, I am Lyka, a
+                <strong>3rd Year BS Information Technology</strong> student
+                majoring in <strong>Software Development Technology</strong> at
+                West Visayas State University - Main Campus, College of
+                Information and Communications Technology.
+              </p>
+            </section>
+
+            <section class="block reveal">
+              <p class="label">Education</p>
+              <div class="item">
+                <svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M2 9l10-5 10 5-10 5z" />
+                  <path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5" />
+                </svg>
+                <div>
+                  <h3>BS Information Technology</h3>
+                  <p class="date">Batch 2028</p>
+                  <p class="muted">Major in Software Development Technology</p>
+                  <p class="muted">
+                    West Visayas State University, CICT | Iloilo City,
+                    Philippines
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section class="block reveal">
+              <p class="label">Involvement</p>
+              <div class="item">
+                <svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.5 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"
+                  />
+                </svg>
+                <div>
+                  <h3>FINALIST - AI Fest Hackathon (Open Category)</h3>
+                  <p class="date">2026</p>
+                  <p class="muted">
+                    AquAIman - Blue Economy concept focused on detecting illegal
+                    fishing risks using data-driven insights.
+                  </p>
+
+                  <div class="subrole">
+                    <svg
+                      class="icon small"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <circle cx="9" cy="8" r="3" />
+                      <circle cx="17" cy="9" r="2.5" />
+                      <path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" />
+                      <path d="M15 14.2c.6-.2 1.3-.2 2-.2 2.2 0 4 1.8 4 4" />
+                    </svg>
+                    <h4>Team sARDEÑAs</h4>
+                    <span class="bar">|</span>
+                    <p class="muted">Project Manager</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="block reveal">
+              <p class="label">Open Source</p>
+              <a
+                class="item"
+                href="https://github.com/eysikiel"
+                target="_blank"
+                rel="noopener"
+              >
+                <svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M9 19c-4 1.3-4-2-6-2.5m12 4.5v-3.2c0-.9.1-1.3-.4-1.9 2.7-.3 5.4-1.3 5.4-5.9 0-1.3-.5-2.4-1.2-3.3.1-.3.5-1.6-.1-3.2 0 0-1-.3-3.3 1.2a11.400 11.400 0 0 0-6 0C6.700 3.200 5.700 3.500 5.700 3.500c-.6 1.600-.2 2.900-.1 3.200A4.800 4.800 0 0 0 4.400 10c0 4.600 2.700 5.600 5.400 5.900-.5.500-.5 1.100-.4 1.900V21"
+                  />
+                </svg>
+                <div>
+                  <h3>GitHub &nearr;</h3>
+                  <p class="muted">github.com/eysikiel</p>
+                </div>
+              </a>
+              <div class="gh-graph">
+                <div
+                  id="gh-dots"
+                  class="gh-dots"
+                  aria-label="GitHub contribution graph"
+                ></div>
+                <p id="gh-stats" class="gh-stats">Loading contributions...</p>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <div class="rest">
+          <section id="work" class="block reveal">
+            <p class="label">Selected Work</p>
+            <h2>Projects</h2>
+
+            <div class="projects-list">
+              <article class="project">
+                <div class="project-logo">
+                  <div class="logo-box">
+                    <span>AQ</span>
+                    <img
+                      src="assets/aquaiman-logo.svg"
+                      alt="AquAIman logo"
+                      onerror="this.style.display = 'none'"
+                    />
+                  </div>
+                </div>
+                <div class="project-body">
+                  <h3>
+                    <a
+                      href="https://github.com/eysikiel"
+                      target="_blank"
+                      rel="noopener"
+                      >AquAIman &nearr;</a
+                    >
+                  </h3>
+                  <p class="kind">Predictive Coastal Intelligence System</p>
+                  <p class="proj-role">Project Manager</p>
+                  <p>
+                    A web-based Coastal Intelligence System for Illegal,
+                    Unreported, and Unregulated (IUU) fishing risk
+                    classification and patrol prioritization in Northern Iloilo.
+                  </p>
+                  <div class="tags">
+                    <span>Python</span><span>JavaScript</span><span>HTML</span
+                    ><span>CSS</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="project">
+                <div class="project-logo">
+                  <div class="logo-box">
+                    <span>LJN</span>
+                    <img
+                      src="assets/ljn-obdras-logo.png"
+                      alt="LJN-OBDRAS logo"
+                      onerror="this.style.display = 'none'"
+                    />
+                  </div>
+                </div>
+                <div class="project-body">
+                  <h3>
+                    <a
+                      href="https://github.com/eysikiel"
+                      target="_blank"
+                      rel="noopener"
+                      >LJN-OBDRAS &nearr;</a
+                    >
+                  </h3>
+                  <p class="kind">E-Local Government Unit System</p>
+                  <p class="proj-role">Project Manager, Developer</p>
+                  <p>
+                    A web-based system designed to digitize the traditional
+                    walk-in process of requesting barangay documents. The
+                    platform currently supports 12 out of 16 official document
+                    types and aligns with the barangay’s Citizens Charter and
+                    ARTA guidelines. It streamlines requests, reduces processing
+                    time, and improves accessibility for residents and staff.
+                  </p>
+                  <div class="tags">
+                    <span>PHP</span><span>JavaScript</span><span>CSS</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="project">
+                <div class="project-logo">
+                  <div class="logo-box">
+                    <span>HR</span>
+                    <img
+                      src="assets/harayahin-logo.jpg"
+                      alt="Harayahin logo"
+                      onerror="this.style.display = 'none'"
+                    />
+                  </div>
+                </div>
+                <div class="project-body">
+                  <h3>
+                    <a
+                      href="https://github.com/eysikiel"
+                      target="_blank"
+                      rel="noopener"
+                      >Harayahin &nearr;</a
+                    >
+                  </h3>
+                  <p class="kind">Social Music Platform</p>
+                  <p class="proj-role">Developer</p>
+                  <p>
+                    An OPM-focused social platform inspired by SendTheSong,
+                    allowing users to share and dedicate Filipino songs in a
+                    modern “harana” experience. Users can also record and
+                    perform the songs themselves, adding a personal touch to
+                    each dedication.
+                  </p>
+                  <div class="tags">
+                    <span>PHP</span><span>CSS</span><span>JavaScript</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="project">
+                <div class="project-logo">
+                  <div class="logo-box">
+                    <span>BL</span>
+                    <img
+                      src="assets/bytelog-logo.png"
+                      alt="ByteLog logo"
+                      onerror="this.style.display = 'none'"
+                    />
+                  </div>
+                </div>
+                <div class="project-body">
+                  <h3>
+                    <a
+                      href="https://github.com/eysikiel"
+                      target="_blank"
+                      rel="noopener"
+                      >ByteLog &nearr;</a
+                    >
+                  </h3>
+                  <p class="kind">Student Management System</p>
+                  <p class="proj-role">Backend Developer</p>
+                  <p>
+                    A comprehensive student management system designed to handle
+                    enrollment, grade encoding, and academic record tracking. It
+                    allows users to add, view, and upload grades while managing
+                    student information in a centralized platform, improving
+                    efficiency and organization for academic workflows.
+                  </p>
+                  <div class="tags"><span>PHP</span><span>CSS</span></div>
+                </div>
+              </article>
+
+              <article class="project">
+                <div class="project-logo">
+                  <div class="logo-box">
+                    <span>DM</span>
+                    <img
+                      src="assets/dishcision-maker-logo.png"
+                      alt="DishCision Maker logo"
+                      onerror="this.style.display = 'none'"
+                    />
+                  </div>
+                </div>
+                <div class="project-body">
+                  <h3>
+                    <a
+                      href="https://github.com/eysikiel"
+                      target="_blank"
+                      rel="noopener"
+                      >DishCision Maker &nearr;</a
+                    >
+                  </h3>
+                  <p class="kind">Meal Recommendation Engine</p>
+                  <p class="proj-role">Full Stack Developer</p>
+                  <p>
+                    A rule-based meal recommendation engine that suggests
+                    Filipino dishes based on available ingredients, budget
+                    constraints, and health preferences. It uses a ranked
+                    database approach to generate tailored meal options, helping
+                    users decide what to cook efficiently.
+                  </p>
+                  <div class="tags"><span>Java</span><span>MySQL</span></div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section id="stack" class="block reveal">
+            <p class="label">Technical Skills</p>
+            <h2>Tech Stack</h2>
+
+            <div class="stack-list">
+              <div class="stack-row">
+                <div class="stack-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" />
+                  </svg>
+                </div>
+                <div class="stack-info">
+                  <h3>Languages</h3>
+                  <ul class="skill-list">
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                    <li>PHP</li>
+                    <li>C++</li>
+                    <li>Java</li>
+                    <li>Python</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="stack-row">
+                <div class="stack-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M12 3l9 5-9 5-9-5z" />
+                    <path d="M3 13l9 5 9-5" />
+                  </svg>
+                </div>
+                <div class="stack-info">
+                  <h3>Frameworks and Libraries</h3>
+                  <ul class="skill-list">
+                    <li>React</li>
+                    <li>Flask</li>
+                    <li>Vite</li>
+                    <li>Bootstrap</li>
+                    <li>Tailwind CSS</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="stack-row">
+                <div class="stack-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <ellipse cx="12" cy="6" rx="8" ry="3" />
+                    <path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6" />
+                    <path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6" />
+                  </svg>
+                </div>
+                <div class="stack-info">
+                  <h3>Database</h3>
+                  <ul class="skill-list">
+                    <li>MySQL</li>
+                    <li>SQLite</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="stack-row">
+                <div class="stack-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="6" y="6" width="12" height="12" rx="2" />
+                    <path
+                      d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"
+                    />
+                  </svg>
+                </div>
+                <div class="stack-info">
+                  <h3>AI/Machine Learning</h3>
+                  <ul class="skill-list">
+                    <li>Random Forest Classifier</li>
+                    <li>xAI Grok API</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="stack-row">
+                <div class="stack-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="3" />
+                    <path
+                      d="M19.400 15a1.700 1.700 0 0 0 .3 1.800l.1.1a2 2 0 1 1-2.800 2.800l-.1-.1a1.700 1.700 0 0 0-1.800-.3 1.700 1.700 0 0 0-1 1.500V21a2 2 0 1 1-4 0v-.1a1.700 1.700 0 0 0-1.100-1.500 1.700 1.700 0 0 0-1.800.3l-.1.1a2 2 0 1 1-2.800-2.800l.1-.1a1.700 1.700 0 0 0 .3-1.800 1.700 1.700 0 0 0-1.500-1H3a2 2 0 1 1 0-4h.1a1.700 1.700 0 0 0 1.500-1.100 1.700 1.700 0 0 0-.3-1.800l-.1-.1a2 2 0 1 1 2.800-2.800l.1.1a1.700 1.700 0 0 0 1.800.3h.1a1.700 1.700 0 0 0 1-1.500V3a2 2 0 1 1 4 0v.1a1.700 1.700 0 0 0 1 1.500 1.700 1.700 0 0 0 1.800-.3l.1-.1a2 2 0 1 1 2.800 2.800l-.1.1a1.700 1.700 0 0 0-.3 1.800v.1a1.700 1.700 0 0 0 1.500 1H21a2 2 0 1 1 0 4h-.1a1.700 1.700 0 0 0-1.500 1z"
+                    />
+                  </svg>
+                </div>
+                <div class="stack-info">
+                  <h3>Tools</h3>
+                  <ul class="skill-list">
+                    <li>VS Code</li>
+                    <li>IntelliJ IDEA</li>
+                    <li>GitHub</li>
+                    <li>Apache Netbeans</li>
+                    <li>Qt Gui</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="contact" class="block reveal">
+            <p class="label">Get In Touch</p>
+            <h2>Connect</h2>
+
+            <div class="connect-grid">
+              <div class="connect-left">
+                <h3 class="connect-title">
+                  Let's build <span>something great</span>
+                </h3>
+                <p class="connect-text">
+                  Open to collaborations and projects. Reach out through any of
+                  the links on the right.
+                </p>
+                <a class="btn btn-wide" href="mailto:lykarlamparero@gmail.com"
+                  >Send a message &rarr;</a
+                >
+              </div>
+
+              <div class="connect-list">
+                <a class="connect-row" href="mailto:lykarlamparero@gmail.com">
+                  <svg
+                    class="connect-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="M3 7l9 6 9-6" />
+                  </svg>
+                  <div class="connect-info">
+                    <span class="connect-label">Direct Line</span>
+                    <span class="connect-name">Email</span>
+                  </div>
+                  <span class="connect-value">lykarlamparero@gmail.com</span>
+                  <span class="connect-arrow">&rarr;</span>
+                </a>
+
+                <a class="connect-row" href="tel:+639685311581">
+                  <svg
+                    class="connect-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M5 4h4l2 5-2.500 1.500a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"
+                    />
+                  </svg>
+                  <div class="connect-info">
+                    <span class="connect-label">Mobile</span>
+                    <span class="connect-name">Phone</span>
+                  </div>
+                  <span class="connect-value">(+63) 968-5311-581</span>
+                  <span class="connect-arrow">&rarr;</span>
+                </a>
+
+                <a
+                  class="connect-row"
+                  href="https://www.linkedin.com/in/lyka-lamparero/"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <svg
+                    class="connect-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <path
+                      d="M8 11v5M8 8v.01M12 16v-5M12 13a2.500 2.500 0 0 1 5 0v3"
+                    />
+                  </svg>
+                  <div class="connect-info">
+                    <span class="connect-label">Professional</span>
+                    <span class="connect-name">LinkedIn</span>
+                  </div>
+                  <span class="connect-value"
+                    >linkedin.com/in/lyka-lamparero</span
+                  >
+                  <span class="connect-arrow">&rarr;</span>
+                </a>
+
+                <a
+                  class="connect-row"
+                  href="https://github.com/eysikiel"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <svg
+                    class="connect-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M9 19c-4 1.300-4-2-6-2.500m12 4.500v-3.200c0-.9.100-1.300-.4-1.900 2.700-.3 5.400-1.300 5.400-5.900 0-1.300-.5-2.400-1.200-3.300.1-.3.5-1.600-.1-3.200 0 0-1-.3-3.300 1.200a11.400 11.400 0 0 0-6 0C6.700 3.200 5.700 3.500 5.700 3.500c-.6 1.600-.2 2.900-.1 3.200A4.800 4.800 0 0 0 4.400 10c0 4.600 2.700 5.600 5.400 5.900-.5.500-.5 1.100-.4 1.900V21"
+                    />
+                  </svg>
+                  <div class="connect-info">
+                    <span class="connect-label">Open Source</span>
+                    <span class="connect-name">GitHub</span>
+                  </div>
+                  <span class="connect-value">github.com/eysikiel</span>
+                  <span class="connect-arrow">&rarr;</span>
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <footer>
+            <p>&copy; 2026 Lyka R. Lamparero | Activity 4 Website Portfolio</p>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal"
+      id="resume-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="resume-title"
+      aria-hidden="true"
+    >
+      <div class="modal-panel">
+        <div class="modal-head">
+          <div class="modal-file-icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"
+              />
+              <path d="M14 3v5h5M9 13h6M9 17h6" />
+            </svg>
+          </div>
+          <div>
+            <p class="modal-title" id="resume-title">Lamparero_Resume.pdf</p>
+            <p class="modal-sub">PDF preview · 99 KB</p>
+          </div>
+          <button
+            class="modal-close"
+            type="button"
+            aria-label="Close resume preview"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+            >
+              <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <iframe id="resume-frame" title="Resume preview"></iframe>
+        </div>
+
+        <div class="modal-foot">
+          <a
+            class="modal-link"
+            href="assets/Lamparero_Resume.pdf"
+            target="_blank"
+            rel="noopener"
+            >Open in new tab</a
+          >
+          <a
+            class="btn modal-download"
+            href="assets/Lamparero_Resume.pdf"
+            download="Lamparero_Resume.pdf"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 4v11M7 11l5 5 5-5M5 20h14" />
+            </svg>
+            Download
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

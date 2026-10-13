@@ -1,0 +1,24 @@
+# Netlify config (roadmap Phase 7.1). Forms note: the `contact` form is
+# detected from the hidden mirror in index.html, but detection itself must be
+# switched on in the UI (Site configuration → Forms → Enable form detection).
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# SPA fallback — BrowserRouter owns routing; unknown paths must reach React's
+# MEDIA OFFLINE 404, not Netlify's.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Baseline hardening. No CSP yet: GoatCounter (siteConfig.goatCounter) would
+# need its domains allowed — add one deliberately if/when analytics goes live.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"

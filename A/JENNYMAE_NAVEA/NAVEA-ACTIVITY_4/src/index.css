@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #fffefd;
+  --foreground: #292524;
+}
+
+#skills-title-root { min-height: 1.15em; }
+#skills-title-root .text-animate { display: inline-block; }
+#skills-title-root .text-animate-unit { display: inline-block; min-width: .02em; white-space: pre; transition: opacity .08s linear; }
+
+.services-react-root { grid-column: span 6; min-width: 0; }
+.service-carousel { width: 100%; }
+.service-carousel-inner { position: relative; }
+.service-carousel-content { gap: 16px; padding: 2px 2px 14px; }
+.service-carousel-item { flex: 0 0 calc((100% - 32px) / 3); padding: 0; }
+.service-card { position: relative; display: flex; min-height: 330px; flex-direction: column; justify-content: space-between; overflow: hidden; border-radius: 24px; padding: 28px; color: #292524; isolation: isolate; box-shadow: 0 12px 28px -18px rgba(41, 37, 36, .45); transition: transform .25s ease, box-shadow .25s ease; }
+.service-card:hover { transform: translateY(-5px); box-shadow: 0 20px 34px -18px rgba(41, 37, 36, .42); }
+.service-card-icon { position: relative; z-index: 1; display: grid; width: 52px; height: 52px; place-items: center; border: 1px solid rgba(41, 37, 36, .16); border-radius: 50%; background: rgba(255, 255, 255, .32); }
+.service-card-icon svg { width: 25px; height: 25px; }
+.service-card-content { position: relative; z-index: 1; }
+.service-card-content h3 { max-width: 13ch; margin-bottom: 10px; font-family: var(--display); font-size: 1.35rem; line-height: 1.15; text-transform: uppercase; }
+.service-card-content p { max-width: 30ch; color: rgba(41, 37, 36, .7); font-size: .875rem; line-height: 1.55; }
+.service-card-glow { position: absolute; right: -22%; bottom: -32%; z-index: -1; width: 70%; aspect-ratio: 1; border-radius: 50%; background: rgba(255, 255, 255, .28); filter: blur(2px); }
+.service-gradient-pink { background: linear-gradient(135deg, #fbcfe8, #f9a8d4); }
+.service-gradient-peach { background: linear-gradient(135deg, #fed7aa, #fdba74); }
+.service-gradient-blue { background: linear-gradient(135deg, #bfdbfe, #93c5fd); }
+.service-gradient-green { background: linear-gradient(135deg, #bbf7d0, #86efac); }
+.service-carousel-next { right: 12px !important; top: 50% !important; z-index: 3; border: 0 !important; color: #292524 !important; background: rgba(255, 255, 255, .6) !important; }
+.service-carousel-next:hover:not(:disabled) { background: #fff !important; }
+
+.project-react-showcase { color: var(--white); }
+.project-react-showcase .projects-heading { display: flex; justify-content: space-between; align-items: end; gap: 48px; margin-bottom: 42px; }
+.project-react-showcase .projects-heading h2 { max-width: 12ch; color: var(--white); font-family: var(--display); font-size: clamp(2.25rem, 5vw, 4rem); line-height: 1.15; }
+.project-react-showcase .projects-heading > p { max-width: 38ch; color: rgba(255, 254, 253, .68); }
+.project-react-showcase .eyebrow { color: var(--pink-300); font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 10px; }
+.project-react-content { gap: 20px; padding: 0 0 16px; }
+.project-react-item { flex: 0 0 min(72vw, 520px); padding: 0; }
+.project-react-card { position: relative; height: 520px; overflow: hidden; border: 1px solid rgba(255, 255, 255, .2); border-radius: 18px; isolation: isolate; background: #34272d; }
+.project-react-card > img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease; }
+.project-react-card:hover > img { transform: scale(1.06); }
+.project-react-overlay { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(23, 21, 22, .08) 20%, rgba(23, 21, 22, .9) 100%); }
+.project-react-info { position: absolute; left: 28px; right: 28px; bottom: 30px; }
+.project-react-info h3 { margin: 8px 0 10px; color: var(--white); font-family: var(--display); font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.15; }
+.project-react-info > p:not(.project-category) { max-width: 34ch; color: rgba(255, 254, 253, .76); font-size: .9375rem; line-height: 1.55; }
+.project-react-info .tags { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 18px; }
+.project-react-info .tags li { display: inline-flex; align-items: center; gap: 7px; padding: 0; color: var(--white); background: transparent; border: 0; font-weight: 600; }
+.project-tech-icon { color: var(--pink-200); font-size: .95rem; }
+.project-react-card .project-number { position: absolute; top: 24px; right: 26px; color: rgba(255, 255, 255, .7); font-family: var(--display); font-size: 1.25rem; }
+.project-react-link { position: absolute; top: 20px; left: 24px; border-color: rgba(255, 255, 255, .4); border-radius: 50%; color: var(--white); background: rgba(23, 21, 22, .3); }
+.project-react-link:hover { color: var(--stone-800); background: var(--pink-300); }
+.project-react-controls { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin-top: 8px; }
+.project-react-controls > span { margin-right: 6px; color: rgba(255, 254, 253, .56); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; }
+.project-react-controls button { width: 42px; height: 42px; border-color: rgba(255, 255, 255, .35); border-radius: 50%; color: var(--white); background: rgba(255, 255, 255, .06); transition: transform .2s, background-color .2s, color .2s; }
+.project-react-controls button:hover:not(:disabled) { transform: translateY(-2px); }
+.project-react-controls button:hover:not(:disabled) { color: var(--stone-800); background: var(--pink-300); }
+
+@media (max-width: 900px) {
+  .services-react-root { grid-column: span 2; }
+  .project-react-showcase .projects-heading { align-items: start; flex-direction: column; gap: 16px; }
+  .project-react-item { flex-basis: min(78vw, 480px); }
+  .project-react-card { height: 480px; }
+  .service-carousel-item { flex-basis: calc((100% - 16px) / 2); }
+}
+
+@media (max-width: 640px) {
+  .services-react-root { grid-column: span 1; }
+  .service-carousel-item { flex-basis: 88%; }
+  .service-card { min-height: 290px; padding: 24px; }
+  .project-react-item { flex-basis: 84vw; }
+  .project-react-card { height: 430px; }
+  .project-react-info { left: 22px; right: 22px; bottom: 24px; }
+}

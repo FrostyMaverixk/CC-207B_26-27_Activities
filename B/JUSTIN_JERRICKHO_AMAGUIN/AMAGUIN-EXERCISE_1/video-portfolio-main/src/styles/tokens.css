@@ -1,0 +1,95 @@
+/* ============================================================================
+   EDIT BAY — design tokens (single source of truth)
+   The whole aesthetic lives here: every color, font, size, space, radius, and
+   duration is a custom property. Components reference these — never literals.
+
+   NOTE: CSS media queries CANNOT read custom properties. The breakpoints below
+   are documented as comments + variables for JS use; in @media rules you MUST
+   hard-code the px values:  --bp-sm = 640px   --bp-lg = 1024px
+   ========================================================================== */
+
+:root {
+  /* ---- surfaces — NLE charcoal -------------------------------------------- */
+  --bg-0: #0b0c0f;        /* page */
+  --bg-1: #121419;        /* panels (bin, dialogs, timeline) */
+  --bg-2: #1a1d24;        /* raised elements, track headers */
+  --line-0: #262a33;      /* hairline panel borders */
+  --line-1: #343a46;      /* hover borders */
+
+  /* ---- text --------------------------------------------------------------- */
+  --text-0: #e7e9ee;      /* primary */
+  --text-1: #9aa3b2;      /* secondary / metadata */
+  --text-2: #76819a;      /* faint / disabled — lightened in Phase 6 (was
+                             #5c6678 ≈3.2:1): micro-copy set in this tier is
+                             real text and must clear WCAG AA 4.5:1 on
+                             --bg-0/--bg-1 (now ≈4.8–5.0:1) */
+
+  /* ---- the joke palette --------------------------------------------------- */
+  --accent-teal:   #36d6cf;   /* links, A-track, active states */
+  --accent-orange: #ff8a3d;   /* playhead, focus, primary buttons */
+  --accent-red:    #e63946;   /* record dot, markers, MEDIA OFFLINE */
+  --offline-red:   #b3201f;   /* offline slate background */
+
+  /* ---- track/clip colors (NLE bin pastels) — one per category ------------- */
+  --clip-shortfilm:   #7aa2f7;
+  --clip-ad:          #ff9e64;
+  --clip-reels:       #2ac3de;
+  --clip-amv:         #bb9af7;
+  --clip-gameedits:   #f7768e;
+  --clip-practice:    #9ece6a;
+  --clip-infographic: #e0af68;
+
+  /* ---- typography: families ----------------------------------------------- */
+  /* Self-hosted via Fontsource (imported in main.jsx) — no Google Fonts req. */
+  --font-display: 'Space Grotesk Variable', system-ui, -apple-system, sans-serif;
+  --font-body:    'Inter Variable', system-ui, -apple-system, sans-serif;
+  --font-mono:    'JetBrains Mono Variable', ui-monospace, 'SFMono-Regular',
+                  'Cascadia Code', Menlo, Consolas, monospace;
+
+  /* ---- typography: scale (clamp-based) ------------------------------------ */
+  --fs-hero:  clamp(1.6rem, 4.5vw, 3.4rem);  /* the filename title (not a billboard) */
+  --fs-h2:    clamp(1.4rem, 3vw, 2.2rem);    /* section titles */
+  --fs-body:  1rem;                          /* line-height via --lh-body */
+  --fs-meta:  0.78rem;                        /* metadata, track labels */
+  --fs-micro: 0.68rem;                        /* fine print, codec readouts */
+  --lh-body:  1.65;
+  --tracking-mono: 0.08em;                    /* mono labels are spaced + uppercase */
+
+  /* ---- shape -------------------------------------------------------------- */
+  --radius: 2px;                              /* NLE software is squared-off */
+  --border-0: 1px solid var(--line-0);
+  --border-1: 1px solid var(--line-1);
+  --shadow-monitor: 0 0 0 1px var(--line-1), 0 24px 80px rgba(0, 0, 0, 0.6);
+
+  /* ---- motion — state changes cut, they don't ease ------------------------ */
+  --dur-cut:   70ms;     /* cut-flash frame, instant jumps */
+  --dur-hover: 80ms;     /* hover/active swaps */
+  --dur-state: 120ms;    /* hard ceiling for any CSS transition */
+  --ease-cut:  steps(1, end);
+
+  /* ---- texture ------------------------------------------------------------ */
+  --grain-opacity: 0.05;
+  --flash-opacity: 0.1;
+
+  /* ---- spacing scale (4px base) ------------------------------------------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* ---- breakpoints (for JS only — see note at top) ------------------------ */
+  --bp-sm: 640px;
+  --bp-lg: 1024px;
+
+  /* ---- z-index layering (Global Rule 7: nav/grain/flash/modal stack) ------ */
+  --z-grade:  0;     /* #grade-root content */
+  --z-grain:  50;    /* film grain, above content */
+  --z-nav:    100;   /* fixed timeline nav */
+  --z-flash:  200;   /* cut-flash overlay */
+  --z-modal:  300;   /* program monitor / export dialog portals */
+  --z-boot:   400;   /* boot loader, top of everything */
+}

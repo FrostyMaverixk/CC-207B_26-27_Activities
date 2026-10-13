@@ -1,0 +1,641 @@
+/* ---------- Page / root ---------- */
+:root {
+  --screen-bg: #fff;
+  background: var(--screen-bg);
+  letter-spacing: 0.18px;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root:has(.app[data-theme='dark']) {
+  --screen-bg: #16171d;
+}
+
+body {
+  margin: 0;
+  background: var(--screen-bg);
+}
+
+p {
+  margin: 0;
+}
+
+h2 {
+  font-family: var(--font);
+  font-weight: 500;
+  color: var(--text-h);
+  font-size: 1.9rem;
+  line-height: 1.2;
+  letter-spacing: -0.24px;
+  margin: 0 0 0.5rem;
+}
+
+/* ---------- Theme tokens ---------- */
+.app {
+  --text-h: #08060d;
+  --shadow:
+    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+  --page: #faf4e4;
+  --back: #d8bd7a;
+  --back-text: #483a21;
+  --front: #edcf86;
+  --title: #49371c;
+  --script: #6a3c2f;
+  --front-tab-text: #3e321e;
+  --paper: #fffdf6;
+  --ink: #342f25;
+  --bar: #e8dcbb;
+  --tab: #91c77c;
+  --tab-green: #91c77c;
+  --tab-purple: #b89ad8;
+  --tab-blue: #83b9de;
+  --tab-hover: #f2dc9d;
+  --chip: #e2e7cf;
+  --rule: #c7a76a;
+  --muted: #5e5749;
+  --link: #315e88;
+  --btn-bg: #641919;
+  --btn-text: #ffffff;
+  --btn-hover: #58302b;
+  --focus: #ffc928;
+  --font: 'Inter', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --script-font: 'Pinyon Script', 'Snell Roundhand', 'Brush Script MT', cursive;
+
+  color-scheme: light;
+}
+
+.app[data-theme='dark'] {
+  --text-h: #f3f4f6;
+  --shadow:
+    rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+
+  --page: #171913;
+  --back: #76613b;
+  --back-text: #fff4d8;
+  --front: #b49352;
+  --title: #2b2416;
+  --script: #f3e4b2;
+  --front-tab-text: #211d14;
+  --paper: #24251f;
+  --ink: #f5efdb;
+  --bar: #49412e;
+  --tab: #376b42;
+  --tab-green: #376b42;
+  --tab-purple: #66478b;
+  --tab-blue: #315f86;
+  --tab-hover: #655333;
+  --chip: #354333;
+  --rule: #8e7547;
+  --muted: #d4cfb9;
+  --link: #9ac9ed;
+  --btn-bg: #548c5c;
+  --btn-text: #ffffff;
+  --btn-hover: #3c6f46;
+  --focus: #ffdf55;
+
+  color-scheme: dark;
+}
+
+/* ---------- App shell ---------- */
+.app {
+  position: relative;
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--page);
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 4.5rem 1rem 2rem;
+  box-sizing: border-box;
+}
+
+.app *,
+.app *::before,
+.app *::after {
+  box-sizing: border-box;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Theme toggle ---------- */
+.app .toolbar {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.app .theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  cursor: pointer;
+}
+
+.app .theme-toggle:hover {
+  background: var(--tab-hover);
+  box-shadow: var(--shadow);
+}
+
+.app .theme-toggle svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.4s;
+}
+
+.app .theme-toggle:hover svg {
+  transform: rotate(25deg);
+}
+
+/* ---------- Stage (clips the folder animation) ---------- */
+.stage {
+  --tab-h: 44px;
+  --front-top: 96px;
+  position: relative;
+  width: min(100%, 1000px);
+  overflow: hidden;
+  overflow: clip;
+}
+
+.back-tab,
+.front-tab {
+  height: var(--tab-h);
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  clip-path: polygon(0 100%, 7% 18%, 11% 0, 89% 0, 93% 18%, 100% 100%);
+}
+
+.back-tab {
+  position: absolute;
+  top: 0;
+  left: 9%;
+  width: clamp(130px, 22%, 210px);
+  background: var(--back);
+  color: var(--back-text);
+}
+
+.front-tab-name {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.back {
+  margin-top: var(--tab-h);
+  min-height: 540px;
+  background: var(--back);
+  border-radius: 20px 20px 0 0;
+  padding: 1.25rem;
+}
+
+/* Folder height follows the content smoothly (height is set from JS) */
+.back-fit {
+  overflow: hidden;
+  transition: height 0.5s ease;
+}
+
+/* ---------- Information (inside the back folder) ---------- */
+.info {
+  background: var(--paper);
+  border-radius: 12px;
+  min-height: 500px;
+  overflow: hidden;
+  padding-bottom: 1.75rem;
+}
+
+.info-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: space-between;
+  align-items: flex-end;
+  background: var(--bar);
+  padding: 0.5rem 0.75rem 0;
+}
+
+[role='tablist'] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+[role='tab'] {
+  font: inherit;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--tab);
+  border: 0;
+  border-radius: 8px 8px 0 0;
+  padding: 0.6rem 1.1rem;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+[role='tab']:nth-child(1) { background: var(--tab-green); }
+[role='tab']:nth-child(2) { background: var(--tab-purple); }
+[role='tab']:nth-child(3) { background: var(--tab-blue); }
+
+[role='tab'][aria-selected='true'] {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+
+[role='tab']:hover {
+  filter: brightness(0.92);
+}
+
+.panel {
+  padding: 1.5rem 1.75rem 0;
+  max-width: 64ch;
+}
+
+.panel[hidden] {
+  display: none;
+}
+
+.panel:focus-visible {
+  outline-offset: -4px;
+}
+
+.lede {
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+
+.chips li {
+  background: var(--chip);
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+/* ---------- Links ---------- */
+.app .link-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 1.5rem 0 0;
+}
+
+.app .link-list a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  background: var(--chip);
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+  transition: box-shadow 0.3s;
+}
+
+.app .link-list svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.app .link-list .resume-icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.app .link-list a:hover {
+  box-shadow: 0 2px 10px rgb(0 0 0 / 0.25);
+}
+
+.app a {
+  color: var(--link);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+}
+
+.app a:hover {
+  text-decoration-thickness: 4px;
+}
+
+.app a.btn {
+  color: var(--btn-text);
+}
+
+/* ---------- Front folder ---------- */
+.front {
+  position: absolute;
+  inset: var(--front-top) 0 0 0;
+  background: var(--front);
+  border-radius: 22px 22px 0 0;
+  filter: drop-shadow(0 -5px 10px rgb(0 0 0 / 0.3));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 5%;
+  transition: transform 0.9s cubic-bezier(0.65, 0, 0.25, 1);
+}
+
+.front-tab {
+  position: absolute;
+  top: calc(var(--tab-h) * -1 + 1px);
+  right: 9%;
+  width: clamp(150px, 26%, 250px);
+  background: var(--front);
+  color: var(--front-tab-text);
+  pointer-events: none;
+}
+
+.title {
+  margin: 0 0 1.75rem;
+  width: 100%;
+}
+
+.big {
+  display: block;
+  font-size: clamp(2.5rem, 10.5vw, 6.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.65;
+  color: var(--title);
+}
+
+.script {
+  display: block;
+  margin: -0.15em 0 0 22%;
+  font-family: var(--script-font);
+  font-size: clamp(2.2rem, 7.5vw, 4.75rem);
+  line-height: 1;
+  color: var(--script);
+}
+
+.is-open .front {
+  transform: translateY(calc(100% + var(--tab-h) + 20px));
+  visibility: hidden;
+  transition: transform 0.9s cubic-bezier(0.65, 0, 0.25, 1), visibility 0s linear 0.9s;
+}
+
+.stage:not(.is-open) .front:hover {
+  transform: translateY(2px);
+  box-shadow: 0 8px 20px rgb(0 0 0 / 0.25);
+}
+
+/* ---------- Buttons & focus ---------- */
+.btn {
+  display: inline-block;
+  max-width: 100%;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border: 2px solid var(--btn-bg);
+  border-radius: 8px;
+  padding: 0.7rem 1.25rem;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--btn-hover);
+  border-color: var(--btn-hover);
+}
+
+.btn-quiet {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+
+.btn-quiet:hover {
+  background: var(--paper);
+  border-color: var(--ink);
+}
+
+.email-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 0.5rem;
+  vertical-align: -4px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.email-link {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+/* The whole front folder acts as the open button's click target */
+.open-btn::after {
+  content: '';
+  position: absolute;
+  inset: calc(var(--tab-h) * -1) 0 0 0;
+}
+
+.app :focus-visible {
+  outline: 3px solid var(--ink);
+  box-shadow: 0 0 0 6px var(--focus);
+}
+
+/* ---------- Animations ---------- */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(24px); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+}
+
+@keyframes nudge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* Folder rises into view on page load */
+.stage {
+  animation: rise-in 0.7s ease-out both;
+}
+
+/* Content fades up as the front folder slides away (re-runs when switching tabs) */
+.is-open .panel > * {
+  animation: fade-up 0.5s ease-out 0.2s both;
+}
+
+.is-open .panel > :nth-child(2) { animation-delay: 0.27s; }
+.is-open .panel > :nth-child(3) { animation-delay: 0.34s; }
+.is-open .panel > :nth-child(n + 4) { animation-delay: 0.41s; }
+
+/* Arrow on the open button nudges 3 times, then stops */
+.open-btn span {
+  display: inline-block;
+  animation: nudge 1.2s ease-in-out 1s 3;
+}
+
+.open-btn:hover span,
+.open-btn:focus-visible span {
+  animation: none;
+}
+
+/* Small hover and press feedback */
+.btn,
+.chips li {
+  transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.chips li:hover {
+  transform: translateY(-2px);
+}
+
+/* ---------- Preferences ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .front,
+  .is-open .front {
+    transition: none;
+  }
+
+  .stage,
+  .is-open .panel > *,
+  .open-btn span {
+    animation: none;
+  }
+
+  .back-fit {
+    transition: none;
+  }
+
+  .btn,
+  .chips li,
+  .app .theme-toggle svg {
+    transition: none;
+  }
+
+  .btn:active,
+  .chips li:hover,
+  .app .theme-toggle:hover svg {
+    transform: none;
+  }
+
+  .stage:not(.is-open) .front:hover {
+    transform: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .front,
+  .back,
+  .info,
+  .theme-toggle,
+  .back-tab,
+  .front-tab {
+    border: 2px solid CanvasText;
+  }
+
+  [role='tab'][aria-selected='true'] {
+    border: 2px solid Highlight;
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 520px) {
+  .info-bar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.5rem 0.5rem 0;
+  }
+
+  [role='tablist'] {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    gap: 0.15rem;
+  }
+
+  [role='tab'] {
+    min-width: 0;
+    padding: 0.55rem 0.25rem;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  .info-bar > .btn-quiet {
+    width: 100%;
+    margin-bottom: 0.25rem;
+    text-align: center;
+  }
+
+  .btn {
+    padding: 0.65rem 0.9rem;
+  }
+
+  .panel {
+    padding: 1.25rem 1rem 0;
+  }
+
+  .back {
+    padding: 0.75rem;
+  }
+
+  .stage {
+    --front-top: 84px;
+  }
+}

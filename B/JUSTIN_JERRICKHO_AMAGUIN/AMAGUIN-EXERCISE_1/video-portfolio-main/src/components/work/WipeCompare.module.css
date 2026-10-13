@@ -1,0 +1,98 @@
+.frame {
+  --wipe: 50%;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-0);
+  overflow: hidden;
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* final/graded on top, clipped to the left of the wipe line */
+.final {
+  clip-path: inset(0 calc(100% - var(--wipe)) 0 0);
+}
+
+.corner {
+  position: absolute;
+  top: var(--space-2);
+  z-index: 2;
+  padding: 1px var(--space-1);
+  background: rgba(11, 12, 15, 0.72);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-1);
+  pointer-events: none;
+}
+
+.cornerLeft {
+  left: var(--space-2);
+}
+
+.cornerRight {
+  right: var(--space-2);
+}
+
+/* ---- drag handle on the wipe line ------------------------------------------- */
+.handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--wipe);
+  z-index: 3;
+  width: 44px; /* touch target; the visible line is the ::before */
+  transform: translateX(-50%);
+  cursor: ew-resize;
+  touch-action: none;
+}
+
+.handle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: var(--accent-orange);
+}
+
+.grip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1px var(--space-1);
+  background: var(--bg-1);
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: var(--accent-orange);
+}
+
+.playToggle {
+  position: absolute;
+  bottom: var(--space-2);
+  left: var(--space-2);
+  z-index: 4;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--line-0);
+  border-radius: var(--radius);
+  background: var(--bg-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-1);
+}
+
+.playToggle:hover {
+  border-color: var(--line-1);
+}

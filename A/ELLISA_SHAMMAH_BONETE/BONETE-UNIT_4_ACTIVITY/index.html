@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ellisa Bonete’s portfolio: an Information Technology student exploring web development, cybersecurity, and practical software projects.">
+  <title>Ellisa Shammah Bonete — Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg"
+       aria-hidden="true">
+    <symbol id="i-code" viewBox="0 0 24 24">
+      <path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-14-2 18"/>
+    </symbol>
+    <symbol id="i-github" viewBox="0 0 24 24">
+      <path d="M9 19c-4 1-4-2-6-2m12 5v-4a3.5 3.5 0 0 0-1-3c3-.3 6-1.5 6-6a4.7 4.7 0 0 0-1.3-3.3A4.3 4.3 0 0 0 18.6 2S17.4 1.7 15 3a11.4 11.4 0 0 0-6 0C6.6 1.7 5.4 2 5.4 2a4.3 4.3 0 0 0-.1 3.7A4.7 4.7 0 0 0 4 9c0 4.5 3 5.7 6 6a3.5 3.5 0 0 0-1 3v4"/>
+    </symbol>
+    <symbol id="i-search" viewBox="0 0 24 24">
+      <circle cx="10.5" cy="10.5" r="6.5"/>
+      <path d="m16 16 5 5"/>
+    </symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="4"/>
+      <path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24">
+      <path d="M7 17 17 7M7 7h10v10"/>
+    </symbol>
+    <symbol id="i-book" viewBox="0 0 24 24">
+      <path d="M12 5v16M12 5C8 2 3 3 3 3v16s5-1 9 2c4-3 9-2 9-2V3s-5-1-9 2Z"/>
+    </symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24">
+      <path d="m12 3 10 5-10 5L2 8l10-5Zm-10 9 10 5 10-5M2 16l10 5 10-5"/>
+    </symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24">
+      <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/>
+      <circle cx="12" cy="10" r="2.5"/>
+    </symbol>
+    <symbol id="i-react" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="1.5"
+              fill="currentColor" stroke="none"/>
+      <ellipse cx="12" cy="12" rx="10" ry="4"/>
+      <ellipse cx="12" cy="12" rx="10" ry="4"
+              transform="rotate(60 12 12)"/>
+      <ellipse cx="12" cy="12" rx="10" ry="4"
+              transform="rotate(120 12 12)"/>
+    </symbol>
+    <symbol id="i-tailwind" viewBox="0 0 24 24">
+      <path fill="currentColor" stroke="none"
+            d="M12 6c-2.667 0-4.333 1.333-5 4
+              1-1.333 2.167-1.833 3.5-1.5
+              .761.19 1.305.742 1.907 1.352
+              C13.388 10.845 14.523 12 17 12
+              c2.667 0 4.333-1.333 5-4
+              -1 1.333-2.167 1.833-3.5 1.5
+              -.761-.19-1.305-.742-1.907-1.352
+              C15.612 7.155 14.477 6 12 6
+              ZM7 12c-2.667 0-4.333 1.333-5 4
+              1-1.333 2.167-1.833 3.5-1.5
+              .761.19 1.305.742 1.907 1.352
+              C8.388 16.845 9.523 18 12 18
+              c2.667 0 4.333-1.333 5-4
+              -1 1.333-2.167 1.833-3.5 1.5
+              -.761-.19-1.305-.742-1.907-1.352
+              C10.612 13.155 9.477 12 7 12Z"/>
+    </symbol>
+    <symbol id="i-nextjs" viewBox="0 0 24 24">
+      <circle pathLength="100" cx="12" cy="12" r="10"/>
+      <path pathLength="100" d="M8 16V8l11 13M16 8v7"/>
+    </symbol>
+    <symbol id="i-nodejs" viewBox="0 0 24 24">
+      <path
+        pathLength="100"
+        d="m12 2 9 5v10l-9 5-9-5V7Z"
+      />
+      <path
+        pathLength="100"
+        d="M10 8v7a2 2 0 0 1-4 0
+          M17 9c-1-1.5-4-1.5-4 .5
+          s4 1.5 4 3.5-3 2-4 .5"
+      />
+    </symbol>
+    <symbol id="i-supabase" viewBox="0 0 24 24">
+      <path
+        pathLength="100"
+        d="M13 2 3 14h8l-1 8L21 10h-8l0-8Z"
+      />
+    </symbol>
+    <symbol id="i-facebook" viewBox="0 0 24 24">
+      <path
+        pathLength="100"
+        d="M14 21v-8h3l.5-4H14V7c0-1 .3-2 2-2h2V1.5
+          C17 1.2 16 1 15 1c-3 0-5 2-5 5v3H7v4h3v8Z"
+      />
+    </symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24">
+      <rect pathLength="100" x="3" y="9" width="4" height="12"/>
+      <circle pathLength="100" cx="5" cy="4.5" r="2"/>
+      <path
+        pathLength="100"
+        d="M11 21V9h4v2c1-2 6-3 6 3v7h-4v-7
+          c0-2-2-2-2 0v7Z"
+      />
+    </symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24">
+      <rect pathLength="100"
+            x="3" y="5" width="18" height="14" rx="2"/>
+      <path pathLength="100" d="m3 7 9 6 9-6"/>
+    </symbol>
+    <symbol id="i-resume" viewBox="0 0 24 24">
+      <path
+        pathLength="100"
+        d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12
+          a2 2 0 0 0 2-2V8Z"
+      />
+      <path pathLength="100" d="M14 2v6h6M8 12h8M8 16h8"/>
+    </symbol>
+  </svg>
+
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="reading-progress" aria-hidden="true"></div>
+
+  <header class="header">
+    <nav class="toolbar" aria-label="Main navigation">
+      <a class="brand" href="#bio" aria-label="Portfolio home">
+        <svg class="icon"><use href="#i-code"/></svg>
+      </a>
+
+      <a class="nav-link" href="#projects">Work</a>
+      <a class="nav-link" href="#learning">Journey</a>
+
+      <div class="toolbar-actions">
+        <button class="search-button" id="search-open" type="button"
+                aria-label="Open section search">
+          <svg class="icon"><use href="#i-search"/></svg>
+          <span>Search</span><kbd>Ctrl K</kbd>
+        </button>
+
+        <span class="toolbar-divider" aria-hidden="true"></span>
+        
+        <a class="icon-button resume-button"
+          href="assets/ellisa-bonete-resume.pdf"
+          target="_blank"
+          rel="noopener"
+          aria-label="Open my résumé PDF in a new tab"
+          title="View résumé">
+          <svg class="icon" aria-hidden="true">
+            <use href="#i-resume"/>
+          </svg>
+        </a>
+
+        <a class="icon-button" href="https://github.com/builtbyelli"
+           aria-label="Visit my GitHub">
+          <svg class="icon"><use href="#i-github"/></svg>
+        </a>
+
+        <button class="icon-button" id="theme-toggle" type="button"
+                aria-label="Switch color theme" aria-pressed="false">
+          <svg class="icon"><use href="#i-sun"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <aside class="left-rail" aria-label="Portfolio details">
+    <div class="rail-top">
+      <span class="tiny">PERSONAL PORTFOLIO</span>
+      <span class="rail-line"></span>
+      <p class="vertical-note">IDEAS INTO EXPERIENCES</p>
+    </div>
+
+    <div class="rail-bottom">
+      <div class="rail-block">
+        <span class="tiny">CURRENT FOCUS</span>
+        <p class="focus-title">Learning.<br>Building.<br>Improving.</p>
+        <span class="availability">
+          <span class="status-dot"></span> Open to learning
+        </span>
+      </div>
+
+      <div class="rail-block">
+        <span class="tiny">PHILIPPINE TIME · UTC+8</span>
+        <p class="clock" id="clock">--:--</p>
+        <span class="tiny">ONE STEP AT A TIME.</span>
+      </div>
+    </div>
+  </aside>
+
+  <aside class="right-rail" aria-label="Page sections">
+    <span class="rail-line"></span>
+    <a href="#bio" class="section-dot active" aria-label="Biography"
+       aria-current="location"><span>Bio</span></a>
+    <a href="#projects" class="section-dot" aria-label="Projects">
+      <span>Projects</span>
+    </a>
+    <a href="#learning" class="section-dot" aria-label="Learning journey">
+      <span>Journey</span>
+    </a>
+    <a href="#contact" class="section-dot" aria-label="Contact">
+      <span>Contact</span>
+    </a>
+    <span class="rail-line"></span>
+    <a class="vertical-note" href="https://github.com/builtbyelli">
+      GITHUB ↗
+    </a>
+  </aside>
+
+  <main class="content" id="main">
+    <section id="bio" class="bio">
+      <div class="intro entrance">
+        <h1>Ellisa Shammah Bonete<span class="name-dot">.</span></h1>
+        <p class="subtitle">Information Technology student &amp; aspiring developer</p>
+      </div>
+
+      <div class="profile-details entrance delay-one">
+        <div class="detail-row">
+          <span class="detail-label">Currently</span>
+          <span class="badge">
+            <span class="status-dot"></span> Learning web and app development
+          </span>
+        </div>
+
+        <div class="detail-row">
+          <span class="detail-label">Exploring</span>
+          <span class="badge">
+            <svg class="icon"><use href="#i-react"/></svg> React
+          </span>
+          <span class="badge">
+            <svg class="icon"><use href="#i-nextjs"/></svg> Next.js
+          </span>
+          <span class="badge">
+            <svg class="icon"><use href="#i-nodejs"/></svg> Node.js
+          </span>
+          <span class="badge">
+            <span class="ts-mark">TS</span> TypeScript
+          </span>
+          <span class="badge">
+            <svg class="icon"><use href="#i-tailwind"/></svg> Tailwind CSS
+          </span>
+          
+          <span class="badge">
+            <svg class="icon"><use href="#i-supabase"/></svg> Supabase
+          </span>
+        </div>
+      </div>
+
+      <div class="biography entrance delay-two">
+        <p>I’m Ellisa Shammah Bonete, a Bachelor of Science in Information Technology
+          student majoring in Cybersecurity at West Visayas State University.
+          I’m interested in how thoughtful design and code come together
+          to create useful digital experiences.</p>
+        <p>I’m strengthening my foundation in <strong>HTML</strong>,
+          <strong>CSS</strong>, and <strong>JavaScript</strong> while exploring
+          React, Next.js, Node.js, TypeScript, Tailwind CSS, and Supabase.
+          My projects range from an interactive web game to systems designed
+          to support everyday business tasks.</p>
+        <p>Outside of coding, I enjoy watching anime, listening to music,
+          and trying new things. This portfolio brings together my
+          <a class="inline-link" href="#projects">projects</a> and
+          <a class="inline-link" href="#learning">learning journey</a>
+          as I continue to develop my skills.</p>
+      </div>
+
+      <div class="social-block entrance delay-two">
+        <p class="muted">Find me on</p>
+        <a class="social-link" href="https://github.com/builtbyelli">
+          <svg class="icon"><use href="#i-github"/></svg>
+          GitHub
+          <svg class="icon small"><use href="#i-arrow"/></svg>
+        </a>
+        <!-- Add your LinkedIn link here once you have its correct profile URL. -->
+        <br>
+        <a class="social-link" href="mailto:ellisabonete11@gmail.com">
+          <span>Email me at </span>
+          <svg class="icon"><use href="#i-mail"/></svg>ellisabonete11@gmail.com
+          <svg class="icon small"><use href="#i-arrow"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <section id="projects" class="page-section">
+      <div class="section-heading">
+        <h2>Projects</h2><span class="tiny">01 / SELECTED WORK</span>
+      </div>
+
+      <a class="project"
+         href="https://github.com/builtbyelli/CC-207B_26-27_Activities">
+        <span class="project-icon">
+          <svg class="icon"><use href="#i-code"/></svg>
+        </span>
+        <div class="project-copy">
+          <h3>Personal Portfolio</h3>
+          <p>A responsive portfolio showcasing my projects, interests, and learning journey.</p>
+          <div class="project-tags">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+          </div>
+        </div>
+        <svg class="icon project-arrow"><use href="#i-arrow"/></svg>
+      </a>
+
+      <br>
+
+      <a class="project"
+         href="https://copy-the-puff.vercel.app/">
+        <span class="project-icon">
+          <svg class="icon"><use href="#i-code"/></svg>
+        </span>
+        <div class="project-copy">
+          <h3>PowerPose: Copy the Puff!</h3>
+          <p>An AI-powered web game that uses a device’s camera to let players match poses displayed on screen.</p>
+          <div class="project-tags">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+          </div>
+        </div>
+        <svg class="icon project-arrow"><use href="#i-arrow"/></svg>
+      </a>
+
+      <br>
+
+      <a class="project"
+         href="https://github.com/builtbyelli/HRIS-Final">
+        <span class="project-icon">
+          <svg class="icon"><use href="#i-code"/></svg>
+        </span>
+        <div class="project-copy">
+          <h3>HUMA</h3>
+          <p>A human resources information system designed to organize employee records and streamline routine HR and administrative tasks.</p>
+          <div class="project-tags">
+            <span>PHP</span><span>Tailwind CSS</span><span>JavaScript</span><span>MySQL</span>
+          </div>
+        </div>
+        <svg class="icon project-arrow"><use href="#i-arrow"/></svg>
+      </a>
+
+      <br>
+
+      <a class="project"
+         href="https://github.com/builtbyelli/SellEase">
+        <span class="project-icon">
+          <svg class="icon"><use href="#i-code"/></svg>
+        </span>
+        <div class="project-copy">
+          <h3>SellEase</h3>
+          <p>A customer relationship management (CRM) system designed to help Filipino sellers organize and manage sales made through Instagram and Facebook.</p>
+          <div class="project-tags">
+            <span>TypeScript</span><span>CSS</span><span>MySQL</span><span>JavaScript</span>
+          </div>
+        </div>
+        <svg class="icon project-arrow"><use href="#i-arrow"/></svg>
+      </a>
+
+      <p class="project-note">
+        I’ll add more projects as I continue to explore, build, and refine my skills.
+      </p>
+    </section>
+
+    <section id="learning" class="page-section">
+      <div class="section-heading">
+        <h2>Learning journey</h2><span class="tiny">02 / ONGOING LEARNING</span>
+      </div>
+      <div class="timeline">
+        <article class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="timeline-heading">
+            <h3>Refining my personal portfolio</h3>
+            <span class="tiny">CURRENT FOCUS</span>
+          </div>
+          <p>Practicing responsive layouts, clear typography, accessible navigation, and purposeful animation. I’m also improving how I describe my projects and communicate what I’m learning.</p>
+        </article>
+        <article class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="timeline-heading">
+            <h3>Developing a Git and GitHub workflow</h3>
+            <span class="tiny">IN PRACTICE</span>
+          </div>
+          <p>Learning to track changes, organize commits, work with a fork, and submit a pull request. My class portfolio is an opportunity to practice this workflow from local development to submission.</p>
+        </article>
+        <article class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="timeline-heading">
+            <h3>Exploring interactive web experiences</h3>
+            <span class="tiny">PROJECT FOCUS</span>
+          </div>
+          <p>PowerPose: Copy the Puff! brings together camera input and pose matching in a web game. It gives me a focus for exploring browser interactions, clear instructions, and feedback that helps players understand what to do next.</p>
+        </article>
+        <article class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="timeline-heading">
+            <h3>Connecting software with everyday workflows</h3>
+            <span class="tiny">PROJECT FOCUS</span>
+          </div>
+          <p>My HR information system and SellEase projects focus on organizing information for practical tasks. Through these projects, I’m exploring how interfaces and data can support HR administration and social media sales.</p>
+        </article>
+        <article class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="timeline-heading">
+            <h3>Expanding my development toolkit</h3>
+            <span class="tiny">EXPLORING</span>
+          </div>
+          <p>Exploring React, Next.js, Node.js, TypeScript, Tailwind CSS, and Supabase. My goal is to understand how these tools fit together while continuing to strengthen my JavaScript fundamentals.</p>
+        </article>
+        <article class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="timeline-heading">
+            <h3>Bringing a security mindset to development</h3>
+            <span class="tiny">NEXT GOAL</span>
+          </div>
+          <p>As a Cybersecurity student, I want to connect my studies with the applications I build. My next goal is to learn more about input validation, authentication, access control, and responsible handling of user data.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="page-section">
+      <div class="section-heading">
+        <h2>Let’s connect</h2><span class="tiny">03 / SAY HELLO</span>
+      </div>
+      <p class="muted">
+        I welcome opportunities to exchange ideas, learn from others,
+        and discuss projects. Explore my work on GitHub or email me at
+        <a class="email-inline" href="mailto:ellisabonete11@gmail.com">
+          <svg class="icon" aria-hidden="true">
+            <use href="#i-mail"/>
+          </svg>
+          <span>ellisabonete11@gmail.com</span>
+          <svg class="icon small" aria-hidden="true">
+            <use href="#i-arrow"/>
+          </svg>
+        </a>.
+      </p>
+      <a class="contact-link" href="https://github.com/builtbyelli">
+        <svg class="icon"><use href="#i-github"/></svg>
+        builtbyelli
+        <svg class="icon"><use href="#i-arrow"/></svg>
+      </a>
+
+      <a class="contact-link"
+        href="assets/ellisa-bonete-resume.pdf"
+        download="Ellisa-Bonete-Resume.pdf">
+        <svg class="icon" aria-hidden="true">
+          <use href="#i-resume"/>
+        </svg>
+        Download résumé
+        <svg class="icon" aria-hidden="true">
+          <use href="#i-arrow"/>
+        </svg>
+      </a>
+    </section>
+
+    <footer>
+      <span>© <span id="year"></span> Ellisa Shammah Bonete</span>
+      <a href="#bio">Back to top ↑</a>
+    </footer>
+  </main>
+
+  <dialog id="search-dialog" aria-labelledby="search-title">
+    <div class="dialog-heading">
+      <h2 id="search-title">Go to a section</h2>
+      <button class="close-button" id="search-close" type="button">
+        Close <kbd>Esc</kbd>
+      </button>
+    </div>
+
+    <label class="search-field">
+      <svg class="icon"><use href="#i-search"/></svg>
+      <input id="section-search" type="search"
+             placeholder="Search sections…" aria-label="Search sections">
+    </label>
+
+    <nav class="search-results" aria-label="Search results">
+      <a href="#bio">Biography <span>01 ↗</span></a>
+      <a href="#projects">Projects <span>02 ↗</span></a>
+      <a href="#learning">Learning journey <span>03 ↗</span></a>
+      <a href="#contact">Contact <span>04 ↗</span></a>
+    </nav>
+    <p id="no-results" hidden>No matching sections.</p>
+  </dialog>
+</body>
+</html>

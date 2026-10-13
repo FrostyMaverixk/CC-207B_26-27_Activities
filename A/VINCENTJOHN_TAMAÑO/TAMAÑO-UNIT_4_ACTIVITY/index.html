@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vincent John Tamaño | Portfolio</title>
+  <meta name="description"
+    content="Portfolio of Vincent John Tamaño — BSIT Cybersecurity student at WVSU. Networking, Linux systems, and full-stack development.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ── HEADER ── -->
+  <header class="top">
+    <a class="logo" href="#home">VJT</a>
+    <nav aria-label="Main">
+      <a href="#home" data-page="home"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="#about" data-page="about"><i class="fa-solid fa-user"></i> About</a>
+      <a href="#projects" data-page="projects"><i class="fa-solid fa-code"></i> Projects</a>
+      <a href="#terminal" id="nav-terminal" data-page="terminal"><i class="fa-solid fa-terminal"></i> Terminal</a>
+    </nav>
+    <button id="theme" type="button" aria-pressed="false">
+      <i id="theme-icon" class="fa-solid fa-moon"></i>
+      <span id="theme-label">Dark Mode</span>
+    </button>
+  </header>
+
+  <main>
+
+    <!--  HOME -->
+    <section id="home" class="page">
+      <div class="hero">
+
+        <div class="intro">
+          <div class="badge">
+            <span class="badge-dot"></span>
+            Open to IT &amp; networking opportunities
+          </div>
+          <p class="tagline">BSIT · Cybersecurity Track · WVSU</p>
+          <h1>Vincent John Tamaño</h1>
+          <p class="typing-tagline">
+            I'm into <span id="typing-text" class="typing-text">IT Support</span><span class="typing-cursor"
+              aria-hidden="true">|</span>
+          </p>
+          <p class="lead">I build and secure networks, run a self-hosted Linux homelab, and create full-stack
+            applications. Currently seeking IT support, networking, or sysadmin roles.</p>
+          <div class="cta">
+            <a class="btn primary" href="#projects"><i class="fa-solid fa-rocket"></i> View Projects</a>
+            <a class="btn" href="#about"><i class="fa-solid fa-user"></i> About Me</a>
+            <a class="btn" href="assets/resume.pdf" target="_blank" rel="noopener"><i
+                class="fa-solid fa-file-arrow-down"></i> Resume</a>
+          </div>
+          <ul class="links" aria-label="Contact links">
+            <li>
+              <a href="https://www.linkedin.com/in/vincent-john-tama%C3%B1o-2255a332b" target="_blank" rel="noopener">
+                <i class="fa-brands fa-linkedin"></i> LinkedIn
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/vincenttamano" target="_blank" rel="noopener">
+                <i class="fa-brands fa-github"></i> GitHub
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/ballstar1526/" target="_blank" rel="noopener">
+                <i class="fa-brands fa-instagram"></i> Instagram
+              </a>
+            </li>
+            <li>
+              <a href="mailto:vincentjohntamano123@gmail.com">
+                <i class="fa-solid fa-envelope"></i> Gmail
+              </a>
+            </li>
+            <li>
+              <a href="tel:+639456829136">
+                <i class="fa-solid fa-phone"></i> +63 945 682 9136
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <figure class="portrait">
+          <img id="photo-light" class="photo photo-light" src="assets/ProfileLight.jpg"
+            alt="Portrait of Vincent John Tamaño (Light)">
+          <img id="photo-dark" class="photo photo-dark" src="assets/ProfileDark.jpg"
+            alt="Portrait of Vincent John Tamaño (Dark)">
+          <img id="photo-chinese" class="photo photo-chinese" src="assets/ProfileChinese.jpg"
+            alt="Portrait of Vincent John Tamaño (Chinese)">
+        </figure>
+
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="page" hidden>
+
+      <div class="section-header">
+        <p class="section-eyebrow"><i class="fa-solid fa-fingerprint"></i> Who I Am</p>
+        <h2>About Me</h2>
+      </div>
+
+      <p class="about-lead">
+        I'm <strong>Vincent John Tamaño</strong> — a third-year BSIT student at <strong>West Visayas State
+          University</strong> in Iloilo City, Philippines, specializing in Cybersecurity (expected graduation: 2028).
+        I'm deeply passionate about the intersection of networking, systems administration, and secure infrastructure.
+        Outside the classroom, I spend my time running a self-hosted Linux homelab, tinkering with containers and
+        firewalls, and building full-stack web applications.
+      </p>
+
+      <!-- Stats -->
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div class="stat-num">3rd</div>
+          <div class="stat-label">Year at WVSU</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon"><i class="fa-solid fa-diagram-project"></i></div>
+          <div class="stat-num">4+</div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon"><i class="fa-solid fa-certificate"></i></div>
+          <div class="stat-num">4</div>
+          <div class="stat-label">Cisco Certifications</div>
+        </div>
+      </div>
+
+      <!-- Resume CTA -->
+      <p style="margin-bottom: 2.5rem;">
+        <a class="btn primary" href="assets/resume.pdf" target="_blank" rel="noopener">
+          <i class="fa-solid fa-file-arrow-down"></i> Download Resume
+        </a>
+      </p>
+
+      <div class="divider"></div>
+
+      <div class="about-grid">
+
+        <!-- Left: Skills -->
+        <div class="skill-card">
+          <h3 style="margin-top:0"><i class="fa-solid fa-screwdriver-wrench"
+              style="color:var(--accent);margin-right:.45rem"></i>Technical Skills</h3>
+          <dl>
+            <dt><i class="fa-solid fa-server"></i> Systems &amp; Servers</dt>
+            <dd>Linux (Debian), Docker, Portainer, SSH, Bash scripting, UFW firewall, Tailscale VPN, Pi-hole DNS,
+              Cockpit monitoring</dd>
+
+            <dt><i class="fa-solid fa-network-wired"></i> Networking</dt>
+            <dd>Cisco Packet Tracer, CLI configuration, TCP/IP stack, subnetting &amp; VLSM, routing protocols, network
+              troubleshooting</dd>
+
+            <dt><i class="fa-solid fa-shield-halved"></i> Cybersecurity</dt>
+            <dd>Firewall configuration, network segmentation, threat modeling, VPN setup, OSINT fundamentals</dd>
+
+            <dt><i class="fa-solid fa-headset"></i> IT Support</dt>
+            <dd>Technical troubleshooting, hardware diagnostics, remote support tools, customer communication,
+              documentation</dd>
+
+            <dt><i class="fa-solid fa-laptop-code"></i> Frontend</dt>
+            <dd>HTML5, CSS3, JavaScript (ES6+), React, Tailwind CSS</dd>
+
+            <dt><i class="fa-solid fa-database"></i> Backend &amp; Databases</dt>
+            <dd>PHP, Java, MySQL, PostgreSQL, MongoDB, Supabase, Firebase</dd>
+
+            <dt><i class="fa-brands fa-git-alt"></i> DevOps &amp; Tools</dt>
+            <dd>Git, GitHub, Netlify, Vercel, XAMPP, NetBeans, VS Code, Microsoft Office, Canva, Photoshop</dd>
+          </dl>
+        </div>
+
+
+        <div>
+          <div class="side-card">
+            <h3 style="margin-top:0"><i class="fa-solid fa-certificate"
+                style="color:var(--accent);margin-right:.45rem"></i>Certifications</h3>
+            <ul class="cert-list">
+              <li>
+                <i class="fa-solid fa-check-circle cert-icon"></i>
+                <div>
+                  <a href="https://www.credly.com/badges/f654118b-ac8a-4dec-b2fe-3f83322b6389" target="_blank"
+                    rel="noopener" class="cert-link">
+                    Cisco: IT Customer Support Basics
+                    <span class="cert-badge-tag"><i class="fa-solid fa-award"></i> Credly</span>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <i class="fa-solid fa-check-circle cert-icon"></i>
+                <div>
+                  <a href="https://www.credly.com/badges/72912bdd-4127-429b-8e0a-b06775dd0bd5" target="_blank"
+                    rel="noopener" class="cert-link">
+                    Cisco: CCNA — Introduction to Networks
+                    <span class="cert-badge-tag"><i class="fa-solid fa-award"></i> Credly</span>
+                  </a>
+                </div>
+              </li>
+              <li><i class="fa-solid fa-spinner fa-spin cert-icon in-progress"></i> Cisco: Linux Essentials <em
+                  style="font-size:.85em">(in progress)</em></li>
+              <li><i class="fa-solid fa-spinner fa-spin cert-icon in-progress"></i> Cisco: Cybersecurity Essentials <em
+                  style="font-size:.85em">(in progress)</em></li>
+            </ul>
+          </div>
+
+          <div class="side-card">
+            <h3 style="margin-top:0"><i class="fa-solid fa-building-columns"
+                style="color:var(--accent);margin-right:.45rem"></i>Education</h3>
+            <div class="edu-block">
+              <strong>West Visayas State University</strong>
+              <p class="meta"><i class="fa-solid fa-location-dot"></i> Iloilo City, Philippines &nbsp;·&nbsp; <i
+                  class="fa-solid fa-calendar"></i> Expected May 2028<br>BS Information Technology · Cybersecurity Track
+              </p>
+              <p class="coursework"><strong>Relevant coursework:</strong> Networking 1 &amp; 2, Systems Analysis &amp;
+                Design, Database Management Systems, Web Development, Human–Computer Interaction, Object-Oriented
+                Programming, Data Structures &amp; Algorithms, Information Security.</p>
+            </div>
+          </div>
+
+          <div class="side-card">
+            <h3 style="margin-top:0"><i class="fa-solid fa-book-open"
+                style="color:var(--accent);margin-right:.45rem"></i>Currently Learning</h3>
+            <div class="interests">
+              <span class="chip"><i class="fa-solid fa-cloud"></i> Cloud Infrastructure</span>
+              <span class="chip"><i class="fa-solid fa-user-secret"></i> Ethical Hacking</span>
+              <span class="chip"><i class="fa-brands fa-linux"></i> Advanced Linux</span>
+              <span class="chip"><i class="fa-solid fa-network-wired"></i> CCNA 2</span>
+              <span class="chip"><i class="fa-solid fa-gears"></i> CI/CD Pipelines</span>
+            </div>
+          </div>
+
+          <div class="side-card">
+            <h3 style="margin-top:0"><i class="fa-solid fa-heart"
+                style="color:var(--accent);margin-right:.45rem"></i>Beyond the Keyboard</h3>
+            <p style="color:var(--muted);font-size:.96rem;margin:0 0 .85rem;line-height:1.7">When I'm not configuring
+              servers or writing code, I love staying active and unwinding offline:</p>
+            <div class="interests">
+              <span class="chip"><i class="fa-solid fa-fish"></i> Fishing</span>
+              <span class="chip"><i class="fa-solid fa-dumbbell"></i> The Gym</span>
+              <span class="chip"><i class="fa-solid fa-person-walking"></i> Going for Walks</span>
+              <span class="chip"><i class="fa-solid fa-tv"></i> Binging Shows <em
+                  style="font-size:.85em;opacity:.8">(South Park)</em></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Interactive Terminal -->
+      <section class="terminal-wrapper" aria-label="Interactive Terminal">
+        <div class="terminal-card" id="terminal-card">
+          <div class="terminal-bar">
+            <div class="terminal-dots" aria-hidden="true">
+              <span class="terminal-dot dot-red"></span>
+              <span class="terminal-dot dot-yellow"></span>
+              <span class="terminal-dot dot-green"></span>
+            </div>
+            <span class="terminal-title">visitor@vjt:~ (bash)</span>
+          </div>
+          <div class="terminal-window" id="terminal-window">
+            <div id="terminal-history"></div>
+            <form id="terminal-form" class="terminal-input-row" autocomplete="off">
+              <label for="terminal-input" class="terminal-prompt">visitor@vjt:~$</label>
+              <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" spellcheck="false"
+                autocorrect="off" autocapitalize="off" aria-label="Terminal command input">
+            </form>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!--PROJECTS -->
+    <section id="projects" class="page" hidden>
+
+      <div class="section-header">
+        <p class="section-eyebrow"><i class="fa-solid fa-cubes"></i> What I've Built</p>
+        <h2>Projects</h2>
+      </div>
+
+      <!-- Project Filter Buttons -->
+      <div class="filter-bar" role="group" aria-label="Filter projects">
+        <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" class="filter-btn" data-filter="web" aria-pressed="false">Web</button>
+        <button type="button" class="filter-btn" data-filter="networking" aria-pressed="false">Networking</button>
+        <button type="button" class="filter-btn" data-filter="java" aria-pressed="false">Java</button>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Project 1 -->
+        <article class="project-card project" data-category="networking">
+          <div class="project-img">
+            <img src="assets/homelab.png" alt="">
+          </div>
+          <div class="project-body">
+            <div class="project-meta">
+              <span class="project-year"><i class="fa-regular fa-calendar"></i> 2026 — Present</span>
+              <span class="project-status status-active"><i class="fa-solid fa-circle-dot"></i> Active</span>
+            </div>
+            <h3>Homelab: Self-Hosted Server</h3>
+            <p>Repurposed an old laptop into a headless Debian server managed over SSH. UFW blocks inbound traffic by
+              default; Tailscale provides secure remote access without exposing ports. Runs a full Docker/Portainer
+              stack including Pi-hole for DNS-level ad blocking, Cockpit for real-time monitoring, and a Jellyfin media
+              server automated with Sonarr and Radarr.</p>
+            <div class="tags">
+              <span class="tag"><i class="devicon-debian-plain" style="color:#A80030"></i> Debian</span>
+              <span class="tag"><i class="devicon-docker-plain" style="color:#2496ED"></i> Docker</span>
+              <span class="tag"><i class="fa-solid fa-box" style="color:#13BEF9"></i> Portainer</span>
+              <span class="tag"><i class="fa-solid fa-shield-halved" style="color:#E95420"></i> UFW</span>
+              <span class="tag"><i class="fa-solid fa-lock" style="color:#52BEFF"></i> Tailscale</span>
+              <span class="tag"><i class="fa-solid fa-circle-dot" style="color:#F60D1A"></i> Pi-hole</span>
+            </div>
+            <div class="project-links">
+              <a class="project-link" href="https://github.com/vincenttamano/MasterBBHomelab" target="_blank"
+                rel="noopener">
+                <i class="fa-brands fa-github"></i> View on GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card project" data-category="web">
+          <div class="project-img">
+            <img src="assets/JTIMS.png" alt="">
+          </div>
+          <div class="project-body">
+            <div class="project-meta">
+              <span class="project-year"><i class="fa-regular fa-calendar"></i> 2026</span>
+              <span class="project-status status-done"><i class="fa-solid fa-circle-check"></i> Complete</span>
+            </div>
+            <h3>Dental Clinic Inventory System</h3>
+            <p>Full-stack inventory management application for tracking clinic supplies and equipment in real time.
+              Supabase powers the PostgreSQL database, authentication, and live data synchronization — enabling
+              multi-user access with role-based permissions. Deployed on Vercel with zero-downtime CI/CD.</p>
+            <div class="tags">
+              <span class="tag"><i class="devicon-react-original" style="color:#61DAFB"></i> React</span>
+              <span class="tag"><i class="devicon-vitejs-plain" style="color:#646CFF"></i> Vite</span>
+              <span class="tag"><i class="devicon-tailwindcss-original" style="color:#06B6D4"></i> Tailwind CSS</span>
+              <span class="tag"><i class="devicon-supabase-plain" style="color:#3FCF8E"></i> Supabase</span>
+              <span class="tag"><i class="devicon-vercel-original"
+                  style="color:#000;filter:invert(var(--vercel-invert,0))"></i> Vercel</span>
+            </div>
+            <div class="project-links">
+              <a class="project-link" href="https://github.com/vincenttamano/JT-Inventory" target="_blank"
+                rel="noopener">
+                <i class="fa-brands fa-github"></i> View on GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-card project" data-category="web">
+          <div class="project-img">
+
+            <span class="project-img-label">Add project screenshot here</span>
+          </div>
+          <div class="project-body">
+            <div class="project-meta">
+              <span class="project-year"><i class="fa-regular fa-calendar"></i> 2026</span>
+              <span class="project-status status-done"><i class="fa-solid fa-circle-check"></i> Complete</span>
+            </div>
+            <h3>Booking &amp; Ordering System</h3>
+            <p>End-to-end reservation and ordering platform for customers, plus a dedicated admin dashboard for managing
+              bookings and inventory. Built with PHP CRUD logic on a normalized MySQL database, with a responsive
+              Tailwind CSS interface and session-based authentication.</p>
+            <div class="tags">
+              <span class="tag"><i class="devicon-php-plain" style="color:#777BB4"></i> PHP</span>
+              <span class="tag"><i class="devicon-mysql-original" style="color:#4479A1"></i> MySQL</span>
+              <span class="tag"><i class="devicon-tailwindcss-original" style="color:#06B6D4"></i> Tailwind CSS</span>
+              <span class="tag"><i class="fa-solid fa-server" style="color:#FB7A24"></i> XAMPP</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="project-card project" data-category="java">
+          <div class="project-img">
+            <img src="assets/HorseTrack.png" alt="">
+          </div>
+          <div class="project-body">
+            <div class="project-meta">
+              <span class="project-year"><i class="fa-regular fa-calendar"></i> 2026</span>
+              <span class="project-status status-done"><i class="fa-solid fa-circle-check"></i> Complete</span>
+            </div>
+            <h3>Horse Race Betting Simulation</h3>
+            <p>Real-time race simulation and interactive betting game with a custom Java Swing interface. Features
+              animated race visuals, dynamic odds calculation, bet tracking across multiple rounds, and a leaderboard
+              system — demonstrating OOP design patterns and event-driven programming.</p>
+            <div class="tags">
+              <span class="tag"><i class="devicon-java-plain" style="color:#ED8B00"></i> Java</span>
+              <span class="tag"><i class="devicon-java-plain" style="color:#5382A1"></i> Swing</span>
+              <span class="tag"><i class="devicon-apache-plain" style="color:#CB2138"></i> NetBeans</span>
+              <span class="tag"><i class="fa-solid fa-cubes" style="color:#6366F1"></i> OOP</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span><i class="fa-regular fa-copyright"></i> <span id="year"></span> Vincent John Tamaño · Iloilo City,
+      Philippines</span>
+    <a href="mailto:vincentjohntamano123@gmail.com"><i class="fa-solid fa-envelope"></i>
+      vincentjohntamano123@gmail.com</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

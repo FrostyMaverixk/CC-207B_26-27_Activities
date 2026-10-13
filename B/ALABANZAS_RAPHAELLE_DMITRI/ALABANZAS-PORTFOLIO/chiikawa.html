@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>my fixation :3</title>
+
+  <style>
+    /* ==============================
+       BASE
+    ============================== */
+
+    :root {
+      --bg: #fffdf8;
+      --card: #ffffff;
+      --text: #342f2b;
+      --muted: #8b8179;
+
+      --pink: #ffb7c9;
+      --pink-dark: #ec8da7;
+
+      --yellow: #ffe7a3;
+      --blue: #b9ddff;
+      --green: #cdeccf;
+
+      --border: #eee5dc;
+
+      --shadow:
+        0 12px 35px rgba(90, 70, 50, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      color: var(--text);
+      background:
+        radial-gradient(
+          circle at 10% 10%,
+          #fff1f5 0,
+          transparent 25%
+        ),
+        radial-gradient(
+          circle at 90% 20%,
+          #eef7ff 0,
+          transparent 25%
+        ),
+        var(--bg);
+
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+
+    /* ==============================
+       BACKGROUND DOODLES
+    ============================== */
+
+    .doodle {
+      position: fixed;
+      z-index: -1;
+
+      color: rgba(236, 141, 167, 0.25);
+
+      font-size: 2rem;
+
+      user-select: none;
+      pointer-events: none;
+
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .doodle.one {
+      top: 12%;
+      left: 6%;
+    }
+
+    .doodle.two {
+      top: 25%;
+      right: 8%;
+      animation-delay: 1s;
+    }
+
+    .doodle.three {
+      bottom: 18%;
+      left: 10%;
+      animation-delay: 2s;
+    }
+
+    .doodle.four {
+      bottom: 8%;
+      right: 12%;
+      animation-delay: 3s;
+    }
+
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0) rotate(-5deg);
+      }
+
+      50% {
+        transform: translateY(-10px) rotate(5deg);
+      }
+    }
+
+
+    /* ==============================
+       NAV
+    ============================== */
+
+    .topbar {
+      width: min(1100px, calc(100% - 40px));
+
+      margin: 0 auto;
+      padding: 24px 0;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+
+      padding: 9px 14px;
+
+      border: 1px solid var(--border);
+      border-radius: 999px;
+
+      background: rgba(255, 255, 255, 0.7);
+
+      color: var(--text);
+      text-decoration: none;
+
+      font-size: 0.8rem;
+      font-weight: 600;
+
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .back-button:hover {
+      transform: translateY(-2px);
+      background: white;
+    }
+
+    .tiny-text {
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+
+
+    /* ==============================
+       HERO
+    ============================== */
+
+    .hero {
+      width: min(900px, calc(100% - 40px));
+
+      margin: 70px auto 55px;
+
+      text-align: center;
+    }
+
+    .tiny-label {
+      display: inline-block;
+
+      margin-bottom: 15px;
+
+      padding: 7px 12px;
+
+      border-radius: 999px;
+
+      background: var(--yellow);
+
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 8vw, 6.5rem);
+
+      line-height: 0.95;
+
+      letter-spacing: -0.06em;
+
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      max-width: 560px;
+
+      margin: 0 auto;
+
+      color: var(--muted);
+
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .face {
+      display: inline-block;
+
+      margin-top: 25px;
+
+      font-size: 2rem;
+
+      animation:
+        wiggle 2.5s ease-in-out infinite;
+    }
+
+    @keyframes wiggle {
+      0%,
+      100% {
+        transform: rotate(-4deg);
+      }
+
+      50% {
+        transform: rotate(4deg);
+      }
+    }
+
+
+    /* ==============================
+       CHARACTER GRID
+    ============================== */
+
+    .characters {
+      width: min(1100px, calc(100% - 40px));
+
+      margin: 0 auto 90px;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 20px;
+    }
+
+    .character-card {
+      position: relative;
+
+      overflow: hidden;
+
+      border: 1px solid var(--border);
+      border-radius: 25px;
+
+      background: var(--card);
+
+      box-shadow: var(--shadow);
+
+      cursor: pointer;
+
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .character-card:hover {
+      transform:
+        translateY(-7px)
+        rotate(-1deg);
+
+      box-shadow:
+        0 20px 45px rgba(90, 70, 50, 0.13);
+    }
+
+    .image-area {
+      height: 270px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 25px;
+    }
+
+    .image-area img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+
+      transition:
+        transform 0.3s ease;
+    }
+
+    .character-card:hover img {
+      transform: scale(1.06);
+    }
+
+    /* Different cute backgrounds */
+
+    .chiikawa .image-area {
+      background: var(--pink);
+    }
+
+    .hachiware .image-area {
+      background: var(--blue);
+    }
+
+    .usagi .image-area {
+      background: var(--yellow);
+    }
+
+    .momonga .image-area {
+      background: #ded3ff;
+    }
+
+    .shisa .image-area {
+      background: var(--green);
+    }
+
+    .rakko .image-area {
+      background: #d9edf0;
+    }
+
+
+    /* ==============================
+       CARD CONTENT
+    ============================== */
+
+    .card-content {
+      padding: 20px 21px 23px;
+    }
+
+    .character-name {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: center;
+
+      margin-bottom: 7px;
+    }
+
+    .character-name h2 {
+      font-size: 1.15rem;
+
+      letter-spacing: -0.03em;
+    }
+
+    .emoji {
+      font-size: 1.15rem;
+    }
+
+    .card-content p {
+      color: var(--muted);
+
+      font-size: 0.86rem;
+
+      line-height: 1.55;
+    }
+
+
+    /* ==============================
+       RANDOM BUTTON
+    ============================== */
+
+    .middle-section {
+      width: min(700px, calc(100% - 40px));
+
+      margin: 0 auto 90px;
+
+      text-align: center;
+    }
+
+    .chaos-box {
+      padding: 35px;
+
+      border: 1px dashed var(--pink-dark);
+      border-radius: 25px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #fff6f8,
+          #fffdf8
+        );
+    }
+
+    .chaos-box h2 {
+      margin-bottom: 10px;
+
+      font-size: 1.5rem;
+    }
+
+    .chaos-box p {
+      margin-bottom: 20px;
+
+      color: var(--muted);
+
+      font-size: 0.9rem;
+    }
+
+    #randomButton {
+      border: none;
+
+      padding: 11px 18px;
+
+      border-radius: 999px;
+
+      color: var(--text);
+
+      background: var(--pink);
+
+      font: inherit;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+    }
+
+    #randomButton:hover {
+      transform: scale(1.05) rotate(-2deg);
+      background: #ffa6bd;
+    }
+
+    #randomResult {
+      min-height: 28px;
+
+      margin-top: 17px;
+
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+
+    /* ==============================
+       FOOTER
+    ============================== */
+
+    footer {
+      padding: 30px 20px 45px;
+
+      text-align: center;
+
+      color: var(--muted);
+
+      font-size: 0.75rem;
+    }
+
+
+    /* ==============================
+       MODAL
+    ============================== */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+
+      display: none;
+      place-items: center;
+
+      padding: 20px;
+
+      background:
+        rgba(40, 30, 30, 0.28);
+
+      backdrop-filter: blur(6px);
+
+      z-index: 10;
+    }
+
+    .modal.show {
+      display: grid;
+    }
+
+    .modal-box {
+      width: min(430px, 100%);
+
+      padding: 30px;
+
+      border-radius: 25px;
+
+      background: white;
+
+      text-align: center;
+
+      box-shadow:
+        0 30px 80px rgba(40, 30, 30, 0.2);
+
+      animation:
+        pop 0.25s ease;
+    }
+
+    @keyframes pop {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .modal-box img {
+      width: 220px;
+      height: 220px;
+
+      object-fit: contain;
+
+      margin-bottom: 15px;
+    }
+
+    .modal-box h2 {
+      margin-bottom: 8px;
+    }
+
+    .modal-box p {
+      margin-bottom: 20px;
+
+      color: var(--muted);
+
+      line-height: 1.5;
+    }
+
+    #closeModal {
+      border: none;
+
+      padding: 9px 16px;
+
+      border-radius: 999px;
+
+      background: #f1ebe5;
+
+      color: var(--text);
+
+      cursor: pointer;
+
+      font-weight: 700;
+    }
+
+
+    /* ==============================
+       MOBILE
+    ============================== */
+
+    @media (max-width: 800px) {
+
+      .characters {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .image-area {
+        height: 230px;
+      }
+
+    }
+
+    @media (max-width: 540px) {
+
+      .characters {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        margin-top: 50px;
+      }
+
+      .topbar {
+        width: min(100% - 25px, 1100px);
+      }
+
+      .image-area {
+        height: 280px;
+      }
+
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <!-- ==========================
+       BACKGROUND DOODLES
+  =========================== -->
+
+  <div class="doodle one">♡</div>
+  <div class="doodle two">☆</div>
+  <div class="doodle three">♡</div>
+  <div class="doodle four">☁</div>
+
+
+  <!-- ==========================
+       TOP BAR
+  =========================== -->
+
+  <header class="topbar">
+
+    <a
+      href="index.html"
+      class="back-button"
+    >
+      ← back to portfolio
+    </a>
+
+    <span class="tiny-text">
+      extremely important page
+    </span>
+
+  </header>
+
+
+  <!-- ==========================
+       HERO
+  =========================== -->
+
+  <main>
+
+    <section class="hero">
+
+      <span class="tiny-label">
+        a completely serious section
+      </span>
+
+      <h1>
+        my fixation :3
+      </h1>
+
+      <p>
+        A tiny corner of the internet dedicated to
+        little creatures that have somehow occupied
+        an unreasonable amount of my brain space.
+      </p>
+
+      <span class="face">
+        (´｡• ᵕ •｡`)
+      </span>
+
+    </section>
+
+
+    <!-- ==========================
+         CHARACTER CARDS
+    =========================== -->
+
+    <section class="characters">
+
+      <!-- CHIIKAWA -->
+
+      <article
+        class="character-card chiikawa"
+        data-name="Chiikawa"
+        data-image="images/chiikawa.png"
+      >
+
+        <div class="image-area">
+
+          <img
+            src="images/chiikawa.png"
+            alt="Chiikawa"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <div class="character-name">
+
+            <h2>Chiikawa</h2>
+
+            <span class="emoji">♡</span>
+
+          </div>
+
+          <p>
+            Tiny. Adorable. Frequently struggling.
+            Somehow still trying their best.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <!-- HACHIWARE -->
+
+      <article
+        class="character-card hachiware"
+        data-name="Hachiware"
+        data-image="images/hachiware.png"
+      >
+
+        <div class="image-area">
+
+          <img
+            src="images/hachiware.png"
+            alt="Hachiware"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <div class="character-name">
+
+            <h2>Hachiware</h2>
+
+            <span class="emoji">☆</span>
+
+          </div>
+
+          <p>
+            Positive little guy who somehow remains
+            cheerful through everything.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <!-- USAGI -->
+
+      <article
+        class="character-card usagi"
+        data-name="Usagi"
+        data-image="images/usagi.png"
+      >
+
+        <div class="image-area">
+
+          <img
+            src="images/usagi.png"
+            alt="Usagi"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <div class="character-name">
+
+            <h2>Usagi</h2>
+
+            <span class="emoji">!!!</span>
+
+          </div>
+
+          <p>
+            Absolutely unhinged. No explanation
+            necessary. YAA.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <!-- MOMONGA -->
+
+      <article
+        class="character-card momonga"
+        data-name="Momonga"
+        data-image="images/momonga.png"
+      >
+
+        <div class="image-area">
+
+          <img
+            src="images/momonga.png"
+            alt="Momonga"
+          >
+
+        </div>
+
+        <div class="card-content">
+
+          <div class="character-name">
+
+            <h2>Momonga</h2>
+
+            <span class="emoji">☆</span>
+
+          </div>
+
+          <p>
+            Such a brat. Needs compliments constantly.
+            Honestly? Respect.
+          </p>
+
+        </div>
+
+      </article>
+
+    </section>
+
+
+    <!-- ==========================
+         RANDOM CHAOS
+    =========================== -->
+
+    <section class="middle-section">
+
+      <div class="chaos-box">
+
+        <h2>
+          who am I thinking about?
+        </h2>
+
+        <p>
+          Press the button. Let fate decide.
+        </p>
+
+        <button id="randomButton">
+          choose for me :3
+        </button>
+
+        <div id="randomResult"></div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ==========================
+       FOOTER
+  =========================== -->
+
+  <footer>
+    made with questionable amounts of affection ♡
+  </footer>
+
+
+  <!-- ==========================
+       CHARACTER MODAL
+  =========================== -->
+
+  <div
+    class="modal"
+    id="characterModal"
+  >
+
+    <div class="modal-box">
+
+      <img
+        id="modalImage"
+        src=""
+        alt=""
+      >
+
+      <h2 id="modalName"></h2>
+
+      <p id="modalText"></p>
+
+      <button id="closeModal">
+        okay :3
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ==========================
+       JAVASCRIPT
+  =========================== -->
+
+  <script>
+
+    /* ==========================
+       CHARACTER DATA
+    =========================== */
+
+    const characterData = {
+
+      Chiikawa: {
+        image: "images/chiikawa.png",
+        text:
+          "A tiny creature trying their best in a terrifyingly adorable world."
+      },
+
+      Hachiware: {
+        image: "images/hachiware.png",
+        text:
+          "The optimistic friend who somehow finds reasons to keep going."
+      },
+
+      Usagi: {
+        image: "images/usagi.png",
+        text:
+          "YAA. YADAA. YAAAA. Nothing else needs to be said."
+      },
+
+      Momonga: {
+        image: "images/momonga.png",
+        text:
+          "A tiny menace who absolutely expects everyone to compliment them."
+      },
+
+    
+
+    };
+
+
+    /* ==========================
+       CHARACTER MODALS
+    ========================== */
+
+    const cards =
+      document.querySelectorAll(".character-card");
+
+    const modal =
+      document.getElementById("characterModal");
+
+    const modalImage =
+      document.getElementById("modalImage");
+
+    const modalName =
+      document.getElementById("modalName");
+
+    const modalText =
+      document.getElementById("modalText");
+
+    const closeModal =
+      document.getElementById("closeModal");
+
+
+    cards.forEach((card) => {
+
+      card.addEventListener("click", () => {
+
+        const name =
+          card.dataset.name;
+
+        const character =
+          characterData[name];
+
+        modalImage.src =
+          character.image;
+
+        modalImage.alt =
+          name;
+
+        modalName.textContent =
+          name;
+
+        modalText.textContent =
+          character.text;
+
+        modal.classList.add("show");
+
+      });
+
+    });
+
+
+    closeModal.addEventListener("click", () => {
+
+      modal.classList.remove("show");
+
+    });
+
+
+    modal.addEventListener("click", (event) => {
+
+      if (event.target === modal) {
+
+        modal.classList.remove("show");
+
+      }
+
+    });
+
+
+    /* ==========================
+       RANDOM CHARACTER
+    ========================== */
+
+    const randomButton =
+      document.getElementById("randomButton");
+
+    const randomResult =
+      document.getElementById("randomResult");
+
+    const names =
+      Object.keys(characterData);
+
+
+    randomButton.addEventListener("click", () => {
+
+      const randomIndex =
+        Math.floor(
+          Math.random() * names.length
+        );
+
+      const randomName =
+        names[randomIndex];
+
+      const messages = [
+        `today is a ${randomName} day :3`,
+        `the universe has chosen ${randomName}.`,
+        `you are legally thinking about ${randomName} now.`,
+        `${randomName} has entered your thoughts.`,
+        `POG. it is ${randomName}.`
+      ];
+
+      const randomMessage =
+        messages[
+          Math.floor(
+            Math.random() * messages.length
+          )
+        ];
+
+      randomResult.textContent =
+        randomMessage;
+
+    });
+
+  </script>
+
+</body>
+</html>

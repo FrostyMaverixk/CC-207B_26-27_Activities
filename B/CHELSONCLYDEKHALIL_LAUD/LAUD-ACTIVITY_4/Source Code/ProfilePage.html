@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lagawan</title>
+    <link rel="icon" href="images/Web Layout.png">
+    <link rel="stylesheet" href="profile.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="CRUD.js" defer></script>
+    <script type="text/javascript" src="debug.js" defer></script>
+    <script type="text/javascript" src="thread-main.js" defer></script>
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+</head>
+<body>
+    <div id="pre-loader"></div>
+    <div class="container light-style flex-grow-1 container-p-y">
+        <h4 class="font-weight-bold py-3 mb-4">
+            Account settings
+        </h4>
+        <div class="card overflow-hidden">
+            <div class="row no-gutters row-bordered row-border-light">
+                <div class="col-md-3 pt-0">
+                    <div class="list-group list-group-flush account-settings-links">
+                        <a class="list-group-item list-group-item-action active" data-toggle="list"
+                            href="#account-general">General</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list"
+                            href="#account-change-password">Change password</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list"
+                            href="#account-info">User Control</a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content">
+                        <div class="tab-pane fade active show" id="account-general">
+                            <div class="card-body media align-items-center">
+                                <img src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" alt id="profileImage" class="d-block ui-w-80">
+                                <div class="media-body ml-4">
+                                    <label class="btn btn-outline-primary">
+                                        Upload new photo
+                                        <input type="file" class="account-settings-fileinput" onchange="previewImage(event)">
+                                    </label> &nbsp;
+                                    <button type="button" class="btn btn-default md-btn-flat" onclick="resetImage()">Reset Image</button>
+                                    <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
+                                </div>
+                            </div>
+                            <hr class="border-light m-0">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="form-label">Username</label>
+                                    <input type="text" id="username" class="form-control mb-1">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">E-mail</label>
+                                    <input type="text" id="email" class="form-control mb-1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="account-change-password">
+                            <div class="card-body pb-2">
+                                <div class="form-group">
+                                    <label class="form-label">Current password</label>
+                                    <input type="password" id="currentPassword" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">New password</label>
+                                    <input type="password" id="newPassword" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Repeat new password</label>
+                                    <input type="password" id="repeatNewPassword" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="account-info">
+                            <div class="card-body pb-2">
+                                <div class="form-group">
+                                    <label class="form-label">User Type</label>
+                                    <input type="text" id="userType" class="form-control" readonly>
+                                </div>
+                                <div id="requestApprovalSection">
+                                    <div class="form-group">
+                                        <label class="form-label">Request Approval for Admin</label>
+                                        <input type="text" id="approvalStatus" class="form-control" readonly>
+                                        <button type="button" id="confirmButton" class="btn btn-primary mt-2" onclick="requestAdminApproval()">Confirm</button>
+                                        <label class="form-label">Note: Once an Admin, you can now add, edit, or delete threads. You can also regulate experiences of other users but you cannot add comments anymore.</label>
+                                    </div>
+                                </div>
+                                <div class="form-group" id="adminApprovalList" style="display: none;">
+                                    <label class="form-label">Admin Approval Requests</label>
+                                    <ul id="approvalRequestsList" class="list-group"></ul>
+                                </div>
+                            </div>
+                        </div>                                              
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-right mt-3">
+            <button type="button" class="btn btn-primary" onclick="saveChanges()">Save changes</button>&nbsp;
+            <button type="button" class="btn btn-default" onclick="cancelChanges()">Cancel</button>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="debug.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const loggedInUser = localStorage.getItem('loggedInUser');
+            const user = users.find(u => u.username === loggedInUser);
+            console.log('Current User:', user);
+
+            if (user) {
+                document.getElementById('username').value = user.username;
+                document.getElementById('email').value = user.email;
+                document.getElementById('currentPassword').value = user.password;
+                
+                const storedImage = user.profileImage || "https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png";
+                document.getElementById('profileImage').src = storedImage;
+            }
+        });
+
+        function saveChanges() {
+  const users = JSON.parse(localStorage.getItem('users')) || [];
+  const loggedInUser = localStorage.getItem('loggedInUser');
+
+  const userIndex = users.findIndex(u => u.username === loggedInUser);
+
+  if (userIndex !== -1) {
+    const updatedUsername = document.getElementById('username').value;
+    const updatedEmail = document.getElementById('email').value;
+    const currentPassword = document.getElementById('currentPassword').value;
+    const newPassword = document.getElementById('newPassword').value;
+    const repeatNewPassword = document.getElementById('repeatNewPassword').value;
+
+    if (newPassword && newPassword !== repeatNewPassword) {
+      showNotification("New password and repeat new password do not match.", 'red');
+      return;
+    }
+
+    users[userIndex].username = updatedUsername;
+    users[userIndex].email = updatedEmail;
+    users[userIndex].password = newPassword || currentPassword; // Update to new password if provided, else keep current password
+    
+    const profileImage = document.getElementById('profileImage').src;
+    users[userIndex].profileImage = profileImage;
+
+    if (loggedInUser !== updatedUsername) {
+      localStorage.setItem('loggedInUser', updatedUsername);
+    }
+
+    localStorage.setItem('users', JSON.stringify(users));
+
+    // Set a flag to show notification on homepage.html
+    localStorage.setItem('showProfileUpdateNotification', 'true');
+
+    window.location.href = "homepage.html"; // Redirect to homepage.html after saving changes
+  } else {
+    showNotification("User not found.", 'red');
+  }
+}
+
+
+
+        function cancelChanges() {
+            window.location.href = "homepage.html";
+        }
+
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const output = document.getElementById('profileImage');
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function resetImage() {
+            const defaultImage = "https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png";
+            document.getElementById('profileImage').src = defaultImage;
+        }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const loggedInUser = localStorage.getItem('loggedInUser');
+        const user = users.find(u => u.username === loggedInUser);
+
+        if (user) {
+            document.getElementById('username').value = user.username;
+            document.getElementById('email').value = user.email;
+            document.getElementById('currentPassword').value = user.password;
+            document.getElementById('userType').value = capitalizeFirstLetter(user.userType);
+
+            if (user.userType === 'admin') {
+                displayAdminApprovalList();
+                document.getElementById('requestApprovalSection').style.display = 'none';
+            } else {
+                document.getElementById('approvalStatus').value = user.approvalStatus || 'Not requested';
+                if (user.approvalStatus === 'Waiting for confirmation') {
+                    document.getElementById('confirmButton').style.display = 'none';
+                }
+            }
+        }
+    });
+
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    function requestAdminApproval() {
+  const users = JSON.parse(localStorage.getItem('users')) || [];
+  const loggedInUser = localStorage.getItem('loggedInUser');
+  const userIndex = users.findIndex(u => u.username === loggedInUser);
+
+  if (userIndex !== -1) {
+    users[userIndex].approvalStatus = 'Waiting for confirmation';
+    localStorage.setItem('users', JSON.stringify(users));
+    document.getElementById('approvalStatus').value = 'Waiting for confirmation';
+    document.getElementById('confirmButton').style.display = 'none';
+    showNotification("Request for admin approval has been submitted.", 'blue');
+  } else {
+    showNotification("User not found.", 'red');
+  }
+}
+
+    function displayAdminApprovalList() {
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const approvalRequests = users.filter(u => u.approvalStatus === 'Waiting for confirmation');
+
+        const approvalRequestsList = document.getElementById('approvalRequestsList');
+        approvalRequestsList.innerHTML = '';
+
+        if (approvalRequests.length === 0) {
+            const noneItem = document.createElement('li');
+            noneItem.className = 'list-group-item';
+            noneItem.textContent = 'None';
+            approvalRequestsList.appendChild(noneItem);
+        } else {
+            approvalRequests.forEach(user => {
+                const listItem = document.createElement('li');
+                listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
+                listItem.textContent = user.username;
+                const buttonContainer = document.createElement('div');
+                const approveButton = document.createElement('button');
+                approveButton.className = 'btn btn-success btn-sm';
+                approveButton.textContent = '✔';
+                approveButton.onclick = () => approveAdminRequest(user.username);
+                const rejectButton = document.createElement('button');
+                rejectButton.className = 'btn btn-danger btn-sm ml-2';
+                rejectButton.textContent = '✖';
+                rejectButton.onclick = () => rejectAdminRequest(user.username);
+                buttonContainer.appendChild(approveButton);
+                buttonContainer.appendChild(rejectButton);
+                listItem.appendChild(buttonContainer);
+                approvalRequestsList.appendChild(listItem);
+            });
+        }
+
+        document.getElementById('adminApprovalList').style.display = 'block';
+    }
+
+    function approveAdminRequest(username) {
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const userIndex = users.findIndex(u => u.username === username);
+
+        if (userIndex !== -1) {
+            users[userIndex].userType = 'admin';
+            users[userIndex].approvalStatus = '';
+            localStorage.setItem('users', JSON.stringify(users));
+            displayAdminApprovalList();
+            showNotification(`${username} has been approved as an admin.`, 'blue');
+            } else {
+        showNotification("User not found.", 'red');
+    }
+
+    }
+
+    function rejectAdminRequest(username) {
+  const users = JSON.parse(localStorage.getItem('users')) || [];
+  const userIndex = users.findIndex(u => u.username === username);
+
+  if (userIndex !== -1) {
+    users[userIndex].approvalStatus = '';
+    localStorage.setItem('users', JSON.stringify(users));
+    displayAdminApprovalList();
+    showNotification(`${username}'s request for admin approval has been rejected.`, 'red');
+  } else {
+    showNotification("User not found.", 'red');
+  }
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const loggedInUser = localStorage.getItem('loggedInUser');
+  if (!loggedInUser || loggedInUser === 'Guest') {
+    showNotification("You must sign in first. Redirecting you back to login.", 'red').then(() => {
+      window.location.href = "LoginPage.html";
+    });
+
+    // Also handle the case where the user clicks the close button
+    const closeIcon = document.querySelector('.toasty .close'); // Assuming .toasty is for red notifications
+    if (closeIcon) {
+      closeIcon.addEventListener('click', () => {
+        window.location.href = "LoginPage.html";
+      });
+    }
+  }
+});
+
+
+        
+</script>
+
+<!-- Blue Toast Notification -->
+<div class="toast">
+    <div class="toast-content">
+      <i class="fas fa-solid fa-check check"></i>
+      <div class="message">
+        <span class="text text-1">Success</span>
+        <span class="text text-2">Your changes have been saved</span>
+      </div>
+    </div>
+    <i class="fa-solid fa-xmark close"></i>
+    <div class="progress"></div>
+  </div>
+  
+  <!-- Red Toast Notification -->
+  <div class="toasty">
+    <div class="toasty-content">
+      <i class="fa-solid fa-x check"></i>
+      <div class="message">
+        <span class="text text-1">Notice</span>
+        <span class="text text-2">Your changes have been saved</span>
+      </div>
+    </div>
+    <i class="fa-solid fa-xmark close"></i>
+    <div class="progress"></div>
+  </div>
+  
+    
+</body>
+</html>

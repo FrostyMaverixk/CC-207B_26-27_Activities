@@ -1,0 +1,197 @@
+/* ---- teal waveform divider (the A1 conceit) --------------------------------- */
+.waveDivider {
+  width: 100%;
+  height: 36px;
+  margin-bottom: var(--space-5);
+  fill: none;
+  stroke: var(--accent-teal);
+  stroke-width: 1;
+  opacity: 0.4;
+}
+
+/* ---- two columns ≥1024px (--bp-lg), stacked below ---------------------------- */
+.columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 1024px) {
+  .columns {
+    grid-template-columns: minmax(280px, 380px) 1fr;
+    align-items: start;
+  }
+}
+
+/* ---- source monitor (headshot) ------------------------------------------------ */
+.sourceMonitor {
+  margin: 0;
+}
+
+.sourceTab {
+  display: inline-block;
+  padding: var(--space-1) var(--space-2);
+  background: var(--bg-2);
+  border: 1px solid var(--line-0);
+  border-bottom: none;
+  border-radius: var(--radius) var(--radius) 0 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-1);
+}
+
+.sourceFrame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: var(--bg-1);
+  border: 1px solid var(--line-0);
+  overflow: hidden;
+}
+
+.headshot {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.noTalent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: var(--bg-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-2);
+}
+
+/* safe-corner ticks on the source frame */
+.frameTicks {
+  position: absolute;
+  inset: 3px;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--line-1), var(--line-1)) left top / 10px 1px,
+    linear-gradient(var(--line-1), var(--line-1)) left top / 1px 10px,
+    linear-gradient(var(--line-1), var(--line-1)) right top / 10px 1px,
+    linear-gradient(var(--line-1), var(--line-1)) right top / 1px 10px,
+    linear-gradient(var(--line-1), var(--line-1)) left bottom / 10px 1px,
+    linear-gradient(var(--line-1), var(--line-1)) left bottom / 1px 10px,
+    linear-gradient(var(--line-1), var(--line-1)) right bottom / 10px 1px,
+    linear-gradient(var(--line-1), var(--line-1)) right bottom / 1px 10px;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 1023px) {
+  .sourceMonitor {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
+/* ---- right column -------------------------------------------------------------- */
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.bio {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 65ch;
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text-1);
+}
+
+/* ---- EXPORT PRESETS -------------------------------------------------------------- */
+.presetsHeader {
+  margin-bottom: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 400;
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-2);
+  text-transform: uppercase;
+}
+
+.presetList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.preset {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.3fr) 1fr;
+  grid-template-areas:
+    'chip desc'
+    'chip spec';
+  align-items: start;
+  gap: 2px var(--space-4);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--line-0);
+  border-radius: var(--radius);
+}
+
+.preset:hover {
+  border-color: var(--line-1);
+}
+
+.presetChip {
+  grid-area: chip;
+  justify-self: start;
+  padding: var(--space-1) var(--space-2);
+  background: var(--bg-2);
+  border: 1px solid var(--line-0);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-0);
+}
+
+.presetDesc {
+  grid-area: desc;
+  font-family: var(--font-body);
+  font-size: var(--fs-meta);
+  color: var(--text-1);
+}
+
+.presetSpec {
+  grid-area: spec;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-2);
+}
+
+@media (max-width: 639px) {
+  .preset {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'chip'
+      'desc'
+      'spec';
+  }
+}
+
+/* ---- resume + links --------------------------------------------------------------- */
+.resume,
+.links a {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: var(--tracking-mono);
+  color: var(--accent-teal);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}

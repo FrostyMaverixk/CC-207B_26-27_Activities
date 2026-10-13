@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Eumee S. Sodusta | Portfolio</title>
+<style>
+:root{--bg:#fdf6fb;--card:#fffdfe;--text:#3a3050;--muted:#7b6f90;--accent:#cdb8ff;--accent-text:#6a4cc0;--soft:#f0e8ff;--line:#eadcf5;
+--pink:#ffd6e8;--mint:#cdf3e3;--peach:#ffe3cc;--sky:#d2e8ff;--on-pastel:#2f2545;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1727;--card:#262034;--text:#f1eaff;--muted:#b9acd0;--accent:#b79cf5;--accent-text:#d4c2ff;--soft:#322a45;--line:#3d3454;--pink:#7a4a63;--mint:#3f6a5a;--peach:#7a5a45;--sky:#43597a;--on-pastel:#f6f0ff}}
+:root[data-theme="dark"]{--bg:#1c1727;--card:#262034;--text:#f1eaff;--muted:#b9acd0;--accent:#b79cf5;--accent-text:#d4c2ff;--soft:#322a45;--line:#3d3454;--pink:#7a4a63;--mint:#3f6a5a;--peach:#7a5a45;--sky:#43597a;--on-pastel:#f6f0ff}
+html{scroll-padding-top:70px;scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:ui-rounded,"Nunito","Quicksand","Segoe UI",system-ui,sans-serif;line-height:1.65}
+header{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);border-bottom:1px solid var(--line);z-index:5}
+nav{max-width:900px;margin:auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+nav a{color:var(--text);text-decoration:none;margin-left:16px;font-size:.95rem}
+nav a:hover{color:var(--accent-text)}
+.logo{font-weight:700;color:var(--accent-text)}
+#theme{background:var(--soft);border:1px solid var(--line);color:var(--text);border-radius:20px;padding:4px 12px;cursor:pointer;margin-left:16px;font:inherit;font-size:.9rem}
+@media (max-width:560px){.links a{display:none}}
+main{max-width:900px;margin:auto;padding:0 20px}
+section{padding:48px 0 12px}
+h1{font-size:2.3rem;margin:0 0 8px;line-height:1.2}
+h1 span{background:linear-gradient(transparent 60%,var(--pink) 60%);padding:0 4px}
+h2{font-size:1.4rem;margin:0 0 16px;display:inline-block;background:linear-gradient(transparent 55%,var(--mint) 55%);padding:0 6px}
+.hero{padding-top:56px;display:flex;gap:28px;align-items:center;flex-wrap:wrap}
+.avatar{width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--accent) 60%,var(--sky));display:grid;place-items:center;font-size:3rem;font-weight:700;color:var(--on-pastel);flex:none;border:4px solid var(--card);box-shadow:0 6px 20px rgba(160,130,220,.25)}
+.hero p{color:var(--muted);max-width:60ch;margin:0 0 4px}
+.btn{display:inline-block;background:var(--accent);color:var(--on-pastel);padding:10px 20px;border-radius:24px;text-decoration:none;margin:10px 8px 0 0;font-weight:600}
+.btn:hover{filter:brightness(1.05)}
+.btn.alt{background:var(--peach)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.filters button{background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:20px;padding:6px 14px;cursor:pointer;font:inherit;font-size:.9rem}
+.filters button.on{background:var(--accent);color:var(--on-pastel);border-color:var(--accent);font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-top-width:6px;border-radius:16px;padding:18px}
+.card[data-c="web"]{border-top-color:var(--pink)}
+.card[data-c="network"]{border-top-color:var(--mint)}
+.card[data-c="ux"]{border-top-color:var(--peach)}
+.card h3{margin:0 0 6px;font-size:1.05rem}
+.card p{margin:0 0 10px;color:var(--muted);font-size:.95rem}
+.tag{display:inline-block;background:var(--soft);color:var(--accent-text);font-size:.78rem;padding:2px 10px;border-radius:12px;margin:2px 4px 0 0}
+.skills{display:flex;flex-wrap:wrap;gap:8px}
+.skills span{padding:6px 14px;border-radius:20px;color:var(--on-pastel);font-size:.95rem}
+.skills span:nth-child(4n+1){background:var(--pink)}
+.skills span:nth-child(4n+2){background:var(--mint)}
+.skills span:nth-child(4n+3){background:var(--sky)}
+.skills span:nth-child(4n){background:var(--peach)}
+form{display:grid;gap:10px;max-width:480px}
+input,textarea{font:inherit;padding:10px 14px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--text)}
+input:focus,textarea:focus{outline:2px solid var(--accent)}
+#msg{color:var(--accent-text);min-height:1.4em}
+footer{text-align:center;color:var(--muted);padding:40px 20px;font-size:.9rem}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<span class="logo">Eumee S. Sodusta</span>
+<div class="links"><a href="#about">About</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a><button id="theme" aria-label="Toggle theme">Theme</button></div>
+</nav>
+</header>
+<main>
+<section class="hero">
+<div class="avatar" aria-hidden="true">E</div>
+<div>
+<h1>Hi, I'm <span>Eumee</span>.</h1>
+<p>BSIT student in the Philippines. I work on networking, web interfaces, and UX design, and I like building things that are simple to use.</p>
+<a class="btn" href="#projects">See my work</a><a class="btn alt" href="https://github.com/Meeue">My GitHub</a>
+</div>
+</section>
+
+<section id="about">
+<h2>About</h2>
+<p>I'm a third-year Information Technology student (BSIT 3-B). My coursework mixes networking, UX design, and general education subjects, so I get to switch between technical and creative work. Most of my projects are group work, and I learn a lot from building them with classmates.</p>
+</section>
+
+<section id="projects">
+<h2>Projects</h2>
+<div class="filters">
+<button class="on" data-f="all">All</button><button data-f="web">Web</button><button data-f="network">Networking</button><button data-f="ux">UX</button>
+</div>
+<div class="grid">
+<div class="card" data-c="network">
+<h3>AI-Based Intrusion Detection System</h3>
+<p>My capstone. A trained model flags unusual network traffic in real time, built on top of a pfSense and Snort setup.</p>
+<span class="tag">Machine Learning</span><span class="tag">pfSense</span><span class="tag">Snort</span>
+</div>
+<div class="card" data-c="web">
+<h3>Cinema Booking System</h3>
+<p>A multi-page admin panel for movies, showtimes, bookings, seats, tickets, customers, and payments. Planned MySQL backend with a master-slave setup.</p>
+<span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">MySQL</span>
+</div>
+<div class="card" data-c="ux">
+<h3>PhotoCorner</h3>
+<p>UX design project for a photobooth service. Includes a persona card for a freelance operator in Iloilo City and a user scenario.</p>
+<span class="tag">Personas</span><span class="tag">User Scenarios</span>
+</div>
+<div class="card" data-c="network">
+<h3>ABC Printing Services Network</h3>
+<p>Small office network design for a fictional company. Covers VLAN design, VLSM subnetting on 192.168.10.0/24, and physical and logical topology.</p>
+<span class="tag">VLAN</span><span class="tag">VLSM</span><span class="tag">Topology</span>
+</div>
+</div>
+</section>
+
+<section id="skills">
+<h2>Skills</h2>
+<div class="skills">
+<span>Networking</span><span>VLAN and Subnetting</span><span>pfSense</span><span>HTML and CSS</span><span>JavaScript</span><span>SQL and MySQL</span><span>UX Research</span><span>Technical Documentation</span>
+</div>
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+<form id="form">
+<input id="name" placeholder="Your name" required>
+<input id="email" type="email" placeholder="Your email" required>
+<textarea id="text" rows="4" placeholder="Message" required></textarea>
+<button class="btn" type="submit" style="border:0;cursor:pointer;font:inherit;font-weight:600">Send</button>
+<div id="msg"></div>
+</form>
+</section>
+</main>
+<footer>Eumee S. Sodusta, BSIT 3-B</footer>
+
+<script>
+var root=document.documentElement;
+document.getElementById('theme').onclick=function(){
+  var dark=root.dataset.theme==='dark'||(!root.dataset.theme&&matchMedia('(prefers-color-scheme:dark)').matches);
+  root.dataset.theme=dark?'light':'dark';
+};
+var btns=document.querySelectorAll('.filters button'),cards=document.querySelectorAll('.card');
+btns.forEach(function(b){b.onclick=function(){
+  btns.forEach(function(x){x.classList.remove('on')});b.classList.add('on');
+  cards.forEach(function(c){c.classList.toggle('hidden',b.dataset.f!=='all'&&c.dataset.c!==b.dataset.f)});
+}});
+document.getElementById('form').onsubmit=function(e){
+  e.preventDefault();
+  document.getElementById('msg').textContent='Thanks, '+document.getElementById('name').value+'. Message noted (demo only, nothing is sent yet).';
+  e.target.reset();
+};
+</script>
+</body>
+</html>

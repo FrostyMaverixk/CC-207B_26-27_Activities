@@ -1,0 +1,154 @@
+.nav {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: var(--z-nav);
+  height: 64px;
+  background: var(--bg-1);
+  border-top: 1px solid var(--line-0);
+}
+
+/* the slider widget fills the landmark (Phase 6: role="slider" can't live on
+   <nav> itself) — all pointer/keyboard interaction happens here */
+.slider {
+  position: relative;
+  height: 100%;
+  cursor: ew-resize;
+  touch-action: none; /* horizontal touch-drag scrubs the page */
+  user-select: none;
+}
+
+/* ---- ruler row: ticks + live timecode readout ------------------------------ */
+.ruler {
+  position: relative;
+  height: 18px;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--line-0) 0 1px,
+    transparent 1px 2.5%
+  );
+  background-size: 100% 6px;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+
+.readout {
+  position: absolute;
+  top: 2px;
+  right: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  color: var(--accent-orange);
+}
+
+/* faint affordance hint, left of the readout (owner request, 2026-06-11) */
+.rulerHint {
+  position: absolute;
+  top: 2px;
+  left: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-2);
+  pointer-events: none;
+}
+
+/* ---- track lanes ------------------------------------------------------------ */
+.lanes {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  height: calc(100% - 18px);
+  row-gap: 2px;
+  padding-bottom: 3px;
+}
+
+.lane {
+  position: relative;
+}
+
+.laneLabel {
+  position: absolute;
+  top: 50%;
+  left: var(--space-2);
+  z-index: 1;
+  transform: translateY(-50%);
+  padding: 0 var(--space-1);
+  background: var(--bg-1); /* backing chip: keeps the label readable (and its
+                              contrast computable) over clip fills */
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-2);
+  pointer-events: none;
+}
+
+.markers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.markers > * {
+  pointer-events: auto;
+}
+
+/* ---- mobile floating pill --------------------------------------------------- */
+.pill {
+  display: none;
+}
+
+/* ---- mobile: 28px condensed strip (--bp-sm = 640px) ------------------------- */
+@media (max-width: 639px) {
+  .nav {
+    height: 28px;
+  }
+
+  .ruler {
+    height: 7px;
+  }
+
+  .readout,
+  .rulerHint {
+    display: none;
+  }
+
+  /* single condensed lane: both lanes overlap (sections never overlap in x) */
+  .lanes {
+    grid-template-rows: 1fr;
+    height: calc(100% - 7px);
+    padding-bottom: 2px;
+  }
+
+  .lane {
+    grid-area: 1 / 1;
+  }
+
+  .laneLabel {
+    display: none;
+  }
+
+  .pill {
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: var(--space-2);
+    padding: 2px var(--space-2);
+    background: var(--bg-1);
+    border: 1px solid var(--line-0);
+    border-radius: var(--radius);
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    letter-spacing: var(--tracking-mono);
+    color: var(--text-1);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .pillTc {
+    color: var(--accent-orange);
+  }
+}

@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create or Edit Your Experience</title>
+    <link rel="stylesheet" href="FORM.css">
+    <title>Lagawan</title>
+    <link rel="icon" href="images/Web Layout.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <link rel="stylesheet" href="Notification.css"/>
+    <link rel="stylesheet" href="Antinotification.css"/>
+
+</head>
+<style>
+    .header::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 15rem);
+  background-image: radial-gradient(
+      rgba(255, 255, 255, 0),
+      var(--primary-color)
+    ),
+    url("mainimage.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+</style>
+<body>
+  <div id="pre-loader"></div>
+    <div class="intro">
+      <h1 style="text-align: center; font-size: 40px; padding-top: 20px;">Lagawan Thread Maker</h1>
+      <a href="CRUD.html" style="text-decoration: none;"><h6 style="text-align: left; font-size: 20px; padding-left: 20px; color: white">&larr; Go Back</h6></a>
+    </div>
+
+    <div class="twocontainer">
+        <div class="form">
+            <h1 style="text-align: center;">Add a Header</h1>
+            <form id="experienceForm">
+                <label for="name">Name of Province:</label>
+                <br>
+                <input type="text" id="name" name="name" placeholder="Enter name of province" required>
+                <br>
+                <br>
+            
+                <label for="description">Signature Catchline:</label>
+                <br>
+                <input type="text" id="description" name="description" placeholder="Provide a short catchline" required>
+                <br>
+                <br>
+            
+                <label for="image">Main Image:</label>
+                <br>
+                <div class="custom-file-container">
+                <input type="file" id="image" name="image" accept="image/*">
+                <label for="image">Reupload Image</label>
+                </div>
+                
+                <br>
+                <br>
+                <br>
+            
+                <h2 style="text-align: center;">About their Signature Food</h2>
+                <label for="foodName">Name:</label>
+                <br>
+                <input type="text" id="foodName" name="foodName" placeholder="Enter the name of their food" required>
+                <br>
+                <br>
+            
+                <label for="foodDescription">Description:</label>
+                <br>
+                <textarea id="foodDescription" name="foodDescription" placeholder="Provide a comprehensive description" required></textarea>
+                <br>
+                
+                <label for="foodImage">Image of Food:</label>
+                <br>
+                <div class="custom-file-container">
+                  <input type="file" id="foodImage" name="foodImage" accept="image/*">
+                  <label for="foodImage">Reupload Image</label>
+                </div>
+                <br>
+                <br>
+                <br>
+            
+                <h2 style="text-align: center;">About their Local Culture</h2>
+                <label for="cultureName">Name:</label>
+                <br>
+                <input type="text" id="cultureName" name="cultureName" placeholder="Enter the name of their culture" required>
+                <br>
+                <br>
+            
+                <label for="cultureDescription">Description:</label>
+                <br>
+                <textarea id="cultureDescription" name="cultureDescription" placeholder="Provide a comprehensive description" required></textarea>
+                <br>
+                
+                <label for="cultureImage">Image of their culture:</label>
+                <br>
+                <div class="custom-file-container">
+                  <input type="file" id="cultureImage" name="cultureImage" accept="image/*">
+                  <label for="cultureImage">Reupload Image</label>
+                </div>
+                <br>
+                <br>
+                <br>
+
+                
+            
+                <h2 style="text-align: center;">About their Main Attraction</h2>
+                <label for="attractionName">Name:</label>
+                <br>
+                <input type="text" id="attractionName" name="attractionName" placeholder="Enter the name of their attraction" required>
+                <br>
+                <br>
+            
+                <label for="attractionDescription">Description:</label>
+                <br>
+                <textarea id="attractionDescription" name="attractionDescription" placeholder="Provide a comprehensive description" required></textarea>
+                <br>
+                <br>
+    
+                <label for="attractionImage">Image of the Place:</label>
+                <br>
+                <div class="custom-file-container">
+                  <input type="file" id="attractionImage" name="attractionImage" accept="image/*">
+                  <label for="attractionImage">Reupload Image</label>
+                </div>
+                <br>
+                <br>
+                <br>
+                
+                <button type="button" id="viewExperience">View Changes Made</button>
+                <button type="button" id="resetExperience">Reset</button>
+                <button type="submit" id="submitExperience">Submit</button>
+
+            </form>
+            
+        </div>
+        <div class="sample">
+            <div class="intro2">
+                <h1 style="text-align: center; font-size: 30px;">Your thread looks like this</h1>
+            </div>
+            <main class="container">
+                <header class="header" id="home">
+            
+                  <div class="section__container header__container">
+                    <div class="header__content">
+                      <h3 class="section__subheader">Province</h3>
+                      <h1 class="section__header">
+                        Catchline
+                      </h1>
+                      <div class="scroll__btn">
+                        <a href="#about">
+                          Scroll down
+                          <span><i class="ri-arrow-down-line"></i></span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </header>
+                <section class="about">
+                  <div class="section__container about__container">
+                    <div class="about__image about__image-1" id="about">
+                      <img src="sampleimage1.jpg" alt="about" />
+                    </div>
+                    <div class="about__content about__content-1">
+                      <h3 class="section__subheader">MAIN FOOD</h3>
+                      <h2 class="section__header">Sample Food</h2>
+                      <p>
+                        Lorem ipsum
+                        <span class="read-more-text">
+                          Extra
+                        </span>
+                      </p>
+                      <div class="about__btn">
+                        <span class="read-more-btn">Read More...</span>
+                      </div>
+                    </div>
+                    
+            
+                    
+                    <div class="about__image about__image-2" id="equipment">
+                      <img src="sampleimage2.jpg" alt="about" />
+                    </div>
+                    <div class="about__content about__content-2">
+                      <h3 class="section__subheader">MAIN FESTIVAL</h3>
+                      <h2 class="section__header">Sample Festival</h2>
+                      <p>
+                        Lorem ipsum
+                        <span class="read-more-text">
+                          Extra
+                        </span>
+                      </p>
+                      <div class="about__btn">
+                        <span class="read-more-btn">Read More...</span>
+                      </div>
+                    </div>
+                    
+                    <div class="about__image about__image-3" id="blog">
+                      <img src="sampleimage3.jpg" alt="about" />
+                    </div>
+                    <div class="about__content about__content-3">
+                      <h3 class="section__subheader">MAIN ATTRACTION</h3>
+                      <h2 class="section__header">Sample Attraction</h2>
+                      <p>
+                        Lorem ipsum
+                        <span class="read-more-text">
+                          Extra
+                        </span>
+                      </p>
+                      <div class="about__btn">
+                        <span class="read-more-btn">Read More...</span>
+                      </div>
+                    </div>
+                    
+                    
+                  </div>
+                </section>
+                
+                </main>
+        </div>
+    </div>
+
+    <!-- Blue Toast Notification -->
+<div class="toast">
+  <div class="toast-content">
+    <i class="fas fa-solid fa-check check"></i>
+    <div class="message">
+      <span class="text text-1">Success</span>
+      <span class="text text-2">Your changes have been saved</span>
+    </div>
+  </div>
+  <i class="fa-solid fa-xmark close"></i>
+  <div class="progress"></div>
+</div>
+
+<!-- Red Toast Notification -->
+<div class="toasty">
+  <div class="toasty-content">
+    <i class="fa-solid fa-x check"></i>
+    <div class="message">
+      <span class="text text-1">Notice</span>
+      <span class="text text-2">Your changes have been saved</span>
+    </div>
+  </div>
+  <i class="fa-solid fa-xmark close"></i>
+  <div class="progress"></div>
+</div>
+
+<script src="Notification.js"></script>
+<script src="Antinotification.js"></script>
+
+<script>
+//pre-loader
+
+var loader = document.getElementById("pre-loader");
+window.addEventListener("load", function() {
+    setTimeout(function() {
+        loader.style.display = "none";
+    }, 1500);
+});
+
+
+
+
+
+
+//LOAD THE LOAD
+    // Check if editing a slide
+    const editSlideData = JSON.parse(localStorage.getItem("editSlide"));
+    if (editSlideData) {
+      document.getElementById("name").value = editSlideData.name;
+      document.getElementById("description").value = editSlideData.description;
+      document.getElementById("foodName").value = editSlideData.foodName || '';
+      document.getElementById("foodDescription").value = editSlideData.foodDescription || '';
+      document.getElementById("cultureName").value = editSlideData.cultureName || '';
+      document.getElementById("cultureDescription").value = editSlideData.cultureDescription || '';
+      document.getElementById("attractionName").value = editSlideData.attractionName || '';
+      document.getElementById("attractionDescription").value = editSlideData.attractionDescription || '';
+    }
+
+    document.getElementById("submitExperience").addEventListener("click", async function(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      const name = document.getElementById("name").value;
+      const description = document.getElementById("description").value;
+      const foodName = document.getElementById("foodName").value;
+      const foodDescription = document.getElementById("foodDescription").value;
+      const cultureName = document.getElementById("cultureName").value;
+      const cultureDescription = document.getElementById("cultureDescription").value;
+      const attractionName = document.getElementById("attractionName").value;
+      const attractionDescription = document.getElementById("attractionDescription").value;
+      const imageInput = document.getElementById("image");
+      const foodImageInput = document.getElementById("foodImage");
+      const cultureImageInput = document.getElementById("cultureImage");
+      const attractionImageInput = document.getElementById("attractionImage");
+
+      // Validate form inputs
+      if (!validateForm()) return;
+
+      let storedSlides = JSON.parse(localStorage.getItem("slides")) || [];
+
+      // Find the slide to edit using its unique ID
+      const index = storedSlides.findIndex(slide => slide.id === editSlideData.id);
+      if (index === -1) {
+        alert("Slide not found for editing.");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = async function(event) {
+        const image = await compressImage(event.target.result);
+        const imageId = await saveImageToIndexedDB(image);
+        const foodReader = new FileReader();
+        foodReader.onload = async function(foodEvent) {
+          const foodImage = await compressImage(foodEvent.target.result);
+          const foodImageId = await saveImageToIndexedDB(foodImage);
+
+          const cultureReader = new FileReader();
+          cultureReader.onload = async function(cultureEvent) {
+            const cultureImage = await compressImage(cultureEvent.target.result);
+            const cultureImageId = await saveImageToIndexedDB(cultureImage);
+
+            const attractionReader = new FileReader();
+            attractionReader.onload = async function(attractionEvent) {
+              const attractionImage = await compressImage(attractionEvent.target.result);
+              const attractionImageId = await saveImageToIndexedDB(attractionImage);
+
+              // Update slide data
+              const updatedData = {
+                id: editSlideData.id, // Maintain the same unique ID
+                name, description, imageId,
+                foodName, foodDescription, foodImageId,
+                cultureName, cultureDescription, cultureImageId,
+                attractionName, attractionDescription, attractionImageId
+              };
+
+              storedSlides[index] = { ...updatedData, index: storedSlides[index].index };
+              localStorage.setItem("slides", JSON.stringify(storedSlides));
+              localStorage.setItem(`threadAdd${storedSlides[index].index}`, JSON.stringify(updatedData));
+              localStorage.removeItem("editSlide"); // Clear edit mode
+
+              // Log updated localStorage state
+              console.log("Stored slides after editing:", JSON.parse(localStorage.getItem("slides")));
+
+              // Clear form data from localStorage
+              localStorage.removeItem('name');
+              localStorage.removeItem('description');
+              localStorage.removeItem('foodName');
+              localStorage.removeItem('foodDescription');
+              localStorage.removeItem('cultureName');
+              localStorage.removeItem('cultureDescription');
+              localStorage.removeItem('attractionName');
+              localStorage.removeItem('attractionDescription');
+
+              // Reset form
+              document.getElementById('experienceForm').reset();
+
+              // Redirect to the corresponding thread page
+              window.location.href = `CRUD.html`;
+            };
+
+            if (attractionImageInput.files.length > 0) {
+              attractionReader.readAsDataURL(attractionImageInput.files[0]);
+            }
+          };
+
+          if (cultureImageInput.files.length > 0) {
+            cultureReader.readAsDataURL(cultureImageInput.files[0]);
+          }
+        };
+
+        if (foodImageInput.files.length > 0) {
+          foodReader.readAsDataURL(foodImageInput.files[0]);
+        }
+      };
+
+      if (imageInput.files.length > 0) {
+        reader.readAsDataURL(imageInput.files[0]);
+      }
+    });
+
+    // Function to save the form data to local storage
+    function saveFormData() {
+      const name = document.getElementById('name').value;
+      const description = document.getElementById('description').value;
+      const foodName = document.getElementById('foodName').value;
+      const foodDescription = document.getElementById('foodDescription').value;
+      const cultureName = document.getElementById('cultureName').value;
+      const cultureDescription = document.getElementById('cultureDescription').value;
+      const attractionName = document.getElementById('attractionName').value;
+      const attractionDescription = document.getElementById('attractionDescription').value;
+
+      localStorage.setItem('name', name);
+      localStorage.setItem('description', description);
+      localStorage.setItem('foodName', foodName);
+      localStorage.setItem('foodDescription', foodDescription);
+      localStorage.setItem('cultureName', cultureName);
+      localStorage.setItem('cultureDescription', cultureDescription);
+      localStorage.setItem('attractionName', attractionName);
+      localStorage.setItem('attractionDescription', attractionDescription);
+    }
+
+    // Function to load the form data from local storage
+    function loadFormData() {
+      const name = localStorage.getItem('name');
+      const description = localStorage.getItem('description');
+      const foodName = localStorage.getItem('foodName');
+      const foodDescription = localStorage.getItem('foodDescription');
+      const cultureName = localStorage.getItem('cultureName');
+      const cultureDescription = localStorage.getItem('cultureDescription');
+      const attractionName = localStorage.getItem('attractionName');
+      const attractionDescription = localStorage.getItem('attractionDescription');
+
+      if (name) document.getElementById('name').value = name;
+      if (description) document.getElementById('description').value = description;
+      if (foodName) document.getElementById('foodName').value = foodName;
+      if (foodDescription) document.getElementById('foodDescription').value = foodDescription;
+      if (cultureName) document.getElementById('cultureName').value = cultureName;
+      if (cultureDescription) document.getElementById('cultureDescription').value = cultureDescription;
+      if (attractionName) document.getElementById('attractionName').value = attractionName;
+      if (attractionDescription) document.getElementById('attractionDescription').value = attractionDescription;
+    }
+
+    // Save form data on input change
+    document.getElementById('experienceForm').addEventListener('input', saveFormData);
+
+    // Load form data on page load
+    window.addEventListener('load', loadFormData);
+
+        document.getElementById('viewExperience').addEventListener('click', () => {
+      // Update Text Content
+      updateTextContent('.header .section__subheader', 'name');
+      updateTextContent('.header .section__header', 'description');
+
+      updateTextContent('.about__content-1 .section__header', 'foodName');
+      updateDescription('.about__content-1 p', 'foodDescription');
+
+      updateTextContent('.about__content-2 .section__header', 'cultureName');
+      updateDescription('.about__content-2 p', 'cultureDescription');
+
+      updateTextContent('.about__content-3 .section__header', 'attractionName');
+      updateDescription('.about__content-3 p', 'attractionDescription');
+      
+      // Update Images
+      updateBackgroundImage(document.getElementById('image').files[0], '.header::before');
+      updateImage(document.getElementById('foodImage').files[0], '.about__image-1 img');
+      updateImage(document.getElementById('cultureImage').files[0], '.about__image-2 img');
+      updateImage(document.getElementById('attractionImage').files[0], '.about__image-3 img');
+    });
+
+    function updateTextContent(selector, inputId) {
+      const inputValue = document.getElementById(inputId).value;
+      if (inputValue.trim() !== '') {
+        document.querySelector(selector).innerText = inputValue;
+      }
+    }
+
+    function updateDescription(selector, inputId) {
+      const inputValue = document.getElementById(inputId).value;
+      if (inputValue.trim() !== '') {
+        document.querySelector(selector).innerHTML = splitDescription(inputValue);
+      }
+    }
+
+    function splitDescription(description) {
+      const words = description.split(' ');
+      const firstPart = words.slice(0, 70).join(' ');
+      const secondPart = words.slice(70).join(' ');
+      return `${firstPart}<span class="read-more-text">${secondPart}</span>`;
+    }
+
+    function updateBackgroundImage(file, selector) {
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const styleTag = document.createElement('style');
+          styleTag.innerHTML = `${selector} { background-image: radial-gradient(rgba(255, 255, 255, 0), var(--primary-color)), url("${e.target.result}"); }`;
+          document.head.appendChild(styleTag);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function updateImage(file, selector) {
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          document.querySelector(selector).src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    document.getElementById('resetExperience').addEventListener('click', () => {
+      // Reset all input fields
+      document.getElementById('experienceForm').reset();
+      
+      // Reset displayed values
+      document.querySelector('.header .section__subheader').innerText = 'Province';
+      document.querySelector('.header .section__header').innerText = 'Catchline';
+
+      document.querySelector('.about__content-1 .section__header').innerText = 'Sample Food';
+      document.querySelector('.about__content-1 p').innerHTML = 'Lorem ipsum <span class="read-more-text">Extra</span>';
+
+      document.querySelector('.about__content-2 .section__header').innerText = 'Sample Festival';
+      document.querySelector('.about__content-2 p').innerHTML = 'Lorem ipsum <span class="read-more-text">Extra</span>';
+
+      document.querySelector('.about__content-3 .section__header').innerText = 'Sample Attraction';
+      document.querySelector('.about__content-3 p').innerHTML = 'Lorem ipsum <span class="read-more-text">Extra</span>';
+
+      // Reset images
+      resetBackgroundImage('.header::before');
+      resetImage('.about__image-1 img');
+      resetImage('.about__image-2 img');
+      resetImage('.about__image-3 img');
+    });
+
+    function resetBackgroundImage(selector) {
+      const styleTag = document.createElement('style');
+      styleTag.innerHTML = `${selector} { background-image: radial-gradient(rgba(255, 255, 255, 0), var(--primary-color)), url("mainimage.jpg"); }`;
+      document.head.appendChild(styleTag);
+    }
+
+    function resetImage(selector) {
+      document.querySelector(selector).src = 'sampleimage1.jpg';
+    }
+
+    // Open or create the database
+    function openDatabase() {
+      return new Promise((resolve, reject) => {
+        const request = indexedDB.open('imagesDatabase', 1);
+        
+        request.onupgradeneeded = function(event) {
+          const db = event.target.result;
+          db.createObjectStore('images', { keyPath: 'id', autoIncrement: true });
+        };
+        
+        request.onsuccess = function(event) {
+          resolve(event.target.result);
+        };
+        
+        request.onerror = function(event) {
+          reject(event.target.error);
+        };
+      });
+    }
+
+    // Save image to IndexedDB
+    function saveImageToIndexedDB(imageData) {
+      return openDatabase().then(db => {
+        return new Promise((resolve, reject) => {
+          const transaction = db.transaction(['images'], 'readwrite');
+          const objectStore = transaction.objectStore('images');
+          const request = objectStore.add({ image: imageData });
+          
+          request.onsuccess = function() {
+            resolve(request.result);
+          };
+          
+          request.onerror = function(event) {
+            reject(event.target.error);
+          };
+        });
+      });
+    }
+
+    // Retrieve image from IndexedDB
+    function getImageFromIndexedDB(id) {
+      return openDatabase().then(db => {
+        return new Promise((resolve, reject) => {
+          const transaction = db.transaction(['images'], 'readonly');
+          const objectStore = transaction.objectStore('images');
+          const request = objectStore.get(id);
+          
+          request.onsuccess = function(event) {
+            resolve(event.target.result.image);
+          };
+          
+          request.onerror = function(event) {
+            reject(event.target.error);
+          };
+        });
+      });
+    }
+
+    document.getElementById('edit-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    if (!validateForm()) return false;
+
+    const slideData = JSON.parse(localStorage.getItem("editSlide"));
+    if (slideData) {
+        slideData.name = document.getElementById('name').value;
+        slideData.description = document.getElementById('description').value;
+        slideData.foodName = document.getElementById('foodName').value;
+        slideData.foodDescription = document.getElementById('foodDescription').value;
+        slideData.cultureName = document.getElementById('cultureName').value;
+        slideData.cultureDescription = document.getElementById('cultureDescription').value;
+        slideData.attractionName = document.getElementById('attractionName').value;
+        slideData.attractionDescription = document.getElementById('attractionDescription').value;
+
+        let storedSlides = JSON.parse(localStorage.getItem("slides")) || [];
+        storedSlides[slideData.index] = slideData; // Update the correct position in the array
+
+        localStorage.setItem("slides", JSON.stringify(storedSlides));
+
+        // Update the corresponding thread
+        localStorage.setItem(`threadAdd${slideData.index + 1}`, JSON.stringify(slideData));
+
+        // Set a flag indicating that a thread has been edited
+        localStorage.setItem("showThreadEditedNotification", "true");
+
+        // Redirect to CRUD.html
+        window.location.href = "CRUD.html";
+    } else {
+        console.error('No slide data found for saving.');
+    }
+});
+
+
+
+    function compressImage(imageData) {
+  return new Promise((resolve) => {
+      const canvas = document.createElement('canvas');
+      const img = new Image();
+      img.src = imageData;
+
+      img.onload = () => {
+          const width = img.width;
+          const height = img.height;
+
+          // Set the canvas dimensions to the image dimensions
+          canvas.width = width;
+          canvas.height = height;
+
+          // Draw the image onto the canvas
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+
+          // Compress the image to reduce its size (adjust quality as needed)
+          const compressedImage = canvas.toDataURL('image/jpeg', 0.7); // Change quality here
+          resolve(compressedImage);
+      };
+  });
+}
+
+    // Form validation function
+function validateForm() {
+  const requiredFields = [
+    'name', 'description', 'foodName', 'foodDescription',
+    'cultureName', 'cultureDescription', 'attractionName', 'attractionDescription'
+  ];
+
+  for (const fieldId of requiredFields) {
+    if (document.getElementById(fieldId).value.trim() === '') {
+      showNotification('Please fill in all fields and upload an image.', 'red');
+      return false;
+    }
+  }
+  return true;
+}
+
+function showNotification(message, type) {
+  const notification = type === 'blue' ? document.querySelector('.toast') : document.querySelector('.toasty');
+  const progress = notification.querySelector('.progress');
+  const messageText = notification.querySelector('.text-2');
+  const closeIcon = notification.querySelector('.close');
+
+  return new Promise((resolve) => {
+    messageText.textContent = message;
+
+    notification.classList.add('active');
+    progress.classList.add('active');
+
+    progress.addEventListener('animationend', () => {
+      notification.classList.add('hide');
+      setTimeout(() => {
+        notification.classList.remove('active', 'hide');
+        progress.classList.remove('active');
+        resolve();
+      }, 500);
+    }, { once: true });
+
+    closeIcon.addEventListener('click', () => {
+      notification.classList.add('hide');
+      setTimeout(() => {
+        notification.classList.remove('active', 'hide');
+        progress.classList.remove('active');
+        resolve();
+      }, 500);
+    });
+  });
+}
+  </script>
+
+
+</body>
+</html>
+

@@ -1,0 +1,5 @@
+DROP MEDIA HERE — about section (about.js already points at this name)
+Expected files:
+  headshot.jpg   >=800px, can be a BTS/desk shot (on-theme)
+  resume.pdf     OPTIONAL - set `resume: 'assets/about/resume.pdf'` in src/data/about.js
+Until headshot.jpg exists the About section shows the NO TALENT MEDIA fallback by design.

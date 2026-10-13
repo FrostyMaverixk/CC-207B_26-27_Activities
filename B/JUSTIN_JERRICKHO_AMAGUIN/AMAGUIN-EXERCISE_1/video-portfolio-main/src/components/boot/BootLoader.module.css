@@ -1,0 +1,60 @@
+.boot {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-boot);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-0);
+}
+
+.column {
+  width: min(420px, 86vw);
+}
+
+.line {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-0);
+}
+
+.track {
+  height: 4px;
+  margin-top: var(--space-2);
+  background: var(--bg-2);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.fill {
+  width: 0%;
+  height: 100%;
+  background: var(--accent-orange);
+}
+
+.codec {
+  margin-top: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-2);
+}
+
+.log {
+  margin-top: var(--space-4);
+  min-height: calc(3 * 1.5em);
+  overflow: hidden;
+}
+
+.logLine {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+.logLine:first-child {
+  color: var(--text-1);
+}

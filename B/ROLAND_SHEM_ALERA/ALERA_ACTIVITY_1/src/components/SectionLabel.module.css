@@ -1,0 +1,12 @@
+.wrapper {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.label {
+  font-family: 'Space Mono', monospace;
+  color: #a78bfa;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}

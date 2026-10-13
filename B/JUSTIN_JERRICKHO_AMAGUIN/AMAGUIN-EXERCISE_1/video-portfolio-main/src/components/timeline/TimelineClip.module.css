@@ -1,0 +1,75 @@
+.clip {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--line-0);
+  border-radius: var(--radius);
+}
+
+/* V-track clip: NLE bin-pastel fill at 35% with a solid label */
+.video {
+  background: color-mix(in srgb, var(--clip-shortfilm) 35%, transparent);
+}
+
+/* A-track clip: teal + fake waveform */
+.audio {
+  background: color-mix(in srgb, var(--accent-teal) 18%, transparent);
+  border-color: color-mix(in srgb, var(--accent-teal) 45%, transparent);
+}
+
+.active {
+  border-color: var(--line-1);
+}
+
+.label {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-0);
+  white-space: nowrap;
+}
+
+.wave {
+  position: absolute;
+  inset: 1px;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  fill: none;
+  stroke: var(--accent-teal);
+  stroke-width: 1;
+  opacity: 0.65;
+}
+
+/* ---- marker: red flag at a point, no width -------------------------------- */
+.marker {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0;
+}
+
+.flag {
+  position: absolute;
+  top: 1px;
+  left: -4px;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-red);
+  clip-path: polygon(0 0, 100% 0, 100% 55%, 50% 100%, 0 55%);
+}
+
+/* ---- mobile: clips become unlabeled color blocks --------------------------- */
+@media (max-width: 639px) {
+  .label {
+    display: none;
+  }
+
+  .clip {
+    padding: 0;
+  }
+}

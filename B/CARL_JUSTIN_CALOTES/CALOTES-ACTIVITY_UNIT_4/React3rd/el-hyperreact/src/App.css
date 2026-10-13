@@ -1,0 +1,108 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26px;
+  background-color: skyblue;
+}
+
+.nav-bar {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-bar a{
+  text-decoration: none;
+  color: black;
+}
+
+.home-content{
+  padding: 26px;
+  margin-top: 15px;
+  background-color: teal;
+}
+
+.footer{
+  padding: 26px;
+  margin-top: 10px;
+  text-align: center;
+  background-color: darkblue;
+  color: white;
+}
+
+.main-layout-content{
+  display: flex;
+  background-color: cyan;
+  margin-top: 10px;
+  padding-left: 26px;
+}
+
+.menu-item{
+  list-style: none;
+  padding: 0;
+}
+
+aside{
+  background-color: rgb(15, 148, 205);
+  width: 200px;
+  margin-right: 10px;
+}
+
+.card-container{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.card{
+  width: 280px;
+  height: 200px;
+  background-color: navy;
+  color: white;
+}
+
+.home-image {
+    width: 350px;
+    height: auto;
+    display: block;
+    margin: 30px auto 0;
+}

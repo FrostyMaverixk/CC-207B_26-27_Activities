@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blume Daily — Fresh Floral Arrangements</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ivory: #faf8f3;
+  --parchment: #f4f0e6;
+  --warm-white: #fffefb;
+  --blush-pale: #f9eaed;
+  --blush: #f2c0c8;
+  --rose: #5C0316;
+  --rose-deep: #3d0110;
+  --rose-muted: #a06070;
+  --sage: #6b7d60;
+  --ink: #1e1a15;
+  --ink-soft: #3d3730;
+  --mocha: #7a6555;
+  --mocha-light: #b8a899;
+  --gold: #c4975a;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Jost', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+img { display: block; }
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 56px;
+  transition: padding .5s, background .5s, box-shadow .5s;
+}
+nav.scrolled { background: rgba(255,255,255,0.98); box-shadow: 0 1px 0 rgba(0,0,0,.1); backdrop-filter: blur(12px); padding: 16px 56px; }
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: .06em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color .5s;
+}
+nav.scrolled .nav-logo { color: var(--ink); }
+.nav-center { display: flex; gap: 44px; list-style: none; }
+.nav-center a {
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.82);
+  text-decoration: none;
+  transition: color .3s;
+  position: relative;
+}
+.nav-center a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--rose-muted);
+  transform: scaleX(0);
+  transition: transform .3s;
+}
+.nav-center a:hover::after { transform: scaleX(1); }
+nav.scrolled .nav-center a { color: var(--mocha); }
+nav.scrolled .nav-center a:hover { color: var(--rose); }
+.nav-right { display: flex; align-items: center; gap: 24px; }
+.nav-icon {
+  color: rgba(255,255,255,.82);
+  cursor: pointer;
+  transition: color .3s;
+  position: relative;
+  display: flex;
+}
+nav.scrolled .nav-right { background: transparent; }
+nav.scrolled .nav-icon { color: var(--ink-soft); }
+.nav-icon:hover { color: var(--rose-muted); }
+
+.nav-tagline {
+  font-size: 10px;
+  font-weight: 200;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+  transition: color .5s;
+  font-style: italic;
+  font-family: var(--font-display);
+  font-size: 13px;
+  white-space: nowrap;
+}
+nav.scrolled .nav-tagline { color: var(--mocha-light); }
+
+.cart-count {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  background: var(--rose);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 500;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* HERO — true full bleed */
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-height: 700px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('https://i.pinimg.com/1200x/0d/95/e7/0d95e7c83fd286540e5f366e482fe308.jpg');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: scale(1.06);
+  animation: heroZoom 16s ease-out forwards;
+  z-index: 0;
+}
+@keyframes heroZoom { to { transform: scale(1); } }
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(40,0,10,.65) 0%,
+    rgba(92,3,22,.55) 55%,
+    rgba(20,0,5,.7) 100%
+  );
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 3;
+  padding: 0 75px 88px;
+  animation: heroUp 1.4s cubic-bezier(.16,1,.3,1) .2s both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+@keyframes heroUp {
+  from { opacity:0; transform:translateY(40px);}
+  to { opacity:1; transform:translateY(0);}
+}
+.hero-right-panel {
+  position: absolute;
+  right: 56px;
+  bottom: 88px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 20px;
+}
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+.hero-tag-line { width: 32px; height: 1px; background: var(--rose-muted); }
+.hero-tag span {
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--rose-muted);
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(58px,8vw,96px);
+  font-weight: 400;
+  line-height: .95;
+  letter-spacing: -.02em;
+  color: #fff;
+  margin-bottom: 32px;
+}
+.hero-title .italic-line {
+  font-style: italic;
+  color: var(--blush);
+  font-weight: 400;
+  display: block;
+}
+
+.hero-logo-img {
+  width: clamp(250px, 38vw, 520px);
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 28px;
+  filter: drop-shadow(0 4px 32px rgba(0,0,0,.4));
+  animation: heroUp 1.4s cubic-bezier(.16,1,.3,1) .4s both;
+}
+.hero-sub {
+  font-size: 14px;
+  font-weight: 200;
+  color: rgba(255,255,255,.68);
+  max-width: 520px;
+  line-height: 1.9;
+  margin-bottom: 52px;
+  letter-spacing: .04em;
+}
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+}
+.btn-rose {
+  background: var(--rose);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 16px 40px;
+  border: none;
+  cursor: pointer;
+  transition: background .3s, transform .2s;
+  display: inline-block;
+}
+.btn-rose:hover { background: var(--rose-deep); transform: translateY(-2px); }
+.btn-ghost {
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.75);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,.3);
+  padding-bottom: 2px;
+  transition: color .3s, border-color .3s;
+}
+.btn-ghost:hover { color: #fff; border-color: rgba(255,255,255,.7); }
+.hero-stat { text-align: right; }
+.hero-stat-num {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: -.02em;
+  line-height: 1;
+  display: block;
+}
+.hero-stat-label {
+  font-size: 10px;
+  font-weight: 200;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+  display: block;
+  margin-top: 4px;
+}
+.hero-divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255,255,255,.15);
+  margin-left: auto;
+}
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.scroll-mouse {
+  width: 24px;
+  height: 38px;
+  border: 1.5px solid rgba(255,255,255,.35);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+}
+.scroll-dot {
+  width: 3px;
+  height: 6px;
+  background: rgba(255,255,255,.5);
+  border-radius: 2px;
+  animation: scrollDot 2s ease-in-out infinite;
+}
+@keyframes scrollDot {
+  0%,100%{ opacity:.5; transform:translateY(0);}
+  50%{ opacity:1; transform:translateY(8px);}
+}
+.hero-scroll-hint span {
+  font-size: 9px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.35);
+}
+
+
+/* MARQUEE */
+.marquee-strip { background: var(--rose); overflow: hidden; padding: 14px 0; }
+.marquee-track {
+  display: flex;
+  animation: marquee 28s linear infinite;
+  white-space: nowrap;
+  width: max-content;
+}
+.marquee-track span {
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.9);
+  padding: 0 48px;
+}
+.marquee-track span.dot { padding: 0; color: rgba(255,255,255,.4); font-size: 6px; }
+@keyframes marquee {
+  from { transform:translateX(0);}
+  to { transform:translateX(-50%);}
+}
+
+/* SECTIONS */
+section {
+  padding: 104px 56px;
+  position: relative;
+  z-index: 1;
+}
+.label-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.section-eyebrow {
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--rose);
+}
+.eyebrow-line {
+  width: 36px;
+  height: 1px;
+  background: var(--rose-muted);
+  flex-shrink: 0;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(34px,4.5vw,52px);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--ink);
+  letter-spacing: -.01em;
+}
+.section-title em { font-style: italic; color: var(--rose); }
+.view-all-link {
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--rose);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rose-muted);
+  padding-bottom: 3px;
+  transition: color .3s, border-color .3s;
+}
+.view-all-link:hover { color: var(--rose-deep); border-color: var(--rose-deep); }
+
+/* FEATURES */
+.features-belt {
+  background: var(--parchment);
+  border-top: 1px solid rgba(0,0,0,.07);
+  border-bottom: 1px solid rgba(0,0,0,.07);
+}
+.features-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+}
+.feat {
+  padding: 52px 48px;
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  border-right: 1px solid rgba(0,0,0,.08);
+  transition: background .3s;
+}
+.feat:last-child { border-right: none; }
+.feat:hover { background: rgba(201,123,99,.05); }
+.feat-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--rose-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--rose);
+  transition: background .3s, border-color .3s;
+}
+.feat:hover .feat-icon-wrap { background: var(--rose); border-color: var(--rose); color: #fff; }
+.feat-icon-wrap svg { width: 20px; height: 20px; }
+.feat-title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+.feat-desc {
+  font-size: 13px;
+  font-weight: 200;
+  color: var(--mocha);
+  line-height: 1.8;
+}
+
+/* CATEGORIES — editorial mosaic */
+.categories-section { max-width: 1200px; margin: 0 auto; }
+.cat-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 48px;
+}
+.cat-mosaic {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 280px 280px;
+  gap: 10px;
+}
+.cat-card:nth-child(1) { grid-column: 1 / 6; grid-row: 1 / 3; }
+.cat-card:nth-child(2) { grid-column: 6 / 9; grid-row: 1 / 2; }
+.cat-card:nth-child(3) { grid-column: 9 / 13; grid-row: 1 / 2; }
+.cat-card:nth-child(4) { grid-column: 6 / 10; grid-row: 2 / 3; }
+.cat-card:nth-child(5) { grid-column: 10/ 13; grid-row: 2 / 3; }
+.cat-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+}
+.cat-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform .7s cubic-bezier(.22,1,.36,1);
+}
+.cat-card:hover img { transform: scale(1.09); }
+.cat-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,5,2,.82) 0%, rgba(10,5,2,.06) 60%, transparent 100%);
+  transition: background .4s;
+}
+.cat-card:hover .cat-overlay { background: linear-gradient(to top, rgba(10,5,2,.92) 0%, rgba(10,5,2,.22) 60%, transparent 100%); }
+.cat-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 22px 20px;
+}
+.cat-name {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: .02em;
+  display: block;
+  margin-bottom: 5px;
+}
+.cat-card:nth-child(1) .cat-name { font-size: 28px; }
+.cat-arrow {
+  font-size: 10px;
+  font-weight: 200;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.6);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .3s, transform .3s;
+  display: block;
+}
+.cat-card:hover .cat-arrow { opacity: 1; transform: translateY(0); }
+
+/* PRODUCTS — redesigned cards */
+.products-section { background: var(--blush-pale); }
+.products-inner { max-width: 1200px; margin: 0 auto; }
+.prod-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 56px;
+}
+.prod-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 16px;
+}
+.prod-card {
+  background: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0,0,0,.06);
+  transition: transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s;
+}
+.prod-card:hover { transform: translateY(-7px); box-shadow: 0 22px 50px rgba(30,26,21,.14); }
+.prod-img { position: relative; overflow: hidden; aspect-ratio: 3/4; }
+.prod-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform .7s cubic-bezier(.22,1,.36,1);
+}
+.prod-card:hover .prod-img img { transform: scale(1.06); }
+.prod-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: var(--rose);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+}
+.prod-badge.new { background: var(--sage); }
+.prod-add {
+  position: absolute;
+  bottom: -52px;
+  left: 0;
+  right: 0;
+  background: rgba(14,9,5,.92);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 16px;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  transition: bottom .35s cubic-bezier(.22,1,.36,1);
+}
+.prod-card:hover .prod-add { bottom: 0; }
+.prod-info {
+  padding: 16px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.prod-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+.prod-name {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: .01em;
+  line-height: 1.2;
+}
+.prod-price {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--rose-deep);
+  white-space: nowrap;
+  padding-left: 6px;
+}
+.prod-variant {
+  font-size: 11px;
+  font-weight: 200;
+  color: var(--mocha-light);
+  letter-spacing: .05em;
+  margin-bottom: 12px;
+}
+.prod-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0,0,0,.06);
+  margin-top: auto;
+}
+.prod-stars { color: var(--gold); font-size: 11px; letter-spacing: 1px; }
+.prod-cta {
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--rose);
+  border-bottom: 1px solid var(--rose-muted);
+  padding-bottom: 2px;
+}
+
+/* HOW IT WORKS */
+.how-section { max-width: 1100px; margin: 0 auto; text-align: center; }
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  margin-top: 72px;
+  position: relative;
+}
+.steps::before {
+  content: '';
+  position: absolute;
+  top: 26px;
+  left: calc(12.5% + 18px);
+  right: calc(12.5% + 18px);
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--rose-muted), var(--rose-muted), transparent);
+}
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 28px;
+}
+.step-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid var(--rose-muted);
+  background: var(--warm-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--rose);
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+  transition: background .3s, border-color .3s, color .3s;
+}
+.step:hover .step-circle { background: var(--rose); border-color: var(--rose); color: #fff; }
+.step-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: var(--ink);
+}
+.step-desc {
+  font-size: 13px;
+  font-weight: 200;
+  color: var(--mocha);
+  line-height: 1.85;
+}
+
+/* EDITORIAL */
+.editorial-section { padding: 0 56px 104px; }
+.editorial-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  min-height: 520px;
+}
+.editorial-img { position: relative; overflow: hidden; }
+.editorial-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform .7s cubic-bezier(.22,1,.36,1);
+}
+
+.editorial-img,
+.editorial-content {
+  height: 600px; /* match both sides */
+}
+
+.editorial-inner:hover .editorial-img img { transform: scale(1.04); }
+.editorial-content {
+  background: var(--ink);
+  padding: 64px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.editorial-content .section-title { color: #fff; margin-bottom: 20px; }
+.editorial-content .section-title em { color: var(--rose-muted); }
+.editorial-content p {
+  font-size: 14px;
+  font-weight: 200;
+  color: rgba(255,255,255,.6);
+  line-height: 1.9;
+  margin-bottom: 40px;
+  max-width: 360px;
+}
+.btn-outline-light {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,.3);
+  padding: 16px 40px;
+  transition: background .3s, border-color .3s;
+  align-self: flex-start;
+}
+.btn-outline-light:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.6); }
+
+/* TESTIMONIALS */
+.testimonials-section {
+  background: var(--parchment);
+  padding: 104px 56px;
+}
+.test-inner { max-width: 1100px; margin: 0 auto; }
+.test-header { margin-bottom: 64px; }
+.test-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 28px;
+}
+.test-card { background: var(--warm-white); padding: 40px 36px; }
+.stars { display: flex; gap: 3px; margin-bottom: 20px; }
+.stars span { color: var(--gold); font-size: 14px; }
+.big-quote {
+  font-family: var(--font-display);
+  font-size: 72px;
+  line-height: .7;
+  color: var(--rose-muted);
+  margin-bottom: 16px;
+  display: block;
+  opacity: .6;
+}
+.test-text {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--ink-soft);
+  margin-bottom: 28px;
+}
+.test-author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(0,0,0,.07);
+}
+.author-ava {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+}
+.author-name { font-size: 13px; font-weight: 500; color: var(--ink); }
+.author-loc { font-size: 11px; font-weight: 200; color: var(--mocha-light); margin-top: 2px; }
+
+/* INSTAGRAM */
+.insta-section {
+  padding: 80px 0 104px;
+}
+.insta-header {
+  text-align: center;
+  margin-bottom: 44px;
+  padding: 0 56px;
+}
+.insta-handle {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 10px;
+  font-weight: 200;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--rose);
+}
+.insta-row {
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  gap: 3px;
+}
+.insta-cell {
+  aspect-ratio: 1;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+.insta-cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform .6s cubic-bezier(.22,1,.36,1);
+}
+.insta-cell:hover img { transform: scale(1.1); }
+.insta-hover {
+  position: absolute;
+  inset: 0;
+  background: rgba(10,5,2,0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .3s;
+}
+.insta-cell:hover .insta-hover { background: rgba(10,5,2,.5); }
+.insta-ig {
+  width: 28px;
+  color: #fff;
+  opacity: 0;
+  transition: opacity .3s;
+}
+.insta-cell:hover .insta-ig { opacity: 1; }
+
+/* FOOTER */
+footer {
+  background: var(--ink);
+  padding: 80px 56px 40px;
+}
+.footer-top {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2.2fr 1fr 1fr 1.6fr;
+  gap: 56px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  margin-bottom: 36px;
+}
+.footer-brand-logo {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--warm-white);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 18px;
+}
+.footer-brand p {
+  font-size: 13px;
+  font-weight: 200;
+  color: rgba(255,255,255,.5);
+  line-height: 1.85;
+  max-width: 280px;
+  margin-bottom: 28px;
+}
+.footer-social { display: flex; gap: 14px; }
+.footer-social a {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255,255,255,.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,.5);
+  text-decoration: none;
+  transition: border-color .3s, color .3s;
+}
+.footer-social a:hover { border-color: var(--rose-muted); color: var(--rose-muted); }
+.footer-col h4 {
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.9);
+  margin-bottom: 24px;
+}
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.footer-col ul a {
+  font-size: 13px;
+  font-weight: 200;
+  color: rgba(255,255,255,.45);
+  text-decoration: none;
+  transition: color .2s;
+}
+.footer-col ul a:hover { color: var(--rose-muted); }
+.footer-col > p {
+  font-size: 12px;
+  font-weight: 200;
+  color: rgba(255,255,255,.45);
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
+.subscribe-row { display: flex; }
+.subscribe-row input {
+  flex: 1;
+  padding: 13px 16px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-right: none;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 200;
+  outline: none;
+}
+.subscribe-row input::placeholder { color: rgba(255,255,255,.28); }
+.subscribe-row button {
+  background: var(--rose);
+  border: none;
+  padding: 13px 20px;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .3s;
+}
+.subscribe-row button:hover { background: var(--rose-deep); }
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 200;
+  color: rgba(255,255,255,.3);
+}
+
+/* REVEAL */
+.reveal {
+  opacity:0;
+  transform:translateY(30px);
+  transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);
+}
+.reveal.visible { opacity:1; transform:translateY(0); }
+.reveal-d1 { transition-delay:.1s; }
+.reveal-d2 { transition-delay:.2s; }
+.reveal-d3 { transition-delay:.3s; }
+.reveal-d4 { transition-delay:.4s; }
+
+/* RESPONSIVE */
+@media (max-width:1024px) {
+  .prod-grid { grid-template-columns: repeat(2,1fr); }
+  .cat-mosaic { grid-template-columns: repeat(6,1fr); grid-template-rows: 220px 220px; }
+  .cat-card:nth-child(1) { grid-column:1/4; grid-row:1/3; }
+  .cat-card:nth-child(2) { grid-column:4/7; grid-row:1/2; }
+  .cat-card:nth-child(3) { grid-column:4/7; grid-row:2/3; }
+  .cat-card:nth-child(4), .cat-card:nth-child(5) { display:none; }
+  .footer-top { grid-template-columns:1fr 1fr; }
+  .insta-row { grid-template-columns:repeat(4,1fr); }
+  .insta-cell:last-child { display:none; }
+}
+@media (max-width:768px) {
+  nav { padding:18px 24px; }
+    .nav-center { display:none; }
+  section { padding:72px 24px; }
+  .hero-content { padding:0 24px 72px; }
+  ._hero-right-panel-hide { display:none; }
+  .features-wrap { grid-template-columns:1fr; }
+  .feat { border-right:none; border-bottom:1px solid rgba(0,0,0,.08); }
+  .feat:last-child { border-bottom:none; }
+  .cat-mosaic { grid-template-columns:1fr 1fr; grid-template-rows:auto; gap:8px; }
+  .cat-card:nth-child(n) { grid-column:auto; grid-row:auto; aspect-ratio:3/4; }
+  .cat-card:nth-child(1) { grid-column:1/-1; aspect-ratio:16/9; }
+  .cat-card:nth-child(5) { display:none; }
+  .prod-grid { grid-template-columns:1fr 1fr; gap:10px; }
+  .steps { grid-template-columns:1fr 1fr; gap:40px; }
+  .steps::before { display:none; }
+  .test-grid { grid-template-columns:1fr; }
+  .editorial-inner { grid-template-columns:1fr; }
+  .editorial-img { height:300px; }
+  .editorial-content { padding:48px 32px; }
+  .footer-top { grid-template-columns:1fr; gap:36px; }
+  .editorial-section { padding:0 24px 72px; }
+  .insta-row { grid-template-columns:repeat(3,1fr); }
+  .insta-section { padding:80px 0 72px; }
+  .footer-bottom { flex-direction:column; gap:12px; text-align:center; }
+}
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">Blume Daily</a>
+  <ul class="nav-center">
+    <li><a href="index.html">Shop</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="catalogue.html">Catalogue</a></li>
+    <li><a href="index.html#how">How It Works</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-tagline"> daily bleum</div>
+    <a href="cart.html" class="nav-icon" title="View Cart">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-count" id="cart-count">0</span>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">
+      <div class="hero-tag-line"></div>
+      <span>Villa Arevalo, Iloilo</span>
+      <div class="hero-tag-line"></div>
+    </div>
+    <img src="Photoroom_20260427_085336.png" alt="Blume Daily" class="hero-logo-img">
+    <p class="hero-sub">Thoughtfully arranged flowers for every moment, carefully designed to bring beauty into your life as your everyday flowers.</p>
+    <div class="hero-actions">
+      <a href="catalogue.html" class="btn-rose">Shop Now</a>
+      <a href="#how" class="btn-ghost">How It Works</a>
+    </div>
+  </div>
+  <div class="hero-right-panel">
+    <div class="hero-stat"><span class="hero-stat-num">500+</span><span class="hero-stat-label">Happy Customers</span></div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat"><span class="hero-stat-num">24hr</span><span class="hero-stat-label">Order Turnaround</span></div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat"><span class="hero-stat-num">100%</span><span class="hero-stat-label">Fresh Guaranteed</span></div>
+  </div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-mouse"><div class="scroll-dot"></div></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span>Fresh Daily Arrangements</span><span class="dot">✦</span>
+    <span>GCash &amp; Bank Transfer</span><span class="dot">✦</span>
+    <span>Iloilo Citywide Delivery</span><span class="dot">✦</span>
+    <span>Custom Bouquets Available</span><span class="dot">✦</span>
+    <span>Wedding &amp; Event Florals</span><span class="dot">✦</span>
+    <span>Same-Day Booking Welcome</span><span class="dot">✦</span>
+    <span>Fresh Daily Arrangements</span><span class="dot">✦</span>
+    <span>GCash &amp; Bank Transfer</span><span class="dot">✦</span>
+    <span>Iloilo Citywide Delivery</span><span class="dot">✦</span>
+    <span>Custom Bouquets Available</span><span class="dot">✦</span>
+    <span>Wedding &amp; Event Florals</span><span class="dot">✦</span>
+    <span>Same-Day Booking Welcome</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="features-belt">
+  <div class="features-wrap">
+    <div class="feat reveal">
+      <div class="feat-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C7 2 5 7 5 10c0 4 3.5 7 7 10 3.5-3 7-6 7-10 0-3-2-8-7-8z"/></svg></div>
+      <div><div class="feat-title">Fresh Arrangements</div><p class="feat-desc">Hand-crafted daily from the freshest seasonal blooms, chosen with artistry and care.</p></div>
+    </div>
+    <div class="feat reveal reveal-d1">
+      <div class="feat-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
+      <div><div class="feat-title">Easy Online Orders</div><p class="feat-desc">Browse, customize, and place your perfect bouquet order in just a few simple steps.</p></div>
+    </div>
+    <div class="feat reveal reveal-d2">
+      <div class="feat-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a5 5 0 0 1 5 5c0 3-5 11-5 11S7 10 7 7a5 5 0 0 1 5-5z"/><circle cx="12" cy="7" r="1.5"/></svg></div>
+      <div><div class="feat-title">Iloilo Delivery</div><p class="feat-desc">We deliver fresh blooms right to your doorstep across Iloilo City and nearby areas.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section id="collections">
+  <div class="categories-section">
+    <div class="cat-header reveal">
+      <div>
+        <div class="label-row"><div class="eyebrow-line"></div><span class="section-eyebrow">Browse by Occasion</span></div>
+        <h2 class="section-title">Shop Our <em>Collections</em></h2>
+      </div>
+      <a href="catalogue.html" class="view-all-link">View All</a>
+    </div>
+    <div class="cat-mosaic">
+      <a href="catalogue.html?filter=birthday" class="cat-card reveal">
+        <img src="https://i.pinimg.com/736x/06/59/97/06599728e9de351bc412acce8a55bb7d.jpg" alt="Birthdays">
+        <div class="cat-overlay"></div>
+        <div class="cat-info"><span class="cat-name">Birthdays</span><span class="cat-arrow">Shop →</span></div>
+      </a>
+      <a href="catalogue.html?filter=wedding" class="cat-card reveal reveal-d1">
+        <img src="https://www.flowersandgreens.com.ph/wp-content/uploads/2019/07/66261538_464052037747808_7805249109312405504_n.jpg" alt="Weddings">
+        <div class="cat-overlay"></div>
+        <div class="cat-info"><span class="cat-name">Weddings</span><span class="cat-arrow">Shop →</span></div>
+      </a>
+      <a href="catalogue.html?filter=congratulations" class="cat-card reveal reveal-d2">
+        <img src="https://i.pinimg.com/736x/a2/7e/2d/a27e2d6d5908bae12dafdfcc0b1a37a3.jpg" alt="Sympathy">
+        <div class="cat-overlay"></div>
+        <div class="cat-info"><span class="cat-name">Congratulations</span><span class="cat-arrow">Shop →</span></div>
+      </a>
+      <a href="catalogue.html?filter=romance" class="cat-card reveal reveal-d3">
+        <img src="https://www.prettythingsvancouver.ca/cdn/shop/files/8BDF1A97-0E2F-460E-AE5B-FBC69510D6C1.jpg?v=1715056680" alt="Romance">
+        <div class="cat-overlay"></div>
+        <div class="cat-info"><span class="cat-name">Romance</span><span class="cat-arrow">Shop →</span></div>
+      </a>
+      <a href="catalogue.html?filter=corporate" class="cat-card reveal reveal-d4">
+        <img src="https://i.pinimg.com/1200x/36/4f/48/364f48fd748d63041f96e2aa3a8726ea.jpg" alt="Corporate">
+        <div class="cat-overlay"></div>
+        <div class="cat-info"><span class="cat-name">Corporate</span><span class="cat-arrow">Shop →</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="shop" class="products-section">
+  <div class="products-inner">
+    <div class="prod-header reveal">
+      <div>
+        <div class="label-row"><div class="eyebrow-line"></div><span class="section-eyebrow">Handpicked for You</span></div>
+        <h2 class="section-title">Featured <em>Arrangements</em></h2>
+      </div>
+      <a href="catalogue.html" class="view-all-link">View All Products</a>
+    </div>
+    <div class="prod-grid">
+      <a href="#" class="prod-card reveal">
+        <div class="prod-img">
+          <img src="https://www.thelachryme.com/cdn/shop/files/11AFEA84-DD51-4F80-81AF-8FA5674737CB.jpg?v=1741699569&width=990" alt="Rosy Romance">
+          <span class="prod-badge">Bestseller</span>
+          <button class="prod-add" onclick="event.preventDefault();event.stopPropagation();addToCart(1,'Rosy Romance',1250,this.closest('.prod-card').querySelector('img').src)">Add to Cart</button>
+        </div>
+        <div class="prod-info">
+          <div class="prod-top-row"><div class="prod-name">Rosy Romance</div><div class="prod-price">₱1,250</div></div>
+          <div class="prod-variant">Mixed roses · Medium bouquet</div>
+          <div class="prod-bottom-row"><div class="prod-stars">★★★★★</div><div class="prod-cta">Add to Cart</div></div>
+        </div>
+      </a>
+      <a href="#" class="prod-card reveal reveal-d1">
+        <div class="prod-img">
+          <img src="https://i.pinimg.com/originals/a4/2e/63/a42e6344d54a9a06c00a9f9dfca52f60.jpg" alt="Blush Garden">
+          <button class="prod-add" onclick="event.preventDefault();event.stopPropagation();addToCart(2,'Eternal White',2000,this.closest('.prod-card').querySelector('img').src)">Add to Cart</button>
+        </div>
+        <div class="prod-info">
+          <div class="prod-top-row"><div class="prod-name">Eternal White</div><div class="prod-price">₱2,000</div></div>
+          <div class="prod-variant">White orchid cascade · Large bouquet</div>
+          <div class="prod-bottom-row"><div class="prod-stars">★★★★★</div><div class="prod-cta">Add to Cart</div></div>
+        </div>
+      </a>
+      <a href="#" class="prod-card reveal reveal-d2">
+        <div class="prod-img">
+          <img src="https://clientassets.floristtouch.co.uk/user/site491/productImages/1003/lrg-p1003-3.jpg?v=1.03" alt="Forest Whisper">
+          <span class="prod-badge new">New</span>
+          <button class="prod-add" onclick="event.preventDefault();event.stopPropagation();addToCart(3,'Forest Whisper',1450,this.closest('.prod-card').querySelector('img').src)">Add to Cart</button>
+        </div>
+        <div class="prod-info">
+          <div class="prod-top-row"><div class="prod-name">Forest Whisper</div><div class="prod-price">₱1,450</div></div>
+          <div class="prod-variant">Greenery &amp; wildflower · Small</div>
+          <div class="prod-bottom-row"><div class="prod-stars">★★★★☆</div><div class="prod-cta">Add to Cart</div></div>
+        </div>
+      </a>
+      <a href="#" class="prod-card reveal reveal-d3">
+        <div class="prod-img">
+          <img src="https://i.pinimg.com/736x/31/75/fc/3175fc6ef66f75728e0d89f7418e3c1d.jpg" alt="Golden Hour">
+          <button class="prod-add" onclick="event.preventDefault();event.stopPropagation();addToCart(4,'Garden Luxe',4500,this.closest('.prod-card').querySelector('img').src)">Add to Cart</button>
+        </div>
+        <div class="prod-info">
+          <div class="prod-top-row"><div class="prod-name">Garden Luxe</div><div class="prod-price">₱4,500</div></div>
+          <div class="prod-variant">Premium mixed blooms · Extra Large</div>
+          <div class="prod-bottom-row"><div class="prod-stars">★★★★★</div><div class="prod-cta">Add to Cart</div></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="how-section">
+    <div class="reveal">
+      <div class="label-row" style="justify-content:center;"><div class="eyebrow-line"></div><span class="section-eyebrow">Simple &amp; Seamless</span><div class="eyebrow-line"></div></div>
+      <h2 class="section-title" style="text-align:center;margin-top:12px;">How to <em>Order</em></h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="step-circle">1</div><div class="step-title">Browse</div><p class="step-desc">Explore our catalog and pick your perfect arrangement or request a custom one.</p></div>
+      <div class="step reveal reveal-d1"><div class="step-circle">2</div><div class="step-title">Customize</div><p class="step-desc">Choose colors, add a card message, and set your delivery date and address.</p></div>
+      <div class="step reveal reveal-d2"><div class="step-circle">3</div><div class="step-title">Pay</div><p class="step-desc">Submit payment via GCash or bank transfer and upload your proof of payment.</p></div>
+      <div class="step reveal reveal-d3"><div class="step-circle">4</div><div class="step-title">Receive</div><p class="step-desc">We confirm your order and deliver fresh blooms right to your door.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- EDITORIAL BANNER -->
+<div class="editorial-section">
+  <div class="editorial-inner reveal">
+    <div class="editorial-img">
+      <img src="https://i.pinimg.com/1200x/c9/00/1b/c9001b33ab863a02a47219d33df89190.jpg" alt="Custom arrangements">
+    </div>
+    <div class="editorial-content">
+      <div class="label-row" style="margin-bottom:20px;"><div class="eyebrow-line" style="background:var(--rose-muted);opacity:.5;"></div><span class="section-eyebrow" style="color:var(--rose-muted);">Custom Orders</span></div>
+      <h2 class="section-title">Something <em>Special</em> in Mind?</h2>
+      <p>Tell us your vision and our florists will create a one-of-a-kind arrangement just for you. Perfect for weddings, events, or unforgettable gifts.</p>
+      <a href="custom-bouquet.html" class="btn-outline-light">Request Custom Bouquet</a>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="test-inner">
+    <div class="test-header reveal">
+      <div class="label-row"><div class="eyebrow-line"></div><span class="section-eyebrow">What Customers Say</span></div>
+      <h2 class="section-title">Loved by <em>Many</em></h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card reveal">
+        <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <span class="big-quote">"</span>
+        <p class="test-text">The flowers arrived so fresh and beautifully wrapped. My girlfriend cried happy tears — totally worth every peso!</p>
+        <div class="test-author"><div class="author-ava" style="background:var(--mocha);">M</div><div><div class="author-name">Marco R.</div><div class="author-loc">Iloilo City</div></div></div>
+      </div>
+      <div class="test-card reveal reveal-d1">
+        <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <span class="big-quote">"</span>
+        <p class="test-text">Ordered for my mom's birthday. The arrangement was stunning and the delivery was right on time. Will definitely order again!</p>
+        <div class="test-author"><div class="author-ava" style="background:var(--rose);">G</div><div><div class="author-name">Gia T.</div><div class="author-loc">Villa Arevalo</div></div></div>
+      </div>
+      <div class="test-card reveal reveal-d2">
+        <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <span class="big-quote">"</span>
+        <p class="test-text">Super easy to order online! Payment was seamless via GCash and they confirmed so fast. The bouquet was absolutely gorgeous.</p>
+        <div class="test-author"><div class="author-ava" style="background:var(--sage);">L</div><div><div class="author-name">Liezel M.</div><div class="author-loc">Jaro, Iloilo</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<div class="insta-section">
+  <div class="insta-header reveal">
+    <div class="label-row" style="justify-content:center;"><div class="eyebrow-line"></div><span class="section-eyebrow">Follow Along</span><div class="eyebrow-line"></div></div>
+    <h2 class="section-title" style="text-align:center;margin-top:12px;">@blumedaily on <em>Instagram</em></h2>
+    <span class="insta-handle">Follow us for daily bloom inspiration</span>
+  </div>
+  <div class="insta-row">
+    <div class="insta-cell"><img src="https://i.pinimg.com/736x/ec/0f/ba/ec0fba3fd134176ad0f9f133c83882b7.jpg" alt=""><div class="insta-hover"><svg class="insta-ig" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div></div>
+    <div class="insta-cell"><img src="https://i.pinimg.com/736x/4c/a4/ef/4ca4eff6c95d6caf9ca61cc2725e98b4.jpg" alt=""><div class="insta-hover"><svg class="insta-ig" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div></div>
+    <div class="insta-cell"><img src="https://i.pinimg.com/736x/ad/17/9f/ad179fba5d179354be9d32f7b8155de1.jpg" alt=""><div class="insta-hover"><svg class="insta-ig" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div></div>
+    <div class="insta-cell"><img src="https://i.pinimg.com/736x/72/1c/fa/721cfaa02ddc35576110bf1242434904.jpg" alt=""><div class="insta-hover"><svg class="insta-ig" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div></div>
+    <div class="insta-cell"><img src="https://i.pinimg.com/736x/39/de/af/39deaf0ae73caba2015fb0272eb8c618.jpg" alt=""><div class="insta-hover"><svg class="insta-ig" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="footer-brand-logo">Blume Daily</a>
+      <p>Thoughtfully arranged flowers for every moment. Based in Villa Arevalo, Iloilo — delivering joy, one bloom at a time.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="#" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.74a4.85 4.85 0 0 1-1.01-.05z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="#">All Arrangements</a></li><li><a href="#">Birthdays</a></li><li><a href="#">Weddings</a></li><li><a href="#">Sympathy</a></li><li><a href="#">Custom Orders</a></li></ul></div>
+    <div class="footer-col"><h4>Info</h4><ul><li><a href="#">How It Works</a></li><li><a href="#">Track My Order</a></li><li><a href="#">FAQ</a></li><li><a href="#">About Us</a></li><li><a href="#">Contact</a></li></ul></div>
+    <div class="footer-col">
+      <h4>Stay in Bloom</h4>
+      <p>Get seasonal promotions and new arrangement alerts straight to your inbox.</p>
+      <div class="subscribe-row"><input type="email" placeholder="Your email address"><button type="button">Go</button></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Blume Daily. All rights reserved.</span>
+    <span>blumedaily@gmail.com · 09983984888</span>
+  </div>
+</footer>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+reveals.forEach(el => observer.observe(el));
+</script>
+
+<script>
+function addToCart(id, name, price, img) {
+  let cart = JSON.parse(localStorage.getItem('bd_cart') || '[]');
+  const existing = cart.find(i => String(i.id) === String(id));
+  if (existing) { existing.qty++; }
+  else { cart.push({ id, name, price, qty: 1, img }); }
+  localStorage.setItem('bd_cart', JSON.stringify(cart));
+  const count = cart.reduce((s,i) => s + i.qty, 0);
+  document.querySelectorAll('.cart-count,.cart-badge,#cart-count').forEach(el => el.textContent = count);
+  showIndexToast(name + ' added to cart!');
+}
+let idxToastTimer;
+function showIndexToast(msg) {
+  const t = document.getElementById('idx-toast');
+  if (!t) return;
+  document.getElementById('idx-toast-msg').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(idxToastTimer);
+  idxToastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+}
+(function(){
+  const cart = JSON.parse(localStorage.getItem('bd_cart') || '[]');
+  const count = cart.reduce((s,i) => s + i.qty, 0);
+  document.querySelectorAll('.cart-count,.cart-badge,#cart-count').forEach(el => el.textContent = count);
+})();
+</script>
+<div id="idx-toast" style="position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);background:#1e1a15;color:#fff;padding:13px 24px;font-size:13px;font-weight:300;z-index:600;opacity:0;transition:all .4s cubic-bezier(.22,1,.36,1);pointer-events:none;display:flex;align-items:center;gap:10px;white-space:nowrap;">
+  <span style="color:#a06070;">&#10003;</span><span id="idx-toast-msg"></span>
+  <a href="checkout.html" style="color:#a06070;font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;margin-left:8px;">View Cart &rarr;</a>
+</div>
+<style>#idx-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}</style>
+</body>
+</html>

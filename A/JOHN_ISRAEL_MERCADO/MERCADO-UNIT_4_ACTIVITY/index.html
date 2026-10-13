@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>John Israel Mercado – Developer</title>
+  <meta name="description" content="Portfolio of John Israel Mercado, a Developer.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="nebula" aria-hidden="true"></div>
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="odometer" aria-hidden="true"><span id="distance">0</span> light-years travelled</div>
+
+  <header class="site-header">
+    <div class="navbar">
+      <a href="#top" class="logo">JIBM</a>
+      <nav aria-label="Main">
+        <a href="#skills">Skills</a>
+        <a href="#work">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact" class="nav-cta">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="planet" aria-hidden="true"></div>
+      <h1>John Israel Mercado</h1>
+      <p>A developer based on Iloilo City, making all sorts of software and hardware with heart</p>
+      <a class="button" href="#skills">Explore my skills</a>
+    </section>
+
+    <section id="skills">
+      <h2>Skill constellation</h2>
+      <p class="lead">This are all the skills I've picked up and been using.</p>
+      <div class="constellation" id="constellation">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg>
+      </div>
+      <div class="skill-detail" id="skill-detail" aria-live="polite"></div>
+    </section>
+
+    <section id="work">
+      <h2>Missions completed</h2>
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button class="active" data-filter="all">All</button>
+        <button data-filter="web">Websites</button>
+        <button data-filter="app">Apps</button>
+      </div>
+      <ul class="projects">
+        <li class="project" data-category="web">
+          <div class="orb orb-1" aria-hidden="true"></div>
+          <h3>Itransco Website</h3>
+          <p>A website for information dissemination, complaints, and fare estimation</p>
+          <span class="tags">Next.js, Tailwind CSS, REST API</span>
+        </li>
+        <li class="project" data-category="app">
+          <div class="orb orb-2" aria-hidden="true"></div>
+          <h3>BMI Calculator</h3>
+          <p>A simple application that calculates Body Mass Index</p>
+          <span class="tags">Python</span>
+        </li>
+        <li class="project" data-category="web">
+          <div class="orb orb-4" aria-hidden="true"></div>
+          <h3>SPARKHUB Website</h3>
+          <p>A website for an organization in School</p>
+          <span class="tags">React, Tailwind CSS, REST API</span>
+      </ul>
+    </section>
+
+    <section id="about">
+      <h2>About</h2>
+      <div class="about-grid">
+        <div class="panel">
+          <p>Being a developer was an unexpected path for me as it was never my intention to be one, but I enjoyed it more than anything else, I wanna create more things that makes lives easier, and happy.</p>
+          <p>Everything starts with how can I make the person I'm making these for happy. As seeing someone grateful and happy gives me the happiness and motivation to make more.</p>
+          <dl class="facts">
+            <dt>Based in</dt><dd>Iloilo, Philippines</dd>
+            <dt>Focus</dt><dd>Performance and user experience</dd>
+            <dt>Works with</dt><dd>Anyone willing to wait</dd>
+          </dl>
+        </div>
+        <ol class="log panel">
+          <li><time>2023</time><span>Built my first app and website</span></li>
+          <li><time>2024</time><span>Improved more by expanding my knowledge about other frameworks </span></li>
+          <li><time>2025</time><span>Started taking on projects outside of school</span></li>
+          <li><time>Now</time><span>Looking forward for more things to come.</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="contact-panel panel">
+        <div class="contact-main">
+          <p class="lead">Got a project or an idea? Send me an email and I'll reply within two days.</p>
+          <a class="button" href="mailto:alex@example.com">johnisrael.mercado@wvsu.edu.ph</a>
+          <dl class="facts">
+            <dt>Status</dt><dd>Open for new projects</dd>
+            <dt>Time zone</dt><dd>UTC+8, Iloilo</dd>
+          </dl>
+        </div>
+        <div class="beacon" aria-hidden="true"><i></i></div>
+      </div>
+      <p class="copyright">&copy; <span id="year"></span> John Israel Mercado</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

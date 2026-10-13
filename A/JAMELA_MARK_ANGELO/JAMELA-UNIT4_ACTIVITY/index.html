@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CICT Student Portfolio | Vintage Style</title>
+  
+  <!-- Vintage Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Playfair+Display:wght@700&family=VT323&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Paper Container -->
+  <div class="portfolio-card">
+    
+    <!-- Vintage Header -->
+    <header class="header">
+      <div class="confidential-stamp">CONFIDENTIAL</div>
+      <p class="cict-label">COLLEGE OF INFORMATION & COMMUNICATIONS TECHNOLOGY</p>
+      <h1 class="student-name">Mark Angelo A. Jamela</h1>
+      <p class="degree">BS IN INFORMATION TECHNOLOGY &bull; CLASS OF '28</p>
+      <div class="double-line"></div>
+      
+      <!-- Navigation Links -->
+      <nav class="vintage-nav">
+        <a href="#about">[ DOSSIER ]</a>
+        <a href="#skills">[ SKILLS ]</a>
+        <a href="#projects">[ PROJECTS ]</a>
+        <a href="#contact">[ CONTACT ]</a>
+      </nav>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+      <h2 class="section-heading">I. STUDENT DOSSIER</h2>
+      <div class="dossier-container">
+        <div class="photo-frame">
+          <div class="photo-placeholder">
+            <img src="profile.png" alt="Profile Photo" class="dossier-img">
+            <span class="photo-label">ID: 2025M1125</span>
+          </div>
+        </div>
+        <div class="dossier-info">
+          <p><strong>NAME:</strong> Mark Angelo A. Jamela</p>
+          <p><strong>MAJOR:</strong> Cybersecurity</p>
+          <p><strong>DEPARTMENT:</strong> CICT</p>
+          <p><strong>CONTACT NUMBER:</strong> 0938 824 4039</p>
+          <p><strong>GMAIL:</strong> markangelojamela101@gmail.com</p>
+          <p class="bio">
+            Passionate IT student focused on developing efficient web applications and systems.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+      <h2 class="section-heading">II. TECHNICAL COMPETENCIES</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>PROGRAMMING</h3>
+          <ul>
+            <li>HTML5 / CSS <span>95%</span></li>
+            <li>JavaScript <span>70%</span></li>
+            <li>Java / C++ <span>70%</span></li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3>TOOLS & CONCEPTS</h3>
+          <ul>
+            <li>Git & GitHub <span>80%</span></li>
+            <li>Terminal/CMD <span>80%</span></li>
+            <li>Database Design <span>70%</span></li>
+            <li>Networking <span>85%</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+      <h2 class="section-heading">III. SCHEMATICS & PROJECTS</h2>
+      <div class="projects-grid">
+        
+        <div class="blueprint-card">
+          <span class="blueprint-no">SCHEMATIC #01</span>
+          <h3>Online Notes Web Application</h3>
+          <p>A web application for making and managing notes.</p>
+          <span class="tech-tag">HTML &bull; CSS &bull; sass</span>
+
+          <div class="card-action">
+            <a href="https://onlinenotes101.netlify.app/" target="_blank" rel="noopener noreferrer" class="blueprint-link">[ View Website ]</a>
+          </div>
+        </div>
+
+        <div class="blueprint-card">
+          <span class="blueprint-no">SCHEMATIC #02</span>
+          <h3>Travel.ph</h3>
+          <p>A travel booking website for travelling enthusiast looking for a vacation spot in the Philippines.</p>
+          <span class="tech-tag">HTML &bull; JS &bull; Bootstrap &bull; CSS</span>
+
+          <div class="card-action">
+            <a href="https://travelphjamela.netlify.app/" target="_blank" rel="noopener noreferrer" class="blueprint-link">[ View Website ]</a>
+          </div>
+        </div>
+
+        <div class="blueprint-card">
+          <span class="blueprint-no">SCHEMATIC #03</span>
+          <h3>Online Scheduler</h3>
+          <p>A web application for scheduling and managing appointments.</p>
+          <span class="tech-tag">HTML &bull; SPA Architecture &bull; CSR</span>
+
+          <div class="card-action">
+            <a href="https://jamelascheduler.netlify.app/" target="_blank" rel="noopener noreferrer" class="blueprint-link">[ View Website ]</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact" class="section">
+      <h2 class="section-heading">V. TRANSMIT TELEGRAM</h2>
+      <form id="contactForm" class="contact-form">
+        <div class="form-row">
+          <input type="text" id="name" placeholder="YOUR NAME" required>
+          <input type="email" id="email" placeholder="YOUR EMAIL" required>
+        </div>
+        <textarea id="message" rows="4" placeholder="TYPE YOUR MESSAGE HERE..." required></textarea>
+        <button type="submit" class="submit-btn">DISPATCH MESSAGE</button>
+      </form>
+      <div id="formStatus" class="status-msg"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="single-line"></div>
+      <p>&copy; 2026 MARK ANGELO JAMELA &bull; CICT STUDENT PORTFOLIO</p>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

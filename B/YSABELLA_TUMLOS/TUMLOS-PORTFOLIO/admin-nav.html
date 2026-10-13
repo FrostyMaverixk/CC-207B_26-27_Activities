@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Nav Component</title>
+  <style>
+    /* ── SHARED SIDEBAR + TOPBAR STYLES ── */
+    :root{
+      --ivory:#faf8f3;--parchment:#f4f0e6;--warm-white:#fffefb;
+      --blush-pale:#f8eee8;--blush:#efcfc0;--rose:#5C0316;--rose-deep:#3d0110;
+      --rose-muted:#a06070;--sage:#6b7d60;--sage-light:#e8f0e2;
+      --ink:#1e1a15;--ink-soft:#3d3730;--mocha:#7a6555;--mocha-light:#b8a899;--gold:#c4975a;
+      --fd:'Playfair Display',Georgia,serif;--fb:'Jost',sans-serif;--sidebar:260px;
+    }
+    html,body{height:100%;}
+    body{font-family:var(--fb);background:var(--ivory);color:var(--ink);display:flex;min-height:100vh;font-size:14px;margin:0;}
+
+    /* SIDEBAR */
+    .sidebar{width:260px;flex-shrink:0;background:#7a1530;display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;overflow:hidden;}
+    .sidebar-brand{padding:24px 22px 20px;border-bottom:1px solid rgba(255,255,255,.09);flex-shrink:0;}
+    .sidebar-logo{font-family:var(--fd);font-size:16px;font-weight:600;color:#fff;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;display:block;line-height:1.2;}
+    .sidebar-sub{font-size:9px;font-weight:200;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px;}
+    .sidebar-nav{flex:1;padding:8px 0;overflow-y:auto;overflow-x:hidden;}
+    .sidebar-nav::-webkit-scrollbar{width:3px;}
+    .sidebar-nav::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:2px;}
+    .sidebar-section-label{font-size:9px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.35);padding:18px 20px 7px;white-space:nowrap;}
+    .sidebar-link{display:flex;align-items:center;gap:11px;padding:10px 20px;font-size:12.5px;font-weight:300;letter-spacing:.04em;color:rgba(255,255,255,.78);text-decoration:none;transition:background .18s,color .18s,border-left-color .18s;border-left:2px solid transparent;white-space:nowrap;min-height:40px;}
+    .sidebar-link span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    .sidebar-link svg{flex-shrink:0;width:15px;height:15px;opacity:.55;transition:opacity .18s;}
+    .sidebar-link:hover,.sidebar-link.active{background:rgba(255,255,255,.07);color:#fff;border-left-color:#f2c0c8;}
+    .sidebar-link:hover svg,.sidebar-link.active svg{opacity:1;}
+    .sidebar-footer{padding:16px 20px;border-top:1px solid rgba(255,255,255,.09);flex-shrink:0;}
+    .sidebar-user{display:flex;align-items:center;gap:10px;}
+    .sidebar-avatar{width:32px;height:32px;border-radius:50%;background:rgba(242,192,200,.22);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:13px;font-weight:600;color:#fff;flex-shrink:0;border:1px solid rgba(255,255,255,.18);}
+    .sidebar-user-name{font-size:12px;font-weight:400;color:#fff;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .sidebar-user-role{font-size:10px;font-weight:200;color:rgba(255,255,255,.45);letter-spacing:.04em;}
+    .sidebar-logout{margin-top:12px;width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.45);font-family:var(--fb);font-size:10px;letter-spacing:.15em;text-transform:uppercase;padding:9px;cursor:pointer;transition:background .2s,color .2s;}
+    .sidebar-logout:hover{background:rgba(255,255,255,.12);color:#fff;}
+
+    /* TOPBAR */
+    .main{margin-left:260px;flex:1;display:flex;flex-direction:column;min-width:0;}
+    .topbar{background:var(--warm-white);border-bottom:1px solid rgba(0,0,0,.07);padding:0 36px;height:72px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;gap:16px;}
+    .topbar-left{min-width:0;flex:1;}
+    .topbar-left h1{font-family:var(--fd);font-size:20px;font-weight:400;color:var(--ink);white-space:nowrap;}
+    .topbar-left p{font-size:11px;font-weight:200;color:var(--mocha-light);margin-top:1px;white-space:nowrap;}
+    .topbar-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+    .topbar-date{font-size:11px;font-weight:200;color:var(--mocha-light);letter-spacing:.04em;white-space:nowrap;}
+    .topbar-bell{width:34px;height:34px;border:1px solid rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--mocha);transition:border-color .2s,color .2s;position:relative;flex-shrink:0;}
+    .topbar-bell:hover{border-color:var(--rose-muted);color:var(--rose);}
+    .notif-dot{position:absolute;top:7px;right:7px;width:6px;height:6px;background:var(--rose);border-radius:50%;}
+    .topbar-avatar{width:34px;height:34px;border-radius:50%;background:var(--rose);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:14px;font-weight:500;color:#fff;cursor:pointer;flex-shrink:0;}
+    .btn-visit{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:none;border:1px solid rgba(0,0,0,.12);color:var(--mocha);font-family:var(--fb);font-size:10px;font-weight:300;letter-spacing:.13em;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:all .2s;flex-shrink:0;white-space:nowrap;}
+    .btn-visit:hover{border-color:var(--rose-muted);color:var(--rose);}
+  /* ── Animation additions ── */
+  @keyframes ripple{0%{transform:scale(0);opacity:.35}100%{transform:scale(2.5);opacity:0}}
+  @keyframes toastSlide{from{opacity:0;transform:translateX(120px)}to{opacity:1;transform:translateX(0)}}
+  @keyframes toastOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(120px)}}
+  @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(1.35)}}
+  @keyframes sidebarItemIn{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:translateX(0)}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes scaleIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+  @keyframes countUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes barGrow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+
+  #page-transition-veil{position:fixed;inset:0;background:#fffefb;z-index:9999;pointer-events:none;opacity:0;transition:opacity .28s ease;}
+  #page-transition-veil.leaving{opacity:1;pointer-events:auto;}
+  #admin-toast{position:fixed;bottom:28px;right:28px;background:#1e1a15;color:#fff;font-family:var(--fb);font-size:12px;font-weight:300;letter-spacing:.04em;padding:12px 20px;z-index:10000;display:none;align-items:center;gap:10px;border-left:3px solid #5C0316;box-shadow:0 8px 32px rgba(30,26,21,.22);max-width:320px;}
+  #admin-toast.show{display:flex;animation:toastSlide .38s cubic-bezier(.16,1,.3,1) both;}
+  #admin-toast.out{animation:toastOut .3s ease both;}
+  .notif-dot{animation:pulse-dot 2.2s ease-in-out infinite;}
+  .sidebar-link{animation:sidebarItemIn .36s cubic-bezier(.16,1,.3,1) both;transition:background .22s,color .22s,border-left-color .22s,transform .22s cubic-bezier(.34,1.56,.64,1);}
+  .sidebar-link:hover{transform:translateX(4px);}
+  .sidebar{animation:none;}
+  .topbar.scrolled{box-shadow:0 4px 24px rgba(30,26,21,.09);}
+  </style>
+</head>
+<body>
+
+<script>
+// ── PAGE CONFIGS ──
+const NAV_PAGES = {
+  'admin-dashboard.html': 'dashboard',
+  'admin-orders.html':    'orders',
+  'admin-payments.html':  'payments',
+  'admin-invoices.html':  'invoices',
+  'admin-products.html':  'products',
+  'admin-inventory.html': 'inventory',
+  'admin-reports.html':   'reports',
+};
+
+const NAV_ITEMS = [
+  { section: 'Main' },
+  { href: 'admin-dashboard.html', label: 'Dashboard', key: 'dashboard', icon: '<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>' },
+  { href: 'admin-orders.html',    label: 'Orders',    key: 'orders',    icon: '<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>' },
+  { href: 'admin-payments.html',  label: 'Payments',  key: 'payments',  icon: '<rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/>' },
+  { href: 'admin-invoices.html',  label: 'Invoices',  key: 'invoices',  icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>' },
+  { section: 'Catalogue' },
+  { href: 'admin-products.html',  label: 'Products',  key: 'products',  icon: '<path d="M12 2C7 2 5 7 5 10c0 4 3.5 7 7 10 3.5-3 7-6 7-10 0-3-2-8-7-8z"/>' },
+  { href: 'admin-inventory.html', label: 'Inventory', key: 'inventory', icon: '<line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>' },
+  { section: 'Reports' },
+  { href: 'admin-reports.html',   label: 'Sales Reports', key: 'reports', icon: '<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>' },
+];
+
+function buildAdminNav() {
+  // Detect current page
+  const page = window.location.pathname.split('/').pop() || 'admin-dashboard.html';
+  const activeKey = NAV_PAGES[page] || '';
+
+  // Build sidebar HTML
+  const navItems = NAV_ITEMS.map(item => {
+    if (item.section) {
+      return `<div class="sidebar-section-label">${item.section}</div>`;
+    }
+    const isActive = item.key === activeKey ? ' active' : '';
+    return `<a href="${item.href}" class="sidebar-link${isActive}">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">${item.icon}</svg>
+      ${item.label}
+    </a>`;
+  }).join('');
+
+  const sidebarHTML = `
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <a href="admin-dashboard.html" class="sidebar-logo">Blume Daily</a>
+      <div class="sidebar-sub">Admin Portal</div>
+    </div>
+    <nav class="sidebar-nav">
+      ${navItems}
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar">B</div>
+        <div>
+          <div class="sidebar-user-name">Brent Barrientos</div>
+          <div class="sidebar-user-role">Owner &amp; Admin</div>
+        </div>
+      </div>
+      <button class="sidebar-logout" onclick="logout()">Sign Out</button>
+    </div>
+  </aside>`;
+
+  // Inject sidebar before .main
+  const main = document.querySelector('.main');
+  if (main) {
+    main.insertAdjacentHTML('beforebegin', sidebarHTML);
+  }
+}
+
+function logout() {
+  window.location.href = 'admin-login.html';
+}
+
+// Run after DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+  buildAdminNav();
+  initAnimations();
+});
+
+function initAnimations() {
+  var veil = document.createElement('div');
+  veil.id = 'page-transition-veil';
+  document.body.appendChild(veil);
+
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('a[href]');
+    if (!link) return;
+    var href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('javascript') || link.getAttribute('target') === '_blank') return;
+    if (!href.includes('admin-') && href !== 'admin-login.html') return;
+    e.preventDefault();
+    veil.classList.add('leaving');
+    setTimeout(function() { window.location.href = href; }, 260);
+  });
+
+  var topbar = document.querySelector('.topbar');
+  if (topbar) window.addEventListener('scroll', function() {
+    topbar.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive: true });
+
+  window.adminToast = function(msg, duration) {
+    duration = duration || 2800;
+    var toast = document.getElementById('admin-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'admin-toast';
+      toast.innerHTML = '<span id="admin-toast-msg"></span>';
+      document.body.appendChild(toast);
+    }
+    document.getElementById('admin-toast-msg').textContent = msg;
+    toast.classList.remove('out');
+    toast.style.display = 'flex';
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(function() {
+      toast.classList.add('out');
+      setTimeout(function() { toast.style.display = 'none'; }, 320);
+    }, duration);
+  };
+
+  document.querySelectorAll('.tbl tbody tr').forEach(function(row, i) {
+    row.style.opacity = '0';
+    row.style.transform = 'translateY(10px)';
+    row.style.transition = 'opacity .32s ease, transform .32s ease';
+    setTimeout(function() { row.style.opacity = ''; row.style.transform = ''; }, 80 + i * 38);
+  });
+
+  document.querySelectorAll('.btn-primary, .tbl-btn, .page-btn, .filter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      var r = document.createElement('span');
+      var rect = btn.getBoundingClientRect();
+      var size = Math.max(rect.width, rect.height) * 1.6;
+      r.style.cssText = 'position:absolute;width:'+size+'px;height:'+size+'px;left:'+(e.clientX-rect.left-size/2)+'px;top:'+(e.clientY-rect.top-size/2)+'px;border-radius:50%;background:rgba(255,255,255,.28);pointer-events:none;z-index:9;animation:ripple .55s ease-out forwards;';
+      if (getComputedStyle(btn).position === 'static') btn.style.position = 'relative';
+      btn.style.overflow = 'hidden';
+      btn.appendChild(r);
+      setTimeout(function() { r.remove(); }, 600);
+    });
+  });
+
+  document.querySelectorAll('.filter-bar').forEach(function(bar) {
+    bar.querySelectorAll('.filter-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        bar.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+      });
+    });
+  });
+
+  document.querySelectorAll('.s-card-value').forEach(function(el) {
+    var raw = el.textContent.trim();
+    var match = raw.match(/^(₱?)([\d,]+)/);
+    if (!match) return;
+    var prefix = match[1];
+    var target = parseInt(match[2].replace(/,/g,''), 10);
+    if (!target || target > 99999) return;
+    var start = performance.now();
+    var fmt = function(n) { return prefix + n.toLocaleString(); };
+    el.textContent = fmt(0);
+    function step(now) {
+      var p = Math.min((now - start) / 900, 1);
+      var ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(Math.round(ease * target));
+      if (p < 1) requestAnimationFrame(step);
+    }
+    setTimeout(function() { requestAnimationFrame(step); }, 350);
+  });
+}
+</script>
+
+</body>
+</html>

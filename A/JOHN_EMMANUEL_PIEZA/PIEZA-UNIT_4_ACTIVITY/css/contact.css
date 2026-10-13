@@ -1,0 +1,236 @@
+.contact {
+  position: relative;
+  overflow: hidden;
+  font-family: "Dx", Arial, sans-serif;
+  color: var(--white);
+  padding: 6rem var(--pad) 2rem;
+  background:
+    radial-gradient(ellipse 70% 60% at 85% 0, #3f8a57 0, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 0 100%, #1f4a2d 0, transparent 70%),
+    var(--green);
+}
+
+.contact::after {
+  content: "PIEZA";
+  position: absolute;
+  right: -1vw;
+  bottom: -.22em;
+  font-family: "Reserg", "Arial Black", sans-serif;
+  font-size: 24vw;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, .14);
+  pointer-events: none;
+  user-select: none;
+}
+
+.contact > * {
+  position: relative;
+  z-index: 1;
+}
+
+.contact-hero {
+  margin-bottom: 3.5rem;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .45rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, .4);
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--white);
+  animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: .25;
+    transform: scale(1.5);
+  }
+}
+
+.contact h2 {
+  font-family: "Dx", Arial, sans-serif;
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  font-weight: normal;
+  line-height: 1;
+}
+
+.contact h2 span {
+  color: var(--black);
+}
+
+.contact-lead {
+  margin-top: 1.2rem;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  max-width: 30rem;
+  line-height: 1.5;
+  opacity: .85;
+}
+
+.mail-big {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.1rem;
+  margin-top: 1.8rem;
+  padding: .5rem .5rem .5rem 1.6rem;
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--black);
+  font-size: clamp(1rem, 2.2vw, 1.4rem);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .25);
+  transition: background .3s, color .3s, transform .3s;
+}
+
+.mail-big i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(40px, 4vw, 52px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--green);
+  color: var(--white);
+  font-style: normal;
+  font-size: 1.3rem;
+  transition: transform .3s, background .3s;
+}
+
+.mail-big:hover {
+  background: var(--black);
+  color: var(--white);
+  transform: translateY(-4px);
+}
+
+.mail-big:hover i {
+  transform: rotate(45deg);
+  background: var(--white);
+  color: var(--black);
+}
+
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+}
+
+.c-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .6rem;
+  padding: 1.8rem;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, .1);
+  border: 1px solid rgba(255, 255, 255, .22);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  font-size: 1.05rem;
+  transition: transform .3s, background .3s;
+}
+
+.c-card:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, .17);
+}
+
+.c-card h4 {
+  font-weight: normal;
+  font-size: .8rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: .7;
+  margin-bottom: .4rem;
+}
+
+.c-sub {
+  font-size: .85rem;
+  opacity: .75;
+}
+
+.c-links {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+
+.c-card a:not(.icon-btn):hover {
+  text-decoration: underline;
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+}
+
+.contact .icon-btn:hover,
+.contact .icon-btn:active {
+  background: var(--black);
+  color: var(--white);
+}
+
+.contact-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 5rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(255, 255, 255, .35);
+  font-size: .9rem;
+}
+
+.foot-logo {
+  font-size: 1.8rem;
+}
+
+.foot-logo span {
+  color: var(--black);
+}
+
+.to-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, .6);
+  font-size: 1.2rem;
+  transition: background .3s, color .3s, transform .3s;
+}
+
+.to-top:hover {
+  background: var(--white);
+  color: var(--green);
+  transform: translateY(-4px);
+}
+
+@media (max-width: 960px) {
+  .contact-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .contact-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .mail-big {
+    padding-left: 1.2rem;
+  }
+}

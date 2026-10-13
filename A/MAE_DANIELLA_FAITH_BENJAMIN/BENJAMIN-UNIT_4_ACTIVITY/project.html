@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Project details and screenshots from Faith Benjamin's portfolio.">
+    <title>Project | Faith Benjamin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/projects-list.js" defer></script>
+    <script src="js/script.js" defer></script>
+</head>
+
+<body class="project-page">
+    <header class="site-header">
+        <nav aria-label="Main navigation" id="main-nav">
+            <ul class="nav-links">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#education">Education</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a class="active" href="index.html#projects" aria-current="page">Projects</a></li>
+            </ul>
+        </nav>
+        <a href="index.html#home" class="logo"><span class="dots" aria-hidden="true">···</span>Faith Benjamin</a>
+        <div class="header-actions">
+            <a class="btn btn-sm" href="mailto:mdfcbenjamin@gmail.com">Contact</a>
+            <button class="icon-btn menu-btn" id="menu-toggle" type="button" aria-expanded="false"
+                aria-controls="main-nav">Menu</button>
+        </div>
+    </header>
+
+    <main class="project-detail-page">
+        <article class="case-study project-detail-content" id="case-study" aria-live="polite">
+            <p class="project-loading">Loading project...</p>
+        </article>
+    </main>
+
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot viewer" hidden>
+        <button class="lb-btn lb-close" id="lb-close" type="button" aria-label="Close screenshot viewer">Close</button>
+        <button class="lb-btn lb-prev" id="lb-prev" type="button" aria-label="Previous screenshot">Prev</button>
+        <div class="lb-body">
+            <img id="lb-img" alt="">
+            <p id="lb-cap"></p>
+        </div>
+        <button class="lb-btn lb-next" id="lb-next" type="button" aria-label="Next screenshot">Next</button>
+    </div>
+
+    <footer class="site-footer">
+        <p>Faith Benjamin: Portfolio, 2026</p>
+        <p class="foot-links"><a href="mailto:mdfcbenjamin@gmail.com">Email</a> &middot; <a
+                href="https://github.com/faithbn" target="_blank" rel="noopener">GitHub</a> &middot; <a
+                href="https://www.linkedin.com/in/mae-daniella-faith-benjamin" target="_blank"
+                rel="noopener">LinkedIn</a></p>
+        <span class="mark" aria-hidden="true">FB</span>
+    </footer>
+</body>
+
+</html>
