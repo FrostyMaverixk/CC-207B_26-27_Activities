@@ -1,0 +1,103 @@
+.experience {
+  padding: 100px 2rem;
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.inner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.timeline {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.item {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 0;
+}
+
+/* ── Dot column ── */
+.dotCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dot {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.35);
+  flex-shrink: 0;
+}
+
+.dotCurrent {
+  background: rgba(124, 58, 237, 0.2);
+  border-color: rgba(167, 139, 250, 0.45);
+  color: #a78bfa;
+}
+
+.line {
+  flex: 1;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.07);
+  margin: 6px 0;
+  min-height: 24px;
+}
+
+/* ── Content ── */
+.content {
+  padding: 8px 0 36px;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 9px;
+  font-family: 'Space Mono', monospace;
+  color: #a78bfa;
+  background: rgba(124, 58, 237, 0.15);
+  border: 1px solid rgba(167, 139, 250, 0.25);
+  border-radius: 4px;
+  padding: 2px 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-family: 'Syne', sans-serif;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.company {
+  font-family: 'Space Mono', monospace;
+  color: #a78bfa;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.desc {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+  line-height: 1.75;
+}

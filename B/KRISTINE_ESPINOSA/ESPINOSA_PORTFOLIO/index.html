@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kristine Espinosa | Portfolio</title>
+  <meta name="description" content="Portfolio of Kristine Espinosa, BSIT student at West Visayas State University." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="nav">
+    <a href="#home" class="logo">KE<span>.</span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">&#9776;</button>
+    <nav id="navLinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <p class="eyebrow">Hello, I'm</p>
+      <h1>Kristine Espinosa</h1>
+      <p class="typing">I am a <span id="typed"></span><span class="cursor">|</span></p>
+      <p class="lead">
+        BSIT student at West Visayas State University who enjoys building things
+        for the web and understanding how networks and software work.
+      </p>
+      <div class="cta">
+        <a href="#projects" class="btn primary">View my work</a>
+        <a href="#contact" class="btn ghost">Contact me</a>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section reveal">
+      <h2>About Me</h2>
+      <div class="about-grid">
+        <div class="avatar" aria-hidden="true">KE</div>
+        <div>
+          <p>
+            I'm a third-year Bachelor of Science in Information Technology student
+            at <strong>West Visayas State University, College of ICT</strong>
+            (Section BSIT 3-B). I like turning ideas into working projects, from
+            designing small networks to building user-friendly interfaces.
+          </p>
+          <p>
+            I'm especially interested in application development, human-computer
+            interaction, networking, and research. I'm always learning, and this
+            portfolio is a snapshot of where I am right now.
+          </p>
+          <ul class="facts">
+            <li><span>School</span> West Visayas State University</li>
+            <li><span>Program</span> BSIT, College of ICT</li>
+            <li><span>Year</span> 3rd Year, Section 3-B</li>
+            <li><span>Location</span> Iloilo, Philippines</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section reveal">
+      <h2>Skills</h2>
+      <div class="skills">
+        <div class="skill">
+          <div class="skill-top"><span>HTML</span><span>85%</span></div>
+          <div class="bar"><div class="fill" data-level="85"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-top"><span>CSS</span><span>80%</span></div>
+          <div class="bar"><div class="fill" data-level="80"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-top"><span>JavaScript</span><span>70%</span></div>
+          <div class="bar"><div class="fill" data-level="70"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-top"><span>Python</span><span>70%</span></div>
+          <div class="bar"><div class="fill" data-level="70"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-top"><span>Git &amp; GitHub</span><span>65%</span></div>
+          <div class="bar"><div class="fill" data-level="65"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-top"><span>Networking (Cisco Packet Tracer)</span><span>75%</span></div>
+          <div class="bar"><div class="fill" data-level="75"></div></div>
+        </div>
+      </div>
+      <div class="tags">
+        <span>UI/UX Design</span>
+        <span>Prototyping</span>
+        <span>Research Methods</span>
+        <span>Project Management</span>
+        <span>Teamwork</span>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section reveal">
+      <h2>Projects</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Small Network Design</h3>
+          <p>
+            Designed a small network using VLSM subnetting, built the topology in
+            Cisco Packet Tracer, and documented it in a final report.
+          </p>
+          <div class="tags small"><span>Networking</span><span>VLSM</span><span>Packet Tracer</span></div>
+        </article>
+        <article class="card">
+          <h3>WLAN Configuration Labs</h3>
+          <p>
+            Configured and tested wireless LAN setups in Packet Tracer, with
+            worksheets documenting each activity.
+          </p>
+          <div class="tags small"><span>WLAN</span><span>Cisco</span></div>
+        </article>
+        <article class="card">
+          <h3>UX Prototypes</h3>
+          <p>
+            Created personas, scenarios, and prototypes for HCI coursework, then
+            evaluated them for usability.
+          </p>
+          <div class="tags small"><span>HCI</span><span>Prototyping</span><span>Design Thinking</span></div>
+        </article>
+        <article class="card">
+          <h3>Design Science Research Capstone</h3>
+          <p>
+            A research-based capstone project developed step by step using the
+            Design Science Research approach.
+          </p>
+          <div class="tags small"><span>Research</span><span>Capstone</span></div>
+        </article>
+      </div>
+      <p class="note">More projects coming soon. Check my GitHub for updates.</p>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section reveal">
+      <h2>Contact</h2>
+      <div class="contact-grid">
+        <div>
+          <p>Want to work together or just say hi? Send me a message.</p>
+          <ul class="links">
+            <li><a href="mailto:espinosakristine27@gmail.com">espinosakristine27@gmail.com</a></li>
+            <li><a href="https://github.com/Kristinesan" target="_blank" rel="noopener">github.com/Kristinesan</a></li>
+          </ul>
+        </div>
+        <form id="contactForm" novalidate>
+          <label for="name">Name</label>
+          <input id="name" type="text" placeholder="Your name" required />
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="you@example.com" required />
+          <label for="message">Message</label>
+          <textarea id="message" rows="4" placeholder="Your message" required></textarea>
+          <button type="submit" class="btn primary">Send message</button>
+          <p id="formStatus" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Kristine Espinosa. Built with HTML, CSS, and JavaScript.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

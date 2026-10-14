@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>John Emmanuel Pieza</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/about.css">
+  <link rel="stylesheet" href="css/projects.css">
+  <link rel="stylesheet" href="css/contact.css">
+</head>
+
+<body>
+
+<header class="header">
+  <a href="#home" class="logo">Pieza<span class="dot">.</span></a>
+
+  <nav class="nav" id="nav">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <button
+    class="burger"
+    id="burger"
+    aria-label="Open menu"
+    aria-expanded="false"
+    aria-controls="nav"
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
+
+<section id="home" class="home">
+  <div class="home-photo"></div>
+
+  <div class="home-text">
+    <h1 class="big-title">
+      <span>John Emmanuel</span>
+      <span>Pieza</span>
+    </h1>
+
+    <p>
+      Designer and frontend developer creating clean designs and engaging
+      digital experiences.
+    </p>
+
+    <div class="home-buttons">
+      <a href="#contact" class="btn">Contact Me</a>
+      <a href="#projects" class="btn">View Projects</a>
+    </div>
+
+    <div class="home-buttons">
+      <button
+        class="btn btn-outline"
+        id="cvOpen"
+        data-cv="assets/cv/resume.pdf"
+      >
+        View CV
+      </button>
+    </div>
+  </div>
+</section>
+
+<div class="cv-modal" id="cvModal">
+  <div class="cv-box">
+    <div class="cv-bar">
+      <a class="btn" href="assets/cv/resume.pdf" download>
+        Download
+      </a>
+
+      <button class="btn" id="cvClose">
+        Close
+      </button>
+    </div>
+
+    <iframe id="cvFrame" title="CV preview"></iframe>
+  </div>
+</div>
+
+<section id="about" class="about">
+  <h2 class="big-title reveal">
+    About Me<span class="dot">.</span>
+  </h2>
+
+  <div class="about-grid">
+    <div class="about-photo" id="aboutPhoto">
+      <div class="photo-frame">
+        <img
+          src="assets/images/Group%201.png"
+          alt="John Emmanuel Pieza"
+        >
+        <span class="photo-glow"></span>
+      </div>
+
+      <span class="chip chip-a">Designer</span>
+      <span class="chip chip-b">Frontend Developer</span>
+      <span class="chip chip-c">Iloilo, PH</span>
+    </div>
+
+    <div class="about-content reveal">
+      <p class="about-intro">
+        I am a creative designer and frontend developer passionate about
+        turning ideas into engaging digital experiences. I specialize in
+        Figma, Photoshop, and Illustrator for UI/UX and visual design, while
+        also building responsive and interactive websites using HTML, CSS,
+        JavaScript, React, and TypeScript.
+      </p>
+
+      <div class="stack-wrap">
+        <div class="tabs">
+          <button class="tab active" data-filter="all">All</button>
+          <button class="tab" data-filter="design">Design</button>
+          <button class="tab" data-filter="code">Code</button>
+        </div>
+
+        <div class="stack" id="stack"></div>
+
+        <p class="stack-note" id="stackNote"></p>
+      </div>
+
+      <a href="#projects" class="btn">
+        View Projects
+      </a>
+
+      <div class="marquee">
+        <div class="marquee-track" id="marqueeTrack"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="projects">
+  <h2 class="reveal">
+    Projects<span class="dot">.</span>
+  </h2>
+
+  <p class="projects-sub reveal">
+    A few things I have designed and built.
+  </p>
+
+  <div class="projects-head">
+    <div
+      class="proj-toggle"
+      role="tablist"
+      aria-label="Project type"
+    >
+      <button
+        class="proj-tab active"
+        role="tab"
+        aria-selected="true"
+        data-filter="design"
+        type="button"
+      >
+        Designs
+      </button>
+
+      <button
+        class="proj-tab"
+        role="tab"
+        aria-selected="false"
+        data-filter="code"
+        type="button"
+      >
+        Code
+      </button>
+    </div>
+
+    <div class="slider-btns">
+      <button class="btn" id="prev" aria-label="Previous">
+        &larr;
+      </button>
+
+      <button class="btn" id="next" aria-label="Next">
+        &rarr;
+      </button>
+    </div>
+  </div>
+
+  <div class="slider" id="slider">
+
+    <article
+      class="card"
+      data-cat="design"
+      data-role="UI/UX Designer"
+      data-year="2026"
+      tabindex="0"
+    >
+      <div
+        class="card-media"
+        style="--c1:#306C42;--c2:#0b2b17"
+      >
+        <img
+          src="assets/images/Group 17.png"
+          alt="John Emmanuel Pieza"
+        >
+
+        <span class="card-type">Figma</span>
+        <span class="card-num">01</span>
+      </div>
+
+      <div class="card-body">
+        <h4>Meditech Mobile Prototype</h4>
+
+        <p>
+          A mobile prototype for a pharmacy tracking app.
+        </p>
+
+        <ul class="tags">
+          <li>Figma</li>
+          <li>UI/UX</li>
+          <li>Prototype</li>
+          <li>Mobile</li>
+        </ul>
+      </div>
+
+      <div class="card-hover">
+        <span class="hover-kicker">Figma</span>
+
+        <h4>Meditech Mobile Prototype</h4>
+
+        <p class="long">
+          A mobile prototype for Meditech, a pharmacy tracking app.
+          I mapped the key flows, designed the screens and components
+          in Figma, and wired them into a clickable prototype to test
+          how the app feels in use.
+        </p>
+
+        <div class="hover-actions">
+          <button class="btn view-more" type="button">
+            View more <span aria-hidden="true">&rarr;</span>
+          </button>
+
+          <a
+            class="btn btn-outline proj-link"
+            href="https://www.figma.com/design/gQPHCJGw2WJDTqutNDMUA8/MediTech---Customer?node-id=0-1&t=Z6nRSP9sKbwygzZP-1"
+            target="_blank"
+            rel="noopener"
+          >
+            Figma <span aria-hidden="true">&nearr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <article
+      class="card"
+      data-cat="design"
+      data-role="UI/UX Designer"
+      data-year="2026"
+      tabindex="0"
+    >
+      <div
+        class="card-media"
+        style="--c1:#444;--c2:#111"
+      >
+        <img
+          src="assets/images/Group 18.PNG"
+          alt="John Emmanuel Pieza"
+        >
+
+        <span class="card-type">Figma</span>
+        <span class="card-num">02</span>
+      </div>
+
+      <div class="card-body">
+        <h4>Dispatched</h4>
+
+        <p>
+          A food delivery service app design.
+        </p>
+
+        <ul class="tags">
+          <li>Figma</li>
+          <li>UI/UX</li>
+          <li>Web</li>
+        </ul>
+      </div>
+
+      <div class="card-hover">
+        <span class="hover-kicker">Figma</span>
+
+        <h4>Dispatched</h4>
+
+        <p class="long">
+          Dispatched is a food delivery service concept. I designed
+          the ordering experience and screens in Figma with a
+          consistent component system and a clear, easy-to-follow flow.
+        </p>
+
+        <div class="hover-actions">
+          <button class="btn view-more" type="button">
+            View more <span aria-hidden="true">&rarr;</span>
+          </button>
+
+          <a
+            class="btn btn-outline proj-link"
+            href="https://www.figma.com/design/secYbThHMMDnUZE1zr3iQ7/Dispatched?node-id=0-1&t=qb9ehZvE0K5k4CAZ-1"
+            target="_blank"
+            rel="noopener"
+          >
+            Figma <span aria-hidden="true">&nearr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <article
+      class="card"
+      data-cat="design"
+      data-role="Brand Designer"
+      data-year="2026"
+      tabindex="0"
+    >
+      <div
+        class="card-media"
+        style="--c1:#5a8f6a;--c2:#1b3a25"
+      >
+        <img
+          src="assets/images/Group 19.png"
+          alt="John Emmanuel Pieza"
+        >
+
+        <span class="card-type">Figma + Photoshop</span>
+        <span class="card-num">03</span>
+      </div>
+
+      <div class="card-body">
+        <h4>Trading Card Branding</h4>
+
+        <p>
+          Branding and card design for a trading card concept.
+        </p>
+
+        <ul class="tags">
+          <li>Figma</li>
+          <li>Photoshop</li>
+          <li>Branding</li>
+        </ul>
+      </div>
+
+      <div class="card-hover">
+        <span class="hover-kicker">Figma + Photoshop</span>
+
+        <h4>Trading Card Branding</h4>
+
+        <p class="long">
+          A branding project for a trading card concept. I built the
+          visual identity and card layouts in Figma and used Photoshop
+          for the textures, effects and finishing touches.
+        </p>
+
+        <div class="hover-actions">
+          <button class="btn view-more" type="button">
+            View more <span aria-hidden="true">&rarr;</span>
+          </button>
+
+          <a
+            class="btn btn-outline proj-link"
+            href="https://www.figma.com/design/ApTKBvMuXH27sTW8fmx9Yr/Rookie-Card?node-id=0-1&t=E3LcExEH19VywKZd-1"
+            target="_blank"
+            rel="noopener"
+          >
+            Figma <span aria-hidden="true">&nearr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <article
+      class="card"
+      data-cat="design"
+      data-role="Visual Designer"
+      data-year="2026"
+      tabindex="0"
+    >
+      <div
+        class="card-media"
+        style="--c1:#2d2d2d;--c2:#306C42"
+      >
+        <img
+          src="assets/images/Group 20.png"
+          alt="John Emmanuel Pieza"
+        >
+
+        <span class="card-type">Photoshop</span>
+        <span class="card-num">04</span>
+      </div>
+
+      <div class="card-body">
+        <h4>Nike Air Uptempo Ad Poster</h4>
+
+        <p>
+          A bold poster built around a Nike Air shoe.
+        </p>
+
+        <ul class="tags">
+          <li>Photoshop</li>
+          <li>Advertisement Poster</li>
+        </ul>
+      </div>
+
+      <div class="card-hover">
+        <span class="hover-kicker">Photoshop</span>
+
+        <h4>Nike Air Shoe Poster</h4>
+
+        <p class="long">
+          A poster design for a Nike Air shoe. I focused on layering,
+          contrast, lighting and typography so the product stays the
+          focal point and reads clearly from a distance.
+        </p>
+
+        <div class="hover-actions">
+          <button class="btn view-more" type="button">
+            View more <span aria-hidden="true">&rarr;</span>
+          </button>
+
+          <a
+            class="btn btn-outline proj-link"
+            href="https://www.figma.com/your-figma-link"
+            target="_blank"
+            rel="noopener"
+          >
+            Photoshop <span aria-hidden="true">&nearr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <article
+      class="card"
+      data-cat="code"
+      data-role="Designer &amp; Developer"
+      data-year="2026"
+      tabindex="0"
+    >
+      <div
+        class="card-media"
+        style="--c1:#306C42;--c2:#0b2b17"
+      >
+        <img
+          src="assets/images/Group 22.png"
+          alt="John Emmanuel Pieza"
+        >
+
+        <span class="card-type">Code</span>
+        <span class="card-num">01</span>
+      </div>
+
+      <div class="card-body">
+        <h4>Hoenn Gauntlet</h4>
+
+        <p>
+          A Pokemon game you play with hand gestures.
+        </p>
+
+        <ul class="tags">
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>Teachable Machine</li>
+        </ul>
+      </div>
+
+      <div class="card-hover">
+        <span class="hover-kicker">Code</span>
+
+        <h4>Hoenn Gauntlet</h4>
+
+        <p class="long">
+          Hoenn Gauntlet is a Pokemon game controlled with hand
+          gestures instead of a keyboard or mouse. A Teachable
+          Machine model recognizes your gestures through the webcam,
+          and the game runs in plain HTML and CSS.
+        </p>
+
+        <div class="hover-actions">
+          <button class="btn view-more" type="button">
+            View more <span aria-hidden="true">&rarr;</span>
+          </button>
+
+          <a
+            class="btn btn-outline proj-link"
+            href="https://your-website-link.com"
+            target="_blank"
+            rel="noopener"
+          >
+            Website <span aria-hidden="true">&nearr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <article
+      class="card"
+      data-cat="code"
+      data-role="Designer &amp; Developer"
+      data-year="2026"
+      tabindex="0"
+    >
+      <div
+        class="card-media"
+        style="--c1:#2d2d2d;--c2:#306C42"
+      >
+        <img
+          src="assets/images/Group 21.png"
+          alt="John Emmanuel Pieza"
+        >
+
+        <span class="card-type">Code</span>
+        <span class="card-num">02</span>
+      </div>
+
+      <div class="card-body">
+        <h4>Animal Bite Management System</h4>
+
+        <p>
+          Vaccine dose tracking for doctors, nurses and patients.
+        </p>
+
+        <ul class="tags">
+          <li>Web App</li>
+          <li>Healthcare</li>
+        </ul>
+      </div>
+
+      <div class="card-hover">
+        <span class="hover-kicker">Code</span>
+
+        <h4>Animal Bite Center</h4>
+
+        <p class="long">
+          A system for an animal bite center that helps manage
+          vaccine doses. It gives doctors, nurses and patients each
+          a view of the schedule and dose records they need.
+        </p>
+
+        <div class="hover-actions">
+          <button class="btn view-more" type="button">
+            View more <span aria-hidden="true">&rarr;</span>
+          </button>
+
+          <a
+            class="btn btn-outline proj-link"
+            href="https://your-website-link.com"
+            target="_blank"
+            rel="noopener"
+          >
+            Website <span aria-hidden="true">&nearr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <article
+      class="card"
+      data-cat="code"
+      data-role="Designer &amp; Developer"
+      data-year="2025"
+      tabindex="0"
+    >
+      <div
+        class="card-media"
+        style="--c1:#5a8f6a;--c2:#1b3a25"
+      >
+        <img
+          src="assets/images/Group 23.png"
+          alt="John Emmanuel Pieza"
+        >
+
+        <span class="card-type">Code</span>
+        <span class="card-num">03</span>
+      </div>
+
+      <div class="card-body">
+        <h4>Forecast FM</h4>
+
+        <p>
+          Get in tune with your city's vibe.
+        </p>
+
+        <ul class="tags">
+          <li>Web App</li>
+          <li>Weather</li>
+          <li>Music</li>
+        </ul>
+      </div>
+
+      <div class="card-hover">
+        <span class="hover-kicker">Code</span>
+
+        <h4>forecast-fm</h4>
+
+        <p class="long">
+          Forecast FM matches music to your local weather. Check the
+          conditions in your city and get a soundtrack that fits the
+          mood outside.
+        </p>
+
+        <div class="hover-actions">
+          <button class="btn view-more" type="button">
+            View more <span aria-hidden="true">&rarr;</span>
+          </button>
+
+          <a
+            class="btn btn-outline proj-link"
+            href="https://your-website-link.com"
+            target="_blank"
+            rel="noopener"
+          >
+            Website <span aria-hidden="true">&nearr;</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="slider-progress">
+    <span id="sliderBar"></span>
+  </div>
+
+  <div class="projects-foot">
+    <a href="all-projects.html" class="btn">
+      View All Projects
+    </a>
+  </div>
+</section>
+
+<div class="pm" id="pModal" aria-hidden="true">
+  <div
+    class="pm-box"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="pTitle"
+  >
+    <button
+      class="pm-x"
+      id="pClose"
+      aria-label="Close"
+    >
+      &times;
+    </button>
+
+    <div class="pm-media" id="pMedia"></div>
+
+    <div class="pm-info">
+      <span class="pm-type" id="pType"></span>
+
+      <h3 id="pTitle"></h3>
+
+      <p id="pDesc"></p>
+
+      <dl class="pm-meta" id="pMeta"></dl>
+
+      <ul class="tags" id="pTags"></ul>
+
+      <div class="pm-actions">
+        <span class="pm-links" id="pLinks"></span>
+
+        <button
+          class="btn btn-outline"
+          id="pClose2"
+          type="button"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer id="contact" class="contact">
+  <div class="contact-hero">
+    <h2>Contact Me</h2>
+
+    <p class="contact-lead">
+      Got a project or just wanna say hi? Message me anytime.
+    </p>
+
+    <a
+      class="mail-big"
+      href="mailto:johnemmanuel.pieza@wvsu.edu.ph"
+    >
+      <span>johnemmanuel.pieza@wvsu.edu.ph</span>
+      <i aria-hidden="true">&nearr;</i>
+    </a>
+  </div>
+
+  <div class="contact-cards">
+
+    <div class="c-card">
+      <h4>Call me</h4>
+      <a href="tel:+639386646065">
+        +63 938 664 6065
+      </a>
+    </div>
+
+    <div class="c-card">
+      <h4>Based in</h4>
+
+      <a
+        href="https://maps.google.com/?q=Iloilo"
+        target="_blank"
+        rel="noopener"
+      >
+        Iloilo, PH
+      </a>
+
+      <span class="c-sub">
+        Designer and frontend developer.
+      </span>
+    </div>
+
+    <div class="c-card">
+      <h4>Navigate</h4>
+
+      <div class="c-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="all-projects.html">All Projects</a>
+      </div>
+    </div>
+
+    <div class="c-card">
+      <h4>Find me</h4>
+
+      <div class="socials">
+
+        <a
+          class="icon-btn"
+          href="https://www.facebook.com/emman.pieza"
+          target="_blank"
+          rel="noopener"
+          aria-label="Facebook"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07c0 6.02 4.39 11.01 10.13 11.93v-8.44H7.08v-3.49h3.05V9.41c0-3.03 1.79-4.7 4.53-4.7 1.31 0 2.69.24 2.69.24v2.97h-1.52c-1.49 0-1.96.93-1.96 1.88v2.27h3.33l-.53 3.49h-2.8V24C19.61 23.08 24 18.09 24 12.07z"/>
+          </svg>
+        </a>
+
+        <a
+          class="icon-btn"
+          href="https://www.instagram.com/imanwellq/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Instagram"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect
+              x="3"
+              y="3"
+              width="18"
+              height="18"
+              rx="5"
+            />
+            <circle
+              cx="12"
+              cy="12"
+              r="4"
+            />
+            <circle
+              cx="17.5"
+              cy="6.5"
+              r="1"
+              fill="currentColor"
+              stroke="none"
+            />
+          </svg>
+        </a>
+
+        <a
+          class="icon-btn"
+          href="https://x.com/your-username"
+          target="_blank"
+          rel="noopener"
+          aria-label="X"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+
+        <a
+          class="icon-btn"
+          href="www.linkedin.com/in/john-emmanuel-pieza-b92a73326"
+          target="_blank"
+          rel="noopener"
+          aria-label="LinkedIn"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/>
+          </svg>
+        </a>
+
+        <a
+          class="icon-btn"
+          href="https://github.com/johnemmanuelpieza-ops"
+          target="_blank"
+          rel="noopener"
+          aria-label="GitHub"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+          </svg>
+        </a>
+
+        <a
+          class="icon-btn"
+          href="https://www.behance.net/johnempieza"
+          target="_blank"
+          rel="noopener"
+          aria-label="Behance"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <text
+              x="12"
+              y="17"
+              text-anchor="middle"
+              font-size="14"
+              font-weight="700"
+              font-family="Arial"
+            >B&#275;</text>
+          </svg>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-bar">
+    <a href="#home" class="foot-logo">
+      Pieza
+    </a>
+
+    <span>
+      &copy; 2026
+    </span>
+
+    <a
+      href="#home"
+      class="to-top"
+      aria-label="Back to top"
+    >
+      &uarr;
+    </a>
+  </div>
+</footer>
+
+<script src="js/header.js"></script>
+<script src="js/reveal.js"></script>
+<script src="js/home.js"></script>
+<script src="js/about.js"></script>
+<script src="js/projects.js"></script>
+
+</body>
+</html>

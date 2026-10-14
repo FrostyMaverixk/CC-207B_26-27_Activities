@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payments — Blume Daily Admin</title>
+<link rel="stylesheet" href="admin.css">
+<style>
+.proof-img-ph{width:100%;height:260px;background:var(--parchment);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--mocha-light);margin-bottom:18px;}
+.proof-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid rgba(0,0,0,.06);}
+.proof-row:last-child{border-bottom:none;}
+.proof-key{font-size:10px;font-weight:300;letter-spacing:.14em;text-transform:uppercase;color:var(--mocha-light);}
+.proof-val{font-size:13px;color:var(--ink);}
+</style>
+</head>
+<body>
+<aside class="sidebar" id="sidebar"></aside>
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-left">
+      <h1>Payments</h1>
+      <p>Verify and manage payment submissions</p>
+    </div>
+    <div class="topbar-right">
+      <button class="topbar-icon-btn" title="Notifications">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <div class="notif-dot"></div>
+      </button>
+      <a href="index.html" target="_blank" class="topbar-visit-btn">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        View Website
+      </a>
+      <button class="topbar-user-btn">B</button>
+    </div>
+  </div>
+  <div class="page">
+    <div class="stat-grid stat-grid-3">
+      <div class="s-card"><div class="s-card-accent" style="background:var(--gold);"></div><div class="s-card-label">Pending Verification</div><div class="s-card-value">6</div><div class="s-card-sub">Awaiting review</div></div>
+      <div class="s-card"><div class="s-card-accent" style="background:var(--sage);"></div><div class="s-card-label">Confirmed Today</div><div class="s-card-value">8</div><div class="s-card-sub">₱9,830 collected</div></div>
+      <div class="s-card"><div class="s-card-accent" style="background:var(--rose);"></div><div class="s-card-label">Rejected This Week</div><div class="s-card-value">2</div><div class="s-card-sub">Invalid proof submitted</div></div>
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterPay(this,'all')">All</button>
+      <button class="filter-btn" onclick="filterPay(this,'Pending')">Pending</button>
+      <button class="filter-btn" onclick="filterPay(this,'Confirmed')">Confirmed</button>
+      <button class="filter-btn" onclick="filterPay(this,'Rejected')">Rejected</button>
+      <input class="search-input" placeholder="Search…" oninput="searchPay(this.value)" style="max-width:220px;margin-left:auto;">
+    </div>
+    <div class="tbl-card">
+      <table class="tbl">
+        <thead><tr><th>Order ID</th><th>Customer</th><th>Method</th><th>Reference No.</th><th>Amount</th><th>Submitted</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody id="pay-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- PROOF MODAL -->
+<div class="modal-overlay" id="proof-modal">
+  <div class="modal" style="max-width:520px;">
+    <div class="modal-header">
+      <div class="modal-title" id="proof-title">Payment Proof</div>
+      <button class="modal-close" onclick="closeProof()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="proof-img-ph">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span style="font-size:12px;font-weight:200;">Payment screenshot uploaded by customer</span>
+      </div>
+      <div class="proof-row"><div class="proof-key">Order ID</div><div class="proof-val" id="pr-id"></div></div>
+      <div class="proof-row"><div class="proof-key">Customer</div><div class="proof-val" id="pr-name"></div></div>
+      <div class="proof-row"><div class="proof-key">Amount</div><div class="proof-val" id="pr-amount"></div></div>
+      <div class="proof-row"><div class="proof-key">Method</div><div class="proof-val" id="pr-method"></div></div>
+      <div class="proof-row"><div class="proof-key">Reference</div><div class="proof-val" id="pr-ref"></div></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-danger-outline" onclick="rejectPayment()" style="padding:12px 18px;">Reject</button>
+      <button class="btn-secondary" onclick="closeProof()" style="padding:12px 18px;">Cancel</button>
+      <button class="btn-primary" onclick="confirmPayment()" style="flex:2;justify-content:center;padding:12px;">Confirm Payment</button>
+    </div>
+  </div>
+</div>
+
+<script src="admin-shared.js"></script>
+<script>
+initAdmin('payments');
+const payments=[
+  {id:'BD-001',customer:'Aecielle Cervantes',method:'GCash',ref:'GC-20260426-001',amount:650,date:'Apr 26, 09:12 AM',status:'Pending'},
+  {id:'BD-002',customer:'Ysabella Tumlos',method:'GCash',ref:'GC-20260426-002',amount:1300,date:'Apr 26, 10:30 AM',status:'Confirmed'},
+  {id:'BD-005',customer:'Kurt Dayao',method:'GCash',ref:'GC-20260426-003',amount:1800,date:'Apr 26, 11:45 AM',status:'Pending'},
+  {id:'BD-006',customer:'Maria Santos',method:'GCash',ref:'GC-20260425-001',amount:820,date:'Apr 25, 02:10 PM',status:'Confirmed'},
+  {id:'BD-007',customer:'Jose Reyes',method:'Cash on Delivery',ref:'COD-007',amount:1400,date:'Apr 25, 03:55 PM',status:'Pending'},
+  {id:'BD-008',customer:'Ana Cruz',method:'GCash',ref:'GC-20260424-001',amount:680,date:'Apr 24, 09:00 AM',status:'Confirmed'},
+  {id:'BD-009',customer:'Pedro Valdez',method:'GCash',ref:'GC-20260424-002',amount:550,date:'Apr 24, 11:20 AM',status:'Rejected'},
+  {id:'BD-010',customer:'Liza Mercado',method:'GCash',ref:'GC-20260423-001',amount:750,date:'Apr 23, 10:00 AM',status:'Confirmed'},
+];
+
+let filtered=[...payments],currentFilter='all',currentSearch='',proofIdx=null;
+
+function badgePay(s){return{Pending:'badge-pending-pay',Confirmed:'badge-confirmed',Rejected:'badge-rejected'}[s]||'badge-pending-pay';}
+
+function applyFilters(){
+  filtered=payments.filter(p=>{
+    const mf=currentFilter==='all'||p.status===currentFilter;
+    const ms=!currentSearch||p.id.toLowerCase().includes(currentSearch)||p.customer.toLowerCase().includes(currentSearch);
+    return mf&&ms;
+  });
+  render();
+}
+function render(){
+  document.getElementById('pay-body').innerHTML=filtered.map((p,i)=>{
+    const idx=payments.indexOf(p);
+    return `<tr>
+      <td><strong>${p.id}</strong></td>
+      <td>${p.customer}</td>
+      <td>${p.method}</td>
+      <td style="font-family:monospace;font-size:12px;">${p.ref}</td>
+      <td>₱${p.amount.toLocaleString()}</td>
+      <td>${p.date}</td>
+      <td><span class="badge ${badgePay(p.status)}"><span class="badge-dot"></span>${p.status}</span></td>
+      <td><div class="tbl-actions">
+        <button class="tbl-btn" onclick="openProof(${idx})">View Proof</button>
+        ${p.status==='Pending'?`<button class="btn-sage" onclick="quickConfirm(${idx})">Confirm</button>`:''}
+      </div></td>
+    </tr>`;
+  }).join('');
+}
+function filterPay(btn,f){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentFilter=f;applyFilters();}
+function searchPay(q){currentSearch=q.toLowerCase();applyFilters();}
+function openProof(idx){
+  proofIdx=idx;const p=payments[idx];
+  document.getElementById('proof-title').textContent='Payment Proof — '+p.id;
+  document.getElementById('pr-id').textContent=p.id;
+  document.getElementById('pr-name').textContent=p.customer;
+  document.getElementById('pr-amount').textContent='₱'+p.amount.toLocaleString();
+  document.getElementById('pr-method').textContent=p.method;
+  document.getElementById('pr-ref').textContent=p.ref;
+  document.getElementById('proof-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeProof(){document.getElementById('proof-modal').classList.remove('open');document.body.style.overflow='';}
+function confirmPayment(){if(proofIdx===null)return;payments[proofIdx].status='Confirmed';closeProof();applyFilters();}
+function rejectPayment(){if(proofIdx===null)return;payments[proofIdx].status='Rejected';closeProof();applyFilters();}
+function quickConfirm(idx){payments[idx].status='Confirmed';applyFilters();}
+document.getElementById('proof-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeProof();});
+applyFilters();
+</script>
+</body>
+</html>

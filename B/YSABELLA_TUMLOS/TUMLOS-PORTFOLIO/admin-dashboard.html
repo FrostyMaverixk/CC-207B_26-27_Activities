@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Blume Daily Admin</title>
+<link rel="stylesheet" href="admin.css">
+<style>
+.two-col{display:grid;grid-template-columns:1fr 360px;gap:20px;margin-bottom:20px;}
+.activity-item{display:flex;align-items:flex-start;gap:13px;padding:14px 22px;border-bottom:1px solid rgba(0,0,0,.05);}
+.activity-item:last-child{border-bottom:none;}
+.activity-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+.activity-text{font-size:12px;font-weight:300;color:var(--ink-soft);line-height:1.6;}
+.activity-time{font-size:10px;color:var(--mocha-light);margin-top:2px;}
+.chart-area{padding:22px;}
+.chart-wrap{display:flex;align-items:flex-end;justify-content:space-around;height:160px;gap:8px;padding-top:8px;}
+.chart-bar-col{display:flex;flex-direction:column;align-items:center;gap:5px;flex:1;}
+.chart-bar{width:100%;background:var(--rose-muted);transition:background .2s;cursor:pointer;}
+.chart-bar:hover{background:var(--rose);}
+.chart-lbl{font-size:9px;color:var(--mocha-light);letter-spacing:.06em;}
+.chart-meta{display:flex;gap:28px;margin-bottom:18px;}
+.chart-meta-item h3{font-family:var(--fd);font-size:26px;font-weight:400;}
+.chart-meta-item p{font-size:11px;color:var(--mocha-light);margin-top:2px;}
+</style>
+</head>
+<body>
+<aside class="sidebar" id="sidebar"></aside>
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-left">
+      <h1>Dashboard</h1>
+      <p id="greeting-msg"></p>
+    </div>
+    <div class="topbar-right">
+      <span class="topbar-date" id="today-date"></span>
+      <button class="topbar-icon-btn" title="Notifications">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <div class="notif-dot"></div>
+      </button>
+      <a href="index.html" target="_blank" class="topbar-visit-btn">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        View Website
+      </a>
+      <button class="topbar-user-btn">B</button>
+    </div>
+  </div>
+  <div class="page">
+    <div class="stat-grid stat-grid-4">
+      <div class="s-card">
+        <div class="s-card-accent" style="background:var(--rose);"></div>
+        <div class="s-card-icon"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg></div>
+        <div class="s-card-label">Total Orders Today</div>
+        <div class="s-card-value">14</div>
+        <div class="s-card-sub">↑ 3 more than yesterday</div>
+      </div>
+      <div class="s-card">
+        <div class="s-card-accent" style="background:var(--gold);"></div>
+        <div class="s-card-icon"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+        <div class="s-card-label">Pending Payments</div>
+        <div class="s-card-value">6</div>
+        <div class="s-card-sub">Awaiting verification</div>
+      </div>
+      <div class="s-card">
+        <div class="s-card-accent" style="background:var(--sage);"></div>
+        <div class="s-card-icon"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <div class="s-card-label">Revenue This Week</div>
+        <div class="s-card-value">₱18,450</div>
+        <div class="s-card-sub">↑ 12% vs last week</div>
+      </div>
+      <div class="s-card">
+        <div class="s-card-accent" style="background:var(--rose-muted);"></div>
+        <div class="s-card-icon"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2C7 2 5 7 5 10c0 4 3.5 7 7 10 3.5-3 7-6 7-10 0-3-2-8-7-8z"/></svg></div>
+        <div class="s-card-label">Low Stock Items</div>
+        <div class="s-card-value">3</div>
+        <div class="s-card-sub">Needs restocking soon</div>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="sec-card">
+        <div class="sec-head">
+          <div class="sec-head-title">Recent Orders</div>
+          <a href="admin-orders.html" class="sec-head-action">View All</a>
+        </div>
+        <table class="tbl">
+          <thead><tr><th>Order ID</th><th>Customer</th><th>Arrangement</th><th>Total</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td><strong>BD-001</strong></td><td>Aecielle Cervantes</td><td>Rosy Romance</td><td>₱650</td><td><span class="badge badge-pending"><span class="badge-dot"></span>Pending</span></td></tr>
+            <tr><td><strong>BD-002</strong></td><td>Ysabella Tumlos</td><td>Eternal White</td><td>₱1,300</td><td><span class="badge badge-confirmed"><span class="badge-dot"></span>Confirmed</span></td></tr>
+            <tr><td><strong>BD-003</strong></td><td>Carl Calotes</td><td>Garden Luxe</td><td>₱750</td><td><span class="badge badge-preparing"><span class="badge-dot"></span>Preparing</span></td></tr>
+            <tr><td><strong>BD-004</strong></td><td>Jahna Lagne</td><td>Ivory Dream</td><td>₱980</td><td><span class="badge badge-delivered"><span class="badge-dot"></span>Delivered</span></td></tr>
+            <tr><td><strong>BD-005</strong></td><td>Kurt Dayao</td><td>Garden Luxe</td><td>₱1,800</td><td><span class="badge badge-pending"><span class="badge-dot"></span>Pending</span></td></tr>
+          </tbody>
+        </table>
+        <div class="view-all-row"><a href="admin-orders.html" class="view-all-link">View All Orders →</a></div>
+      </div>
+      <div class="sec-card">
+        <div class="sec-head"><div class="sec-head-title">Recent Activity</div></div>
+        <div class="activity-item"><div class="activity-dot" style="background:var(--sage);"></div><div><div class="activity-text">Payment confirmed for <strong>BD-002</strong> (Ysabella T.) — GCash ₱1,300</div><div class="activity-time">2 minutes ago</div></div></div>
+        <div class="activity-item"><div class="activity-dot" style="background:var(--rose);"></div><div><div class="activity-text">New order placed — <strong>BD-005</strong> by Kurt Dayao</div><div class="activity-time">18 minutes ago</div></div></div>
+        <div class="activity-item"><div class="activity-dot" style="background:var(--gold);"></div><div><div class="activity-text"><strong>Rose Medley</strong> stock low — only 4 stems remaining</div><div class="activity-time">1 hour ago</div></div></div>
+        <div class="activity-item"><div class="activity-dot" style="background:var(--rose);"></div><div><div class="activity-text">New order placed — <strong>BD-001</strong> by Aecielle Cervantes</div><div class="activity-time">2 hours ago</div></div></div>
+        <div class="activity-item"><div class="activity-dot" style="background:var(--sage);"></div><div><div class="activity-text">Order <strong>BD-004</strong> marked as Delivered</div><div class="activity-time">3 hours ago</div></div></div>
+        <div class="activity-item"><div class="activity-dot" style="background:var(--mocha-light);"></div><div><div class="activity-text">Product <strong>Sunflower Bliss</strong> listing updated</div><div class="activity-time">5 hours ago</div></div></div>
+      </div>
+    </div>
+    <div class="sec-card">
+      <div class="sec-head">
+        <div class="sec-head-title">Weekly Revenue</div>
+        <a href="admin-reports.html" class="sec-head-action">Full Report</a>
+      </div>
+      <div class="chart-area">
+        <div class="chart-meta">
+          <div class="chart-meta-item"><h3>₱18,450</h3><p>This week</p></div>
+          <div class="chart-meta-item"><h3 style="color:var(--mocha-light)">₱16,200</h3><p>Last week</p></div>
+          <div class="chart-meta-item" style="margin-left:auto;text-align:right;"><h3 style="font-size:18px;color:var(--sage)">↑ 13.9%</h3><p>Growth</p></div>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-bar-col"><div class="chart-bar" style="height:60%;"></div><div class="chart-lbl">Mon</div></div>
+          <div class="chart-bar-col"><div class="chart-bar" style="height:80%;"></div><div class="chart-lbl">Tue</div></div>
+          <div class="chart-bar-col"><div class="chart-bar" style="height:45%;"></div><div class="chart-lbl">Wed</div></div>
+          <div class="chart-bar-col"><div class="chart-bar" style="height:90%;background:var(--rose);"></div><div class="chart-lbl">Thu</div></div>
+          <div class="chart-bar-col"><div class="chart-bar" style="height:72%;"></div><div class="chart-lbl">Fri</div></div>
+          <div class="chart-bar-col"><div class="chart-bar" style="height:100%;background:var(--rose);"></div><div class="chart-lbl">Sat</div></div>
+          <div class="chart-bar-col"><div class="chart-bar" style="height:55%;"></div><div class="chart-lbl">Sun</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="admin-shared.js"></script>
+<script>
+initAdmin('dashboard');
+const d=new Date(),hr=d.getHours();
+document.getElementById('greeting-msg').textContent=(hr<12?'Good morning':hr<17?'Good afternoon':'Good evening')+", Brent — here's what's happening today.";
+document.getElementById('today-date').textContent=d.toLocaleDateString('en-PH',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Hand Runner</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Teachable Machine / TensorFlow -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+  </head>
+
+  <body>
+    <h1>🖐️ Hand Runner</h1>
+
+    <div id="game">
+      <div id="player">🏃</div>
+
+      <div id="obstacle">🌵</div>
+    </div>
+
+    <div id="camera">
+      <h2>Camera</h2>
+
+      <div id="webcam-container"></div>
+
+      <p id="prediction">Prediction: Waiting...</p>
+
+      <p id="confidence">Confidence: --</p>
+    </div>
+
+    <script src="game.js"></script>
+  </body>
+</html>

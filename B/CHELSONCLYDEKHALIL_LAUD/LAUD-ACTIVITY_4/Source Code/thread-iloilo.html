@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lagawan</title>
+  <link rel="icon" href="images/Web Layout.png">
+  <link rel="stylesheet" href="thread-iloilo.css">
+  <script type="text/javascript" src="thread-main.js" defer></script>
+  <script type="text/javascript" src="debug.js" defer></script>
+  <script type="text/javascript" src="CRUD.js" defer></script>
+  <script type="text/javascript" src="comments/iloilocomments.js" defer></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <link rel="stylesheet" href="Notification.css"/>
+  <link rel="stylesheet" href="Antinotification.css"/>
+</head>
+<body>
+  <div id="pre-loader"></div>
+  <nav id="navbar">
+    <input type="checkbox" id="sidebar-active">
+    <label for="sidebar-active" class="open-sidebar-button">
+        <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
+    </label>
+    <label id="overlay" for="sidebar-active"></label>
+    <div class="links-container">
+        <label for="sidebar-active" class="close-sidebar-button">
+            <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+        </label>
+        <a class="home-link" id="profile-link">User Profile</a>
+        <a href="AboutUS.html">About Us</a> 
+        <a onclick="toggleMenu()">Account</a>
+        <div class="sub-menu-wrap" id="dropMenu">
+          <div class="dropdown-menu">
+              <div class="user-info">
+                  <img id="dropdownProfileImage" src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png">
+                  <h3 id="dropdown-username">User Profile</h3>
+              </div>
+              <hr>
+              <a href="ProfilePage.html" class="sub-menu-link">
+                  <img src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png">
+                  <p>Edit Profile</p>
+                  <span>></span>
+              </a>
+                <a href="javascript:void(0);" onclick="logout()" class="sub-menu-link">
+                <img src="https://cdn-icons-png.flaticon.com/512/3596/3596149.png">
+                <p>Logout</p>
+                <span>></span>
+            </a>                  
+          </div>
+      </div>            
+    </div>
+</nav>
+<script> 
+function logout() {
+const messages = [
+'Looking forward to your next visit!',
+'Logging out. Redirecting you back to Login.',
+'Goodbye, until next time!'
+];
+const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+
+// Close the dropdown menu
+const dropMenu = document.getElementById("dropMenu");
+if (dropMenu && dropMenu.classList.contains("open-menu")) {
+dropMenu.classList.remove("open-menu");
+}
+
+showNotification(randomMessage, 'red').then(() => {
+// Wait for the notification to disappear or be closed, then redirect
+window.location.href = 'LoginPage.html';
+});
+
+// Also handle the case where the user clicks the close button
+const closeIcon = document.querySelector('.toasty .close'); // Assuming .toasty is for red notifications
+if (closeIcon) {
+closeIcon.addEventListener('click', () => {
+window.location.href = 'LoginPage.html';
+});
+}
+}
+
+// Existing functions for menu toggle and navbar update
+let dropMenu = document.getElementById("dropMenu");
+function toggleMenu() {
+dropMenu.classList.toggle("open-menu");
+}
+
+function updateNavbar() {
+const username = localStorage.getItem('loggedInUser');
+if (username) {
+document.getElementById('profile-link').textContent = username;
+document.getElementById('dropdown-username').textContent = username;
+}
+}
+updateNavbar();
+
+document.addEventListener('DOMContentLoaded', () => {
+const users = JSON.parse(localStorage.getItem('users')) || [];
+const loggedInUser = localStorage.getItem('loggedInUser');
+const user = users.find(u => u.username === loggedInUser);
+
+if (user) {
+const dropdownProfileImage = document.getElementById('dropdownProfileImage');
+const profileImage = user.profileImage || "https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png";
+dropdownProfileImage.src = profileImage;
+
+document.getElementById('dropdown-username').textContent = user.username;
+}
+});
+</script>
+
+  
+  <nav id="sidebar">
+    <ul>
+      <li>
+        <span class="logo">Lagawan</span>
+        <button onclick=toggleSidebar() id="toggle-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m313-480 155 156q11 11 11.5 27.5T468-268q-11 11-28 11t-28-11L228-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T468-692q11 11 11 28t-11 28L313-480Zm264 0 155 156q11 11 11.5 27.5T732-268q-11 11-28 11t-28-11L492-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T732-692q11 11 11 28t-11 28L577-480Z"/></svg>
+        </button>
+      </li>
+      <li>
+        <a href="homepage.html">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M240-200h120v-200q0-17 11.5-28.5T400-440h160q17 0 28.5 11.5T600-400v200h120v-360L480-740 240-560v360Zm-80 0v-360q0-19 8.5-36t23.5-28l240-180q21-16 48-16t48 16l240 180q15 11 23.5 28t8.5 36v360q0 33-23.5 56.5T720-120H560q-17 0-28.5-11.5T520-160v-200h-80v200q0 17-11.5 28.5T400-120H240q-33 0-56.5-23.5T160-200Zm320-270Z"/></svg>
+          <span>Home</span>
+        </a>
+      </li>
+      <li>
+        <a href="CRUD.html">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M520-640v-160q0-17 11.5-28.5T560-840h240q17 0 28.5 11.5T840-800v160q0 17-11.5 28.5T800-600H560q-17 0-28.5-11.5T520-640ZM120-480v-320q0-17 11.5-28.5T160-840h240q17 0 28.5 11.5T440-800v320q0 17-11.5 28.5T400-440H160q-17 0-28.5-11.5T120-480Zm400 320v-320q0-17 11.5-28.5T560-520h240q17 0 28.5 11.5T840-480v320q0 17-11.5 28.5T800-120H560q-17 0-28.5-11.5T520-160Zm-400 0v-160q0-17 11.5-28.5T160-360h240q17 0 28.5 11.5T440-320v160q0 17-11.5 28.5T400-120H160q-17 0-28.5-11.5T120-160Zm80-360h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z"/></svg>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <button onclick=toggleSubMenu(this) class="dropdown-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h207q16 0 30.5 6t25.5 17l57 57h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Zm400-160v40q0 17 11.5 28.5T600-320q17 0 28.5-11.5T640-360v-40h40q17 0 28.5-11.5T720-440q0-17-11.5-28.5T680-480h-40v-40q0-17-11.5-28.5T600-560q-17 0-28.5 11.5T560-520v40h-40q-17 0-28.5 11.5T480-440q0 17 11.5 28.5T520-400h40Z"/></svg>
+          <span>Threads</span>
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-361q-8 0-15-2.5t-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5Z"/></svg>
+        </button>
+        <ul class="sub-menu">
+          <div>
+            <li><a href="thread-bicol.html">Bicol</a></li>
+            <li><a href="thread-cebu.html">Cebu</a></li>
+            <li class="active"><a href="#">Iloilo</a></li>
+            <li><a href="thread-negros.html">Negros Occidental</a></li>
+            <li><a href="thread-palawan.html">Palawan</a></li>
+            <li><a href="thread-vigan.html">Vigan</a></li>
+          </div>
+        </ul>
+      </li>
+      <li>
+        <a href="ProfilePage.html">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-240v-32q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v32q0 33-23.5 56.5T720-160H240q-33 0-56.5-23.5T160-240Zm80 0h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/></svg>
+          <span>Profile</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <main class="container">
+    <header class="header" id="home">
+
+      <div class="section__container header__container">
+        <div class="header__content">
+          <h3 class="section__subheader">Iloilo</h3>
+          <h1 class="section__header">
+            Fun, Foodie, Friendly! The City Of Gastronomy!
+          </h1>
+          <div class="scroll__btn">
+            <a href="#about">
+              Scroll down
+              <span><i class="ri-arrow-down-line"></i></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="about">
+      <div class="section__container about__container">
+        <div class="about__image about__image-1" id="about">
+          <img src="images/ILOILO/FOOD.jpg" alt="about" />
+        </div>
+        <div class="about__content about__content-1">
+          <h3 class="section__subheader">MAIN FOOD</h3>
+          <h2 class="section__header">La Paz Batchoy</h2>
+          <p>
+            La Paz Batchoy, commonly known as batchoy or batsoy, is a well-known noodle soup from La Paz, Iloilo City. It is made with fresh egg noodles, meat stock, crushed chicharon, and pork offal. 
+            <span class="read-more-text">
+              La Paz Batchoy is a cultural and culinary icon of Iloilo, offering a warm and satisfying experience for locals and visitors alike. It is said to have started with the Chinese residents of the La Paz neighborhood.
+            </span>
+          </p>
+          <div class="about__btn">
+            <span class="read-more-btn">Read More...</span>
+          </div>
+        </div>
+        
+
+        
+        <div class="about__image about__image-2" id="equipment">
+          <img src="images/ILOILO/Iloilo_Dinagyang_Festival.jpg" alt="about" />
+        </div>
+        <div class="about__content about__content-2">
+          <h3 class="section__subheader">MAIN FESTIVAL</h3>
+          <h2 class="section__header">Dinagyang Festival</h2>
+          <p>
+            Dinagyang Festival is an exhilarating and world-renowned celebration that takes place in Iloilo City, Iloilo, Philippines. The Ilonggo people's rich cultural legacy and strong spirit are on display during this festival. A replica of the Santo Niño from Cebu was transported to Iloilo in the 1960s, which is when the event first began. The Dinagyang Festival was created to celebrate the Santo Niño and promote Iloilo's cultural identity, and it was inspired by the Sinulog Festival in Cebu.
+            <span class="read-more-text">
+              The Ati-Atihan competition, when competing tribes display their breathtaking choreography and coordinated motions, is the festival's high point. The dancers' vivacious dances and upbeat drum beats enthrall the audience, while their faces are painted with traditional Ati warrior patterns. 
+            </span>
+          </p>
+          <div class="about__btn">
+            <span class="read-more-btn">Read More...</span>
+          </div>
+        </div>
+        
+        <div class="about__image about__image-3" id="blog">
+          <img src="images/ILOILO/TOURIST DESTINATION.jpg" alt="about" />
+        </div>
+        <div class="about__content about__content-3">
+          <h3 class="section__subheader">MAIN ATTRACTION</h3>
+          <h2 class="section__header">Islas de Gigantes</h2>
+          <p>
+            The beautiful Islas de Gigantes collection of islands near Carles, Iloilo, is well-known for its white sand beaches, varied marine life, and distinctive rock formations. The local legend that enormous human bones were discovered in one of the caverns here gave rise to the name of this well-known tourist destination. Gigantes Sur, Gigantes Norte, and a number of smaller islets make up the island chain.
+            <span class="read-more-text">
+              The natural wonders of Islas de Gigantes are unique to each island. Bantigue Island has a sandbar that rises at low tide, and Cabugao Gamay is especially well-known for its magnificent rock structure. Encircled by imposing cliffs, the Tangke seawater Lagoon in Gigantes Sur is composed of glistening seawater.
+            </span>
+          </p>
+          <div class="about__btn">
+            <span class="read-more-btn">Read More...</span>
+          </div>
+        </div>
+        
+        
+      </div>
+
+              <!-- Card Slider Section -->
+              <div class="intro2">
+                <h1 style="text-align: center; font-size: 45px;">Experiences Section</h1>
+              <div class="slider-container">
+                <button class="prev">❮</button>
+                <div class="slider">
+                  <div class="card">
+                    <div class="background-container">
+                      <img
+                        src="background1.jpg"
+                        alt="Background"
+                        class="background-img"
+                      />
+                      <!-- Background image -->
+                      <img src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" alt="Avatar" class="card-img" />
+                    </div>
+                    <h2>Lotw Fox</h2>
+                    <p class="user-location">Location: Tokyo, Japan</p>
+                    <!-- User location -->
+                    <p class="comment-text">
+                      Passionate about development and design, I carry out projects at
+                      the request of users.
+                    </p>
+      
+      
+                    
+                    
+                    <!-- User comment -->
+                    <div class="action-buttons">
+                      <button class="edit-comment-btn" onclick="editComment(1)">
+                        Edit
+                      </button>
+                      <button class="delete-comment-btn" onclick="deleteComment(1)">
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                  <!-- Add more cards as needed -->
+                </div>
+                <button class="next">❯</button>
+              </div>
+      
+              <h1 style="text-align: center; font-size: 30px;">Been to Iloilo before? Share your experiences!</h1>
+              <div class="add-comment-container">
+                <input
+                  type="text"
+                  id="userLocationInput"
+                  placeholder="Insert title"
+                  maxlength="25"
+                />
+                <textarea
+                  id="commentInput"
+                  placeholder="Enter your comment"></textarea>
+              <div class="file-upload">
+                <input
+                  type="file"
+                  id="backgroundInput"
+                  accept="image/*"
+                  class="file-input"
+                />
+                <label for="backgroundInput" class="file-label">
+                  <img src="upload-icon.png" alt="Upload" class="upload-icon" />
+                  <!-- Custom icon for the button -->
+                  <span>Upload Background</span>
+                </label>
+              </div>
+            </div>
+            <div class="add-comment-container">
+                <button id="addCommentBtn" class="add-comment-btn" onclick="addComment()">
+                  Add Comment
+                </button>
+                <button id="saveEditCommentBtn" class="save-edit-comment-btn" onclick="saveEditComment()">
+                  Save Edit
+                </button>
+            </div>
+    </section>
+    
+    </main>
+    <div class="toast">
+      <div class="toast-content">
+        <i class="fas fa-solid fa-check check"></i>
+        <div class="message">
+          <span class="text text-1">Success</span>
+          <span class="text text-2">Your profile has been updated</span>
+        </div>
+      </div>
+      <i class="fa-solid fa-xmark close"></i>
+      <div class="progress"></div>
+    </div>
+    
+    <div class="toasty">
+      <div class="toasty-content">
+        <i class="fa-solid fa-x check"></i>
+        <div class="message">
+          <span class="text text-1">Notice</span>
+          <span class="text text-2"></span>
+        </div>
+      </div>
+      <i class="fa-solid fa-xmark close"></i>
+      <div class="progress"></div>
+    </div>
+    </body>
+    </html>

@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f9f8f0" />
+
+    <title>Pearl Trihsa | Creative Portfolio</title>
+    <meta name="description"
+        content="My Portfolio as an IT student exploring visual design, illustration, and web development." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&family=Fredoka:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div class="page-doodle doodle-star">✳</div>
+    <div class="page-doodle doodle-spark">✦</div>
+
+    <header class="site-header">
+        <a href="#home" class="brand" aria-label="Pearl's portfolio home">
+            <span class="brand-stamp">PT!</span>
+            <span>pearl's corner</span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false"
+            aria-controls="navLinks">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#about">about me</a>
+            <a href="#skills">my tools</a>
+            <a href="#artworks">art & design</a>
+            <a href="#web-projects">web projects</a>
+            <a href="#contact" class="nav-contact">say hello! ↗</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero section-wrap" id="home">
+            <div class="hero-topline">
+                <span class="handwritten">a little corner of my creative brain</span>
+                <span class="issue-label">THE CREATIVE ISSUE · 2026</span>
+            </div>
+
+            <div class="hero-art">
+                <img class="hero-image image-placeholder" src="images/hero-art.png"
+                    alt="Pearl's colorful portfolio illustration"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+
+                <div class="hero-image-fallback image-fallback">
+                    <span class="fallback-sun">☀</span>
+                    <span class="fallback-doodle">✿</span>
+                    <span class="fallback-star">✦</span>
+                    <span class="fallback-wave">〰</span>
+                </div>
+
+                <div class="hero-sticker sticker-top">let's<br />CREATE!</div>
+                <div class="hero-sticker sticker-side">made with<br />love ♡</div>
+
+                <div class="hero-title-wrap">
+                    <p class="hero-eyebrow">THIS IS MY</p>
+                    <h1 class="hero-title">PORTFOLIO<span>!</span></h1>
+                    <p class="hero-subtitle">A Peek Into My Work & Process</p>
+                </div>
+
+                <div class="hero-bottom">
+                    <span class="hero-index">PEARL TRIHSA A. BANTILLO</span>
+                    <span class="hero-year">VISUALS · INTERFACES · WEB</span>
+                </div>
+            </div>
+
+            <div class="hero-actions">
+                <a href="#artworks" class="button button-primary">
+                    Explore my work <span>↓</span>
+                </a>
+                <a href="#about" class="button button-outline">
+                    About me <span>↗</span>
+                </a>
+                <span class="hero-side-note">scroll a little! ↓</span>
+            </div>
+
+            <div class="ticker" aria-label="Portfolio interests">
+                <div class="ticker-track">
+                    <span>VISUAL DESIGN ✳</span>
+                    <span>ILLUSTRATION ✿</span>
+                    <span>UI / UX ☆</span>
+                    <span>WEB DEVELOPMENT ↗</span>
+                    <span>CREATIVE EXPERIMENTS ☀</span>
+                    <span>VISUAL DESIGN ✳</span>
+                    <span>ILLUSTRATION ✿</span>
+                    <span>UI / UX ☆</span>
+                    <span>WEB DEVELOPMENT ↗</span>
+                    <span>CREATIVE EXPERIMENTS ☀</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="about section-wrap section-space" id="about">
+            <div class="section-heading reveal">
+                <span class="section-number">01 / THE PERSON</span>
+                <h2>A little <span class="highlight highlight-pink">about me!</span></h2>
+                <p class="section-intro">the human behind the work.</p>
+            </div>
+
+            <div class="about-grid">
+                <div class="portrait-frame reveal">
+                    <img src="images/pearl-portrait.png" alt="Portrait or illustration of Pearl" class="portrait-image"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                    <div class="portrait-fallback image-fallback">
+                        <span class="portrait-placeholder-icon">♡</span>
+                        <strong>THAT'S ME!</strong>
+                        <span>put your portrait here</span>
+                    </div>
+
+                    <span class="portrait-caption">hi, that's me! ↗</span>
+                    <span class="portrait-sparkle">✦</span>
+                </div>
+
+                <div class="about-copy reveal">
+                    <span class="speech-label">HEY THERE! I'M PEARL.</span>
+                    <h3>I'm an Information Technology student who loves exploring the intersection of design and
+                        technology. </h3>
+
+                    <p>
+                        I enjoy turning ideas into visuals, experimenting with layouts,
+                        and making digital experiences feel thoughtful and fun.
+                    </p>
+
+                    <p>
+                        My interests range from graphic design and illustration to UI
+                        design and web development. I'm still learning, still figuring
+                        things out, and always finding something new to get curious about.
+                    </p>
+
+                    <p>
+                        I believe a little personality can make a big difference.
+                        Whether I'm making a poster or designing an interface, I want
+                        my work to communicate clearly while still feeling like me.
+                    </p>
+
+                    <div class="about-tags">
+                        <span>✿ visual storytelling</span>
+                        <span>✳ curious by nature</span>
+                        <span>♡ learning as I go</span>
+                    </div>
+
+                    <a href="#contact" class="text-link">Let's connect! <span>↗</span></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="skills-section section-space" id="skills">
+            <div class="section-wrap">
+                <div class="section-heading reveal">
+                    <span class="section-number">02 / MY CREATIVE TOOLBOX</span>
+                    <h2>Tools of the <span class="highlight highlight-yellow">trade!</span></h2>
+                    <p class="section-intro">
+                        Things I use to bring ideas to life, one layer at a time.
+                    </p>
+                </div>
+
+                <div class="skills-layout">
+                    <div class="skills-copy reveal">
+                        <div class="comic-burst">POW!</div>
+                        <h3>My digital art kit</h3>
+                        <p>
+                            I use different tools depending on the project, from creating
+                            visual materials and illustrations to exploring layouts and
+                            interface designs.
+                        </p>
+                        <p class="small-note">
+                            I'm still developing my skills, especially in some of the more
+                            advanced features of Adobe Illustrator and Photoshop.
+                        </p>
+                    </div>
+
+                    <div class="tool-grid reveal">
+                        <article class="tool-card tool-orange">
+                            <div class="tool-logo">
+                                <img src="images/logos/illustrator.jpg" alt="Illustrator logo"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+                            </div>
+                            <h3>Illustrator</h3>
+                            <p>Vector graphics</p>
+                        </article>
+
+                        <article class="tool-card tool-blue">
+                            <div class="tool-logo">
+                                <img src="images/logos/photoshop.jpg" alt="Photoshop logo"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+                            </div>
+                            <h3>Photoshop</h3>
+                            <p>Image editing</p>
+                        </article>
+
+                        <article class="tool-card tool-purple">
+                            <div class="tool-logo">
+                                <img src="images/logos/canva.jpg" alt="Canva logo"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+                                <span class="logo-fallback">Ca</span>
+                            </div>
+                            <h3>Canva</h3>
+                            <p>Graphic design</p>
+                        </article>
+
+                        <article class="tool-card tool-pink">
+                            <div class="tool-logo">
+                                <img src="images/logos/krita.jpg" alt="Krita logo"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+                                <span class="logo-fallback">Kr</span>
+                            </div>
+                            <h3>Krita</h3>
+                            <p>Digital painting</p>
+                        </article>
+
+                        <article class="tool-card tool-teal">
+                            <div class="tool-logo">
+                                <img src="images/logos/firealpaca.jpg" alt="FireAlpaca logo"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+                                <span class="logo-fallback">FA</span>
+                            </div>
+                            <h3>FireAlpaca</h3>
+                            <p>Digital illustration</p>
+                        </article>
+
+                        <article class="tool-card tool-yellow">
+                            <div class="tool-logo">
+                                <img src="images/logos/figma.jpg" alt="Figma logo"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+                                <span class="logo-fallback">Fi</span>
+                            </div>
+                            <h3>Figma</h3>
+                            <p>UI design & prototyping</p>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="skills-footer reveal">
+                    <span>✎</span>
+                    <p>
+                        Current mission: learning more, trying things out, and getting
+                        better with every project.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="artworks section-wrap section-space" id="artworks">
+            <div class="section-heading reveal">
+                <span class="section-number">03 / THE ART WALL</span>
+                <h2>Things I've <span class="highlight highlight-blue">made!</span></h2>
+                <p class="section-intro">
+                    Posters, pubmats, illustrations, and other little pieces of creativity.
+                </p>
+            </div>
+
+            <div class="work-grid">
+                <article class="work-card reveal">
+                    <div class="work-image work-image-pink">
+                        <img src="images/artwork-01.png" alt="Preview of artwork one" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                        <div class="work-image-fallback image-fallback">
+                        </div>
+                        <span class="work-sticker">01</span>
+                    </div>
+                    <div class="work-info">
+                        <span class="work-category">Prototype</span>
+                        <h3>LJN OBDRAS UI</h3>
+                        <p>A visual prototype and layout exploration designed for the LJN Obdras web project, focusing
+                            on clear structure and functional visual hierarchy.</p>
+                    </div>
+                </article>
+
+                <article class="work-card reveal">
+                    <div class="work-image work-image-yellow">
+                        <img src="images/artwork-02.png" alt="Preview of artwork two" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                        <div class="work-image-fallback image-fallback">
+                        </div>
+                        <span class="work-sticker">02</span>
+                    </div>
+                    <div class="work-info">
+                        <span class="work-category">Logo & Branding</span>
+                        <h3>ReqWest</h3>
+                        <p>A group branding and logo design project created for ReqWest, establishing a distinct visual
+                            identity, color scheme, and mark.</p>
+                    </div>
+                </article>
+
+                <article class="work-card reveal">
+                    <div class="work-image work-image-blue">
+                        <img src="images/artwork-03.png" alt="Preview of artwork three" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                        <div class="work-image-fallback image-fallback">
+                            <span>☀</span>
+                        </div>
+                        <span class="work-sticker">03</span>
+                    </div>
+                    <div class="work-info">
+                        <span class="work-category">DIGITAL ILLUSTRATION</span>
+                        <h3>Rental App Storyboard</h3>
+                        <p>A storyboard narrative illustrating key user interactions and scenarios for a rental
+                            application concept.</p>
+                    </div>
+                </article>
+
+                <article class="work-card reveal">
+                    <div class="work-image work-image-green">
+                        <img src="images/artwork-04.png" alt="Preview of artwork four" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                        <div class="work-image-fallback image-fallback">
+                        </div>
+                        <span class="work-sticker">04</span>
+                    </div>
+                    <div class="work-info">
+                        <span class="work-category">DIGITAL SKETCHES</span>
+                        <h3>Color theory eXploration in Krita</h3>
+                        <p>Loose digital sketches and creative visual experiments created using Krita to test brushes,
+                            colors, and concepts.</p>
+                    </div>
+                </article>
+
+                <article class="work-card reveal">
+                    <div class="work-image work-image-purple">
+                        <img src="images/artwork-05.png" alt="Preview of artwork five" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                        <div class="work-image-fallback image-fallback">
+                        </div>
+                        <span class="work-sticker">05</span>
+                    </div>
+                    <div class="work-info">
+                        <span class="work-category">EDITING</span>
+                        <h3>Street Workers Photo Essay Magazine Cover</h3>
+                        <p>A photo essay magazine cover focusing on the stories, daily lives, and honor of street
+                            workers in Iloilo City.</p>
+                    </div>
+                </article>
+
+                <article class="work-card reveal">
+                    <div class="work-image work-image-orange">
+                        <img src="images/artwork-06.png" alt="Preview of artwork six" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                        <div class="work-image-fallback image-fallback">
+                        </div>
+                        <span class="work-sticker">06</span>
+                    </div>
+                    <div class="work-info">
+                        <span class="work-category">CREATIVES</span>
+                        <h3>Publication & Posting Material</h3>
+                        <p>social media posting material and layout.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="web-section section-space" id="web-projects">
+            <div class="section-wrap">
+                <div class="section-heading reveal">
+                    <span class="section-number">04 / THE DIGITAL PLAYGROUND</span>
+                    <h2>Web <span class="highlight highlight-pink">projects</span></h2>
+                    <p class="section-intro">
+                        A collection of web projects, experiments, and things I'm learning to build.
+                    </p>
+                </div>
+
+                <div class="web-grid">
+                    <article class="web-card reveal">
+                        <a class="web-preview placeholder-link" href="#">
+                            <img src="images/web-projects/luna.png" alt="Phases of Luna website preview" loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="web-preview-fallback image-fallback">
+                            </div>
+                            <span class="preview-open">↗</span>
+                        </a>
+                        <div class="web-info">
+                            <span class="project-type">WEB APPLICATION</span>
+                            <h3>Phases of Luna</h3>
+                            <p>An interactive web application exploring the phases of the moon alongside celestial
+                                myths, folklore stories, and an integrated lunar calendar.</p>
+                            <div class="tech-tags"><span>Netlify</span><span>Web</span><span>UI</span></div>
+                        </div>
+                    </article>
+
+                    <article class="web-card reveal">
+                        <a class="web-preview placeholder-link" href="#">
+                            <img src="images/web-projects/ljn-obdras.png" alt="LJN Obdras website preview"
+                                loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="web-preview-fallback image-fallback"></div>
+                            <span class="preview-open">↗</span>
+                        </a>
+                        <div class="web-info">
+                            <span class="project-type">WEB PROJECT</span>
+                            <h3>LJN Obdras</h3>
+                            <p>An online barangay document request system developed for Barangay Lopez Jaena Norte to
+                                streamline local requests and administrative processes.</p>
+                            <div class="tech-tags"><span>Web</span><span>Development</span></div>
+                        </div>
+                    </article>
+
+                    <article class="web-card reveal">
+                        <a class="web-preview placeholder-link" href="#">
+                            <img src="images/web-projects/seekshade.png" alt="Seekshade lipstick shade finder preview"
+                                loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="web-preview-fallback image-fallback"></div>
+                            <span class="preview-open">↗</span>
+                        </a>
+                        <div class="web-info">
+                            <span class="project-type">WEB APPLICATION</span>
+                            <h3>Seekshade</h3>
+                            <p>A lipstick shade finder. Add details about its features and intended users.</p>
+                            <div class="tech-tags"><span>Netlify</span><span>Web app</span></div>
+                        </div>
+                    </article>
+
+                    <article class="web-card reveal">
+                        <a class="web-preview placeholder-link" href="#">
+                            <img src="images/web-projects/cyclelogic.png" alt="CycleLogic website preview"
+                                loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="web-preview-fallback image-fallback"></div>
+                            <span class="preview-open">↗</span>
+                        </a>
+                        <div class="web-info">
+                            <span class="project-type">WEB PROJECT</span>
+                            <h3>CycleLogic</h3>
+                            <p>A Java-based application built in NetBeans designed to track menstrual cycles, notes, and
+                                daily mood logs in a fun and interactive way.</p>
+                            <div class="tech-tags"><span>Web</span><span>UI</span></div>
+                        </div>
+                    </article>
+
+                    <article class="web-card reveal">
+                        <a class="web-preview placeholder-link" href="#">
+                            <img src="images/web-projects/travelph.png" alt="TravelPH website preview" loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="web-preview-fallback image-fallback"></div>
+                            <span class="preview-open">↗</span>
+                        </a>
+                        <div class="web-info">
+                            <span class="project-type">RESPONSIVE WEBSITE</span>
+                            <h3>TravelPH</h3>
+                            <p>A travel website built with Bootstrap. Add the features and design choices you made.</p>
+                            <div class="tech-tags"><span>Bootstrap</span><span>HTML/CSS</span></div>
+                        </div>
+                    </article>
+
+                    <article class="web-card reveal">
+                        <a class="web-preview placeholder-link" href="#">
+                            <img src="images/web-projects/astrotrait.png" alt="Astrotrait website preview"
+                                loading="lazy"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="web-preview-fallback image-fallback"></div>
+                            <span class="preview-open">↗</span>
+                        </a>
+                        <div class="web-info">
+                            <span class="project-type">WEB PROJECT</span>
+                            <h3>Astrotrait</h3>
+                            <p>A sleek, responsive static website built with Tailwind CSS to explore personality traits
+                                and details for each zodiac sign.</p>
+                            <div class="tech-tags"><span>Tailwind CSS</span><span>Web</span></div>
+                        </div>
+                    </article>
+                </div>
+
+                <p class="section-footnote reveal">
+                    Most of the builds featured here are a mix of academic projects, hands-on classroom assignments, and
+                    personal practice builds. Many of them are evolving works-in-progress as I continue to experiment
+                    with new technologies and refine user interfaces.
+                </p>
+            </div>
+        </section>
+
+        <section class="process section-wrap section-space">
+            <div class="process-card reveal">
+                <div class="process-doodle">✿</div>
+                <span class="section-number">05 / HOW MY BRAIN WORKS</span>
+                <h2>Ideas don't happen <span class="highlight highlight-yellow">in a straight line.</span></h2>
+
+                <div class="process-steps">
+                    <div class="process-step">
+                        <span class="step-number">01</span>
+                        <span class="step-icon">☁</span>
+                        <h3>Collect ideas</h3>
+                        <p>Inspiration, references, little notes, and lots of curiosity.</p>
+                    </div>
+                    <div class="process-step">
+                        <span class="step-number">02</span>
+                        <span class="step-icon">✎</span>
+                        <h3>Make a mess</h3>
+                        <p>Sketch, experiment, rearrange, and figure out what works.</p>
+                    </div>
+                    <div class="process-step">
+                        <span class="step-number">03</span>
+                        <span class="step-icon">✳</span>
+                        <h3>Make it real</h3>
+                        <p>Refine the details, learn from mistakes, and share the result.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact section-wrap section-space" id="contact">
+            <div class="contact-card reveal">
+                <span class="contact-sparkle contact-sparkle-one">✦</span>
+                <span class="contact-sparkle contact-sparkle-two">✳</span>
+                <span class="section-number">06 / YOUR TURN</span>
+                <h2>Got an idea?<br /><span>Let's make something!</span></h2>
+                <p>
+                    I'm always happy to connect with fellow creatives, exchange ideas,
+                    and learn about interesting projects.
+                </p>
+
+                <a href="mailto:YOUR-EMAIL@example.com" class="button button-dark">
+                    Send me a message <span>↗</span>
+                </a>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer section-wrap">
+        <a href="#home" class="footer-brand">PT! <span>back to the top ↑</span></a>
+        <p>© <span id="currentYear"></span> Pearl Trihsa Bantillo. BSIT 3A.</p>
+        <span class="footer-doodle">✿ ✳ ♡</span>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+
+</html>

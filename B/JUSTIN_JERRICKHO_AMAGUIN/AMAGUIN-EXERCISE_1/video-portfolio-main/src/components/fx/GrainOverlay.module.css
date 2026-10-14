@@ -1,0 +1,44 @@
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-grain);
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: overlay;
+  /* ~140px feTurbulence noise tile, inline so there's no network request */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  /* 6 scattered positions at 12 steps/s → full cycle every 0.5s */
+  animation: jitter 0.5s steps(1, end) infinite;
+}
+
+@keyframes jitter {
+  0% {
+    background-position: 0 0;
+  }
+  16.67% {
+    background-position: -46px 31px;
+  }
+  33.33% {
+    background-position: 23px -64px;
+  }
+  50% {
+    background-position: -71px -12px;
+  }
+  66.67% {
+    background-position: 54px 47px;
+  }
+  83.33% {
+    background-position: -18px 69px;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+/* reduced motion: grain stays as texture, but holds still */
+@media (prefers-reduced-motion: reduce) {
+  .grain {
+    animation: none;
+  }
+}

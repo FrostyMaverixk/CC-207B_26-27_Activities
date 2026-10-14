@@ -1,0 +1,29 @@
+/* Full-width layer; translating it by N% moves the 0-width head to N% of the
+   nav. Updates come from the --scroll-progress custom property alone. */
+.layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transform: translateX(calc(var(--scroll-progress, 0) * 100%));
+  will-change: transform;
+}
+
+.head {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: var(--accent-orange);
+}
+
+.handle {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--accent-orange);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  line-height: 1;
+}

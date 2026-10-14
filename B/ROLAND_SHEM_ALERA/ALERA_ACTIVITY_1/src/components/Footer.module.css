@@ -1,0 +1,29 @@
+.footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 28px 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.text {
+  font-family: 'Space Mono', monospace;
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 11px;
+}
+
+.backTop {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: rgba(167, 139, 250, 0.5);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.backTop:hover {
+  color: #a78bfa;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lagawan</title>
+    <link rel="icon" href="images/Web Layout.png">
+    <link rel="stylesheet" type="text/css" href="Loading.css">
+    <script type="text/javascript" src="debug.js" defer></script>
+</head>
+<body onload="startLoading()">
+    <div class="aqua">
+        <span class="percentBar"><h3 class="number"> 0%</h3></span>
+    </div>
+    <h2> Welcome to Lagawan </h2>
+    <h3 id="username"></h3> <!-- Make sure this element is included -->
+    <script>
+        function startLoading() {
+            let i = 0;
+            let h2 = document.querySelector('h2');
+            let aqua = document.querySelector('.aqua');
+            let body = document.querySelector('body');
+            let number = document.querySelector('.number');
+            let percentBar = document.querySelector('.percentBar');
+            let username = document.querySelector('h3#username');
+        
+            // Fetch the value of loggedInUser from localStorage
+            let loggedInUser = localStorage.getItem('loggedInUser');
+            console.log('loggedInUser:', loggedInUser); // Debug log
+        
+            if (loggedInUser) {
+                username.innerText = loggedInUser;
+            }
+        
+            let interval = setInterval(function() {
+                number.innerHTML = i + '<span>%</span>';
+                percentBar.style.width = i + '%';
+                i++;
+                if (i == 101) {
+                    clearInterval(interval);
+                    setTimeout(function() {
+                        aqua.classList.add('zoom-out'); // Add zoom-out class
+                        setTimeout(function() {
+                            aqua.style.visibility = 'hidden';
+                            body.style.background = 'url("images/loading.png")'; // Change body background image
+                            body.style.backgroundSize = 'cover'; // Ensure the image covers the entire background
+                            body.style.backgroundPosition = 'center'; // Center the image
+                            body.classList.add('fade-in'); // Add fade-in class for the transition
+                            h2.style.opacity = '1';
+                            h2.style.visibility = 'visible';
+                            if (loggedInUser) {
+                                username.style.opacity = '1';
+                                username.style.visibility = 'visible';
+                            }
+                            setTimeout(function() {
+                                window.location.href = 'homepage.html'; // Redirect to the new page after the delay
+                            }, 3000); // 2000 milliseconds = 2 seconds
+                        }, 300); // 200 milliseconds delay before showing the welcome message
+                    }, 500); // 500 milliseconds delay before starting the zoom-out effect
+                }
+            }, 20);
+        }
+    </script>
+    
+    
+</body>
+</html>

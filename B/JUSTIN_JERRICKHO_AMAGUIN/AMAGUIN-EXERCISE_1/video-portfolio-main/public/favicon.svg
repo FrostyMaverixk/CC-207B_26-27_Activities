@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- EDIT BAY mark: orange playhead parked in a timeline ruler, on NLE
+       charcoal. Colors mirror tokens.css (bg-0/bg-2/line-0/line-1/accent-
+       orange). At 16px it reads as the playhead alone; the ruler ticks and
+       track hairlines surface at larger sizes. Source of truth for the
+       favicon, apple-touch-icon, and the brand/ card renders. -->
+  <rect width="64" height="64" fill="#0b0c0f"/>
+  <!-- ruler band -->
+  <rect width="64" height="14" fill="#1a1d24"/>
+  <rect y="14" width="64" height="1" fill="#262a33"/>
+  <g fill="#343a46">
+    <rect x="7" y="9" width="2" height="5"/>
+    <rect x="15" y="9" width="2" height="5"/>
+    <rect x="47" y="9" width="2" height="5"/>
+    <rect x="55" y="9" width="2" height="5"/>
+  </g>
+  <!-- track hairlines -->
+  <g fill="#262a33">
+    <rect y="30" width="64" height="2"/>
+    <rect y="46" width="64" height="2"/>
+  </g>
+  <!-- the playhead -->
+  <g fill="#ff8a3d">
+    <path d="M20 4h24v12L32 27 20 16z"/>
+    <rect x="30" y="4" width="4" height="56"/>
+  </g>
+</svg>

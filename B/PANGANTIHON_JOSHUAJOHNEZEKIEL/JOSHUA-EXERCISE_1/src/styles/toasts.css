@@ -1,0 +1,52 @@
+/* ============ Toasts (with sound-effect driven feedback) ============ */
+
+.toast-stack {
+  position: fixed; top: 16px; right: 16px; z-index: 120;
+  display: flex; flex-direction: column; gap: 10px;
+  width: min(360px, calc(100vw - 28px));
+}
+
+.toast {
+  position: relative; overflow: hidden;
+  display: flex; gap: 11px; align-items: flex-start;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 13px; padding: 12px 14px;
+  box-shadow: var(--shadow-lg);
+  animation: toastIn 0.22s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+@keyframes toastIn { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: none; } }
+
+.toast .toast-icon { margin-top: 1px; }
+.toast.success .toast-icon { color: var(--emerald); }
+.toast.error .toast-icon { color: var(--rose); }
+.toast.warning .toast-icon { color: var(--amber); }
+.toast.info .toast-icon { color: var(--sky); }
+
+.toast-body { flex: 1; min-width: 0; }
+.toast-body strong { font-size: 13.5px; display: block; }
+.toast-body p { font-size: 12.5px; color: var(--muted); margin-top: 2px; word-break: break-word; }
+
+.toast-close {
+  flex: none; border: none; background: transparent; color: var(--muted);
+  cursor: pointer; padding: 3px; border-radius: 6px; display: grid; place-items: center;
+}
+.toast-close:hover { color: var(--text); background: var(--surface-2); }
+
+.toast-bar {
+  position: absolute; left: 0; bottom: 0; height: 3px; width: 100%;
+  transform-origin: left; animation: shrink 4.2s linear forwards;
+}
+.toast.success .toast-bar { background: var(--emerald); }
+.toast.error .toast-bar { background: var(--rose); }
+.toast.warning .toast-bar { background: var(--amber); }
+.toast.info .toast-bar { background: var(--sky); }
+@keyframes shrink { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+
+/* Confirmation toast */
+.toast-confirm.danger .toast-icon { color: var(--rose); }
+.toast-confirm:not(.danger) .toast-icon { color: var(--primary); }
+.toast-actions { display: flex; gap: 8px; margin-top: 10px; }
+
+@media (max-width: 560px) {
+  .toast-stack { top: auto; bottom: 14px; right: 14px; left: 14px; width: auto; }
+}

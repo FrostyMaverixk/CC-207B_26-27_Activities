@@ -1,0 +1,112 @@
+.transport {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-top: 1px solid var(--line-0);
+  background: var(--bg-2);
+}
+
+.btn {
+  min-width: 32px;
+  min-height: 28px;
+  border: 1px solid var(--line-0);
+  border-radius: var(--radius);
+  background: var(--bg-1);
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  color: var(--text-1);
+}
+
+.btn:hover {
+  border-color: var(--line-1);
+  color: var(--text-0);
+}
+
+.rate {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  color: var(--accent-orange);
+}
+
+.tc {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  color: var(--accent-orange);
+  white-space: nowrap;
+}
+
+.tcSep,
+.tcDur {
+  color: var(--text-2);
+}
+
+/* ---- seek bar as a mini-timeline (orange played region) --------------------- */
+.seek {
+  --played: 0%;
+  flex: 1;
+  height: 8px;
+  appearance: none;
+  background: linear-gradient(
+    to right,
+    var(--accent-orange) var(--played),
+    var(--bg-1) var(--played)
+  );
+  border: 1px solid var(--line-0);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.seek::-webkit-slider-thumb {
+  appearance: none;
+  width: 2px;
+  height: 14px;
+  background: var(--accent-orange);
+}
+
+.seek::-moz-range-thumb {
+  width: 2px;
+  height: 14px;
+  border: none;
+  border-radius: 0;
+  background: var(--accent-orange);
+}
+
+.volume {
+  width: 72px;
+  height: 4px;
+  appearance: none;
+  background: var(--bg-1);
+  border: 1px solid var(--line-0);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.volume::-webkit-slider-thumb {
+  appearance: none;
+  width: 8px;
+  height: 12px;
+  background: var(--accent-teal);
+  border-radius: var(--radius);
+}
+
+.volume::-moz-range-thumb {
+  width: 8px;
+  height: 12px;
+  border: none;
+  background: var(--accent-teal);
+  border-radius: var(--radius);
+}
+
+@media (max-width: 639px) {
+  .volume {
+    display: none; /* phones use hardware volume */
+  }
+
+  .tcDur,
+  .tcSep {
+    display: none;
+  }
+}

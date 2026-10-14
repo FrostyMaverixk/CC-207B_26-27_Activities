@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ryzel John De Guia | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">RJDG<span>.dev</span></div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <p class="tagline">Hello, I am</p>
+        <h1>Ryzel John De Guia</h1>
+        <h2>BSIT 3-B Student & Aspiring Software Developer</h2>
+        <p class="bio-intro">
+          Passionate about building responsive web applications, robust backend systems, and intuitive user experiences.
+        </p>
+        <a href="#projects" class="btn">View My Work</a>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <h2>About Me</h2>
+      <div class="about-card">
+        <p>
+          I am a 3rd-year Bachelor of Science in Information Technology (BSIT) student from Section 3-B. 
+          My focus areas include full-stack web development, database architecture, and network configuration.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <h2>Technical Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>Frontend</h3>
+          <ul>
+            <li>HTML5 / CSS3</li>
+            <li>JavaScript (ES6+)</li>
+            <li>UI/UX Prototyping (Figma)</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3>Backend & Databases</h3>
+          <ul>
+            <li>Java (Swing / Core)</li>
+            <li>PHP / Node.js</li>
+            <li>MySQL Database Design</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3>Tools & Networking</h3>
+          <ul>
+            <li>Git & GitHub Version Control</li>
+            <li>Cisco Packet Tracer</li>
+            <li>Apache NetBeans / VS Code</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <h2>Featured Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3>Automated POS & Customer Management</h3>
+          <p>Integrated desktop application handling services, parts inventory, and invoice calculation.</p>
+          <span class="badge">Java / MySQL</span>
+        </div>
+        <div class="project-card">
+          <h3>Gamified LMS Portal</h3>
+          <p>Educational platform with rank tracking, interactive quizzes, and custom reward systems.</p>
+          <span class="badge">Web / Full-Stack</span>
+        </div>
+        <div class="project-card">
+          <h3>Clinic & Appointment Lite App</h3>
+          <p>A streamlined scheduling and service showcase platform for localized healthcare providers.</p>
+          <span class="badge">PHP / JavaScript</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <h2>Get In Touch</h2>
+      <form id="contactForm" class="contact-form">
+        <input type="text" id="name" placeholder="Your Name" required />
+        <input type="email" id="email" placeholder="Your Email" required />
+        <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+      <p id="formStatus" class="form-status"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Ryzel John De Guia | BSIT 3-B. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

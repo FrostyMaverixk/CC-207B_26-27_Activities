@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Confirmed — Blume Daily</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ivory: #faf8f3; --parchment: #f4f0e6; --warm-white: #fffefb;
+  --blush-pale: #f9eaed; --blush: #f2c0c8; --rose: #5C0316; --rose-deep: #3d0110;
+  --rose-muted: #a06070; --sage: #6b7d60; --sage-light: #e8f0e2; --ink: #1e1a15;
+  --ink-soft: #3d3730; --mocha: #7a6555; --mocha-light: #b8a899; --gold: #c4975a;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Jost', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--ivory); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.7; overflow-x: hidden; min-height: 100vh; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 56px;
+  background: rgba(250,248,243,0.97);
+  box-shadow: 0 1px 0 rgba(0,0,0,.08);
+  backdrop-filter: blur(12px);
+}
+.nav-logo { font-family: var(--font-display); font-size: 22px; font-weight: 600; color: var(--ink); letter-spacing: .06em; text-decoration: none; text-transform: uppercase; }
+.nav-center { display: flex; gap: 44px; list-style: none; }
+.nav-center a { font-size: 11px; font-weight: 300; letter-spacing: .22em; text-transform: uppercase; color: var(--mocha); text-decoration: none; transition: color .3s; }
+.nav-center a:hover { color: var(--rose); }
+.nav-right { display: flex; align-items: center; gap: 24px; }
+.nav-tagline { font-family: var(--font-display); font-style: italic; font-size: 13px; font-weight: 200; color: var(--mocha-light); white-space: nowrap; }
+.nav-icon { color: var(--ink-soft); cursor: pointer; transition: color .3s; position: relative; display: flex; }
+.cart-count { position: absolute; top: -7px; right: -7px; background: var(--rose); color: #fff; font-size: 9px; font-weight: 500; width: 17px; height: 17px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+/* PROGRESS */
+.progress-bar { background: var(--parchment); border-bottom: 1px solid rgba(0,0,0,.07); padding: 20px 56px; }
+.progress-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; gap: 0; }
+.progress-step { display: flex; align-items: center; gap: 10px; font-size: 10px; font-weight: 300; letter-spacing: .18em; text-transform: uppercase; color: var(--mocha-light); }
+.progress-step.done { color: var(--sage); }
+.step-dot { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid currentColor; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 13px; font-weight: 400; flex-shrink: 0; }
+.progress-step.done .step-dot { background: var(--sage); border-color: var(--sage); color: #fff; }
+.progress-line { flex: 1; height: 1px; background: var(--sage); opacity: .4; margin: 0 16px; }
+
+/* CONFETTI CANVAS */
+#confetti-canvas {
+  position: fixed; inset: 0; pointer-events: none; z-index: 999;
+}
+
+/* HERO SUCCESS */
+.success-hero {
+  padding: 80px 56px 0;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+}
+.success-icon-wrap {
+  width: 96px; height: 96px; border-radius: 50%;
+  background: var(--sage-light); display: flex; align-items: center; justify-content: center;
+  margin-bottom: 28px;
+  animation: popIn .6s cubic-bezier(.34,1.56,.64,1) .3s both;
+}
+@keyframes popIn { from { opacity:0; transform:scale(.5);} to { opacity:1; transform:scale(1);} }
+.success-icon-wrap svg { color: var(--sage); }
+.success-title {
+  font-family: var(--font-display); font-size: clamp(36px,5vw,60px);
+  font-weight: 400; line-height: 1.05; margin-bottom: 16px;
+  animation: fadeUp .8s cubic-bezier(.16,1,.3,1) .5s both;
+}
+.success-title em { font-style: italic; color: var(--rose); display: block; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(24px);} to { opacity:1; transform:translateY(0);} }
+.success-subtitle {
+  font-size: 15px; font-weight: 200; color: var(--mocha); max-width: 480px;
+  line-height: 1.9; margin-bottom: 36px;
+  animation: fadeUp .8s cubic-bezier(.16,1,.3,1) .65s both;
+}
+.order-id-pill {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--warm-white); border: 1px solid rgba(0,0,0,.1);
+  padding: 12px 24px; font-size: 12px; margin-bottom: 64px;
+  animation: fadeUp .8s cubic-bezier(.16,1,.3,1) .75s both;
+}
+.order-id-label { color: var(--mocha-light); letter-spacing: .1em; text-transform: uppercase; }
+.order-id-val { font-family: var(--font-display); font-size: 18px; font-weight: 500; color: var(--ink); }
+
+/* MAIN CONTENT */
+.conf-layout {
+  max-width: 1060px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 360px; gap: 40px;
+  padding: 0 56px 104px;
+  animation: fadeUp .8s cubic-bezier(.16,1,.3,1) .85s both;
+}
+
+/* ORDER CARD */
+.conf-card { background: var(--warm-white); border: 1px solid rgba(0,0,0,.07); }
+.conf-card-header { padding: 28px 32px 20px; border-bottom: 1px solid rgba(0,0,0,.07); }
+.conf-card-title { font-family: var(--font-display); font-size: 20px; font-weight: 500; }
+.conf-section { padding: 24px 32px; border-bottom: 1px solid rgba(0,0,0,.07); }
+.conf-section:last-child { border-bottom: none; }
+.conf-section-label { font-size: 10px; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: var(--rose); margin-bottom: 16px; }
+
+/* ORDER ITEM */
+.conf-item { display: flex; gap: 16px; align-items: center; }
+.conf-item-img { width: 80px; height: 96px; object-fit: cover; object-position: center; flex-shrink: 0; }
+.conf-item-name { font-family: var(--font-display); font-size: 18px; font-weight: 500; margin-bottom: 4px; }
+.conf-item-variant { font-size: 12px; color: var(--mocha-light); font-weight: 200; }
+.conf-item-price { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--rose-deep); margin-top: 8px; }
+
+/* DETAILS GRID */
+.details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.detail-item { }
+.detail-label { font-size: 10px; font-weight: 400; letter-spacing: .16em; text-transform: uppercase; color: var(--mocha-light); margin-bottom: 4px; }
+.detail-val { font-size: 14px; font-weight: 300; color: var(--ink); line-height: 1.5; }
+.detail-val strong { font-weight: 500; }
+
+/* STATUS BADGE */
+.status-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 14px; font-size: 11px; font-weight: 400; letter-spacing: .1em; text-transform: uppercase;
+}
+.status-badge.pending { background: rgba(196, 151, 90, 0.12); color: var(--gold); }
+.status-badge.confirmed { background: var(--sage-light); color: var(--sage); }
+.status-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+/* TIMELINE */
+.timeline { display: flex; flex-direction: column; gap: 0; }
+.timeline-item { display: flex; gap: 20px; padding-bottom: 28px; position: relative; }
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+.timeline-dot { width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--rose-muted); background: var(--warm-white); display: flex; align-items: center; justify-content: center; color: var(--rose); flex-shrink: 0; z-index: 1; }
+.timeline-dot.done { background: var(--sage); border-color: var(--sage); color: #fff; }
+.timeline-dot.active { background: var(--rose); border-color: var(--rose); color: #fff; }
+.timeline-line { width: 1px; flex: 1; background: rgba(0,0,0,.1); margin-top: 4px; }
+.timeline-item:last-child .timeline-line { display: none; }
+.timeline-content { padding-top: 4px; }
+.timeline-title { font-size: 14px; font-weight: 400; color: var(--ink); margin-bottom: 4px; }
+.timeline-title.muted { color: var(--mocha-light); }
+.timeline-sub { font-size: 12px; font-weight: 200; color: var(--mocha-light); line-height: 1.7; }
+
+/* SIDEBAR */
+.conf-sidebar { display: flex; flex-direction: column; gap: 20px; }
+.side-card { background: var(--warm-white); border: 1px solid rgba(0,0,0,.07); padding: 28px; }
+.side-card-title { font-family: var(--font-display); font-size: 18px; font-weight: 500; margin-bottom: 16px; }
+.side-row { display: flex; justify-content: space-between; font-size: 13px; font-weight: 300; color: var(--mocha); padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,.06); }
+.side-row:last-of-type { border-bottom: none; }
+.side-row.total { font-size: 15px; font-weight: 400; color: var(--ink); padding-top: 14px; border-top: 1px solid rgba(0,0,0,.1); border-bottom: none; }
+.side-row.total .total-v { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--rose-deep); }
+
+.contact-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; }
+.contact-item:not(:last-child) { border-bottom: 1px solid rgba(0,0,0,.06); }
+.contact-icon { color: var(--rose); flex-shrink: 0; margin-top: 2px; }
+.contact-label { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--mocha-light); }
+.contact-val { font-size: 13px; color: var(--ink); font-weight: 300; }
+
+.btn-rose {
+  display: block; width: 100%; background: var(--rose); color: #fff; border: none;
+  padding: 16px; font-family: var(--font-body); font-size: 10px; font-weight: 400;
+  letter-spacing: .22em; text-transform: uppercase; cursor: pointer;
+  transition: background .3s, transform .2s; text-align: center; text-decoration: none;
+  margin-bottom: 10px;
+}
+.btn-rose:hover { background: var(--rose-deep); transform: translateY(-2px); }
+.btn-outline {
+  display: block; width: 100%; background: transparent; color: var(--mocha); border: 1px solid rgba(0,0,0,.12);
+  padding: 14px; font-family: var(--font-body); font-size: 10px; font-weight: 300;
+  letter-spacing: .22em; text-transform: uppercase; cursor: pointer;
+  transition: border-color .3s, color .3s; text-align: center; text-decoration: none;
+}
+.btn-outline:hover { border-color: var(--rose-muted); color: var(--rose); }
+
+/* NOTE CARD */
+.note-card {
+  background: var(--blush-pale); border-left: 3px solid var(--rose-muted); padding: 20px 24px;
+  font-size: 13px; font-weight: 200; color: var(--mocha); line-height: 1.8;
+}
+.note-card strong { font-weight: 400; color: var(--ink); }
+
+@media (max-width:1024px) { .conf-layout { grid-template-columns:1fr; } }
+@media (max-width:768px) {
+  nav { padding:16px 24px; } .nav-center { display:none; }
+  .success-hero { padding:80px 24px 0; }
+  .conf-layout { padding:0 24px 72px; gap:28px; }
+  .details-grid { grid-template-columns:1fr; }
+  .progress-bar { padding:16px 24px; }
+  .conf-section { padding:20px 24px; }
+  .conf-card-header { padding:20px 24px 16px; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<nav>
+  <a href="index.html" class="nav-logo">Blume Daily</a>
+  <ul class="nav-center">
+    <li><a href="index.html">Shop</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="catalogue.html">Catalogue</a></li>
+    <li><a href="index.html#how">How It Works</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-tagline">DAILY BLEUM</div>
+    <a href="cart.html" class="nav-icon" title="View Cart">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-count" id="cart-count">0</span>
+    </a>
+  </div>
+</nav>
+
+<!-- PROGRESS -->
+<div class="progress-bar" style="margin-top:58px;">
+  <div class="progress-inner">
+    <div class="progress-step done"><div class="step-dot">✓</div><span>Your Details</span></div>
+    <div class="progress-line"></div>
+    <div class="progress-step done"><div class="step-dot">✓</div><span>Payment</span></div>
+    <div class="progress-line"></div>
+    <div class="progress-step done"><div class="step-dot">✓</div><span>Confirmation</span></div>
+  </div>
+</div>
+
+<!-- SUCCESS HERO -->
+<div class="success-hero">
+  <div class="success-icon-wrap">
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+      <polyline points="22 4 12 14.01 9 11.01"/>
+    </svg>
+  </div>
+  <h1 class="success-title">Order <em>Confirmed!</em></h1>
+  <p class="success-subtitle">Thank you for your order! We've received your request and will confirm it within 1–2 hours. Get ready for beautiful blooms! 🌸</p>
+  <div class="order-id-pill">
+    <span class="order-id-label">Order ID</span>
+    <span class="order-id-val" id="display-order-id">BD-000000</span>
+  </div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="conf-layout">
+
+  <!-- LEFT -->
+  <div class="conf-card">
+    <div class="conf-card-header">
+      <div class="conf-card-title">Order Details</div>
+    </div>
+
+    <!-- Items -->
+    <div class="conf-section">
+      <div class="conf-section-label">Your Order</div>
+      <div id="conf-items-list" style="display:flex;flex-direction:column;gap:14px;">
+        <div style="color:var(--mocha-light);font-size:13px;">—</div>
+      </div>
+    </div>
+
+    <!-- Customer & Order Info -->
+    <div class="conf-section">
+      <div class="conf-section-label">Customer Information</div>
+      <div class="details-grid">
+        <div class="detail-item">
+          <div class="detail-label">Name</div>
+          <div class="detail-val" id="conf-name">—</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">Contact</div>
+          <div class="detail-val" id="conf-phone">—</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">Email</div>
+          <div class="detail-val" id="conf-email">—</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">Payment Method</div>
+          <div class="detail-val" id="conf-payment">—</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">Date &amp; Time</div>
+          <div class="detail-val" id="conf-datetime">—</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">Fulfillment</div>
+          <div class="detail-val" id="conf-fulfill">—</div>
+        </div>
+        <div class="detail-item" style="grid-column:1/-1;">
+          <div class="detail-label">Address / Location</div>
+          <div class="detail-val" id="conf-address">—</div>
+        </div>
+        <div class="detail-item" id="note-item" style="grid-column:1/-1; display:none;">
+          <div class="detail-label">Card Note</div>
+          <div class="detail-val" id="conf-note">—</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Status -->
+    <div class="conf-section">
+      <div class="conf-section-label">Order Status</div>
+      <div style="margin-bottom:24px;">
+        <span class="status-badge pending"><span class="status-dot"></span>Awaiting Confirmation</span>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-dot done">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Order Placed</div>
+            <div class="timeline-sub">Your order has been received.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-dot active">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title">Awaiting Confirmation</div>
+            <div class="timeline-sub">We're reviewing your order &amp; payment. You'll hear from us within 1–2 hours.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-dot">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C7 2 5 7 5 10c0 4 3.5 7 7 10 3.5-3 7-6 7-10 0-3-2-8-7-8z"/></svg>
+            </div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title muted">Being Prepared</div>
+            <div class="timeline-sub">Our florists will arrange your bouquet with care.</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left">
+            <div class="timeline-dot">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="m16 8 5 1 2 4v4h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-title muted">Ready for Pick-up / Delivery</div>
+            <div class="timeline-sub">Your blooms will be on their way!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="conf-section">
+      <div class="note-card">
+        <strong>What happens next?</strong><br>
+        Our team will review your order and send a confirmation to your email or contact number. If you paid online, we'll verify your payment proof. If you have questions, reach us at <strong>09983984888</strong> or <strong>blumedaily@gmail.com</strong>.
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT SIDEBAR -->
+  <div class="conf-sidebar">
+
+    <div class="side-card">
+      <div class="side-card-title">Order Summary</div>
+      <div class="side-row"><span>Arrangement</span><span id="sidebar-product">—</span></div>
+      <div class="side-row" id="sidebar-delivery-row"><span>Delivery Fee</span><span id="sidebar-delivery">Free</span></div>
+      <div class="side-row total"><span>Total</span><span class="total-v" id="sidebar-total">—</span></div>
+    </div>
+
+    <div class="side-card">
+      <div class="side-card-title">Need Help?</div>
+      <div class="contact-item">
+        <svg class="contact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6.09 6.09l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <div><div class="contact-label">Phone / Viber</div><div class="contact-val">09983984888</div></div>
+      </div>
+      <div class="contact-item">
+        <svg class="contact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        <div><div class="contact-label">Email</div><div class="contact-val">blumedaily@gmail.com</div></div>
+      </div>
+      <div class="contact-item">
+        <svg class="contact-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <div><div class="contact-label">Location</div><div class="contact-val">Villa Arevalo, Iloilo City</div></div>
+      </div>
+    </div>
+
+    <div class="side-card" style="padding:24px 28px;">
+      <a href="catalogue.html" class="btn-rose">Shop More Arrangements</a>
+      <a href="index.html" class="btn-outline">Back to Home</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- CONFETTI SCRIPT -->
+<script>
+// Load order data
+const orderData = JSON.parse(sessionStorage.getItem('bd_order') || '{}');
+
+// Fill in all fields
+if (orderData.id) {
+  document.getElementById('display-order-id').textContent = orderData.id;
+  // Render items
+  const itemsEl = document.getElementById('conf-items-list');
+  if (orderData.items && orderData.items.length) {
+    itemsEl.innerHTML = orderData.items.map(item => {
+      const badge = item.isCustom ? '<span style="font-size:9px;background:var(--rose);color:#fff;padding:2px 8px;letter-spacing:.1em;text-transform:uppercase;margin-left:6px;">Custom</span>' : '';
+      return '<div style="display:flex;align-items:center;gap:14px;">'
+        + '<img src="' + item.img + '" alt="' + item.name + '" style="width:52px;height:62px;object-fit:cover;">'
+        + '<div>'
+        + '<div style="font-family:var(--font-display);font-size:15px;font-weight:500;">' + item.name + badge + '</div>'
+        + '<div style="font-size:12px;color:var(--mocha-light);margin-top:2px;">Qty ' + item.qty + '</div>'
+        + '<div style="font-size:13px;color:var(--rose-deep);font-weight:500;margin-top:2px;">₱' + (item.price*item.qty).toLocaleString() + '</div>'
+        + '</div></div>';
+    }).join('');
+  }
+  document.getElementById('conf-name').textContent = orderData.customer?.name || '—';
+  document.getElementById('conf-phone').textContent = orderData.customer?.phone || '—';
+  document.getElementById('conf-email').textContent = orderData.customer?.email || '—';
+  document.getElementById('conf-payment').textContent = {cash:'Cash on Pick-up/Delivery', gcash:'GCash', bank:'Bank Transfer'}[orderData.payment] || '—';
+  if (orderData.date) {
+    const d = new Date(orderData.date + 'T00:00:00');
+    const formatted = d.toLocaleDateString('en-PH', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+    document.getElementById('conf-datetime').textContent = formatted + ' · ' + (orderData.time || '');
+  }
+  document.getElementById('conf-fulfill').textContent = orderData.fulfillment === 'delivery' ? '🛵 Delivery' : '🏠 Pick-up';
+  document.getElementById('conf-address').textContent = orderData.address || '—';
+
+  if (orderData.customer?.note) {
+    document.getElementById('note-item').style.display = 'block';
+    document.getElementById('conf-note').textContent = orderData.customer.note;
+  }
+
+  // Sidebar
+  document.getElementById('sidebar-product').textContent = '₱' + (orderData.subtotal || 0).toLocaleString();
+  document.getElementById('sidebar-total').textContent = '₱' + (orderData.total || 0).toLocaleString();
+  if (orderData.deliveryFee > 0) {
+    document.getElementById('sidebar-delivery').textContent = '₱100';
+  } else {
+    document.getElementById('sidebar-delivery').textContent = 'Free';
+  }
+}
+
+// Confetti
+const canvas = document.getElementById('confetti-canvas');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const colors = ['#c97b63','#efcfc0','#6b7d60','#d9a898','#c4975a','#f8eee8','#b8e0c0'];
+const pieces = Array.from({length: 120}, () => ({
+  x: Math.random() * canvas.width,
+  y: Math.random() * -canvas.height,
+  w: Math.random() * 10 + 4,
+  h: Math.random() * 6 + 3,
+  color: colors[Math.floor(Math.random() * colors.length)],
+  rot: Math.random() * Math.PI * 2,
+  rotSpeed: (Math.random() - .5) * .08,
+  vx: (Math.random() - .5) * 2,
+  vy: Math.random() * 3 + 1.5,
+  opacity: 1,
+}));
+
+let frame = 0;
+function animateConfetti() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  frame++;
+  pieces.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.rot += p.rotSpeed;
+    if (frame > 160) p.opacity = Math.max(0, p.opacity - .01);
+    if (p.y > canvas.height) { p.y = -20; p.opacity = 1; }
+    ctx.save();
+    ctx.globalAlpha = p.opacity;
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rot);
+    ctx.fillStyle = p.color;
+    ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+    ctx.restore();
+  });
+  if (frame < 300) requestAnimationFrame(animateConfetti);
+  else { ctx.clearRect(0, 0, canvas.width, canvas.height); }
+}
+
+// Start confetti after a short delay
+setTimeout(animateConfetti, 400);
+window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+</script>
+<script>
+(function(){
+  const cart = JSON.parse(localStorage.getItem('bd_cart') || '[]');
+  const count = cart.reduce((s,i) => s + i.qty, 0);
+  document.querySelectorAll('#cart-count,.cart-count').forEach(el => el.textContent = count);
+})();
+</script>
+</body>
+</html>

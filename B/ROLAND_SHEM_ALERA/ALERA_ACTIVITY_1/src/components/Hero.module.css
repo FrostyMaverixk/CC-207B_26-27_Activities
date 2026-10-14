@@ -1,0 +1,176 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(139, 92, 246, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  animation: fadeInUp 0.8s ease both;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.eyebrow {
+  font-family: 'Space Mono', monospace;
+  color: #a78bfa;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+.name {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #ffffff 30%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.typeRow {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.typed {
+  font-family: 'Space Mono', monospace;
+  color: #a78bfa;
+  font-size: clamp(1rem, 3vw, 1.35rem);
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background: #a78bfa;
+  margin-left: 2px;
+  vertical-align: middle;
+  animation: blink 0.8s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.tagline {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 15px;
+  line-height: 1.85;
+  max-width: 480px;
+  margin: 0 auto 36px;
+}
+
+.buttons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+}
+
+.btnPrimary {
+  padding: 13px 32px;
+  background: #7c3aed;
+  color: #fff;
+  border-radius: 8px;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  border: 1px solid #7c3aed;
+  transition: background 0.2s, transform 0.15s;
+}
+.btnPrimary:hover {
+  background: #6d28d9;
+  transform: translateY(-2px);
+}
+
+.btnOutline {
+  padding: 13px 32px;
+  background: transparent;
+  color: #a78bfa;
+  border-radius: 8px;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(167, 139, 250, 0.4);
+  transition: background 0.2s, transform 0.15s;
+}
+.btnOutline:hover {
+  background: rgba(167, 139, 250, 0.08);
+  transform: translateY(-2px);
+}
+
+.stats {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.stat {
+  text-align: center;
+}
+
+.statValue {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: #a78bfa;
+}
+
+.statLabel {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: 4px;
+}
+.socials {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.socialLink:hover {
+  color: #a78bfa;
+}

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luisa Rose Brillantes | Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio of Luisa Rose D. Brillantes — cybersecurity student, full-stack developer, and systems engineer."
+    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="container nav">
+        <a href="#top" class="brand">LR</a>
+        <button type="button" class="menu-toggle" aria-label="Open navigation">☰</button>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#resume">Resume</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero container">
+        <div class="hero-copy">
+          <p class="eyebrow">Cybersecurity Student &amp; Full-Stack Systems Developer</p>
+          <h1>Building practical systems that solve real-world problems.</h1>
+          <p class="lead">
+            I’m Luisa Rose D. Brillantes, a 3rd-year BS Information Technology student majoring in
+            Cybersecurity at West Visayas State University. I design and build full-stack web
+            applications, distributed systems, and hardware-integrated projects with a focus on
+            reliability, security, and impact.
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="#projects">View Projects</a>
+            <a class="btn secondary" href="#contact">Contact Me</a>
+          </div>
+          <ul class="mini-stats">
+            <li><strong>3rd Year</strong><span>IT Student</span></li>
+            <li><strong>Cybersecurity</strong><span>Major</span></li>
+            <li><strong>7+</strong><span>Project Builds</span></li>
+          </ul>
+        </div>
+
+        <aside class="profile-card" aria-label="Profile summary">
+          <div class="portrait-wrap">
+            <div class="portrait-placeholder" aria-label="Profile placeholder image">
+                <img src="assets/profile-portrait.png" alt="Luisa Rose Brillantes portrait illustration" class="portrait-image">
+                <span class="portrait-label">Portfolio</span>
+                <div class="portrait-badge">Cybersecurity</div>
+              </div>
+          </div>
+          <div class="profile-content">
+            <div class="avatar">LR</div>
+            <h2>Luisa Rose</h2>
+            <p>Student Developer | Systems Builder | Security-minded Engineer</p>
+            <ul>
+              <li>Full-stack web development</li>
+              <li>Distributed databases</li>
+              <li>IoT &amp; flood monitoring</li>
+              <li>Java, Python, PostgreSQL, Arduino</li>
+            </ul>
+          </div>
+        </aside>
+      </section>
+
+      <section id="about" class="section container">
+        <div class="section-heading">
+          <p class="eyebrow">About</p>
+          <h2>Technology with purpose.</h2>
+        </div>
+        <div class="about-grid">
+          <div>
+            <p>
+              Motivated and hands-on, I enjoy transforming ideas into dependable software systems.
+              My work spans web applications, POS and booking systems, distributed data architecture,
+              and embedded hardware projects that bridge the digital and physical worlds.
+            </p>
+            <p>
+              I’m especially interested in cybersecurity, systems design, and building software that
+              is useful under real operational constraints. My approach is practical, user-focused,
+              and grounded in engineering fundamentals.
+            </p>
+          </div>
+          <div class="info-panel">
+            <h3>Education</h3>
+            <p><strong>West Visayas State University</strong></p>
+            <p>BS in Information Technology (Major in Cybersecurity)</p>
+            <p>Expected: 2028</p>
+            <p class="muted">Silver Awardee (All Semesters)</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section alt-bg">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Projects</p>
+            <h2>Selected work.</h2>
+          </div>
+
+          <div class="projects-grid">
+            <article class="project-card">
+              <div class="project-thumb thumb-one">
+                <img src="assets/project-flood.jpg" alt="Flood monitoring project illustration" aria-label="Flood monitoring project illustration">
+              </div>
+              <span class="tag">IoT &amp; Embedded Hardware</span>
+              <h3>LoRa-Based Water Level &amp; Flood Indicator System</h3>
+              <p>
+                A long-range flood monitoring prototype built with Arduino UNO and LoRa modules to
+                detect critical water levels and trigger visual and buzzer alerts in remote areas.
+              </p>
+              <ul>
+                <li>Arduino UNO + LoRa</li>
+                <li>Conductive sensors</li>
+                <li>Real-time alerts</li>
+              </ul>
+            </article>
+
+            <article class="project-card">
+              <div class="project-thumb thumb-two">
+                <img src="assets/project-laundry.jpg" alt="Laundry system dashboard illustration" aria-label="Laundry system dashboard illustration">
+              </div>
+              <span class="tag">Full-Stack Web</span>
+              <h3>Faith Laundry Shop Management System</h3>
+              <p>
+                An internal dashboard for load-based pricing, order tracking, receipt generation, and
+                revenue analytics to replace paper logbooks and reduce manual errors.
+              </p>
+              <ul>
+                <li>Next.js + Spring Boot</li>
+                <li>PostgreSQL</li>
+                <li>Sales analytics</li>
+              </ul>
+            </article>
+
+            <article class="project-card">
+              <div class="project-thumb thumb-three">
+                <img src="assets/project-pos.jpg" alt="POS system illustration" aria-label="POS system illustration">
+              </div>
+              <span class="tag">Distributed Systems</span>
+              <h3>MangMarick Catering &amp; POS System</h3>
+              <p>
+                A multi-branch booking and sales system with distributed database architecture to avoid
+                double-booking and synchronize operations across branch locations.
+              </p>
+              <ul>
+                <li>Master-slave replication</li>
+                <li>Reservation logic</li>
+                <li>Inventory &amp; POS</li>
+              </ul>
+            </article>
+
+            <article class="project-card">
+              <div class="project-thumb thumb-four">
+                <img src="assets/project-tasktrackr.jpg" alt="Project management illustration" aria-label="Project management illustration">
+              </div>
+              <span class="tag">Project Governance</span>
+              <h3>TaskTrackr Project Management Platform</h3>
+              <p>
+                A team-based project tracking platform with role-based permissions, lifecycle states,
+                and email/in-app reminders to improve accountability and deadline management.
+              </p>
+              <ul>
+                <li>RBAC governance</li>
+                <li>Deadline tracking</li>
+                <li>Notifications</li>
+              </ul>
+            </article>
+
+            <article class="project-card">
+              <div class="project-thumb thumb-five">
+                <img src="assets/project-cinema.jpg" alt="Cinema ticketing illustration" aria-label="Cinema ticketing illustration">
+              </div>
+              <span class="tag">Desktop &amp; Systems</span>
+              <h3>Cinema Booking System with Dynamic QR Verification</h3>
+              <p>
+                A JavaFX desktop ticketing application with interactive seat maps, QR-embedded PDF
+                tickets, and concurrency-safe seat reservation handling.
+              </p>
+              <ul>
+                <li>JavaFX</li>
+                <li>QR ticket verification</li>
+                <li>Seat management</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="resume" class="section container">
+        <div class="section-heading">
+          <p class="eyebrow">Resume</p>
+          <h2>Key strengths.</h2>
+        </div>
+
+        <div class="resume-grid">
+          <div class="resume-panel">
+            <h3>Core Skills</h3>
+            <ul class="bullet-list">
+              <li>Full-stack web development</li>
+              <li>Distributed database design</li>
+              <li>System analysis and software architecture</li>
+              <li>OOP and software engineering fundamentals</li>
+              <li>Networking and data structures</li>
+              <li>Cybersecurity awareness and secure system thinking</li>
+            </ul>
+          </div>
+
+          <div class="resume-panel">
+            <h3>Tools &amp; Tech</h3>
+            <div class="chips">
+              <span>Next.js</span>
+              <span>Spring Boot</span>
+              <span>Java</span>
+              <span>Python</span>
+              <span>PostgreSQL</span>
+              <span>Arduino</span>
+              <span>JavaFX</span>
+              <span>Tailwind CSS</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact-section">
+        <div class="container contact-box">
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h2>Let’s build something meaningful.</h2>
+          </div>
+          <div class="contact-details">
+            <p><strong>Email:</strong> luisarosedbrillantes@gmail.com</p>
+            <p><strong>Phone:</strong> 09569233850</p>
+            <p><strong>Location:</strong> Iloilo, Philippines</p>
+            <div class="contact-links">
+              <a href="https://github.com/Y-say" target="_blank" rel="noreferrer">GitHub</a>
+              <a href="https://linkedin.com/in/ysabrillantes" target="_blank" rel="noreferrer">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span id="year"></span> Luisa Rose Brillantes</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

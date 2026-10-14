@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lagawan</title>
+    <link rel="icon" href="images/Web Layout.png">
+    <link rel="stylesheet" href="AboutUS.css"/>
+    <script type="text/javascript" src="CRUD.js" defer></script>
+    <script type="text/javascript" src="debug.js" defer></script>
+    <script type="text/javascript" src="thread-main.js" defer></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <link rel="stylesheet" href="Notification.css"/>
+    <link rel="stylesheet" href="Antinotification.css"/>
+  </head>
+  <body>
+    <div id="pre-loader"></div>
+    <nav id="navbar">
+      <input type="checkbox" id="sidebar-active">
+      <label for="sidebar-active" class="open-sidebar-button">
+        <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32">
+          <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+        </svg>
+      </label>
+      <label id="overlay" for="sidebar-active"></label>
+      <div class="links-container">
+        <label for="sidebar-active" class="close-sidebar-button">
+          <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32">
+            <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+          </svg>
+        </label>
+        <a class="home-link" id="profile-link">User Profile</a>
+        <a href="AboutUS.html">About Us</a>
+        <a onclick="toggleMenu()">Account</a>
+        <div class="sub-menu-wrap" id="dropMenu">
+          <div class="dropdown-menu">
+            <div class="user-info">
+              <img id="dropdownProfileImage" src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png">
+              <h3 id="dropdown-username">User Profile</h3>
+            </div>
+            <hr>
+            <a href="ProfilePage.html" class="sub-menu-link">
+              <img src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png">
+              <p>Edit Profile</p>
+              <span>></span>
+            </a>
+            <a href="javascript:void(0);" onclick="logout()" class="sub-menu-link">
+              <img src="https://cdn-icons-png.flaticon.com/512/3596/3596149.png">
+              <p>Logout</p>
+              <span>></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>    
+<script> 
+  function logout() {
+  const messages = [
+  'Looking forward to your next visit!',
+  'Logging out. Redirecting you back to Login.',
+  'Goodbye, until next time!'
+  ];
+  const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+  
+  // Close the dropdown menu
+  const dropMenu = document.getElementById("dropMenu");
+  if (dropMenu && dropMenu.classList.contains("open-menu")) {
+  dropMenu.classList.remove("open-menu");
+  }
+  
+  showNotification(randomMessage, 'red').then(() => {
+  // Wait for the notification to disappear or be closed, then redirect
+  window.location.href = 'LoginPage.html';
+  });
+  
+  // Also handle the case where the user clicks the close button
+  const closeIcon = document.querySelector('.toasty .close'); // Assuming .toasty is for red notifications
+  if (closeIcon) {
+  closeIcon.addEventListener('click', () => {
+  window.location.href = 'LoginPage.html';
+  });
+  }
+  }
+  
+  // Existing functions for menu toggle and navbar update
+  let dropMenu = document.getElementById("dropMenu");
+  function toggleMenu() {
+  dropMenu.classList.toggle("open-menu");
+  }
+  
+  function updateNavbar() {
+  const username = localStorage.getItem('loggedInUser');
+  if (username) {
+  document.getElementById('profile-link').textContent = username;
+  document.getElementById('dropdown-username').textContent = username;
+  }
+  }
+  updateNavbar();
+  
+  document.addEventListener('DOMContentLoaded', () => {
+  const users = JSON.parse(localStorage.getItem('users')) || [];
+  const loggedInUser = localStorage.getItem('loggedInUser');
+  const user = users.find(u => u.username === loggedInUser);
+  
+  if (user) {
+  const dropdownProfileImage = document.getElementById('dropdownProfileImage');
+  const profileImage = user.profileImage || "https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png";
+  dropdownProfileImage.src = profileImage;
+  
+  document.getElementById('dropdown-username').textContent = user.username;
+  }
+  });
+  
+  </script>
+
+
+    <div class="intro2">
+      <h2 style="color: #2a6dd3; text-align: center; font-size: 35px;">Learn More About Us</h2>
+      <h2 style="color: #2a6dd3; text-align: center; font-size: 35px;">Learn More About Us</h2>
+      <h2 style="color: #0754c8; text-align: center; font-size: 20px;">Click to Expand Developers</h2>
+  </div>
+    <section class="slider-container">
+      <div class="slider-images">
+        <div class="slider-img">
+          <img src="images/ABOUTUS/1.jpg" alt="1" />
+          <h1>Renz</h1>
+          <div class="details">
+            <h2>Renz Ramos</h2>
+            <p>Added descriptions to each province, providing detailed and informative content. His descriptions help users learn more about each region, enhancing their understanding and appreciation of the site’s content. He ensured that the information is accurate and comprehensive.</p>
+          </div>
+        </div>
+        <div class="slider-img">
+          <img src="images/ABOUTUS/2.jpg" alt="2" />
+          <h1>Juan</h1>
+          <div class="details">
+            <h2>Juan Rashley Miguel Andrada</h2>
+            <p>Made the threads and the experiences section, facilitating interactive discussions among users. He ensured that users can easily post and respond to comments, enhancing community engagement. He also implemented features that keep the conversation threads organized and user-friendly.</p>
+          </div>
+        </div>
+        <div class="slider-img">
+          <img src="images/ABOUTUS/3.jpg" alt="3" />
+          <h1>Ryan</h1>
+          <div class="details">
+            <h2>Ryan Christian</h2>
+            <p>Sir played a crucial role by offering valuable suggestions and constructive criticism. His feedback helped improve the website's overall design and functionality. Ryan's insights ensured that the final product met high standards of quality and user satisfaction.</p>
+          </div>
+        </div>
+        <div class="slider-img active">
+          <img src="images/ABOUTUS/4.jpg" alt="4" />
+          <h1>Chelson</h1>
+          <div class="details">
+            <h2>Chelson Clyde Khalil Laud</h2>
+            <p>The creator of the website, as he integrated most of the design and functionality in CSS and Javascript. He developed the navigation bar and sidebar, making the site easy to navigate and user-friendly. He had able to merge all the contributions of each developer into one big website.</p>
+          </div>
+        </div>
+        <div class="slider-img">
+          <img src="images/ABOUTUS/5.jpg" alt="5" />
+          <h1>Jingkay</h1>
+          <div class="details">
+            <h2>Jingkay Simbran</h2>
+            <p>Our esteemed professor for this subject, guided the project with her expertise and support. She provided invaluable advice and feedback throughout the development process. Her mentorship was instrumental in the successful completion of the project.</p>
+          </div>
+        </div>
+        <div class="slider-img">
+          <img src="images/ABOUTUS/6.jpg" alt="6" />
+          <h1>Roland</h1>
+          <div class="details">
+            <h2>Roland Shem Alera</h2>
+            <p>Provided the visuals for the website, contributing high-quality pictures to make the site visually appealing. He also designed the notification bar, which keeps users updated with real-time alerts and messages. His contributions ensure that users have an engaging and visually cohesive experience.</p>
+          </div>
+        </div>
+        <div class="slider-img">
+          <img src="images/ABOUTUS/7.jpg" alt="7" />
+          <h1>Mikhael</h1>
+          <div class="details">
+            <h2>Mikhael Jeff Gedorio</h2>
+            <p>Responsible for creating the login page and the start function, ensuring users can smoothly access their accounts. He also developed the loading screen to keep users informed during page loads. Additionally, he worked on the profile settings, allowing users to customize their profiles to their preferences.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <a href="homepage.html" style="text-decoration: none;"><h2 style="color: white; text-align: center; font-size: 15px;">&larr; Go Back to Homepage</h2></a>
+    <script src="jQuery.js"></script>
+    <script>
+      jQuery(document).ready(function ($) {
+        $(".slider-img").on("click", function () {
+          $(".slider-img").removeClass("active");
+          $(this).addClass("active");
+        });
+      });
+    </script>
+
+    <!-- Blue Toast Notification -->
+<div class="toast">
+  <div class="toast-content">
+    <i class="fas fa-solid fa-check check"></i>
+    <div class="message">
+      <span class="text text-1">Success</span>
+      <span class="text text-2">Your changes have been saved</span>
+    </div>
+  </div>
+  <i class="fa-solid fa-xmark close"></i>
+  <div class="progress"></div>
+</div>
+
+<!-- Red Toast Notification -->
+<div class="toasty">
+  <div class="toasty-content">
+    <i class="fa-solid fa-x check"></i>
+    <div class="message">
+      <span class="text text-1">Notice</span>
+      <span class="text text-2">Your changes have been saved</span>
+    </div>
+  </div>
+  <i class="fa-solid fa-xmark close"></i>
+  <div class="progress"></div>
+</div>
+  </body>
+</html>
+

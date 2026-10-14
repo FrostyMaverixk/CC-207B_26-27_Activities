@@ -1,0 +1,127 @@
+.row {
+  width: 100%;
+  padding: var(--space-2) 0;
+}
+
+.button {
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+
+/* ---- the filmstrip ---------------------------------------------------------- */
+.strip {
+  position: relative;
+  height: 140px; /* frames show at true 16:9 (cover) — taller row = bigger frames */
+  overflow: hidden;
+  background-color: var(--bg-2); /* pre-media block before lazy load */
+  background-repeat: no-repeat;
+  background-position-x: 0%;
+  border: 1px solid var(--line-0);
+  border-radius: var(--radius);
+  touch-action: pan-y; /* vertical swipes scroll; horizontal drags scrub */
+}
+
+/* sprocket-hole rails top + bottom */
+.strip::before,
+.strip::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  height: 7px;
+  background-color: var(--bg-0);
+  background-image: repeating-linear-gradient(
+    to right,
+    transparent 0 6px,
+    var(--bg-2) 6px 12px,
+    transparent 12px 18px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* hover: border lifts + 3px left rule in the track's bin color (≤80ms cut) */
+.button:hover .strip,
+.button:focus-visible .strip {
+  border-color: var(--line-1);
+  box-shadow: inset 3px 0 0 var(--track-color);
+  transition: border-color var(--dur-hover) var(--ease-cut);
+}
+
+.strip::before {
+  top: 0;
+}
+
+.strip::after {
+  bottom: 0;
+}
+
+.poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 1px orange mini-playhead following the cursor */
+.needle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: var(--accent-orange);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.filename {
+  position: absolute;
+  bottom: 10px;
+  left: var(--space-2);
+  z-index: 2;
+  padding: 1px var(--space-1);
+  background: rgba(11, 12, 15, 0.72); /* --bg-0 scrim for legibility on frames */
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-0);
+}
+
+/* runtime badge as an in/out duration chip */
+.runtime {
+  position: absolute;
+  bottom: 10px;
+  right: var(--space-2);
+  z-index: 2;
+  padding: 1px var(--space-2);
+  background: rgba(11, 12, 15, 0.72);
+  border: 1px solid var(--line-1);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  color: var(--accent-orange);
+}
+
+.runtime::before {
+  content: '⧉ ';
+  color: var(--text-2);
+}
+
+/* ---- meta line under the strip ---------------------------------------------- */
+.meta {
+  padding-top: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-1);
+}
+
+@media (max-width: 639px) {
+  .strip {
+    height: 96px;
+  }
+}

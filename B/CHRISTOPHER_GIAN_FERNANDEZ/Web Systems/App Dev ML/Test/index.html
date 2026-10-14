@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hand Runner - Teachable Machine</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: #111827;
+        color: white;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        width: min(900px, 94vw);
+        text-align: center;
+      }
+
+      h1 {
+        margin-bottom: 8px;
+      }
+
+      .instructions {
+        margin-bottom: 20px;
+        color: #d1d5db;
+        line-height: 1.6;
+      }
+
+      .game-wrapper {
+        width: 100%;
+        max-width: 800px;
+        margin: auto;
+      }
+
+      #game {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background: #87ceeb;
+        border: 4px solid white;
+        border-radius: 12px;
+        display: block;
+      }
+
+      .webcam-section {
+        margin-top: 20px;
+      }
+
+      #webcam-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #webcam-container canvas {
+        width: 320px;
+        height: 320px;
+        max-width: 80vw;
+        border-radius: 12px;
+        border: 3px solid white;
+        display: block;
+      }
+
+      #status {
+        margin-top: 10px;
+        font-weight: bold;
+        min-height: 24px;
+      }
+
+      #prediction {
+        margin-top: 5px;
+        color: #9ca3af;
+        font-size: 14px;
+      }
+
+      button {
+        margin-top: 15px;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 8px;
+        background: #2563eb;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #1d4ed8;
+      }
+
+      button:disabled {
+        background: #4b5563;
+        cursor: default;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>🖐️ Hand Runner</h1>
+
+      <div class="instructions">
+        <strong>Controls:</strong><br />
+        ☝️ One finger → Move Right<br />
+        ✌️ Two fingers → Move Left<br />
+        🖐️ Five fingers → Jump<br />
+        ✊ Hand down → Stop
+      </div>
+
+      <div class="game-wrapper">
+        <canvas id="game" width="800" height="450"></canvas>
+      </div>
+
+      <div class="webcam-section">
+        <button id="startButton">Start Camera</button>
+
+        <div id="status">Camera not started</div>
+
+        <div id="webcam-container"></div>
+
+        <div id="prediction">Waiting for camera...</div>
+      </div>
+    </div>
+
+    <!-- TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+
+    <!-- Teachable Machine Image Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+
+    <script>
+      // =========================================================
+      // TEACHABLE MACHINE MODEL
+      // =========================================================
+
+      const MODEL_URL =
+        "./my-model/";
+
+      let model;
+      let webcam;
+
+      let currentCommand = "Nothing";
+      let confidence = 0;
+
+      let running = false;
+      let predicting = false;
+
+      // =========================================================
+      // GAME SETUP
+      // =========================================================
+
+      const canvas = document.getElementById("game");
+      const ctx = canvas.getContext("2d");
+
+      const player = {
+        x: 100,
+        y: 330,
+        width: 45,
+        height: 65,
+
+        velocityX: 0,
+        velocityY: 0,
+
+        speed: 5,
+        jumpPower: -13,
+
+        onGround: true,
+      };
+
+      const ground = 395;
+
+      let lastTime = performance.now();
+
+      // =========================================================
+      // START CAMERA
+      // =========================================================
+
+      async function startCamera() {
+        const button = document.getElementById("startButton");
+        const status = document.getElementById("status");
+
+        button.disabled = true;
+        status.textContent = "Loading model...";
+
+        try {
+          const modelURL = MODEL_URL + "model.json";
+          const metadataURL = MODEL_URL + "metadata.json";
+
+          model = await tmImage.load(modelURL, metadataURL);
+
+          // Use a reasonably sized camera image.
+          // The canvas displayed below can still be larger.
+          webcam = new tmImage.Webcam(320, 320, true);
+
+          status.textContent = "Requesting camera...";
+
+          await webcam.setup();
+
+          await webcam.play();
+
+          document
+            .getElementById("webcam-container")
+            .appendChild(webcam.canvas);
+
+          running = true;
+
+          status.textContent = "Camera running";
+
+          // Start separate loops.
+          requestAnimationFrame(gameLoop);
+
+          predictionLoop();
+        } catch (error) {
+          console.error(error);
+
+          status.textContent =
+            "Unable to start camera. Check camera permissions.";
+
+          button.disabled = false;
+        }
+      }
+
+      document
+        .getElementById("startButton")
+        .addEventListener("click", startCamera);
+
+      // =========================================================
+      // MACHINE LEARNING LOOP
+      // =========================================================
+      //
+      // IMPORTANT:
+      // This loop is deliberately separate from the game loop.
+      //
+      // ML prediction does NOT control the game's rendering FPS.
+      //
+      // The game can continue rendering at ~60 FPS while
+      // TensorFlow.js performs predictions asynchronously.
+      // =========================================================
+
+      async function predictionLoop() {
+        if (!running) {
+          return;
+        }
+
+        if (!predicting) {
+          predicting = true;
+
+          try {
+            webcam.update();
+
+            const predictions = await model.predict(webcam.canvas);
+
+            let bestPrediction = null;
+
+            for (const prediction of predictions) {
+              if (
+                bestPrediction === null ||
+                prediction.probability > bestPrediction.probability
+              ) {
+                bestPrediction = prediction;
+              }
+            }
+
+            if (bestPrediction) {
+              confidence = bestPrediction.probability;
+
+              /*
+               * Ignore weak predictions.
+               *
+               * This helps prevent random movements when
+               * the model is uncertain.
+               */
+              if (confidence >= 0.7) {
+                currentCommand = normalizeCommand(bestPrediction.className);
+              } else {
+                currentCommand = "Nothing";
+              }
+
+              document.getElementById("prediction").textContent =
+                "Detected: " +
+                currentCommand +
+                " (" +
+                Math.round(confidence * 100) +
+                "%)";
+            }
+          } catch (error) {
+            console.error("Prediction error:", error);
+          } finally {
+            predicting = false;
+          }
+        }
+
+        /*
+         * Run another prediction as soon as the previous one
+         * finishes instead of tying predictions to animation
+         * frames.
+         */
+        setTimeout(predictionLoop, 0);
+      }
+
+      // =========================================================
+      // COMMAND NORMALIZATION
+      // =========================================================
+      //
+      // This makes the game tolerant of class names such as:
+      //
+      // "Left"
+      // "left"
+      // "LEFT"
+      // "Left "
+      //
+      // =========================================================
+
+      function normalizeCommand(command) {
+        const value = command.trim().toLowerCase();
+
+        if (value === "left") {
+          return "Left";
+        }
+
+        if (value === "right") {
+          return "Right";
+        }
+
+        if (value == "jump") {
+          return "Jump";
+        }
+
+        if (value === "nothing") {
+          return "Nothing";
+        }
+
+        return "Nothing";
+      }
+
+      // =========================================================
+      // GAME LOOP
+      // =========================================================
+
+      function gameLoop(timestamp) {
+        if (!running) {
+          return;
+        }
+
+        /*
+         * Delta time makes movement consistent even if the
+         * browser temporarily drops a frame.
+         */
+        let delta = (timestamp - lastTime) / 1000;
+
+        lastTime = timestamp;
+
+        // Prevent huge movement after the browser stalls.
+        delta = Math.min(delta, 0.033);
+
+        updateGame(delta);
+
+        drawGame();
+
+        /*
+         * requestAnimationFrame normally runs at the display's
+         * refresh rate (60 FPS on a typical 60 Hz display).
+         */
+        requestAnimationFrame(gameLoop);
+      }
+
+      // =========================================================
+      // GAME UPDATE
+      // =========================================================
+
+      function updateGame(delta) {
+        // -----------------------------------------
+        // Horizontal movement
+        // -----------------------------------------
+
+        if (currentCommand === "Right") {
+          player.velocityX = player.speed;
+        } else if (currentCommand === "Left") {
+          player.velocityX = -player.speed;
+        } else {
+          player.velocityX = 0;
+        }
+
+        // -----------------------------------------
+        // Jump
+        // -----------------------------------------
+
+        if (currentCommand === "Jump" && player.onGround) {
+          player.velocityY = player.jumpPower;
+
+          player.onGround = false;
+        }
+
+        // -----------------------------------------
+        // Gravity
+        // -----------------------------------------
+
+        player.velocityY += 32 * delta;
+
+        // -----------------------------------------
+        // Position
+        // -----------------------------------------
+
+        player.x += player.velocityX * delta * 60;
+
+        player.y += player.velocityY * delta * 60;
+
+        // -----------------------------------------
+        // Ground collision
+        // -----------------------------------------
+
+        if (player.y + player.height >= ground) {
+          player.y = ground - player.height;
+
+          player.velocityY = 0;
+
+          player.onGround = true;
+        }
+
+        // -----------------------------------------
+        // Screen boundaries
+        // -----------------------------------------
+
+        if (player.x < 0) {
+          player.x = 0;
+        }
+
+        if (player.x + player.width > canvas.width) {
+          player.x = canvas.width - player.width;
+        }
+      }
+
+      // =========================================================
+      // DRAW GAME
+      // =========================================================
+
+      function drawGame() {
+        // Sky
+        ctx.fillStyle = "#87ceeb";
+
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Clouds
+        drawCloud(100, 80);
+        drawCloud(500, 110);
+        drawCloud(680, 55);
+
+        // Ground
+        ctx.fillStyle = "#4ade80";
+
+        ctx.fillRect(0, ground, canvas.width, canvas.height - ground);
+
+        // Ground line
+        ctx.fillStyle = "#166534";
+
+        ctx.fillRect(0, ground, canvas.width, 8);
+
+        // Player
+        drawPlayer();
+
+        // Current command
+        ctx.fillStyle = "rgba(0, 0, 0, 0.55)";
+
+        ctx.fillRect(20, 20, 190, 50);
+
+        ctx.fillStyle = "white";
+
+        ctx.font = "bold 20px Arial";
+
+        ctx.fillText("Action: " + currentCommand, 35, 52);
+      }
+
+      // =========================================================
+      // DRAW PLAYER
+      // =========================================================
+
+      function drawPlayer() {
+        const x = player.x;
+        const y = player.y;
+
+        // Body
+        ctx.fillStyle = "#2563eb";
+
+        ctx.fillRect(x, y + 20, player.width, player.height - 20);
+
+        // Head
+        ctx.fillStyle = "#fbbf24";
+
+        ctx.beginPath();
+
+        ctx.arc(x + player.width / 2, y + 10, 17, 0, Math.PI * 2);
+
+        ctx.fill();
+
+        // Eye
+        ctx.fillStyle = "#111827";
+
+        ctx.beginPath();
+
+        ctx.arc(x + 25, y + 7, 3, 0, Math.PI * 2);
+
+        ctx.fill();
+
+        // Legs
+        ctx.fillStyle = "#1e3a8a";
+
+        ctx.fillRect(x + 5, y + 55, 12, 15);
+
+        ctx.fillRect(x + 28, y + 55, 12, 15);
+      }
+
+      // =========================================================
+      // CLOUDS
+      // =========================================================
+
+      function drawCloud(x, y) {
+        ctx.fillStyle = "rgba(255,255,255,0.85)";
+
+        ctx.beginPath();
+
+        ctx.arc(x, y, 25, 0, Math.PI * 2);
+
+        ctx.arc(x + 30, y - 10, 35, 0, Math.PI * 2);
+
+        ctx.arc(x + 65, y, 25, 0, Math.PI * 2);
+
+        ctx.fill();
+      }
+    </script>
+  </body>
+</html>

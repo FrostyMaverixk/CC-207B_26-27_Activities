@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom Bouquet — Blume Daily</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --ivory:#faf8f3;
+  --parchment:#f4f0e6;
+  --warm-white:#fffefb;
+  --blush-pale:#f9eaed;
+  --blush:#f2c0c8;
+  --rose:#5C0316;
+  --rose-deep:#3d0110;
+  --rose-muted:#a06070;
+  --sage:#6b7d60;
+  --ink:#1e1a15;
+  --ink-soft:#3d3730;
+  --mocha:#7a6555;
+  --mocha-light:#b8a899;
+  --gold:#c4975a;
+  --fd:'Playfair Display',Georgia,serif;
+  --fb:'Jost',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--fb);background:var(--ivory);color:var(--ink);font-size:15px;line-height:1.7;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:16px 56px;background:rgba(250,248,243,.97);box-shadow:0 1px 0 rgba(0,0,0,.08);backdrop-filter:blur(12px);}
+.nav-logo{font-family:var(--fd);font-size:22px;font-weight:600;color:var(--ink);letter-spacing:.06em;text-decoration:none;text-transform:uppercase;}
+.nav-center{display:flex;gap:44px;list-style:none;}
+.nav-center a{font-size:11px;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:var(--mocha);text-decoration:none;transition:color .3s;position:relative;}
+.nav-center a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--rose-muted);transform:scaleX(0);transition:transform .3s;}
+.nav-center a:hover::after{transform:scaleX(1);}
+.nav-center a:hover{color:var(--rose);}
+.nav-right{display:flex;align-items:center;gap:24px;}
+.nav-tagline{font-family:var(--fd);font-style:italic;font-size:13px;font-weight:200;color:var(--mocha-light);white-space:nowrap;}
+.nav-icon{color:var(--ink-soft);cursor:pointer;transition:color .3s;position:relative;display:flex;text-decoration:none;}
+.nav-icon:hover{color:var(--rose);}
+.cart-count{position:absolute;top:-7px;right:-7px;background:var(--rose);color:#fff;font-size:9px;font-weight:500;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+
+/* HERO */
+.hero{position:relative;height:400px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-top:58px;}
+.hero-bg{position:absolute;inset:0;background:url('https://i.pinimg.com/1200x/44/49/22/4449226f3cd0b795f30fcb080706206f.jpg') center/cover no-repeat;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(15,5,5,.78) 0%,rgba(60,5,20,.55) 60%,rgba(10,4,4,.72) 100%);}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 40px;animation:heroUp 1s cubic-bezier(.16,1,.3,1) both;}
+@keyframes heroUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.hero-eyebrow{font-size:10px;font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:16px;}
+.hero h1{font-family:var(--fd);font-size:clamp(40px,6vw,70px);font-weight:400;color:#fff;line-height:.95;letter-spacing:-.02em;margin-bottom:18px;}
+.hero h1 em{font-style:italic;color:var(--blush);display:block;}
+.hero-sub{font-size:13px;font-weight:200;color:rgba(255,255,255,.58);max-width:400px;margin:0 auto;line-height:1.9;}
+
+/* LAYOUT */
+.wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 340px;gap:44px;padding:56px 56px 96px;}
+
+/* FORM CARD */
+.form-card{background:var(--warm-white);border:1px solid rgba(0,0,0,.07);}
+.form-sec{padding:30px 34px;border-bottom:1px solid rgba(0,0,0,.07);}
+.form-sec:last-child{border-bottom:none;}
+.sec-title{font-family:var(--fd);font-size:19px;font-weight:500;display:flex;align-items:center;gap:11px;margin-bottom:22px;}
+.num{width:27px;height:27px;border-radius:50%;background:var(--rose);color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+/* FIELDS */
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.row.full{grid-template-columns:1fr;}
+.field{display:flex;flex-direction:column;gap:5px;}
+.field label{font-size:10px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--mocha);}
+.field input,.field select,.field textarea{
+  font-family:var(--fb);font-size:14px;font-weight:300;color:var(--ink);
+  background:var(--ivory);border:1px solid rgba(0,0,0,.11);
+  padding:12px 15px;outline:none;transition:border-color .25s;
+  -webkit-appearance:none;appearance:none;
+}
+.field select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a6555' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;padding-right:38px;cursor:pointer;
+}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--rose-muted);}
+.field textarea{resize:vertical;min-height:90px;}
+.field input.err{border-color:#c0392b;}
+.err-msg{font-size:11px;color:#c0392b;display:none;margin-top:2px;}
+.err-msg.show{display:block;}
+
+/* OCCASION TAGS */
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:4px;}
+.tag{
+  padding:7px 15px;border:1px solid rgba(0,0,0,.1);background:var(--ivory);
+  font-family:var(--fb);font-size:11px;font-weight:300;letter-spacing:.1em;text-transform:uppercase;
+  cursor:pointer;transition:all .2s;user-select:none;
+}
+.tag:hover{border-color:var(--rose-muted);color:var(--rose);}
+.tag.on{background:var(--rose);color:#fff;border-color:var(--rose);}
+
+/* COLOR SWATCHES */
+.swatches{display:flex;flex-wrap:wrap;gap:9px;margin-top:4px;}
+.swatch{
+  width:34px;height:34px;border-radius:50%;cursor:pointer;
+  border:2.5px solid transparent;transition:transform .2s,border-color .2s;
+  position:relative;
+}
+.swatch:hover{transform:scale(1.12);}
+.swatch.on{border-color:var(--ink) !important;transform:scale(1.18);}
+.swatch.on::after{
+  content:'✓';position:absolute;inset:0;display:flex;align-items:center;
+  justify-content:center;font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.6);
+}
+
+/* SIZE CARDS — pure JS, no radio inputs */
+.size-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px;}
+.size-card{
+  border:1.5px solid rgba(0,0,0,.1);padding:16px 12px;text-align:center;
+  cursor:pointer;transition:border-color .2s,background .2s;background:var(--ivory);user-select:none;
+}
+.size-card:hover{border-color:var(--rose-muted);}
+.size-card.on{border-color:var(--rose);background:rgba(92,3,22,.04);}
+.size-name{font-family:var(--fd);font-size:16px;font-weight:500;display:block;margin-bottom:3px;}
+.size-stems{font-size:11px;color:var(--mocha-light);display:block;}
+.size-price{font-size:12px;color:var(--rose);margin-top:5px;display:block;}
+
+/* FLOWER GRID — pure JS, no checkbox inputs */
+.flower-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:4px;}
+.flower-card{
+  display:flex;flex-direction:column;align-items:center;gap:5px;
+  border:1.5px solid rgba(0,0,0,.1);padding:13px 8px;cursor:pointer;
+  transition:border-color .2s,background .2s;background:var(--ivory);
+  text-align:center;user-select:none;
+}
+.flower-card:hover{border-color:var(--rose-muted);}
+.flower-card.on{border-color:var(--rose);background:rgba(92,3,22,.04);}
+.flower-emoji{font-size:24px;line-height:1;}
+.flower-name{font-size:10px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--mocha);}
+.flower-note{font-size:10px;font-weight:200;color:var(--mocha-light);}
+
+/* FULFILLMENT CARDS — pure JS */
+.fulfill-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.fulfill-card{
+  border:1.5px solid rgba(0,0,0,.1);padding:15px 16px;cursor:pointer;
+  transition:border-color .2s,background .2s;background:var(--ivory);user-select:none;
+}
+.fulfill-card:hover{border-color:var(--rose-muted);}
+.fulfill-card.on{border-color:var(--rose);background:rgba(92,3,22,.04);}
+.fulfill-title{font-size:13px;font-weight:400;margin-bottom:3px;}
+.fulfill-sub{font-size:11px;color:var(--mocha-light);}
+.fulfill-fee{font-size:10px;color:var(--rose);margin-top:3px;letter-spacing:.06em;}
+
+/* SIDEBAR */
+.sidebar{display:flex;flex-direction:column;gap:18px;}
+.s-card{background:var(--warm-white);border:1px solid rgba(0,0,0,.07);padding:26px;}
+.s-card-title{font-family:var(--fd);font-size:18px;font-weight:500;margin-bottom:14px;}
+.preview-row{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;padding:7px 0;border-bottom:1px solid rgba(0,0,0,.05);}
+.preview-row:last-of-type{border-bottom:none;}
+.preview-key{color:var(--mocha);font-weight:300;}
+.preview-val{color:var(--ink);font-weight:400;text-align:right;max-width:160px;font-size:12px;}
+.preview-note{font-size:11px;color:var(--mocha-light);margin-top:10px;line-height:1.7;}
+.info-row{display:flex;gap:11px;padding:9px 0;border-bottom:1px solid rgba(0,0,0,.05);}
+.info-row:last-child{border-bottom:none;}
+.info-icon{color:var(--rose);flex-shrink:0;margin-top:2px;}
+.info-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mocha-light);margin-bottom:1px;}
+.info-val{font-size:12px;color:var(--ink);font-weight:300;}
+
+/* BUTTONS */
+.btn-primary{
+  display:block;width:100%;background:var(--rose);color:#fff;border:none;
+  padding:17px;font-family:var(--fb);font-size:10px;font-weight:400;letter-spacing:.22em;
+  text-transform:uppercase;cursor:pointer;transition:background .3s,transform .2s;text-align:center;
+}
+.btn-primary:hover{background:var(--rose-deep);transform:translateY(-1px);}
+.btn-secondary{
+  display:block;width:100%;background:none;color:var(--mocha);border:1px solid rgba(0,0,0,.1);
+  padding:14px;font-family:var(--fb);font-size:10px;font-weight:300;letter-spacing:.18em;
+  text-transform:uppercase;cursor:pointer;transition:all .2s;text-align:center;text-decoration:none;
+  margin-top:9px;
+}
+.btn-secondary:hover{border-color:var(--rose-muted);color:var(--rose);}
+
+/* TOAST */
+.toast{
+  position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--ink);color:#fff;padding:13px 24px;font-size:13px;font-weight:300;
+  z-index:600;opacity:0;transition:all .4s cubic-bezier(.22,1,.36,1);
+  pointer-events:none;display:flex;align-items:center;gap:10px;white-space:nowrap;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* FOOTER */
+footer{background:var(--ink);padding:40px 56px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:200;color:rgba(255,255,255,.3);}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .wrap{grid-template-columns:1fr;padding:40px 40px 72px;}
+}
+@media(max-width:768px){
+  nav{padding:14px 24px;}
+  .nav-center{display:none;}
+  .wrap{padding:32px 20px 64px;}
+  .form-sec{padding:22px 18px;}
+  .row{grid-template-columns:1fr;}
+  .size-grid{grid-template-columns:1fr 1fr 1fr;}
+  .flower-grid{grid-template-columns:repeat(3,1fr);}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Blume Daily</a>
+  <ul class="nav-center">
+    <li><a href="index.html">Shop</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="catalogue.html">Catalogue</a></li>
+    <li><a href="index.html#how">How It Works</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-tagline">DAILY BLEUM</div>
+    <a href="cart.html" class="nav-icon" title="View Cart">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-count" id="cart-count">0</span>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Bespoke Floral Design</div>
+    <h1>Design Your<em>Custom Bouquet</em></h1>
+    <p class="hero-sub">Tell us your vision — colors, occasion, size — and our florists will bring it to life just for you.</p>
+  </div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="wrap">
+
+  <!-- LEFT: FORM -->
+  <div class="form-card">
+
+    <!-- SECTION 1: YOUR VISION -->
+    <div class="form-sec">
+      <div class="sec-title"><span class="num">1</span>Your Vision</div>
+
+      <div class="row full" style="margin-bottom:20px;">
+        <div class="field">
+          <label>Occasion</label>
+          <div class="tags">
+            <span class="tag" onclick="this.classList.toggle('on');updatePreview()">Birthday</span>
+            <span class="tag" onclick="this.classList.toggle('on');updatePreview()">Wedding</span>
+            <span class="tag" onclick="this.classList.toggle('on');updatePreview()">Anniversary</span>
+            <span class="tag" onclick="this.classList.toggle('on');updatePreview()">Romance</span>
+            <span class="tag" onclick="this.classList.toggle('on');updatePreview()">Congratulations</span>
+            <span class="tag" onclick="this.classList.toggle('on');updatePreview()">Corporate</span>
+            <span class="tag" onclick="this.classList.toggle('on');updatePreview()">Graduation</span>
+            <span class="tag" onclick="this.classList.toggle('on');updatePreview()">Just Because</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row full" style="margin-bottom:20px;">
+        <div class="field">
+          <label>Preferred Colors <span style="color:var(--mocha-light);font-weight:200;">(tap to select)</span></label>
+          <div class="swatches">
+            <div class="swatch" style="background:#fff;border:1px solid #ccc;" data-color="White" onclick="this.classList.toggle('on')" title="White"></div>
+            <div class="swatch" style="background:#ffd1dc;" data-color="Blush Pink" onclick="this.classList.toggle('on')" title="Blush Pink"></div>
+            <div class="swatch" style="background:#e05c7a;" data-color="Hot Pink" onclick="this.classList.toggle('on')" title="Hot Pink"></div>
+            <div class="swatch" style="background:#b22222;" data-color="Red" onclick="this.classList.toggle('on')" title="Red"></div>
+            <div class="swatch" style="background:#ff7f50;" data-color="Coral" onclick="this.classList.toggle('on')" title="Coral"></div>
+            <div class="swatch" style="background:#ffa500;" data-color="Orange" onclick="this.classList.toggle('on')" title="Orange"></div>
+            <div class="swatch" style="background:#ffd700;" data-color="Yellow" onclick="this.classList.toggle('on')" title="Yellow"></div>
+            <div class="swatch" style="background:#9b59b6;" data-color="Purple" onclick="this.classList.toggle('on')" title="Purple"></div>
+            <div class="swatch" style="background:#6b7d60;" data-color="Sage Green" onclick="this.classList.toggle('on')" title="Sage Green"></div>
+            <div class="swatch" style="background:#2c3e50;" data-color="Dark Blue" onclick="this.classList.toggle('on')" title="Dark Blue"></div>
+          </div>
+          <span style="font-size:11px;color:var(--mocha-light);margin-top:6px;display:block;">Select one or more</span>
+        </div>
+      </div>
+
+      <div class="row full">
+        <div class="field">
+          <label>Describe your bouquet <span style="color:var(--mocha-light);font-weight:200;">(optional)</span></label>
+          <textarea id="vision-desc" placeholder="e.g. Soft and romantic, mostly whites and blush pinks, with some greenery. For a wedding table centerpiece..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: SIZE & BUDGET -->
+    <div class="form-sec">
+      <div class="sec-title"><span class="num">2</span>Size &amp; Budget</div>
+
+      <div style="font-size:10px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--mocha);margin-bottom:10px;">Bouquet Size</div>
+      <div class="size-grid">
+        <div class="size-card on" data-size="small" data-price="500" onclick="selectSize(this)">
+          <span class="size-name">Small</span>
+          <span class="size-stems">~10 stems</span>
+          <span class="size-price">Starts at ₱500</span>
+        </div>
+        <div class="size-card" data-size="medium" data-price="900" onclick="selectSize(this)">
+          <span class="size-name">Medium</span>
+          <span class="size-stems">~11-20 stems</span>
+          <span class="size-price">Starts at ₱900</span>
+        </div>
+        <div class="size-card" data-size="large" data-price="1500" onclick="selectSize(this)">
+          <span class="size-name">Large</span>
+          <span class="size-stems">~21-35 stems</span>
+          <span class="size-price">Starts at ₱1,500</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Budget Range</label>
+          <select id="budget" onchange="updatePreview()">
+            <option value="500-800">₱500 – ₱800</option>
+            <option value="800-1200">₱800 – ₱1,200</option>
+            <option value="1200-1800">₱1,200 – ₱1,800</option>
+            <option value="1800-2500">₱1,800 – ₱2,500</option>
+            <option value="2500+">₱2,500+</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Wrapping Style</label>
+          <select id="wrap-style">
+            <option>Classic Kraft Paper</option>
+            <option>White Tissue Wrap</option>
+            <option>Ribbon-tied Bouquet</option>
+            <option>Vase Arrangement</option>
+            <option>Hat Box</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Ribbon Color</label>
+          <select id="ribbon">
+            <option>White</option>
+            <option>Blush Pink</option>
+            <option>Burgundy Red</option>
+            <option>Gold</option>
+            <option>Sage Green</option>
+            <option>Match the Flowers</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Card Message <span style="color:var(--mocha-light);font-weight:200;">(optional)</span></label>
+          <input type="text" id="cb-message" placeholder="e.g. Happy birthday!">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: PREFERRED FLOWERS -->
+    <div class="form-sec">
+      <div class="sec-title"><span class="num">3</span>Preferred Flowers</div>
+      <p style="font-size:11px;color:var(--mocha-light);margin-bottom:12px;">Tap to select. Leave blank and we'll choose for you.</p>
+      <div class="flower-grid">
+        <div class="flower-card" data-flower="Roses" onclick="this.classList.toggle('on');updatePreview()">
+          <span class="flower-emoji">🌹</span>
+          <span class="flower-name">Roses</span>
+        </div>
+        <div class="flower-card" data-flower="Carnations" onclick="this.classList.toggle('on');updatePreview()">
+          <span class="flower-emoji">🌸</span>
+          <span class="flower-name">Carnations</span>
+        </div>
+        <div class="flower-card" data-flower="Stargazers" onclick="this.classList.toggle('on');updatePreview()">
+          <span class="flower-emoji">⭐</span>
+          <span class="flower-name">Stargazers</span>
+        </div>
+        <div class="flower-card" data-flower="Gerbera" onclick="this.classList.toggle('on');updatePreview()">
+          <span class="flower-emoji">🌼</span>
+          <span class="flower-name">Gerbera</span>
+        </div>
+        <div class="flower-card" data-flower="Lavender" onclick="this.classList.toggle('on');updatePreview()">
+          <span class="flower-emoji">💜</span>
+          <span class="flower-name">Lavender</span>
+        </div>
+        <div class="flower-card" data-flower="Tulips" onclick="this.classList.toggle('on');updatePreview()">
+          <span class="flower-emoji">🌷</span>
+          <span class="flower-name">Tulips</span>
+        </div>
+        <div class="flower-card" data-flower="Sunflowers" onclick="this.classList.toggle('on');updatePreview()">
+          <span class="flower-emoji">🌻</span>
+          <span class="flower-name">Sunflowers</span>
+        </div>
+        <div class="flower-card" data-flower="Peonies" onclick="this.classList.toggle('on');updatePreview()">
+          <span class="flower-emoji">🌺</span>
+          <span class="flower-name">Peonies</span>
+        </div>
+        <div class="flower-card" data-flower="Baby's Breath" onclick="this.classList.toggle('on');updatePreview()">
+          <span class="flower-emoji">🤍</span>
+          <span class="flower-name">Baby's Breath</span>
+        </div>
+        <div class="flower-card" data-flower="Orchids" onclick="this.classList.toggle('on');updatePreview()">
+          <span class="flower-emoji">🌿</span>
+          <span class="flower-name">Orchids</span>
+        </div>
+        <div class="flower-card" data-flower="Chrysanthemums" onclick="this.classList.toggle('on');updatePreview()">
+          <span class="flower-emoji">🌸</span>
+          <span class="flower-name">Chrysanthemums</span>
+        </div>
+        <div class="flower-card" data-flower="Florist's Choice" onclick="this.classList.toggle('on');updatePreview()">
+          <span class="flower-emoji">✨</span>
+          <span class="flower-name">Surprise Me</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4: YOUR DETAILS -->
+    <div class="form-sec">
+      <div class="sec-title"><span class="num">4</span>Your Details</div>
+
+      <div class="row">
+        <div class="field">
+          <label>Name *</label>
+          <input type="text" id="cb-name" placeholder="Maria Santos">
+          <span class="err-msg" id="cb-name-err">Required</span>
+        </div>
+        <div class="field">
+          <label>Phone *</label>
+          <input type="tel" id="cb-phone" placeholder="09XX XXX XXXX">
+          <span class="err-msg" id="cb-phone-err">Required</span>
+        </div>
+      </div>
+
+      <div class="row full">
+        <div class="field">
+          <label>Email *</label>
+          <input type="email" id="cb-email" placeholder="you@email.com">
+          <span class="err-msg" id="cb-email-err">Required</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Needed By (Date) *</label>
+          <input type="date" id="cb-date">
+          <span class="err-msg" id="cb-date-err">Required</span>
+        </div>
+        <div class="field">
+          <label>Preferred Time</label>
+          <select id="cb-time">
+            <option value="">Flexible</option>
+            <option>8:00 AM – 10:00 AM</option>
+            <option>10:00 AM – 12:00 PM</option>
+            <option>12:00 PM – 2:00 PM</option>
+            <option>2:00 PM – 4:00 PM</option>
+            <option>4:00 PM – 6:00 PM</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="margin-top:4px;">
+        <div style="font-size:10px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--mocha);margin-bottom:10px;">Pickup or Delivery</div>
+        <div class="fulfill-grid">
+          <div class="fulfill-card on" data-type="pickup" onclick="selectFulfill(this)">
+            <div class="fulfill-title">🏠 Pick-up</div>
+            <div class="fulfill-sub">Villa Arevalo, Iloilo City</div>
+            <div class="fulfill-fee">Free</div>
+          </div>
+          <div class="fulfill-card" data-type="delivery" onclick="selectFulfill(this)">
+            <div class="fulfill-title">🛵 Delivery</div>
+            <div class="fulfill-sub">Iloilo City &amp; nearby areas</div>
+            <div class="fulfill-fee">+ ₱100 delivery fee</div>
+          </div>
+        </div>
+        <div id="address-wrap" style="display:none;">
+          <div class="field">
+            <label>Delivery Address *</label>
+            <input type="text" id="cb-address" placeholder="House No., Street, Barangay, City">
+            <span class="err-msg" id="cb-address-err">Please enter your address</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end form-card -->
+
+  <!-- RIGHT: SIDEBAR -->
+  <div class="sidebar">
+
+    <!-- Preview card -->
+    <div class="s-card" style="background:var(--blush-pale);border-color:var(--rose-muted);">
+      <div style="font-size:11px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);margin-bottom:14px;font-family:var(--fb);">Your Custom Order</div>
+      <div class="preview-row"><span class="preview-key">Size</span><span class="preview-val" id="prev-size">Small (~15–20 stems)</span></div>
+      <div class="preview-row"><span class="preview-key">Budget</span><span class="preview-val" id="prev-budget">₱500–₱800</span></div>
+      <div class="preview-row"><span class="preview-key">Flowers</span><span class="preview-val" id="prev-flowers">Not specified</span></div>
+      <div class="preview-row"><span class="preview-key">Occasion</span><span class="preview-val" id="prev-occasion">Not specified</span></div>
+      <div class="preview-row"><span class="preview-key">Fulfillment</span><span class="preview-val" id="prev-fulfill">🏠 Pick-up</span></div>
+      <p class="preview-note">We'll review your request and confirm the final price within 2–4 hours. No payment needed now.</p>
+    </div>
+
+    <button class="btn-primary" onclick="addToCart()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline;vertical-align:middle;margin-right:8px;"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      Add to Cart &amp; Checkout
+    </button>
+    <a href="cart.html" class="btn-secondary">View Cart</a>
+
+    <!-- How it works -->
+    <div class="s-card">
+      <div class="s-card-title">How Custom Orders Work</div>
+      <div class="info-row">
+        <div class="info-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div><div class="info-label">Response Time</div><div class="info-val">2–4 hours on business days</div></div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C7 2 5 7 5 10c0 4 3.5 7 7 10 3.5-3 7-6 7-10 0-3-2-8-7-8z"/></svg></div>
+        <div><div class="info-label">Minimum Order</div><div class="info-val">₱500 for custom arrangements</div></div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <div><div class="info-label">No Payment Upfront</div><div class="info-val">Pay only after florist confirms design &amp; price</div></div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6.09 6.09z"/></svg></div>
+        <div><div class="info-label">Contact</div><div class="info-val">09983984888 · blumedaily@gmail.com</div></div>
+      </div>
+    </div>
+
+  </div>
+</div><!-- end wrap -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span>© 2026 Blume Daily. All rights reserved.</span>
+    <span>blumedaily@gmail.com · 09983984888</span>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span style="color:var(--rose-muted);">✓</span>
+  <span id="toast-msg">Custom bouquet added to cart!</span>
+</div>
+
+<script>
+// ── STATE ──
+var selectedSize = 'small';
+var selectedSizePrice = 500;
+var selectedFulfill = 'pickup';
+
+// ── INIT ──
+(function() {
+  var tm = new Date();
+  tm.setDate(tm.getDate() + 2);
+  document.getElementById('cb-date').min = tm.toISOString().split('T')[0];
+  var cart = JSON.parse(localStorage.getItem('bd_cart') || '[]');
+  document.getElementById('cart-count').textContent = cart.reduce(function(s,i){ return s + i.qty; }, 0);
+})();
+
+// ── SIZE SELECTION ──
+function selectSize(el) {
+  document.querySelectorAll('.size-card').forEach(function(c){ c.classList.remove('on'); });
+  el.classList.add('on');
+  selectedSize = el.getAttribute('data-size');
+  selectedSizePrice = parseInt(el.getAttribute('data-price'));
+  updatePreview();
+}
+
+// ── FULFILLMENT SELECTION ──
+function selectFulfill(el) {
+  document.querySelectorAll('.fulfill-card').forEach(function(c){ c.classList.remove('on'); });
+  el.classList.add('on');
+  selectedFulfill = el.getAttribute('data-type');
+  document.getElementById('address-wrap').style.display = selectedFulfill === 'delivery' ? 'block' : 'none';
+  updatePreview();
+}
+
+// ── LIVE PREVIEW ──
+function updatePreview() {
+  var sizeMap = { small:'Small (~15–20 stems)', medium:'Medium (~25–35 stems)', large:'Large (~40–55 stems)' };
+  document.getElementById('prev-size').textContent = sizeMap[selectedSize];
+
+  var budget = document.getElementById('budget').value;
+  document.getElementById('prev-budget').textContent = '₱' + budget.replace('-', '–');
+
+  var flowers = Array.from(document.querySelectorAll('.flower-card.on')).map(function(c){ return c.getAttribute('data-flower'); });
+  document.getElementById('prev-flowers').textContent = flowers.length ? flowers.slice(0,3).join(', ') + (flowers.length > 3 ? '...' : '') : 'Not specified';
+
+  var occ = Array.from(document.querySelectorAll('.tag.on')).map(function(t){ return t.textContent; });
+  document.getElementById('prev-occasion').textContent = occ.length ? occ.join(', ') : 'Not specified';
+
+  document.getElementById('prev-fulfill').textContent = selectedFulfill === 'delivery' ? '🛵 Delivery (+₱100)' : '🏠 Pick-up';
+}
+
+// ── VALIDATION ──
+function validate() {
+  var ok = true;
+  ['cb-name','cb-phone','cb-email','cb-date'].forEach(function(id) {
+    var el = document.getElementById(id);
+    var err = document.getElementById(id + '-err');
+    if (!el.value.trim()) {
+      el.classList.add('err');
+      err.classList.add('show');
+      ok = false;
+    } else {
+      el.classList.remove('err');
+      err.classList.remove('show');
+    }
+  });
+  if (selectedFulfill === 'delivery') {
+    var addr = document.getElementById('cb-address');
+    var addrErr = document.getElementById('cb-address-err');
+    if (!addr.value.trim()) {
+      addr.classList.add('err');
+      addrErr.classList.add('show');
+      ok = false;
+    } else {
+      addr.classList.remove('err');
+      addrErr.classList.remove('show');
+    }
+  }
+  return ok;
+}
+
+// ── ADD TO CART ──
+function addToCart() {
+  if (!validate()) {
+    var firstErr = document.querySelector('.err-msg.show');
+    if (firstErr) firstErr.scrollIntoView({ behavior:'smooth', block:'center' });
+    return;
+  }
+
+  var colors = Array.from(document.querySelectorAll('.swatch.on')).map(function(s){ return s.getAttribute('data-color'); }).join(', ') || 'Flexible';
+  var occasions = Array.from(document.querySelectorAll('.tag.on')).map(function(t){ return t.textContent; }).join(', ') || 'Not specified';
+  var flowers = Array.from(document.querySelectorAll('.flower-card.on')).map(function(c){ return c.getAttribute('data-flower'); }).join(', ') || 'Flexible';
+
+  var item = {
+    id: 'custom-' + Date.now(),
+    name: 'Custom Bouquet (' + selectedSize.charAt(0).toUpperCase() + selectedSize.slice(1) + ')',
+    price: selectedSizePrice,
+    qty: 1,
+    img: 'https://i.pinimg.com/736x/a2/7e/2d/a27e2d6d5908bae12dafdfcc0b1a37a3.jpg',
+    isCustom: true,
+    customDetails: {
+      occasion: occasions,
+      colors: colors,
+      size: selectedSize,
+      budget: document.getElementById('budget').value,
+      wrap: document.getElementById('wrap-style').value,
+      ribbon: document.getElementById('ribbon').value,
+      flowers: flowers,
+      vision: document.getElementById('vision-desc').value,
+      message: document.getElementById('cb-message').value,
+      name: document.getElementById('cb-name').value,
+      phone: document.getElementById('cb-phone').value,
+      email: document.getElementById('cb-email').value,
+      date: document.getElementById('cb-date').value,
+      time: document.getElementById('cb-time').value,
+      fulfillment: selectedFulfill,
+      address: selectedFulfill === 'delivery' ? document.getElementById('cb-address').value : 'Villa Arevalo, Iloilo City — Pick-up'
+    }
+  };
+
+  var cart = JSON.parse(localStorage.getItem('bd_cart') || '[]');
+  cart.push(item);
+  localStorage.setItem('bd_cart', JSON.stringify(cart));
+  document.getElementById('cart-count').textContent = cart.reduce(function(s,i){ return s + i.qty; }, 0);
+
+  showToast('Custom bouquet added to cart!');
+  setTimeout(function(){ window.location.href = 'checkout.html'; }, 1300);
+}
+
+// ── TOAST ──
+var toastTimer;
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 2800);
+}
+
+// Init
+updatePreview();
+</script>
+</body>
+</html>

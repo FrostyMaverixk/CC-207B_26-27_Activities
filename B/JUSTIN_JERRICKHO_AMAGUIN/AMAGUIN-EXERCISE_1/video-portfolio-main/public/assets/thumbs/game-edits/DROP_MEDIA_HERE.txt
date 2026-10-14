@@ -1,0 +1,4 @@
+DROP MEDIA HERE — game edits poster frames
+Expected (one per project): thumb-gameedits-<slug>.jpg
+  1280px wide, q80, <=200KB
+Referenced by the `poster` field of src/data/projects.js.

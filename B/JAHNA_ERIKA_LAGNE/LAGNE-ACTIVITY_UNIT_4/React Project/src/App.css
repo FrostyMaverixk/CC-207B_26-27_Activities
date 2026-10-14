@@ -1,0 +1,291 @@
+:root {
+  --navy-darkest: #050f26;
+  --navy-header: #0c1a36;
+  --navy-sidebar: #081530;
+  --navy-content-text: #0a1c3f;
+  --gold-dark: #7a6230;
+  --gold: #ab8b52;
+  --gold-light: #cdb180;
+  --white: #ffffff;
+  --text-muted: #b0bcd1;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--white);
+  background-color: var(--navy-darkest);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  margin-top: 0;
+}
+
+/* ---------- Landing layout (Home) ---------- */
+.landing-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+}
+
+/* ---------- Main layout (Dashboard/Courses/About/Contact shell) ---------- */
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-layout-content {
+  display: flex;
+  flex: 1;
+  background-color: #f5f6f8;
+  min-height: 0;
+}
+
+.main-layout-content main {
+  flex: 1;
+  padding: 32px 40px;
+  color: #1a1a1a;
+  overflow-y: auto;
+}
+
+.main-layout-content main h1 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--navy-content-text);
+}
+
+/* ---------- Header ---------- */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 40px;
+  background-color: var(--navy-header);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.header p {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.nav-bar {
+  display: flex;
+  gap: 32px;
+}
+
+.nav-bar a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.nav-bar a:hover {
+  color: var(--gold-light);
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  padding: 18px;
+  text-align: center;
+  background-color: var(--gold-dark);
+  border-top: 1px solid var(--border-color);
+  color: #f0e6d2;
+  font-size: 0.85rem;
+}
+
+/* ---------- Home (Landing layout) ---------- */
+.home-content {
+  padding: 60px 40px;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.logo-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+
+.school-logo {
+  height: 140px;
+  width: auto;
+}
+
+.home-content h1 {
+  font-size: 2.4rem;
+  margin-bottom: 12px;
+}
+
+.home-content p:first-of-type {
+  color: var(--gold-light);
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+}
+
+.home-content p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+/* ---------- About / Contact (Main layout content pages) ---------- */
+.about-content,
+.contact-content {
+  padding: 40px 48px;
+  max-width: 700px;
+}
+
+.about-content h1,
+.contact-content h1 {
+  font-size: 1.7rem;
+  margin-bottom: 16px;
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 10px;
+  display: inline-block;
+  color: var(--navy-content-text);
+}
+
+.about-content p,
+.contact-content p {
+  color: #3a3a3a;
+  margin-bottom: 14px;
+}
+
+/* ---------- Contact form ---------- */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 420px;
+  margin-top: 16px;
+}
+
+.contact-form label {
+  font-size: 0.85rem;
+  color: #3a3a3a;
+  margin-top: 8px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 8px 12px;
+  border: 1px solid #d0d5dc;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  font-size: 0.95rem;
+  font-family: inherit;
+  resize: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.contact-form button {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--navy-header);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: background-color 0.2s ease;
+}
+
+.contact-form button:hover {
+  background-color: var(--navy-sidebar);
+}
+
+/* ---------- Sidebar ---------- */
+.aside {
+  background-color: var(--navy-sidebar);
+  width: 220px;
+  padding: 24px 0;
+  border-right: 1px solid var(--border-color);
+}
+
+.aside h1 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  padding: 0 24px;
+  margin-bottom: 16px;
+}
+
+.menu-item {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item li {
+  padding: 12px 24px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.menu-item li:hover {
+  background-color: var(--navy-header);
+  color: var(--gold-light);
+}
+
+.menu-item a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  margin: -12px -24px;
+  padding: 12px 24px;
+}
+
+/* ---------- Cards (Dashboard / Courses) ---------- */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  width: 240px;
+  padding: 24px;
+  background-color: #ffffff;
+  border: 1px solid #d0d5dc;
+  border-radius: 10px;
+}
+
+.card p {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--navy-content-text);
+}

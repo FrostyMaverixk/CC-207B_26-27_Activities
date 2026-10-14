@@ -1,0 +1,324 @@
+/* --- COLOR PALETTE & VARIABLES --- */
+:root {
+  --paper-bg: #f5eedc;
+  --paper-dark: #e8ddc5;
+  --ink-dark: #2b2622;
+  --ink-light: #5c534b;
+  --border-color: #8c7b6c;
+  --stamp-red: #a83232;
+  --terminal-bg: #121810;
+  --terminal-green: #33ff33;
+}
+
+/* --- BASE STYLES --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #1a1614;
+  background-image: radial-gradient(#2d2824 1px, transparent 1px);
+  background-size: 16px 16px;
+  color: var(--ink-dark);
+  font-family: 'Courier Prime', monospace;
+  padding: 20px 10px;
+}
+
+/* Main Paper Container */
+.portfolio-card {
+  max-width: 850px;
+  margin: 0 auto;
+  background-color: var(--paper-bg);
+  border: 2px solid var(--border-color);
+  padding: 35px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+/* Header Styles */
+.header {
+  text-align: center;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.confidential-stamp {
+  position: absolute;
+  top: -10px;
+  right: 0;
+  border: 2px dashed var(--stamp-red);
+  color: var(--stamp-red);
+  padding: 3px 8px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  transform: rotate(8deg);
+}
+
+.cict-label {
+  font-size: 0.8rem;
+  color: var(--ink-light);
+  letter-spacing: 1px;
+}
+
+.student-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  margin: 5px 0;
+}
+
+.degree {
+  font-size: 0.85rem;
+  color: var(--ink-light);
+}
+
+.double-line {
+  border-top: 3px double var(--ink-dark);
+  margin: 15px 0;
+}
+
+.single-line {
+  border-top: 1px solid var(--border-color);
+  margin: 15px 0;
+}
+
+/* Navigation */
+.vintage-nav {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.vintage-nav a {
+  color: var(--ink-dark);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.85rem;
+  transition: 0.2s;
+}
+
+.vintage-nav a:hover {
+  background-color: var(--ink-dark);
+  color: var(--paper-bg);
+}
+
+/* Sections */
+.section {
+  margin-bottom: 35px;
+  border-bottom: 1px dashed var(--border-color);
+  padding-bottom: 25px;
+}
+
+.section-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  border-left: 4px solid var(--ink-dark);
+  padding-left: 10px;
+}
+
+/* Dossier Section */
+.dossier-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.dossier-img {
+  width: 120px;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 8px auto;
+  border: 1px solid var(--border-color);
+  
+  /* Vintage Effect Filters (Grayscale + Sepia) */
+  filter: grayscale(80%) sepia(30%) contrast(110%);
+}
+
+.photo-frame {
+  border: 2px solid var(--ink-dark);
+  padding: 5px;
+  background-color: var(--paper-dark);
+}
+
+.photo-placeholder {
+  border: 1px solid var(--border-color);
+  padding: 20px 15px;
+  text-align: center;
+}
+
+.avatar {
+  font-size: 2.5rem;
+  display: block;
+}
+
+.photo-label {
+  font-size: 0.7rem;
+  color: var(--ink-light);
+}
+
+.dossier-info p {
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+.bio {
+  margin-top: 10px;
+  color: var(--ink-light);
+  line-height: 1.5;
+}
+
+/* Skills Grid */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.skill-card {
+  background-color: var(--paper-dark);
+  border: 1px solid var(--border-color);
+  padding: 15px;
+}
+
+.skill-card h3 {
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--ink-dark);
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.skill-card ul {
+  list-style: none;
+}
+
+.skill-card li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+}
+
+/* Blueprint Projects Grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+}
+
+.blueprint-card {
+  background-color: #1a3048;
+  color: #e6f0fa;
+  border: 1px solid #3b628c;
+  padding: 15px;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.blueprint-no {
+  font-size: 0.7rem;
+  color: #82b1dd;
+}
+
+.blueprint-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  margin: 5px 0 8px 0;
+}
+
+.blueprint-card p {
+  font-size: 0.8rem;
+  color: #ccd9e8;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.card-action {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px dashed #3b628c;
+}
+
+.blueprint-link {
+  display: inline-block;
+  color: #82b1dd;
+  text-decoration: none;
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+}
+
+.blueprint-link:hover {
+  color: #ffffff;
+  background-color: #3b628c;
+  padding: 2px 6px;
+}
+
+.tech-tag {
+  font-size: 0.7rem;
+  color: #82b1dd;
+  font-weight: bold;
+}
+
+/* Contact Form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.form-row input, textarea {
+  width: 100%;
+  background-color: var(--paper-dark);
+  border: 1px solid var(--border-color);
+  padding: 10px;
+  font-family: 'Courier Prime', monospace;
+  color: var(--ink-dark);
+  outline: none;
+}
+
+.submit-btn {
+  background-color: var(--ink-dark);
+  color: var(--paper-bg);
+  border: none;
+  padding: 10px;
+  font-family: 'Courier Prime', monospace;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: var(--ink-light);
+}
+
+.status-msg {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--ink-light);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .portfolio-card { padding: 20px; }
+  .dossier-container { flex-direction: column; text-align: center; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .form-row { flex-direction: column; }
+}

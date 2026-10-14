@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoices — Blume Daily Admin</title>
+<link rel="stylesheet" href="admin.css">
+<style>
+.inv{padding:44px 48px;font-family:var(--fb);color:var(--ink);}
+.inv-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:36px;padding-bottom:20px;border-bottom:2px solid var(--rose);}
+.inv-brand{font-family:var(--fd);font-size:24px;font-weight:600;color:var(--rose);letter-spacing:.06em;text-transform:uppercase;}
+.inv-brand-sub{font-size:10px;font-weight:200;color:var(--mocha-light);margin-top:3px;letter-spacing:.08em;}
+.inv-meta{text-align:right;}
+.inv-number{font-family:var(--fd);font-size:18px;font-weight:500;margin-bottom:4px;}
+.inv-date{font-size:11px;color:var(--mocha-light);}
+.inv-parties{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px;}
+.inv-party-label{font-size:9px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--rose);margin-bottom:8px;}
+.inv-party-name{font-weight:500;font-size:14px;margin-bottom:3px;}
+.inv-party-detail{font-size:12px;font-weight:200;color:var(--mocha);line-height:1.7;}
+.inv-tbl{width:100%;border-collapse:collapse;margin-bottom:24px;}
+.inv-tbl th{font-size:9px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--mocha-light);padding:8px 0;border-bottom:1px solid rgba(0,0,0,.1);text-align:left;}
+.inv-tbl td{padding:10px 0;border-bottom:1px solid rgba(0,0,0,.05);font-size:13px;font-weight:300;}
+.inv-tbl tr:last-child td{border-bottom:none;}
+.inv-tbl .right{text-align:right;}
+.inv-total-row{display:flex;justify-content:flex-end;}
+.inv-total-box{min-width:200px;}
+.inv-total-line{display:flex;justify-content:space-between;padding:6px 0;font-size:13px;font-weight:300;}
+.inv-total-line.grand{font-family:var(--fd);font-size:16px;font-weight:500;border-top:1px solid rgba(0,0,0,.1);margin-top:4px;padding-top:10px;}
+.inv-footer{margin-top:32px;padding-top:16px;border-top:1px dashed rgba(0,0,0,.1);font-size:11px;color:var(--mocha-light);text-align:center;}
+.modal-print-actions{display:flex;gap:10px;padding:14px 20px;border-top:1px solid rgba(0,0,0,.07);}
+</style>
+</head>
+<body>
+<aside class="sidebar" id="sidebar"></aside>
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-left">
+      <h1>Invoices</h1>
+      <p>View and print customer invoices</p>
+    </div>
+    <div class="topbar-right">
+      <button class="topbar-icon-btn" title="Notifications">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <div class="notif-dot"></div>
+      </button>
+      <a href="index.html" target="_blank" class="topbar-visit-btn">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        View Website
+      </a>
+      <button class="topbar-user-btn">B</button>
+    </div>
+  </div>
+  <div class="page">
+    <div class="stat-grid stat-grid-4">
+      <div class="s-card"><div class="s-card-accent" style="background:var(--rose);"></div><div class="s-card-label">Total Invoices</div><div class="s-card-value">12</div><div class="s-card-sub">This month</div></div>
+      <div class="s-card"><div class="s-card-accent" style="background:var(--sage);"></div><div class="s-card-label">Paid</div><div class="s-card-value">9</div><div class="s-card-sub">₱14,250 received</div></div>
+      <div class="s-card"><div class="s-card-accent" style="background:var(--gold);"></div><div class="s-card-label">Pending</div><div class="s-card-value">2</div><div class="s-card-sub">Awaiting payment</div></div>
+      <div class="s-card"><div class="s-card-accent" style="background:var(--rose-muted);"></div><div class="s-card-label">Overdue</div><div class="s-card-value">1</div><div class="s-card-sub">Past due date</div></div>
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterInv(this,'all')">All</button>
+      <button class="filter-btn" onclick="filterInv(this,'Paid')">Paid</button>
+      <button class="filter-btn" onclick="filterInv(this,'Pending')">Pending</button>
+      <button class="filter-btn" onclick="filterInv(this,'Overdue')">Overdue</button>
+      <input class="search-input" placeholder="Search…" oninput="searchInv(this.value)" style="max-width:220px;margin-left:auto;">
+    </div>
+    <div class="tbl-card">
+      <table class="tbl">
+        <thead><tr><th>Invoice #</th><th>Order ID</th><th>Customer</th><th>Arrangement</th><th>Date Issued</th><th>Due Date</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody id="inv-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- INVOICE MODAL -->
+<div class="modal-overlay" id="inv-modal">
+  <div class="modal" style="max-width:700px;">
+    <div class="modal-header">
+      <div class="modal-title" id="inv-modal-title">Invoice</div>
+      <button class="modal-close" onclick="closeInv()">×</button>
+    </div>
+    <div id="inv-content" style="overflow-y:auto;max-height:60vh;"></div>
+    <div class="modal-print-actions">
+      <button class="btn-secondary" onclick="closeInv()">Close</button>
+      <button class="btn-primary" onclick="window.print()" style="padding:10px 22px;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Print Invoice
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="admin-shared.js"></script>
+<script>
+initAdmin('invoices');
+const invoices=[
+  {inv:'INV-2026-001',orderId:'BD-001',customer:'Aecielle Cervantes',address:'Lahug, Cebu City',arrangement:'Rosy Romance',issued:'Apr 26, 2026',due:'Apr 29, 2026',amount:650,status:'Pending'},
+  {inv:'INV-2026-002',orderId:'BD-002',customer:'Ysabella Tumlos',address:'Mabolo, Cebu City',arrangement:'Eternal White',issued:'Apr 26, 2026',due:'Apr 29, 2026',amount:1200,status:'Paid'},
+  {inv:'INV-2026-003',orderId:'BD-003',customer:'Carl Calotes',address:'IT Park, Cebu City',arrangement:'Garden Luxe',issued:'Apr 25, 2026',due:'Apr 28, 2026',amount:1800,status:'Paid'},
+  {inv:'INV-2026-004',orderId:'BD-004',customer:'Jahna Lagne',address:'Cebu Business Park',arrangement:'Ivory Dream',issued:'Apr 25, 2026',due:'Apr 28, 2026',amount:980,status:'Paid'},
+  {inv:'INV-2026-005',orderId:'BD-005',customer:'Kurt Dayao',address:'Banilad, Cebu City',arrangement:'Garden Luxe',issued:'Apr 25, 2026',due:'Apr 28, 2026',amount:1800,status:'Pending'},
+  {inv:'INV-2026-006',orderId:'BD-006',customer:'Maria Santos',address:'Guadalupe, Cebu City',arrangement:'Rose Medley',issued:'Apr 24, 2026',due:'Apr 27, 2026',amount:550,status:'Paid'},
+  {inv:'INV-2026-007',orderId:'BD-007',customer:'Jose Reyes',address:'Talamban, Cebu City',arrangement:'Eternal White',issued:'Apr 20, 2026',due:'Apr 23, 2026',amount:1400,status:'Overdue'},
+];
+
+let filtered=[...invoices],currentFilter='all',currentSearch='';
+function badgeInv(s){return{Paid:'badge-paid',Pending:'badge-pending-pay',Overdue:'badge-overdue'}[s]||'badge-pending-pay';}
+function applyFilters(){
+  filtered=invoices.filter(i=>{
+    const mf=currentFilter==='all'||i.status===currentFilter;
+    const ms=!currentSearch||i.inv.toLowerCase().includes(currentSearch)||i.customer.toLowerCase().includes(currentSearch);
+    return mf&&ms;
+  });render();
+}
+function render(){
+  document.getElementById('inv-body').innerHTML=filtered.map(i=>`
+    <tr>
+      <td><strong>${i.inv}</strong></td>
+      <td>${i.orderId}</td>
+      <td>${i.customer}</td>
+      <td>${i.arrangement}</td>
+      <td>${i.issued}</td>
+      <td>${i.due}</td>
+      <td>₱${i.amount.toLocaleString()}</td>
+      <td><span class="badge ${badgeInv(i.status)}"><span class="badge-dot"></span>${i.status}</span></td>
+      <td><div class="tbl-actions">
+        <button class="tbl-btn" onclick="viewInvoice('${i.inv}')">View</button>
+        <button class="tbl-btn sage" onclick="window.print()">Print</button>
+      </div></td>
+    </tr>`).join('');
+}
+function filterInv(btn,f){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentFilter=f;applyFilters();}
+function searchInv(q){currentSearch=q.toLowerCase();applyFilters();}
+function viewInvoice(invNum){
+  const i=invoices.find(x=>x.inv===invNum);if(!i)return;
+  document.getElementById('inv-modal-title').textContent=i.inv;
+  document.getElementById('inv-content').innerHTML=`<div class="inv">
+    <div class="inv-head">
+      <div><div class="inv-brand">Blume Daily</div><div class="inv-brand-sub">Fresh Floral Arrangements · Cebu City</div></div>
+      <div class="inv-meta"><div class="inv-number">${i.inv}</div><div class="inv-date">Issued: ${i.issued}</div><div class="inv-date">Due: ${i.due}</div></div>
+    </div>
+    <div class="inv-parties">
+      <div><div class="inv-party-label">From</div><div class="inv-party-name">Blume Daily</div><div class="inv-party-detail">Cebu City, Philippines<br>blumedaily@email.com<br>+63 32 XXX XXXX</div></div>
+      <div><div class="inv-party-label">Bill To</div><div class="inv-party-name">${i.customer}</div><div class="inv-party-detail">${i.address}<br>Order: ${i.orderId}</div></div>
+    </div>
+    <table class="inv-tbl">
+      <thead><tr><th>Description</th><th>Qty</th><th class="right">Unit Price</th><th class="right">Total</th></tr></thead>
+      <tbody>
+        <tr><td>${i.arrangement}</td><td>1</td><td class="right">₱${i.amount.toLocaleString()}</td><td class="right">₱${i.amount.toLocaleString()}</td></tr>
+      </tbody>
+    </table>
+    <div class="inv-total-row"><div class="inv-total-box">
+      <div class="inv-total-line"><span>Subtotal</span><span>₱${i.amount.toLocaleString()}</span></div>
+      <div class="inv-total-line"><span>Delivery Fee</span><span>₱0</span></div>
+      <div class="inv-total-line grand"><span>Total Due</span><span>₱${i.amount.toLocaleString()}</span></div>
+    </div></div>
+    <div class="inv-footer">Thank you for choosing Blume Daily. For questions, contact us at blumedaily@email.com.</div>
+  </div>`;
+  document.getElementById('inv-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeInv(){document.getElementById('inv-modal').classList.remove('open');document.body.style.overflow='';}
+document.getElementById('inv-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeInv();});
+applyFilters();
+</script>
+</body>
+</html>

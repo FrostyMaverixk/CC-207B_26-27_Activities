@@ -1,0 +1,103 @@
+.projects {
+  padding: 100px 2rem;
+}
+
+.inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.card {
+  display: block;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.card:hover {
+  border-color: rgba(167, 139, 250, 0.3);
+  transform: translateY(-5px);
+}
+
+.glow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 90px;
+  height: 90px;
+  pointer-events: none;
+}
+
+.icon {
+  font-size: 36px;
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 1;
+
+  width: 48px;          /* Sets a fixed width for the container */
+  height: 48px;         /* Sets a fixed height for the container */
+  display: flex;        /* Centers the emoji or image */
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+}
+.projectIconImage {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  display: block;
+}
+.title {
+  font-family: 'Syne', sans-serif;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.desc {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+  line-height: 1.75;
+  margin-bottom: 18px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  padding: 3px 10px;
+  font-size: 11px;
+  border-radius: 4px;
+  font-family: 'Space Mono', monospace;
+}

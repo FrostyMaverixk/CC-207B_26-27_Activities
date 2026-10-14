@@ -1,0 +1,4 @@
+DROP MEDIA HERE — practice ungraded/raw sources (OPTIONAL — enables wipe-compare)
+Expected: raw-practice-<slug>.mp4
+  same duration/fps as the final, muted ok
+Referenced by the `raw` field of src/data/projects.js (null = no wipe-compare).

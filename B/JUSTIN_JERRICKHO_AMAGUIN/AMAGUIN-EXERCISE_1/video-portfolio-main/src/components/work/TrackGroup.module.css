@@ -1,0 +1,86 @@
+.group {
+  margin-bottom: var(--space-4);
+  border-left: 2px solid transparent;
+  padding-left: var(--space-2);
+}
+
+/* soloed track: teal left rule */
+.solo {
+  border-left-color: var(--accent-teal);
+}
+
+/* muted track header dims (rows are already collapsed) */
+.muted .title,
+.muted .count {
+  color: var(--text-2);
+}
+
+.muted .chip {
+  opacity: 0.35;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--line-0);
+  font-family: var(--font-mono);
+}
+
+/* sticky track headers while scrolling the bin (desktop, --bp-lg = 1024px) */
+@media (min-width: 1024px) {
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background: var(--bg-0);
+  }
+}
+
+.chip {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius);
+  flex: none;
+}
+
+.title {
+  font-size: var(--fs-meta);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-0);
+}
+
+.count {
+  flex: 1;
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-2);
+}
+
+.toggle {
+  min-width: 44px; /* tap target */
+  min-height: 28px;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--line-0);
+  border-radius: var(--radius);
+  background: var(--bg-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-1);
+}
+
+.toggle:hover {
+  border-color: var(--line-1);
+}
+
+.toggleOn {
+  color: var(--bg-0);
+  background: var(--accent-teal);
+  border-color: var(--accent-teal);
+}
+
+.rows {
+  padding-top: var(--space-1);
+}

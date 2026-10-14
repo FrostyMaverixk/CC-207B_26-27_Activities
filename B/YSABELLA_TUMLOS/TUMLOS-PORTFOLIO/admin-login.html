@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login — Blume Daily</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+:root{
+  --ivory:#faf8f3;
+  --parchment:#f4f0e6;
+  --warm-white:#fffefb;
+  --rose:#5C0316;
+  --rose-deep:#3d0110;
+  --rose-muted:#a06070;
+  --blush:#efcfc0;
+  --ink:#1e1a15;
+  --mocha:#7a6555;
+  --mocha-light:#b8a899;
+  --gold:#c4975a;
+  --fd:'Playfair Display',Georgia,serif;
+  --fb:'Jost',sans-serif;
+}
+
+html,body{height:100%;overflow:hidden;}
+
+body{
+  font-family:var(--fb);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+  position:relative;
+  background:#0d0306;
+}
+
+/* ── Full-screen floral canvas ── */
+#floral-bg{
+  position:fixed;inset:0;
+  z-index:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+
+#floral-bg::before{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 18% 28%, rgba(92,3,22,.55) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 70% at 80% 72%, rgba(61,1,16,.6) 0%, transparent 65%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, #1a0408 0%, #0d0306 100%);
+  z-index:0;
+}
+
+.bokeh{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(40px);
+  animation:bokehFloat ease-in-out infinite;
+  pointer-events:none;
+}
+
+.petal-svg{
+  position:absolute;
+  top:-120px;
+  animation:petalFall linear infinite;
+  pointer-events:none;
+  will-change:transform,opacity;
+}
+
+.flower-float{
+  position:absolute;
+  animation:flowerFloat ease-in-out infinite;
+  pointer-events:none;
+  opacity:0;
+}
+
+.leaf-svg{
+  position:absolute;
+  top:-80px;
+  animation:leafSpin linear infinite;
+  pointer-events:none;
+}
+
+/* ── Card ── */
+.login-wrap{
+  position:relative;z-index:1;
+  display:grid;
+  grid-template-columns:1fr 440px;
+  width:100%;max-width:1200px;min-height:700px;
+  box-shadow:0 48px 120px rgba(0,0,0,.55),0 8px 32px rgba(0,0,0,.3);
+  overflow:hidden;
+  opacity:0;transform:translateY(28px) scale(.97);
+  animation:cardReveal .72s cubic-bezier(.16,1,.3,1) .25s forwards;
+}
+
+/* ── Left panel ── */
+.login-left{
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:52px 48px;
+}
+.login-left-bg{
+  position:absolute;inset:0;
+  background:url('https://i.pinimg.com/1200x/c9/00/1b/c9001b33ab863a02a47219d33df89190.jpg') center/cover no-repeat;
+  z-index:0;transform:scale(1.08);
+  animation:bgSettle 1.4s cubic-bezier(.16,1,.3,1) .3s forwards;
+}
+.login-left-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(160deg,rgba(20,0,6,.88) 0%,rgba(92,3,22,.62) 55%,rgba(12,0,3,.92) 100%);
+  z-index:1;
+}
+.left-shimmer{
+  position:absolute;top:0;left:-100%;width:60%;height:100%;
+  background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.05) 50%,transparent 60%);
+  z-index:2;animation:shimmerSweep 4s ease-in-out 1.4s infinite;
+}
+
+.ll-brand{position:relative;z-index:3;opacity:0;transform:translateY(-14px);animation:fadeUp .6s cubic-bezier(.16,1,.3,1) .55s forwards;}
+.ll-logo{font-family:var(--fd);font-size:21px;font-weight:600;color:#fff;letter-spacing:.1em;text-transform:uppercase;}
+.ll-sub{font-size:9px;font-weight:200;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-top:5px;}
+.ll-divider{width:0;height:1px;background:rgba(255,255,255,.2);margin:20px 0;animation:lineGrow .7s cubic-bezier(.16,1,.3,1) .8s forwards;}
+
+.ll-body{position:relative;z-index:3;opacity:0;transform:translateY(18px);animation:fadeUp .65s cubic-bezier(.16,1,.3,1) .7s forwards;}
+.ll-tag{font-size:9px;font-weight:300;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.36);margin-bottom:16px;}
+.ll-headline{font-family:var(--fd);font-size:45px;font-weight:400;font-style:italic;color:#fff;line-height:1.38;margin-bottom:18px;}
+.ll-headline em{font-style:normal;background:linear-gradient(90deg,#f2c0c8,#efcfc0,#c4975a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.ll-text{font-size:12.5px;font-weight:200;color:rgba(255,255,255,.42);line-height:1.95;letter-spacing:.03em;}
+.ll-features{margin-top:26px;display:flex;flex-direction:column;gap:10px;}
+.ll-feature{display:flex;align-items:center;gap:11px;font-size:11px;font-weight:200;color:rgba(255,255,255,.48);letter-spacing:.03em;opacity:0;transform:translateX(-12px);}
+.ll-feature:nth-child(1){animation:featIn .5s cubic-bezier(.16,1,.3,1) 1.0s forwards;}
+.ll-feature:nth-child(2){animation:featIn .5s cubic-bezier(.16,1,.3,1) 1.12s forwards;}
+.ll-feature:nth-child(3){animation:featIn .5s cubic-bezier(.16,1,.3,1) 1.24s forwards;}
+.ll-feature-dot{width:5px;height:5px;border-radius:50%;background:rgba(242,192,200,.55);flex-shrink:0;}
+.ll-footer{position:relative;z-index:3;font-size:10px;font-weight:200;color:rgba(255,255,255,.18);letter-spacing:.06em;opacity:0;animation:fadeIn .6s ease 1.3s forwards;}
+
+/* ── Right panel ── */
+.login-right{
+  background:var(--warm-white);padding:52px 44px;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.login-right::before{content:'';position:absolute;top:-80px;right:-80px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(239,207,192,.38) 0%,transparent 70%);pointer-events:none;}
+.login-right::after{content:'';position:absolute;bottom:-60px;left:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(196,151,90,.1) 0%,transparent 70%);pointer-events:none;}
+
+.login-title{font-family:var(--fd);font-size:26px;font-weight:500;color:var(--ink);margin-bottom:6px;opacity:0;transform:translateY(12px);animation:fadeUp .55s cubic-bezier(.16,1,.3,1) .45s forwards;}
+.login-subtitle{font-size:12px;font-weight:200;color:var(--mocha-light);margin-bottom:32px;letter-spacing:.03em;opacity:0;animation:fadeIn .5s ease .6s forwards;}
+
+.form-body{opacity:0;transform:translateY(14px);animation:fadeUp .55s cubic-bezier(.16,1,.3,1) .7s forwards;}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+.field label{font-size:10px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--mocha);transition:color .22s,transform .22s;}
+.field:focus-within label{color:var(--rose);}
+.input-wrap{position:relative;}
+.field input{width:100%;font-family:var(--fb);font-size:13px;color:var(--ink);background:var(--ivory);border:1px solid rgba(0,0,0,.1);padding:12px 14px;outline:none;transition:border-color .25s,box-shadow .25s,background .25s,transform .22s;}
+.field input:focus{border-color:var(--rose-muted);box-shadow:0 0 0 3px rgba(160,96,112,.1);background:var(--warm-white);transform:translateY(-1px);}
+.field input::placeholder{color:var(--mocha-light);}
+.input-line{position:absolute;bottom:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--rose),var(--rose-muted));transition:width .35s cubic-bezier(.16,1,.3,1);pointer-events:none;}
+.field input:focus ~ .input-line{width:100%;}
+
+.remember-row{display:flex;align-items:center;gap:9px;margin-bottom:24px;}
+.remember-row input[type=checkbox]{accent-color:var(--rose);width:13px;height:13px;cursor:pointer;}
+.remember-row label{font-size:12px;font-weight:200;color:var(--mocha);cursor:pointer;letter-spacing:.02em;transition:color .2s;}
+.remember-row:hover label{color:var(--ink);}
+
+.login-error{background:rgba(92,3,22,.06);border:1px solid rgba(92,3,22,.15);border-left:3px solid var(--rose);color:var(--rose);font-size:12px;font-weight:300;padding:11px 14px;margin-bottom:16px;opacity:0;max-height:0;overflow:hidden;transition:opacity .35s ease,max-height .4s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1);transform:translateY(-4px);}
+.login-error.show{opacity:1;max-height:60px;transform:translateY(0);}
+
+.btn-login{width:100%;background:var(--rose);color:#fff;border:none;padding:14px;font-family:var(--fb);font-size:11px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;position:relative;overflow:hidden;transition:background .25s,transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .25s,letter-spacing .3s;}
+.btn-login:hover{background:var(--rose-deep);transform:translateY(-2px);box-shadow:0 8px 24px rgba(92,3,22,.32);letter-spacing:.28em;}
+.btn-login:active{transform:translateY(0) scale(.98);}
+.btn-login .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.22);transform:scale(0);animation:btnRipple .6s ease-out forwards;pointer-events:none;}
+.btn-login.loading{pointer-events:none;letter-spacing:.08em;}
+.btn-login.loading::after{content:'';display:inline-block;width:13px;height:13px;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;margin-left:10px;vertical-align:middle;animation:spin .7s linear infinite;}
+
+.login-hint{margin-top:20px;font-size:11px;font-weight:200;color:var(--mocha-light);text-align:center;letter-spacing:.02em;opacity:0;animation:fadeIn .5s ease 1s forwards;}
+.login-hint strong{color:var(--mocha);font-weight:400;}
+
+.success-veil{position:fixed;inset:0;background:var(--warm-white);z-index:9999;opacity:0;pointer-events:none;transition:opacity .45s ease;}
+.success-veil.go{opacity:1;pointer-events:auto;}
+
+/* ── Keyframes ── */
+@keyframes cardReveal{to{opacity:1;transform:translateY(0) scale(1);}}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{to{opacity:1;}}
+@keyframes featIn{to{opacity:1;transform:translateX(0);}}
+@keyframes lineGrow{to{width:44px;}}
+@keyframes bgSettle{to{transform:scale(1);}}
+@keyframes shimmerSweep{0%{left:-100%;}40%,100%{left:160%;}}
+@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes btnRipple{to{transform:scale(3.5);opacity:0;}}
+@keyframes shakeX{0%,100%{transform:translateX(0);}20%{transform:translateX(-8px);}40%{transform:translateX(7px);}60%{transform:translateX(-5px);}80%{transform:translateX(4px);}}
+
+@keyframes petalFall{
+  0%  {opacity:0;transform:translateY(0) translateX(0) rotate(0deg) scale(.7);}
+  6%  {opacity:1;}
+  90% {opacity:.55;}
+  100%{opacity:0;transform:translateY(110vh) translateX(var(--sway)) rotate(var(--spin)) scale(1);}
+}
+@keyframes leafSpin{
+  0%  {opacity:0;transform:translateY(0) translateX(0) rotate(0deg);}
+  7%  {opacity:.65;}
+  90% {opacity:.35;}
+  100%{opacity:0;transform:translateY(110vh) translateX(var(--sway)) rotate(var(--spin));}
+}
+@keyframes bokehFloat{
+  0%,100%{transform:translate(0,0) scale(1);}
+  33%{transform:translate(var(--bx),var(--by)) scale(1.15);}
+  66%{transform:translate(calc(var(--bx)*-.6),calc(var(--by)*.8)) scale(.9);}
+}
+@keyframes flowerFloat{
+  0%  {opacity:0;transform:translateY(20px) scale(.7) rotate(0deg);}
+  12% {opacity:var(--fop);}
+  88% {opacity:var(--fop);}
+  100%{opacity:0;transform:translateY(-30px) scale(1.05) rotate(var(--fspin));}
+}
+</style>
+</head>
+<body>
+
+<div id="floral-bg"></div>
+<div class="success-veil" id="successVeil"></div>
+
+<div class="login-wrap">
+  <div class="login-left">
+    <div class="login-left-bg"></div>
+    <div class="login-left-overlay"></div>
+    <div class="left-shimmer"></div>
+    <div class="ll-brand">
+      <div class="ll-logo">Blume Daily</div>
+      <div class="ll-sub">Admin Portal</div>
+      <div class="ll-divider"></div>
+    </div>
+    <div class="ll-body">
+      <div class="ll-tag">Management System</div>
+      <div class="ll-headline">Every petal,<br>every order —<br><em>perfectly managed.</em></div>
+      <div class="ll-text">Your all-in-one dashboard for floral arrangement orders, payments, inventory, and more.</div>
+    </div>
+    <div class="ll-footer">© 2026 Blume Daily · Cebu City, Philippines</div>
+  </div>
+
+  <div class="login-right">
+    <div class="login-title">Welcome back</div>
+    <div class="login-subtitle">Sign in to your admin account to continue</div>
+    <div class="form-body">
+      <div class="login-error" id="login-error">Incorrect username or password. Please try again.</div>
+      <div class="field">
+        <label>Username</label>
+        <div class="input-wrap">
+          <input type="text" id="username" placeholder="Enter your username" autocomplete="username">
+          <div class="input-line"></div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <div class="input-wrap">
+          <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password">
+          <div class="input-line"></div>
+        </div>
+      </div>
+      <div class="remember-row">
+        <input type="checkbox" id="remember">
+        <label for="remember">Keep me signed in</label>
+      </div>
+      <button class="btn-login" id="loginBtn" onclick="doLogin()">Sign In</button>
+    </div>
+    <div class="login-hint">Demo credentials: <strong>admin</strong> / <strong>blume2026</strong></div>
+  </div>
+</div>
+
+<script>
+if(sessionStorage.getItem('bd_admin')){window.location.href='admin-dashboard.html';}
+
+// ═══════════════════════════════════════════════
+//  FLORAL BACKGROUND ENGINE
+// ═══════════════════════════════════════════════
+(function(){
+  const bg = document.getElementById('floral-bg');
+
+  // ── Bokeh orbs ──
+  [
+    {w:340,h:230,x:8, y:14, c:'rgba(92,3,22,.48)',    dur:9,  bx:'32px', by:'22px'},
+    {w:270,h:270,x:74,y:58, c:'rgba(61,1,16,.52)',    dur:13, bx:'-28px',by:'16px'},
+    {w:400,h:210,x:38,y:76, c:'rgba(122,21,48,.3)',   dur:11, bx:'22px', by:'-20px'},
+    {w:200,h:200,x:4, y:68, c:'rgba(196,151,90,.13)', dur:15, bx:'16px', by:'28px'},
+    {w:190,h:190,x:84,y:8,  c:'rgba(239,207,192,.09)',dur:10, bx:'-22px',by:'20px'},
+    {w:150,h:150,x:54,y:38, c:'rgba(160,96,112,.2)',  dur:8,  bx:'14px', by:'-14px'},
+    {w:120,h:120,x:28,y:20, c:'rgba(242,192,200,.1)', dur:12, bx:'-10px',by:'12px'},
+    {w:180,h:120,x:65,y:85, c:'rgba(92,3,22,.25)',    dur:14, bx:'18px', by:'-10px'},
+  ].forEach(b=>{
+    const el=document.createElement('div');
+    el.className='bokeh';
+    el.style.cssText=`width:${b.w}px;height:${b.h}px;left:${b.x}%;top:${b.y}%;background:${b.c};animation-duration:${b.dur}s;--bx:${b.bx};--by:${b.by};animation-delay:-${Math.random()*b.dur}s;`;
+    bg.appendChild(el);
+  });
+
+  // ── SVG builders ──
+  function petalSVG(s,col,op){
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="${s}" height="${s*1.45}" viewBox="0 0 40 58">
+      <path d="M20 0 C29 9,39 20,37 32 C35 44,27 54,20 58 C13 54,5 44,3 32 C1 20,11 9,20 0Z" fill="${col}" fill-opacity="${op}"/>
+      <path d="M20 5 C25 15,31 24,29 34 C27 42,23 50,20 55" stroke="rgba(255,255,255,.13)" stroke-width=".8" fill="none"/>
+      <path d="M20 5 C15 15,9 24,11 34" stroke="rgba(255,255,255,.07)" stroke-width=".5" fill="none"/>
+    </svg>`;
+  }
+
+  function blossomSVG(s,col,op){
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="${s}" height="${s*1.2}" viewBox="0 0 44 52">
+      <path d="M22 1 C31 1,42 10,42 21 C42 34,33 46,22 51 C11 46,2 34,2 21 C2 10,13 1,22 1Z" fill="${col}" fill-opacity="${op}"/>
+      <path d="M22 7 C27 7,36 14,36 23 C36 32,29 42,22 48" stroke="rgba(255,255,255,.15)" stroke-width=".7" fill="none"/>
+      <path d="M22 7 C17 7,8 14,8 23 C8 32,15 42,22 48" stroke="rgba(255,255,255,.09)" stroke-width=".5" fill="none"/>
+      <path d="M10 15 C16 12,28 12,34 15" stroke="rgba(255,255,255,.08)" stroke-width=".5" fill="none"/>
+    </svg>`;
+  }
+
+  function leafSVG(s,col,op){
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="${s}" height="${s*1.65}" viewBox="0 0 30 50">
+      <path d="M15 0 C23 7,29 18,29 28 C29 40,22 48,15 50 C8 48,1 40,1 28 C1 18,7 7,15 0Z" fill="${col}" fill-opacity="${op}"/>
+      <line x1="15" y1="4" x2="15" y2="48" stroke="rgba(255,255,255,.2)" stroke-width=".9"/>
+      <line x1="15" y1="14" x2="24" y2="22" stroke="rgba(255,255,255,.12)" stroke-width=".55"/>
+      <line x1="15" y1="22" x2="6"  y2="30" stroke="rgba(255,255,255,.12)" stroke-width=".55"/>
+      <line x1="15" y1="30" x2="23" y2="38" stroke="rgba(255,255,255,.1)"  stroke-width=".5"/>
+      <line x1="15" y1="38" x2="8"  y2="44" stroke="rgba(255,255,255,.08)" stroke-width=".45"/>
+    </svg>`;
+  }
+
+  function dotSVG(s,col,op){
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="${s}" height="${s}" viewBox="0 0 10 10">
+      <circle cx="5" cy="5" r="4.2" fill="${col}" fill-opacity="${op}"/>
+    </svg>`;
+  }
+
+  function flowerSVG(s,pc,cc,op){
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="${s}" height="${s}" viewBox="0 0 80 80">
+      <g transform="translate(40,40)">
+        <ellipse rx="10" ry="23" fill="${pc}" fill-opacity="${op}" transform="rotate(0)"/>
+        <ellipse rx="10" ry="23" fill="${pc}" fill-opacity="${op}" transform="rotate(72)"/>
+        <ellipse rx="10" ry="23" fill="${pc}" fill-opacity="${op}" transform="rotate(144)"/>
+        <ellipse rx="10" ry="23" fill="${pc}" fill-opacity="${op}" transform="rotate(216)"/>
+        <ellipse rx="10" ry="23" fill="${pc}" fill-opacity="${op}" transform="rotate(288)"/>
+        <circle r="10" fill="${cc}" fill-opacity="${Math.min(op+.12,1)}"/>
+        <circle r="5.5" fill="rgba(255,250,220,.3)" fill-opacity="${op}"/>
+        <circle r="2.5" fill="rgba(255,255,255,.35)"/>
+      </g>
+    </svg>`;
+  }
+
+  function bloomSVG(s,col,op){
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="${s}" height="${s}" viewBox="0 0 90 90">
+      <g transform="translate(45,45)">
+        <ellipse rx="9" ry="21" fill="${col}" fill-opacity="${op}" transform="rotate(0)"/>
+        <ellipse rx="9" ry="21" fill="${col}" fill-opacity="${op}" transform="rotate(60)"/>
+        <ellipse rx="9" ry="21" fill="${col}" fill-opacity="${op}" transform="rotate(120)"/>
+        <ellipse rx="9" ry="21" fill="${col}" fill-opacity="${op}" transform="rotate(180)"/>
+        <ellipse rx="9" ry="21" fill="${col}" fill-opacity="${op}" transform="rotate(240)"/>
+        <ellipse rx="9" ry="21" fill="${col}" fill-opacity="${op}" transform="rotate(300)"/>
+        <circle r="8" fill="rgba(196,151,90,.65)"/>
+        <circle r="4.5" fill="rgba(255,235,180,.45)"/>
+        <circle r="2" fill="rgba(255,255,255,.4)"/>
+      </g>
+    </svg>`;
+  }
+
+  function rosetteSVG(s,col,op){
+    // 8-petal rosette
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="${s}" height="${s}" viewBox="0 0 80 80">
+      <g transform="translate(40,40)">
+        <ellipse rx="7" ry="18" fill="${col}" fill-opacity="${op}" transform="rotate(0)"/>
+        <ellipse rx="7" ry="18" fill="${col}" fill-opacity="${op}" transform="rotate(45)"/>
+        <ellipse rx="7" ry="18" fill="${col}" fill-opacity="${op}" transform="rotate(90)"/>
+        <ellipse rx="7" ry="18" fill="${col}" fill-opacity="${op}" transform="rotate(135)"/>
+        <ellipse rx="7" ry="18" fill="${col}" fill-opacity="${op}" transform="rotate(180)"/>
+        <ellipse rx="7" ry="18" fill="${col}" fill-opacity="${op}" transform="rotate(225)"/>
+        <ellipse rx="7" ry="18" fill="${col}" fill-opacity="${op}" transform="rotate(270)"/>
+        <ellipse rx="7" ry="18" fill="${col}" fill-opacity="${op}" transform="rotate(315)"/>
+        <circle r="9" fill="rgba(239,207,192,.5)"/>
+        <circle r="5" fill="rgba(255,240,200,.4)"/>
+        <circle r="2.2" fill="rgba(255,255,255,.45)"/>
+      </g>
+    </svg>`;
+  }
+
+  // ── Colour palettes ──
+  const pinks   = ['rgba(239,207,192','rgba(248,222,214','rgba(242,192,200','rgba(220,158,172','rgba(255,215,208','rgba(232,195,205'];
+  const golds   = ['rgba(196,151,90','rgba(218,175,110','rgba(210,165,95'];
+  const mauves  = ['rgba(180,130,150','rgba(160,96,112','rgba(200,160,175','rgba(210,175,185'];
+  const creams  = ['rgba(255,240,225','rgba(245,225,210','rgba(255,248,235'];
+  const sages   = ['rgba(107,125,96','rgba(90,110,78','rgba(130,150,110','rgba(78,98,68'];
+
+  const allPetal = [...pinks,...golds,...mauves,...creams];
+
+  function rnd(a,b){return a+Math.random()*(b-a);}
+  function pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
+  function sign(){return Math.random()>.5?1:-1;}
+
+  // ── Falling petals — 70 total ──
+  for(let i=0;i<70;i++){
+    const el=document.createElement('div');
+    el.className='petal-svg';
+    const size=rnd(8,36);
+    const dur=rnd(9,32);
+    const delay=-(Math.random()*dur);
+    const sway=rnd(25,130)*sign();
+    const spin=rnd(150,600)*sign();
+    const col=pick(allPetal);
+    const op=rnd(0.18,0.62);
+    const t=Math.random();
+    let svg;
+    if(t<0.42)       svg=petalSVG(size,col+',1)',op);
+    else if(t<0.75)  svg=blossomSVG(size,col+',1)',op);
+    else             svg=dotSVG(Math.max(3,size*.38),col+',1)',op*.75);
+    el.innerHTML=svg;
+    el.style.cssText=`left:${rnd(-4,106)}%;animation-duration:${dur}s;animation-delay:${delay}s;--sway:${sway}px;--spin:${spin}deg;`;
+    bg.appendChild(el);
+  }
+
+  // ── Falling leaves — 18 ──
+  for(let i=0;i<18;i++){
+    const el=document.createElement('div');
+    el.className='leaf-svg';
+    const size=rnd(10,26);
+    const dur=rnd(16,34);
+    const delay=-(Math.random()*dur);
+    const sway=rnd(35,110)*sign();
+    const spin=rnd(180,480)*sign();
+    const col=pick(sages);
+    const op=rnd(0.1,0.38);
+    el.innerHTML=leafSVG(size,col+',1)',op);
+    el.style.cssText=`left:${rnd(-3,105)}%;animation-duration:${dur}s;animation-delay:${delay}s;--sway:${sway}px;--spin:${spin}deg;`;
+    bg.appendChild(el);
+  }
+
+  // ── Large ambient floating flowers ──
+  [
+    {x:3,  y:6,  s:115, t:'bloom',   pc:'rgba(92,3,22,.22)',     cc:null,                    op:.17, d:18, fs:'28deg'},
+    {x:87, y:4,  s:85,  t:'flower',  pc:'rgba(239,207,192,.26)', cc:'rgba(255,220,175,.32)', op:.16, d:23, fs:'-22deg'},
+    {x:2,  y:74, s:100, t:'bloom',   pc:'rgba(160,96,112,.2)',   cc:null,                    op:.14, d:16, fs:'32deg'},
+    {x:89, y:68, s:80,  t:'flower',  pc:'rgba(218,170,180,.22)', cc:'rgba(255,200,155,.3)',  op:.15, d:21, fs:'-20deg'},
+    {x:44, y:1,  s:68,  t:'rosette', pc:'rgba(196,151,90,.2)',   cc:null,                    op:.13, d:26, fs:'14deg'},
+    {x:50, y:87, s:92,  t:'bloom',   pc:'rgba(122,21,48,.2)',    cc:null,                    op:.13, d:19, fs:'-24deg'},
+    {x:20, y:48, s:58,  t:'flower',  pc:'rgba(242,192,200,.2)',  cc:'rgba(240,200,158,.25)', op:.12, d:24, fs:'22deg'},
+    {x:70, y:32, s:64,  t:'bloom',   pc:'rgba(178,128,145,.18)', cc:null,                    op:.11, d:20, fs:'-16deg'},
+    {x:60, y:14, s:50,  t:'rosette', pc:'rgba(239,207,192,.18)', cc:null,                    op:.10, d:28, fs:'18deg'},
+    {x:12, y:30, s:72,  t:'flower',  pc:'rgba(200,145,160,.18)', cc:'rgba(220,175,120,.22)', op:.12, d:22, fs:'-12deg'},
+  ].forEach((f,i)=>{
+    const el=document.createElement('div');
+    el.className='flower-float';
+    const svg=f.t==='bloom'   ? bloomSVG(f.s,f.pc,f.op)
+              :f.t==='rosette'? rosetteSVG(f.s,f.pc,f.op)
+              :                 flowerSVG(f.s,f.pc,f.cc||'rgba(196,151,90,.3)',f.op);
+    el.innerHTML=svg;
+    el.style.cssText=`left:${f.x}%;top:${f.y}%;animation-duration:${f.d}s;animation-delay:-${i*3.2}s;--fop:${f.op};--fspin:${f.fs};`;
+    bg.appendChild(el);
+  });
+
+  // ── Tiny stardust dots — 35 ──
+  for(let i=0;i<35;i++){
+    const el=document.createElement('div');
+    el.className='petal-svg';
+    const size=rnd(2,5.5);
+    const dur=rnd(7,15);
+    const delay=-(Math.random()*dur);
+    const sway=rnd(15,55)*sign();
+    const col=pick([...pinks,...golds,...creams]);
+    const op=rnd(0.28,0.65);
+    el.innerHTML=dotSVG(size,col+',1)',op);
+    el.style.cssText=`left:${rnd(0,100)}%;animation-duration:${dur}s;animation-delay:${delay}s;--sway:${sway}px;--spin:${rnd(90,360)*sign()}deg;`;
+    bg.appendChild(el);
+  }
+
+})();
+
+// ═══════════════════════════════════════════════
+//  LOGIN LOGIC
+// ═══════════════════════════════════════════════
+function doLogin(){
+  const u=document.getElementById('username').value.trim();
+  const p=document.getElementById('password').value;
+  const err=document.getElementById('login-error');
+  const btn=document.getElementById('loginBtn');
+  if(u==='admin'&&p==='blume2026'){
+    btn.classList.add('loading');
+    btn.textContent='Signing in';
+    setTimeout(()=>{
+      sessionStorage.setItem('bd_admin','1');
+      document.getElementById('successVeil').classList.add('go');
+      setTimeout(()=>{window.location.href='admin-dashboard.html';},420);
+    },800);
+  } else {
+    err.classList.add('show');
+    const form=document.querySelector('.form-body');
+    form.style.animation='shakeX .42s cubic-bezier(.36,.07,.19,.97)';
+    setTimeout(()=>{form.style.animation='';},450);
+    document.getElementById('password').value='';
+    document.getElementById('password').focus();
+  }
+}
+
+document.getElementById('loginBtn').addEventListener('click',function(e){
+  const r=document.createElement('span');
+  r.className='ripple';
+  const rect=this.getBoundingClientRect();
+  const size=Math.max(rect.width,rect.height);
+  r.style.cssText=`width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px;`;
+  this.appendChild(r);
+  setTimeout(()=>r.remove(),700);
+});
+
+document.addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+
+document.querySelectorAll('.field input').forEach(input=>{
+  input.addEventListener('focus',()=>input.closest('.field').querySelector('label').style.transform='translateY(-1px)');
+  input.addEventListener('blur', ()=>input.closest('.field').querySelector('label').style.transform='');
+});
+</script>
+</body>
+</html>

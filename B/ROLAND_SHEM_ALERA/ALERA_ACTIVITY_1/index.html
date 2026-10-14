@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roland Shem J. Alera | Portfolio</title>
+  <meta name="description" content="Portfolio of Roland Shem J. Alera, BSIT student and developer from Iloilo, Philippines.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="#home" class="logo">RSA</a>
+    <nav id="nav" aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button id="theme-toggle" type="button" aria-label="Switch light or dark theme">Dark</button>
+      <button id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">Menu</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-text">
+        <p class="hello">Hi, I'm</p>
+        <h1>Roland Shem J. Alera</h1>
+        <p class="role">I build websites and apps. <span id="role-rotator">Frontend developer</span></p>
+        <p class="lead">3rd-year BSIT student at West Visayas State University, based in Iloilo City, Philippines.</p>
+        <div class="buttons">
+          <a class="btn primary" href="#projects">See my projects</a>
+          <a class="btn" href="#contact">Contact me</a>
+        </div>
+      </div>
+      <img class="portrait" src="images/Profile.jpg" alt="Photo of Roland Shem J. Alera" width="320" height="320">
+    </section>
+
+    <section id="about" class="section">
+      <h2>About me</h2>
+      <p>I'm a BSIT student at West Visayas State University and a TESDA NC2 holder in Computer Systems Servicing. I build apps and websites, take freelance and virtual assistant work, and run GadgetCrate PH, a small iPhone and gadget reselling business.</p>
+    </section>
+
+    <section id="skills" class="section">
+      <h2>Skills</h2>
+      <ul class="skills">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>React</li>
+        <li>Flutter</li>
+        <li>Git and GitHub</li>
+        <li>Computer systems servicing</li>
+        <li>Virtual assistant tasks</li>
+      </ul>
+    </section>
+
+    <section id="projects" class="section">
+      <h2>Projects</h2>
+      <div class="projects">
+        <article class="project">
+          <h3>GadgetCrate PH</h3>
+          <p>A Facebook-based shop that sells iPhones and gadgets in the Philippines.</p>
+        </article>
+        <article class="project">
+          <h3>BNS Tracking System</h3>
+          <p>An Android app for tracking gadget units, built for a Play Store launch.</p>
+        </article>
+        <article class="project">
+          <h3>Finance Tracker</h3>
+          <p>A Flutter app for tracking expenses, investments, and debts.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <p>Want to work together? Send me a message.</p>
+      <form id="contact-form">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+        <button class="btn primary" type="submit">Send message</button>
+        <p id="form-status" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Roland Shem J. Alera. Iloilo City, Philippines.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juan Carlos Moje | Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <a class="brand" href="#home">Juan Carlos Moje</a>
+    <nav aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+  <main id="home">
+    <section class="intro" aria-labelledby="name">
+      <p class="label">MY PORTFOLIO</p>
+      <h1>Hi, I'm<br><span id="name">Juan Carlos.</span></h1>
+      <p class="subtitle">BSIT 3-B · West Visayas State University</p>
+      <p>Learning, creating, and taking it one step at a time.</p>
+      <a class="button" href="#project">View my project</a>
+    </section>
+    <section id="about">
+      <h2>About me</h2>
+      <p>I'm Juan Carlos Moje, a BSIT student from Section 3-B. This portfolio is part of my Unit 4 activity and a place to share my progress as I learn to build websites.</p>
+      <p>I'm developing my skills through coding activities and hands-on practice with HTML, CSS, JavaScript, and GitHub.</p>
+    </section>
+    <section id="skills">
+      <h2>Skills I'm developing</h2>
+      <ul class="skills">
+        <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Git &amp; GitHub</li>
+      </ul>
+    </section>
+    <section id="project">
+      <h2>My project</h2>
+      <article class="project">
+        <p class="label">UNIT 4 ACTIVITY</p>
+        <h3>Personal portfolio</h3>
+        <p>A simple website to introduce myself and practice building with HTML, CSS, and JavaScript.</p>
+        <button id="details-button" type="button" aria-expanded="false" aria-controls="project-details">Show details</button>
+        <p id="project-details" hidden>HTML structures this page, CSS styles it, and JavaScript makes this button work. For this activity, I am also practicing committing changes locally, pushing to GitHub, and submitting a pull request.</p>
+      </article>
+    </section>
+    <section id="quote">
+      <h2>A little motivation</h2>
+      <blockquote>
+        <p>“I never go back on my word.”</p>
+        <cite>— Naruto Uzumaki, Naruto</cite>
+      </blockquote>
+    </section>
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>You can reach me through my school email.</p>
+      <a class="email" href="mailto:juancarlos.moje@wvsu.edu.ph">juancarlos.moje@wvsu.edu.ph</a>
+    </section>
+  </main>
+  <footer>© <span id="year">2026</span> Juan Carlos Moje</footer>
+</body>
+</html>

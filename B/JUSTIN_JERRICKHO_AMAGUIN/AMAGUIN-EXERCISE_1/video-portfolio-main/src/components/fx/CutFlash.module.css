@@ -1,0 +1,14 @@
+.flash {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-flash);
+  pointer-events: none;
+  background: #fff;
+  opacity: 0;
+  /* a cut, not a fade — opacity swaps instantly via class toggle */
+  transition: none;
+}
+
+.on {
+  opacity: var(--flash-opacity);
+}

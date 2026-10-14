@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A minimalist portfolio blending code, AI experiments, HCI, filmmaking, and literary work." />
+  <meta name="theme-color" content="#f4f1ea" />
+  <title>Portfolio — Nice to feel. Nice to see.</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Home">ALABANZAS/PORTFOLIO</a>
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="#work">Work</a>
+      <a href="#writing">Writing</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle theme" title="Toggle theme">◐</button>
+  </header>
+
+  <main id="top">
+    <section class="hero section-wrap">
+      <div class="eyebrow"><span class="dot"></span> Creative technologist · storyteller · builder</div>
+      <h1>nice to feel.<br /><em>nice to see.</em></h1>
+      <p class="hero-copy">
+        I make things where <strong>code</strong>, <strong>curiosity</strong>, and <strong>story</strong> overlap —
+        from clean interfaces and AI experiments to short films, literary pieces, and playful prototypes.
+      </p>
+      <div class="hero-actions">
+        <a class="button button-fill" href="#work">See the work <span>↘</span></a>
+        <a class="button button-ghost" href="#about">A little about me</a>
+      </div>
+
+      <div class="hero-marquee" aria-label="Areas of interest">
+        <div class="marquee-track">
+          <span>HTML</span><b>✦</b><span>CSS</span><b>✦</b><span>JAVASCRIPT</span><b>✦</b><span>REACT</span><b>✦</b><span>AI / ML</span><b>✦</b><span>HCI</span><b>✦</b><span>FILM</span><b>✦</b><span>WRITING</span><b>✦</b>
+          <span>HTML</span><b>✦</b><span>CSS</span><b>✦</b><span>JAVASCRIPT</span><b>✦</b><span>REACT</span><b>✦</b><span>AI / ML</span><b>✦</b><span>HCI</span><b>✦</b><span>FILM</span><b>✦</b><span>WRITING</span><b>✦</b>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-wrap intro-grid" id="about">
+      <div class="section-label">01 / About</div>
+      <div class="intro-content">
+        <p class="big-copy">
+          I like <span class="accent-word">simple things</span> that hide interesting ideas.
+        </p>
+        <div class="two-col-copy">
+          <p>
+            My projects tend to start with a question: can this be made clearer, more human, more useful, or just more fun?
+            That question has led me through frontend development, Firebase-backed apps, computer vision, HCI studies,
+            creative communications, and storytelling.
+          </p>
+          <p>
+            The goal is not to make everything loud. It is to make the important part <strong>visible</strong> —
+            a useful interaction, a strong visual, a memorable line, or a small detail that makes someone go,
+            “okay, that feels right.”
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-wrap" id="work">
+      <div class="section-heading">
+        <div>
+          <div class="section-label">02 / Selected work</div>
+          <h2>Things I built,<br /><em>tested, or imagined.</em></h2>
+        </div>
+        <div class="filters" role="group" aria-label="Filter projects">
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="code">Code</button>
+          <button class="filter" data-filter="ai">AI</button>
+          <button class="filter" data-filter="creative">Creative</button>
+          <button class="filter" data-filter="hci">HCI</button>
+        </div>
+      </div>
+
+      <div class="project-grid" id="projectGrid">
+        <article class="project-card featured" data-category="ai code">
+          <div class="project-top"><span class="tag">AI / ML</span><span class="project-num">01</span></div>
+          <div class="project-art leaf-art" aria-hidden="true"><span>✣</span><i></i><b></b></div>
+          <div class="project-body">
+            <h3>SnapLeaf</h3>
+            <p>A plant-disease scanning app concept that connects a mobile camera workflow to image classification, with Firebase in the stack.</p>
+            <div class="stack"><span>Expo</span><span>Firebase</span><span>Python</span><span>PlantVillage</span></div>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="code ai creative">
+          <div class="project-top"><span class="tag">Computer Vision</span><span class="project-num">02</span></div>
+          <div class="project-art fire-art" aria-hidden="true"><span>✹</span><div class="orb orb-a"></div><div class="orb orb-b"></div></div>
+          <div class="project-body">
+            <h3>Gesture Playground</h3>
+            <p>A browser experiment using hand tracking to turn gestures into playful visual actions like summoning fireballs, shifting backgrounds, and triggering sound.</p>
+            <div class="stack"><span>MediaPipe</span><span>JavaScript</span><span>Webcam</span></div>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="code">
+          <div class="project-top"><span class="tag">Frontend</span><span class="project-num">03</span></div>
+          <div class="project-art ui-art" aria-hidden="true"><div class="mini-window"><header></header><main><i></i><i></i><i></i></main></div></div>
+          <div class="project-body">
+            <h3>React Landing Pages</h3>
+            <p>Small Vite + React builds focused on reusable layouts, routed pages, clean structure, and responsive visual hierarchy.</p>
+            <div class="stack"><span>Vite</span><span>React</span><span>JSX</span><span>CSS</span></div>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="creative">
+          <div class="project-top"><span class="tag">Film</span><span class="project-num">04</span></div>
+          <div class="project-art film-art" aria-hidden="true"><div class="seven">7</div><span>minutes</span></div>
+          <div class="project-body">
+            <h3>Seven Minutes</h3>
+            <p>A short-film concept about a young breadwinner whose final seven minutes reveal not his past, but the futures he sacrificed to give his siblings.</p>
+            <div class="stack"><span>Screenwriting</span><span>Story</span><span>Direction</span></div>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="hci creative">
+          <div class="project-top"><span class="tag">HCI</span><span class="project-num">05</span></div>
+          <div class="project-art chess-art" aria-hidden="true"><span class="knight">♞</span><div class="grid8"></div></div>
+          <div class="project-body">
+            <h3>Chess HCI Studies</h3>
+            <p>Personas, mood boards, storyboards, wireframes, paper prototypes, and tournament-flow thinking built around making chess easier to access and understand.</p>
+            <div class="stack"><span>Personas</span><span>Prototyping</span><span>Usability</span></div>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="creative">
+          <div class="project-top"><span class="tag">Literary</span><span class="project-num">06</span></div>
+          <div class="project-art paper-art" aria-hidden="true"><div class="paper"><span>the</span><strong>promise</strong><small>of forever</small></div></div>
+          <div class="project-body">
+            <h3>Literary Portfolio</h3>
+            <p>A collection of poems and prose circling heartbreak, loss, loneliness, hope, and healing — written as a record of changing seasons.</p>
+            <div class="stack"><span>Poetry</span><span>Prose</span><span>Editing</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-wrap quote-section">
+      <div class="quote-mark">“</div>
+      <blockquote>
+        Make the important part <em>visible.</em>
+      </blockquote>
+      <p>Whether it is an interface, an image, a scene, or a sentence.</p>
+    </section>
+
+    <section class="section-wrap skills-section">
+      <div class="section-label">03 / Toolkit</div>
+      <div class="skills-layout">
+        <div>
+          <h2>A flexible<br /><em>toolbox.</em></h2>
+          <p class="muted">I learn whatever the project needs, but these are the tools and modes of thinking that keep showing up.</p>
+        </div>
+        <div class="skills-list">
+          <div class="skill-row"><span>01</span><strong>Web</strong><p>HTML · CSS · JavaScript · React · Vite · responsive UI</p></div>
+          <div class="skill-row"><span>02</span><strong>Data & AI</strong><p>Python · image classification · computer vision · datasets · Firebase workflows</p></div>
+          <div class="skill-row"><span>03</span><strong>Design / HCI</strong><p>Personas · wireframes · paper prototypes · storyboards · usability thinking</p></div>
+          <div class="skill-row"><span>04</span><strong>Creative</strong><p>Poetry · prose · screenwriting · visual concepts · event communications</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-wrap writing-section" id="writing">
+      <div class="section-heading compact">
+        <div>
+          <div class="section-label">04 / Writing</div>
+          <h2>Code gets the logic.<br /><em>Words get the feeling.</em></h2>
+        </div>
+      </div>
+      <div class="writing-grid">
+        <article class="writing-card">
+          <span class="writing-index">01</span>
+          <h3>The Promise of Forever</h3>
+          <p>A poem about losing pieces of yourself inside a promise that was supposed to last forever.</p>
+          <span class="writing-note">loss · memory · becoming</span>
+        </article>
+        <article class="writing-card">
+          <span class="writing-index">02</span>
+          <h3>The Rain after the Sun</h3>
+          <p>A quieter piece about what remains when happiness passes and healing has to begin on its own.</p>
+          <span class="writing-note">heartbreak · healing · hope</span>
+        </article>
+        <article class="writing-card">
+          <span class="writing-index">03</span>
+          <h3>Disguised</h3>
+          <p>A piece about the tension between wanting to reach back and knowing that moving forward can also be love.</p>
+          <span class="writing-note">distance · restraint · hope</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-wrap timeline-section">
+      <div class="section-label">05 / Curiosity log</div>
+      <div class="timeline">
+        <div class="timeline-item"><time>01</time><div><h3>Build</h3><p>Turn ideas into working interfaces, then make the rough edges disappear.</p></div></div>
+        <div class="timeline-item"><time>02</time><div><h3>Break</h3><p>Debug the thing until the bug finally admits what it wanted.</p></div></div>
+        <div class="timeline-item"><time>03</time><div><h3>Make meaning</h3><p>Step away from the screen and write, storyboard, sketch, or rethink the whole thing.</p></div></div>
+        <div class="timeline-item"><time>04</time><div><h3>Ship</h3><p>Keep the final experience clear enough that someone else can enjoy it without needing the backstory.</p></div></div>
+      </div>
+    </section>
+
+    <section class="contact section-wrap" id="contact">
+      <div class="contact-card">
+        <div class="section-label">06 / Contact</div>
+        <h2>Have an idea?<br /><em>Let’s make it real.</em></h2>
+        <p class="muted">Replace the placeholder links below with your actual contact details before publishing.</p>
+        <div class="contact-links">
+          <a class="button button-fill" href="mailto:raphaelledmitrialabanzas@gmail.com">Email me ↗</a>
+          <button class="button button-ghost" id="copyContact" type="button" data-copy="raphaelledmitrialabanzas@gmail.com">Copy email</button>
+        </div>
+        <a href="chiikawa.html" class="fixation-button">
+            :3 my fixation
+          </a>
+      </div>
+      
+    </section>
+
+    
+  </main>
+
+  <footer class="site-footer section-wrap">
+    <span>© <span id="year"></span> / made with HTML, CSS & JS</span>
+    <span>nice to feel · nice to see</span>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Copied.</div>
+  <script src="script.js"></script>
+</body>
+</html>

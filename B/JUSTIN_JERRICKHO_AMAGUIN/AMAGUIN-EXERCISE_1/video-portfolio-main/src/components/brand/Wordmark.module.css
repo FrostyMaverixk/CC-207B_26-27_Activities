@@ -1,0 +1,13 @@
+.lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* tall thin playhead glyph (▼ + stem) at text height */
+.mark {
+  flex: none;
+  width: auto;
+  height: 1.15em;
+  fill: var(--accent-orange);
+}

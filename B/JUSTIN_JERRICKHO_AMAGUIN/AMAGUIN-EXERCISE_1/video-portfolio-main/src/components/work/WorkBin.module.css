@@ -1,0 +1,90 @@
+/* panel header bar: PROJECT BIN — {n} ITEMS · {visible}/{total} TRACKS */
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--bg-1);
+  border: 1px solid var(--line-0);
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-1);
+}
+
+.panelCount {
+  color: var(--text-2);
+}
+
+/* discoverability hint under the panel header (owner request, 2026-06-11) */
+.hint {
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-2);
+}
+
+/* hover wording is meaningless on touch — swap below the sm breakpoint */
+.hintMobile {
+  display: none;
+}
+
+@media (max-width: 639px) {
+  .hintDesktop {
+    display: none;
+  }
+  .hintMobile {
+    display: inline;
+  }
+}
+
+/* full-quality masters on Google Drive — row at the bottom of the bin */
+.driveRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+  margin-top: var(--space-4);
+  padding: var(--space-3);
+  background: var(--bg-1);
+  border: 1px solid var(--line-0);
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+
+a.driveRow:hover {
+  border-color: var(--line-1);
+}
+
+.driveLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-1);
+  flex: none;
+}
+
+.driveDesc {
+  flex: 1 1 24ch;
+  font-family: var(--font-body);
+  font-size: var(--fs-meta);
+  color: var(--text-1);
+}
+
+.driveCta {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-mono);
+  color: var(--accent-teal);
+}
+
+/* pending state until the owner sets site.driveUrl */
+.driveOffline .driveLabel,
+.driveOffline .driveDesc,
+.driveOffline .driveCta {
+  color: var(--text-2);
+}

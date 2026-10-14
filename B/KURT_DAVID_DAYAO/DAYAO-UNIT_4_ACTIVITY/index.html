@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lina Okafor, Ceramics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <strong>Lina Okafor</strong>
+    <nav><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <h1>Pots you use every day.</h1>
+      <p>I make stoneware tableware and vases in a shared studio, 40 to 60 pieces a month. Each one is thrown by hand, glazed in small batches and fired to 1,260 °C.</p>
+      <a class="btn" href="#work">See the work</a><a class="btn alt" href="#contact">Ask about a commission</a>
+    </div>
+
+    <section id="work">
+      <h2>Selected work</h2>
+      <div class="filters" role="group" aria-label="Filter by category">
+        <button aria-pressed="true" data-f="all">All</button>
+        <button aria-pressed="false" data-f="Tableware">Tableware</button>
+        <button aria-pressed="false" data-f="Vases">Vases</button>
+        <button aria-pressed="false" data-f="Commissions">Commissions</button>
+      </div>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <section id="about" class="about">
+      <div>
+        <h2>About</h2>
+        <p>I trained as a product designer, then spent a weekend course on a wheel and never went back. I now throw about 12 hours a week and spend another 10 on glazing, packing and answering email.</p>
+        <p>Most of my clay is a local grey stoneware. I mix my own celadon and ash glazes, which is why no two batches match exactly.</p>
+      </div>
+      <ul class="facts">
+        <li><span>Pieces sold</span><b>1,400+</b></li>
+        <li><span>Restaurant clients</span><b>6</b></li>
+        <li><span>Average lead time</span><b>5 weeks</b></li>
+        <li><span>Kiln loads per month</span><b>3</b></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <h2 style="color:var(--ink)">Contact</h2>
+    <p>Commissions open for November. Send the number of pieces, a rough budget and your deadline.</p>
+    <button class="btn" id="copy" type="button">Copy email address</button><span id="status" role="status"></span>
+  </footer>
+</div>
+
+<dialog id="dlg">
+  <h3 id="d-title"></h3>
+  <span id="d-cat" style="color:var(--muted)"></span>
+  <dl id="d-list"></dl>
+  <p id="d-note" style="margin:0 0 20px"></p>
+  <button class="btn alt" style="margin:0" id="close" type="button">Close</button>
+</dialog>
+
+<script src="script.js"></script>
+</body>
+</html>

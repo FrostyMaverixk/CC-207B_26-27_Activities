@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Professional portfolio of Apryl Nine Grace S. Abella, BS Information Technology Student."
+  >
+
+  <title>Apryl Nine Grace S. Abella | Portfolio</title>
+
+  <!-- Apply saved theme before page loads -->
+  <script>
+    (() => {
+      const savedTheme = localStorage.getItem("apryl-portfolio-theme") || "system";
+      const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      const activeTheme = savedTheme === "system"
+        ? (systemDark ? "dark" : "light")
+        : savedTheme;
+
+      document.documentElement.setAttribute("data-theme", activeTheme);
+      document.documentElement.setAttribute("data-theme-mode", savedTheme);
+    })();
+  </script>
+
+  <!-- Poppins Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Phosphor Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =========================================================
+       LANDING PAGE
+  ========================================================== -->
+  <section class="landing-page page-screen active-page" id="landingPage">
+    <div class="landing-grid"></div>
+    <div class="landing-orb orb-one"></div>
+    <div class="landing-orb orb-two"></div>
+
+    <header class="landing-header">
+      <button
+        class="landing-logo go-to-landing"
+        type="button"
+        aria-label="Return to landing page"
+      >
+        <!-- Small profile image in the header -->
+        <span class="logo-profile-image">
+          <img
+            src="PP.jpg"
+            alt="Portrait of Apryl Nine Grace S. Abella"
+          >
+        </span>
+
+        <span class="landing-logo-name">
+          APRYL NINE GRACE S. ABELLA
+        </span>
+      </button>
+
+      <div class="landing-actions">
+        <button
+          class="theme-toggle-mini"
+          id="landingThemeButton"
+          type="button"
+          aria-label="Open screen mode options"
+          aria-expanded="false"
+        >
+          <i class="ph ph-sun"></i>
+        </button>
+
+        <div class="theme-menu" id="themeMenu">
+          <button class="theme-option" data-theme-choice="light" type="button">
+            <i class="ph ph-sun"></i>
+            <span>Light</span>
+          </button>
+
+          <button class="theme-option" data-theme-choice="dark" type="button">
+            <i class="ph ph-moon"></i>
+            <span>Dark</span>
+          </button>
+
+          <button class="theme-option" data-theme-choice="system" type="button">
+            <i class="ph ph-desktop"></i>
+            <span>System</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="landing-content">
+      <!-- Main landing profile image -->
+      <div class="landing-profile-image">
+        <img
+          src="PP.jpg"
+          alt="Portrait of Apryl Nine Grace S. Abella"
+        >
+      </div>
+
+      <p class="landing-eyebrow">
+        <span class="pulse-dot"></span>
+        APRYL NINE GRACE S. ABELLA
+      </p>
+
+      <h1>
+        BUILD.<br>
+        LEARN.<br>
+        <span>CREATE.</span>
+      </h1>
+
+      <p class="landing-description">
+        A personal portfolio focused on technology, creativity, and meaningful
+        digital solutions.
+      </p>
+
+      <button class="primary-button enter-portfolio-button" type="button">
+        Explore Portfolio
+        <i class="ph ph-arrow-up-right"></i>
+      </button>
+    </main>
+
+    <div class="landing-decoration decoration-one" aria-hidden="true">
+      <i class="ph ph-code"></i>
+    </div>
+
+    <div class="landing-decoration decoration-two" aria-hidden="true">
+      <i class="ph ph-sparkle"></i>
+    </div>
+
+    <div class="landing-decoration decoration-three" aria-hidden="true">
+      <i class="ph ph-brackets-curly"></i>
+    </div>
+
+    <footer class="landing-footer">
+      <p>© 2026 Apryl Nine Grace S. Abella</p>
+
+      <div>
+        <span>Iloilo, Philippines</span>
+        <span class="footer-dot"></span>
+        <span>BSIT Student</span>
+      </div>
+    </footer>
+  </section>
+
+  <!-- =========================================================
+       MAIN PORTFOLIO SINGLE-PAGE APPLICATION
+  ========================================================== -->
+  <section class="portfolio-page page-screen" id="portfolioPage">
+
+    <!-- Mobile controls -->
+    <div class="mobile-top-controls">
+      <button
+        class="mobile-menu-button"
+        id="mobileMenuButton"
+        type="button"
+        aria-label="Open navigation menu"
+      >
+        <i class="ph ph-list"></i>
+      </button>
+
+      <button
+        class="mobile-theme-button"
+        id="mobileThemeButton"
+        type="button"
+        aria-label="Open screen mode options"
+        aria-expanded="false"
+      >
+        <i class="ph ph-sun"></i>
+      </button>
+    </div>
+
+    <!-- Left Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="profile">
+        <button
+          class="profile-button go-to-landing"
+          type="button"
+          aria-label="Return to landing page"
+        >
+          <!-- Main portfolio sidebar profile image -->
+          <div class="profile-image">
+            <img
+              src="PP.jpg"
+              alt="Portrait of Apryl Nine Grace S. Abella"
+            >
+          </div>
+
+          <h2>Apryl Abella</h2>
+          <p>BSIT Student</p>
+        </button>
+
+        <div class="social-links">
+          <a
+            href="https://www.facebook.com/aprylnayn/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook profile"
+          >
+            <i class="ph ph-facebook-logo"></i>
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/apryl-nine-grace-s-abella-3b4767440/?isSelfProfile=true"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn profile"
+          >
+            <i class="ph ph-linkedin-logo"></i>
+          </a>
+
+          <a
+            href="https://github.com/apryl9"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub profile"
+          >
+            <i class="ph ph-github-logo"></i>
+          </a>
+
+          <a
+            href="mailto:aprylninegrace.abella@wvsu.edu.ph"
+            aria-label="Send an email to Apryl Abella"
+          >
+            <i class="ph ph-envelope"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Navigation: displays only one content panel at a time -->
+      <nav class="side-navigation" aria-label="Portfolio navigation">
+        <button
+          class="nav-link active"
+          type="button"
+          data-page="home"
+          aria-current="page"
+        >
+          <i class="ph ph-house"></i>
+          <span>Home</span>
+        </button>
+
+        <button
+          class="nav-link"
+          type="button"
+          data-page="skills"
+          aria-current="false"
+        >
+          <i class="ph ph-lightning"></i>
+          <span>Skills</span>
+        </button>
+
+        <button
+          class="nav-link"
+          type="button"
+          data-page="projects"
+          aria-current="false"
+        >
+          <i class="ph ph-folder-open"></i>
+          <span>Projects</span>
+        </button>
+
+        <button
+          class="nav-link"
+          type="button"
+          data-page="contact"
+          aria-current="false"
+        >
+          <i class="ph ph-chat-circle"></i>
+          <span>Contact</span>
+        </button>
+
+        <button
+          class="nav-link"
+          type="button"
+          data-page="about"
+          aria-current="false"
+        >
+          <i class="ph ph-user"></i>
+          <span>About</span>
+        </button>
+      </nav>
+
+      <!-- Theme Selector -->
+      <div class="theme-control">
+        <p class="theme-control-title">
+          <i class="ph ph-palette"></i>
+          Screen Mode
+        </p>
+
+        <div class="theme-options">
+          <button class="theme-option" data-theme-choice="light" type="button">
+            <i class="ph ph-sun"></i>
+            <span>Light</span>
+          </button>
+
+          <button class="theme-option" data-theme-choice="dark" type="button">
+            <i class="ph ph-moon"></i>
+            <span>Dark</span>
+          </button>
+
+          <button class="theme-option" data-theme-choice="system" type="button">
+            <i class="ph ph-desktop"></i>
+            <span>System</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="sidebar-bottom">
+        <p>
+          <i class="ph ph-heart"></i>
+          Designed with purpose
+        </p>
+
+        <small>© 2026 Apryl Abella</small>
+      </div>
+    </aside>
+
+    <!-- Right-side Portfolio Content -->
+    <main class="main-content">
+
+      <!-- Home -->
+      <section class="content-panel active-panel" data-panel="home">
+        <div class="hero-section">
+          <div class="hero-copy">
+            <div class="section-label">
+              <i class="ph ph-sparkle"></i>
+              Portfolio Introduction
+            </div>
+
+            <h1>
+              Building skills.<br>
+              Creating value.<br>
+              <span>Growing every day.</span>
+            </h1>
+
+            <p>
+              Welcome to my portfolio. I am Apryl Nine Grace S. Abella, a
+              Bachelor of Science in Information Technology student from Iloilo,
+              Western Visayas. This space presents my web development skills,
+              selected projects, and goals as an aspiring full-stack developer.
+            </p>
+
+            <div class="hero-buttons">
+              <button
+                class="primary-button panel-button"
+                data-target="projects"
+                type="button"
+              >
+                View Projects
+                <i class="ph ph-arrow-up-right"></i>
+              </button>
+
+              <button
+                class="outline-button panel-button"
+                data-target="contact"
+                type="button"
+              >
+                Get in Touch
+                <i class="ph ph-paper-plane-tilt"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-card">
+            <div class="hero-card-top">
+              <span>Currently Building</span>
+              <i class="ph ph-code"></i>
+            </div>
+
+            <h3>Modern Web Apps</h3>
+            <p>React.js · Node.js · Next.js</p>
+
+            <div class="progress-line">
+              <span></span>
+            </div>
+
+            <div class="hero-card-bottom">
+              <span>Always learning</span>
+              <i class="ph ph-arrow-up-right"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section class="content-panel" data-panel="skills">
+        <div class="panel-header">
+          <div>
+            <div class="section-label">
+              <i class="ph ph-lightning"></i>
+              Skills
+            </div>
+
+            <h1>What I work with</h1>
+          </div>
+
+          <p>
+            I continue developing my technical knowledge and professional
+            strengths through academic activities and hands-on web development
+            projects.
+          </p>
+        </div>
+
+        <div class="skills-grid">
+          <article class="skill-card">
+            <i class="ph ph-browser"></i>
+
+            <h3>Frontend Development</h3>
+
+            <p>
+              Building responsive, readable, and accessible websites with clean
+              layouts and interactive user interfaces.
+            </p>
+
+            <div class="skill-tags">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+            </div>
+          </article>
+
+          <article class="skill-card">
+            <i class="ph ph-atom"></i>
+
+            <h3>Modern Frameworks</h3>
+
+            <p>
+              Creating scalable web interfaces and applications using modern
+              JavaScript frameworks and tools.
+            </p>
+
+            <div class="skill-tags">
+              <span>React.js</span>
+              <span>Next.js</span>
+              <span>Components</span>
+            </div>
+          </article>
+
+          <article class="skill-card">
+            <i class="ph ph-database"></i>
+
+            <h3>Backend Development</h3>
+
+            <p>
+              Learning server-side development concepts and building web
+              solutions using Node.js and JavaScript.
+            </p>
+
+            <div class="skill-tags">
+              <span>Node.js</span>
+              <span>JavaScript</span>
+              <span>Web Apps</span>
+            </div>
+          </article>
+
+          <article class="skill-card">
+            <i class="ph ph-users-three"></i>
+
+            <h3>Professional Skills</h3>
+
+            <p>
+              Applying communication, teamwork, adaptability, time management,
+              and problem-solving in academic and project work.
+            </p>
+
+            <div class="skill-tags">
+              <span>Teamwork</span>
+              <span>Communication</span>
+              <span>Problem-solving</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section class="content-panel" data-panel="projects">
+        <div class="panel-header">
+          <div>
+            <div class="section-label">
+              <i class="ph ph-folder-open"></i>
+              Projects
+            </div>
+
+            <h1>Selected work</h1>
+          </div>
+
+          <p>
+            These projects represent my ongoing learning journey in web
+            development, user experience, and building purposeful websites.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card project-large">
+            <span class="project-number">01</span>
+
+            <div class="project-icon">
+              <i class="ph ph-books"></i>
+            </div>
+
+            <h3>Go Study With Me</h3>
+
+            <p>
+              A study-focused web project designed to encourage productive and
+              organized learning. It provides a welcoming digital space that
+              supports students in staying motivated, managing study time, and
+              building better study habits.
+            </p>
+
+            <div class="project-footer">
+              <span>Web Design · Frontend Development</span>
+
+              <a
+                href="https://abella-final-project.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open Go Study With Me project"
+              >
+                <i class="ph ph-arrow-up-right"></i>
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <span class="project-number">02</span>
+
+            <div class="project-icon">
+              <i class="ph ph-heartbeat"></i>
+            </div>
+
+            <h3>Go Sweatie</h3>
+
+            <p>
+              A fitness and wellness web project that encourages users to stay
+              active and develop healthier routines through an engaging and
+              approachable online experience.
+            </p>
+
+            <div class="project-footer">
+              <span>Web Design · Frontend Development</span>
+
+              <a
+                href="https://gosweatie.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open Go Sweatie project"
+              >
+                <i class="ph ph-arrow-up-right"></i>
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <span class="project-number">03</span>
+
+            <div class="project-icon">
+              <i class="ph ph-code"></i>
+            </div>
+
+            <h3>Portfolio Website</h3>
+
+            <p>
+              A responsive portfolio website created to present my technical
+              skills, selected projects, professional goals, and contact details.
+            </p>
+
+            <div class="project-footer">
+              <span>HTML · CSS · JavaScript</span>
+
+              <button
+                class="project-panel-link panel-button"
+                data-target="home"
+                type="button"
+                aria-label="Return to portfolio home"
+              >
+                <i class="ph ph-arrow-up-right"></i>
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="content-panel" data-panel="contact">
+        <div class="contact-page">
+          <div class="contact-heading">
+            <div class="section-label">
+              <i class="ph ph-chat-circle"></i>
+              Contact
+            </div>
+
+            <h1>Let’s create something meaningful.</h1>
+
+            <p>
+              I am open to academic collaborations, project opportunities, and
+              conversations related to web development and technology.
+            </p>
+          </div>
+
+          <div class="contact-details-grid">
+            <article class="contact-detail">
+              <i class="ph ph-envelope-simple"></i>
+              <span>Email</span>
+
+              <a href="mailto:aprylninegrace.abella@wvsu.edu.ph">
+                aprylninegrace.abella@wvsu.edu.ph
+              </a>
+            </article>
+
+            <article class="contact-detail">
+              <i class="ph ph-map-pin"></i>
+              <span>Location</span>
+
+              <p>Iloilo, Western Visayas, Philippines</p>
+            </article>
+
+            <article class="contact-detail">
+              <i class="ph ph-github-logo"></i>
+              <span>GitHub</span>
+
+              <a
+                href="https://github.com/apryl9"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                github.com/apryl9
+              </a>
+            </article>
+          </div>
+
+          <div class="contact-bottom-action">
+            <p>Have an opportunity, question, or project in mind?</p>
+
+            <a
+              href="mailto:aprylninegrace.abella@wvsu.edu.ph"
+              class="primary-button"
+            >
+              Send an Email
+              <i class="ph ph-envelope-simple"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section class="content-panel" data-panel="about">
+        <div class="about-content">
+          <div>
+            <div class="section-label">
+              <i class="ph ph-user"></i>
+              About
+            </div>
+
+            <h1>A student with a builder’s mindset.</h1>
+          </div>
+
+          <div class="about-text">
+            <p>
+              I am Apryl Nine Grace S. Abella, a Bachelor of Science in
+              Information Technology student at West Visayas State University (WVSU). I am passionate about web development and enjoy
+              building responsive, user-friendly digital experiences that
+              combine creativity, functionality, and purpose.
+            </p>
+
+            <p>
+              As an Information Technology student, I am continually developing
+              my skills in frontend and backend web development. I enjoy
+              transforming concepts into practical web applications using modern
+              tools such as React, Node.js, and Next.js.
+            </p>
+
+            <p>
+              My goal is to become a capable full-stack web developer who
+              creates accessible, reliable, and meaningful digital solutions
+              that solve real user needs.
+            </p>
+          </div>
+        </div>
+
+        <div class="about-quote">
+          <i class="ph ph-quotes"></i>
+
+          <p>
+            I believe that every project is an opportunity to learn, improve,
+            and create something useful for people.
+          </p>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="main-footer">
+        <p>© 2026 Apryl Nine Grace S. Abella. All rights reserved.</p>
+
+        <button class="footer-landing-button go-to-landing" type="button">
+          Back to landing page
+          <i class="ph ph-arrow-up"></i>
+        </button>
+      </footer>
+    </main>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

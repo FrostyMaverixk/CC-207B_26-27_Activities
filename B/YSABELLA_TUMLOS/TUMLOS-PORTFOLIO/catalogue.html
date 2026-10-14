@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flowers — Blume Daily</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ivory: #faf8f3; --parchment: #f4f0e6; --warm-white: #fffefb;
+  --blush-pale: #f9eaed; --blush: #f2c0c8; --rose: #5C0316; --rose-deep: #3d0110;
+  --rose-muted: #a06070; --sage: #6b7d60; --ink: #1e1a15; --ink-soft: #3d3730;
+  --mocha: #7a6555; --mocha-light: #b8a899; --gold: #c4975a;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Jost', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--ivory); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.7; overflow-x: hidden; }
+img { display: block; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 56px;
+  background: rgba(250,248,243,0.97);
+  box-shadow: 0 1px 0 rgba(0,0,0,.08);
+  backdrop-filter: blur(12px);
+}
+.nav-logo { font-family: var(--font-display); font-size: 22px; font-weight: 600; color: var(--ink); letter-spacing: .06em; text-decoration: none; text-transform: uppercase; }
+.nav-center { display: flex; gap: 44px; list-style: none; }
+.nav-center a { font-size: 11px; font-weight: 300; letter-spacing: .22em; text-transform: uppercase; color: var(--mocha); text-decoration: none; transition: color .3s; position: relative; }
+.nav-center a::after { content: ''; position: absolute; bottom: -3px; left: 0; right: 0; height: 1px; background: var(--rose-muted); transform: scaleX(0); transition: transform .3s; }
+.nav-center a:hover::after, .nav-center a.active::after { transform: scaleX(1); }
+.nav-center a:hover, .nav-center a.active { color: var(--rose); }
+.nav-right { display: flex; align-items: center; gap: 24px; }
+.nav-icon { color: var(--ink-soft); cursor: pointer; transition: color .3s; position: relative; display: flex; }
+.nav-icon:hover { color: var(--rose); }
+
+.nav-tagline { font-family: var(--font-display); font-style: italic; font-size: 13px; font-weight: 200; letter-spacing: .1em; color: var(--mocha-light); white-space: nowrap; }
+.cart-count { position: absolute; top: -7px; right: -7px; background: var(--rose); color: #fff; font-size: 9px; font-weight: 500; width: 17px; height: 17px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+/* PAGE HERO */
+.page-hero { position: relative; overflow: hidden; height: 420px; display: flex; align-items: center; justify-content: center; padding-top: 53px; }
+.page-hero-bg { position: absolute; inset: 0; background: url('https://i.pinimg.com/736x/0e/80/52/0e80524f3b948e0ca62697a4ae4a3495.jpg') center/cover no-repeat; }
+.page-hero-overlay { position: absolute; inset: 0; background: rgba(10,5,2,.58); }
+.page-hero-content { position: relative; z-index: 2; padding: 0 40px; text-align: center; width: 100%; animation: heroUp 1.2s cubic-bezier(.16,1,.3,1) both; }
+@keyframes heroUp { from { opacity:0; transform:translateY(30px);} to { opacity:1; transform:translateY(0);} }
+.breadcrumb { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 20px; }
+.breadcrumb a { color: rgba(255,255,255,.5); text-decoration: none; transition: color .3s; }
+.breadcrumb a:hover { color: var(--rose-muted); }
+.breadcrumb span { color: var(--rose-muted); }
+.page-hero h1 { font-family: var(--font-display); font-size: clamp(44px,7vw,76px); font-weight: 400; color: #fff; line-height: .95; letter-spacing: -.02em; }
+.page-hero h1 em { font-style: italic; color: var(--blush); display: block; }
+
+/* MARQUEE */
+.marquee-strip { background: var(--rose); overflow: hidden; padding: 14px 0; }
+.marquee-track { display: flex; animation: marquee 28s linear infinite; white-space: nowrap; width: max-content; }
+.marquee-track span { font-size: 10px; font-weight: 300; letter-spacing: .26em; text-transform: uppercase; color: rgba(255,255,255,.9); padding: 0 48px; }
+.marquee-track span.dot { padding: 0; color: rgba(255,255,255,.4); font-size: 6px; }
+@keyframes marquee { from { transform:translateX(0);} to { transform:translateX(-50%);} }
+
+/* FILTER BAR */
+.filter-bar { background: var(--parchment); border-bottom: 1px solid rgba(0,0,0,.07); padding: 0 56px; }
+.filter-inner { max-width: 1200px; margin: 0 auto; display: flex; gap: 0; overflow-x: auto; }
+.filter-btn {
+  font-size: 10px; font-weight: 300; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--mocha); background: none; border: none; padding: 18px 24px; cursor: pointer;
+  border-bottom: 2px solid transparent; transition: color .3s, border-color .3s; white-space: nowrap;
+}
+.filter-btn:hover, .filter-btn.active { color: var(--rose); border-bottom-color: var(--rose); }
+
+/* SHOP GRID */
+.shop-section { padding: 72px 56px; }
+.shop-inner { max-width: 1200px; margin: 0 auto; }
+.shop-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 48px; }
+.result-count { font-size: 12px; font-weight: 200; color: var(--mocha-light); letter-spacing: .08em; }
+.sort-select {
+  font-family: var(--font-body); font-size: 11px; font-weight: 300; letter-spacing: .14em;
+  color: var(--mocha); background: var(--warm-white); border: 1px solid rgba(0,0,0,.1);
+  padding: 10px 16px; cursor: pointer; outline: none;
+}
+
+.prod-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; }
+
+/* Cards */
+.prod-card {
+  background: #fff; cursor: pointer; text-decoration: none; color: inherit;
+  overflow: hidden; display: flex; flex-direction: column;
+  border: 1px solid rgba(0,0,0,.06);
+  transition: transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s;
+}
+.prod-card:hover { transform: translateY(-7px); box-shadow: 0 22px 50px rgba(30,26,21,.13); }
+.prod-img { position: relative; overflow: hidden; aspect-ratio: 3/4; }
+.prod-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform .7s cubic-bezier(.22,1,.36,1); }
+.prod-card:hover .prod-img img { transform: scale(1.06); }
+.prod-badge { position: absolute; top: 14px; left: 14px; background: var(--rose); color: #fff; font-size: 9px; font-weight: 400; letter-spacing: .18em; text-transform: uppercase; padding: 5px 12px; }
+.prod-badge.new { background: var(--sage); }
+.prod-badge.sale { background: var(--gold); }
+.prod-add {
+  position: absolute; bottom: -52px; left: 0; right: 0;
+  background: rgba(14,9,5,.92); color: #fff; font-size: 10px; font-weight: 300;
+  letter-spacing: .22em; text-transform: uppercase; text-align: center; padding: 16px;
+  border: none; width: 100%; cursor: pointer; transition: bottom .35s cubic-bezier(.22,1,.36,1);
+}
+.prod-card:hover .prod-add { bottom: 0; }
+.prod-info { padding: 16px 16px 18px; display: flex; flex-direction: column; flex: 1; }
+.prod-top-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+.prod-name { font-family: var(--font-display); font-size: 16px; font-weight: 500; color: var(--ink); line-height: 1.2; }
+.prod-price { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--rose-deep); white-space: nowrap; padding-left: 6px; }
+.prod-variant { font-size: 11px; font-weight: 200; color: var(--mocha-light); letter-spacing: .05em; margin-bottom: 12px; }
+.prod-bottom-row { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid rgba(0,0,0,.06); margin-top: auto; }
+.prod-stars { color: var(--gold); font-size: 11px; letter-spacing: 1px; }
+.prod-cta { font-size: 9px; font-weight: 400; letter-spacing: .18em; text-transform: uppercase; color: var(--rose); border-bottom: 1px solid var(--rose-muted); padding-bottom: 2px; }
+
+/* CARD HIDDEN — filter */
+.prod-card.hidden { display: none; }
+
+/* FOOTER */
+footer { background: var(--ink); padding: 72px 56px 40px; }
+.footer-top { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2.2fr 1fr 1fr 1.6fr; gap: 56px; padding-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,.08); margin-bottom: 36px; }
+.footer-brand-logo { font-family: var(--font-display); font-size: 24px; font-weight: 600; color: var(--warm-white); letter-spacing: .06em; text-transform: uppercase; text-decoration: none; display: block; margin-bottom: 18px; }
+.footer-brand p { font-size: 13px; font-weight: 200; color: rgba(255,255,255,.5); line-height: 1.85; max-width: 280px; margin-bottom: 28px; }
+.footer-col h4 { font-size: 10px; font-weight: 300; letter-spacing: .24em; text-transform: uppercase; color: rgba(255,255,255,.9); margin-bottom: 24px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.footer-col ul a { font-size: 13px; font-weight: 200; color: rgba(255,255,255,.45); text-decoration: none; transition: color .2s; }
+.footer-col ul a:hover { color: var(--rose-muted); }
+.footer-col > p { font-size: 12px; font-weight: 200; color: rgba(255,255,255,.45); line-height: 1.8; margin-bottom: 18px; }
+.subscribe-row { display: flex; }
+.subscribe-row input { flex: 1; padding: 13px 16px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-right: none; color: #fff; font-size: 12px; font-weight: 200; outline: none; }
+.subscribe-row input::placeholder { color: rgba(255,255,255,.28); }
+.subscribe-row button { background: var(--rose); border: none; padding: 13px 20px; color: #fff; font-size: 9px; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; cursor: pointer; transition: background .3s; }
+.subscribe-row button:hover { background: var(--rose-deep); }
+.footer-bottom { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 200; color: rgba(255,255,255,.3); }
+
+/* REVEAL */
+.reveal { opacity:0; transform:translateY(24px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.reveal-d1 { transition-delay:.08s; } .reveal-d2 { transition-delay:.16s; } .reveal-d3 { transition-delay:.24s; } .reveal-d4 { transition-delay:.32s; }
+
+@media (max-width:1024px) { .prod-grid { grid-template-columns:repeat(3,1fr); } .footer-top { grid-template-columns:1fr 1fr; } }
+@media (max-width:768px) {
+  nav { padding:16px 24px; } .nav-center { display:none; }
+  .page-hero-content { padding:0 24px; }
+  .filter-bar { padding:0 16px; }
+  .shop-section { padding:56px 24px; }
+  .prod-grid { grid-template-columns:1fr 1fr; gap:12px; }
+  .footer-top { grid-template-columns:1fr; gap:32px; }
+  .footer-bottom { flex-direction:column; gap:12px; text-align:center; }
+}
+@media (max-width:480px) { .prod-grid { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Blume Daily</a>
+  <ul class="nav-center">
+    <li><a href="index.html">Shop</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="catalogue.html" class="active">Catalogue</a></li>
+    <li><a href="index.html#how">How It Works</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-tagline">DAILY BLEUM</div>
+    <a href="cart.html" class="nav-icon" title="View Cart">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-count" id="cart-count">0</span>
+    </a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <div class="breadcrumb"><a href="index.html">Home</a><span>›</span><span style="color:rgba(255,255,255,.8)">Flowers</span></div>
+    <h1>Our <em>Collection</em></h1>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span>Fresh Daily Arrangements</span><span class="dot">✦</span>
+    <span>GCash &amp; Bank Transfer</span><span class="dot">✦</span>
+    <span>Iloilo Citywide Delivery</span><span class="dot">✦</span>
+    <span>Custom Bouquets Available</span><span class="dot">✦</span>
+    <span>Wedding &amp; Event Florals</span><span class="dot">✦</span>
+    <span>Same-Day Booking Welcome</span><span class="dot">✦</span>
+    <span>Fresh Daily Arrangements</span><span class="dot">✦</span>
+    <span>GCash &amp; Bank Transfer</span><span class="dot">✦</span>
+    <span>Iloilo Citywide Delivery</span><span class="dot">✦</span>
+    <span>Custom Bouquets Available</span><span class="dot">✦</span>
+    <span>Wedding &amp; Event Florals</span><span class="dot">✦</span>
+    <span>Same-Day Booking Welcome</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <div class="filter-inner">
+    <button class="filter-btn active" onclick="filter(this,'all')">All Arrangements</button>
+    <button class="filter-btn" onclick="filter(this,'birthday')">Birthdays</button>
+    <button class="filter-btn" onclick="filter(this,'wedding')">Weddings</button>
+    <button class="filter-btn" onclick="filter(this,'romance')">Romance</button>
+    <button class="filter-btn" onclick="filter(this,'congratulations')">Congratulations</button>
+    <button class="filter-btn" onclick="filter(this,'corporate')">Corporate</button>
+  </div>
+</div>
+
+<section class="shop-section">
+  <div class="shop-inner">
+    <div class="shop-header">
+      <span class="result-count" id="result-count">Showing 12 arrangements</span>
+      <select class="sort-select"><option>Sort by: Featured</option><option>Price: Low to High</option><option>Price: High to Low</option><option>Newest First</option></select>
+    </div>
+
+    <div class="prod-grid" id="prod-grid">
+
+      <!-- 1 -->
+      <a href="#" class="prod-card reveal" data-cat="romance birthday">
+        <div class="prod-img">
+          <img src="https://www.thelachryme.com/cdn/shop/files/11AFEA84-DD51-4F80-81AF-8FA5674737CB.jpg?v=1741699569&width=990" alt="Rosy Romance">
+          <span class="prod-badge">Bestseller</span>
+          <button class="prod-add" onclick="event.preventDefault(); event.stopPropagation(); addToCart(1, 'Rosy Romance', 1250, this.closest('.prod-card').querySelector('img').src)">Add to Cart</button>
+        </div>
+        <div class="prod-info">
+          <div class="prod-top-row"><div class="prod-name">Rosy Romance</div><div class="prod-price">₱1,250</div></div>
+          <div class="prod-variant">Mixed roses · Medium bouquet</div>
+          <div class="prod-bottom-row"><div class="prod-stars">★★★★★</div><div class="prod-cta">Add to Cart</div></div>
+        </div>
+      </a>
+
+      <!-- 2 -->
+      <a href="#" class="prod-card reveal reveal-d1" data-cat="wedding">
+        <div class="prod-img">
+          <img src="https://i.pinimg.com/originals/a4/2e/63/a42e6344d54a9a06c00a9f9dfca52f60.jpg" alt="Eternal White">
+          <button class="prod-add" onclick="event.preventDefault(); event.stopPropagation(); addToCart(2, 'Eternal White', 2000, this.closest('.prod-card').querySelector('img').src)">Add to Cart</button>
+        </div>
+        <div class="prod-info">
+          <div class="prod-top-row"><div class="prod-name">Eternal White</div><div class="prod-price">₱2,000</div></div>
+          <div class="prod-variant">White orchid cascade · Large bouquet</div>
+          <div class="prod-bottom-row"><div class="prod-stars">★★★★★</div><div class="prod-cta">Add to Cart</div></div>
+        </div>
+      </a>
+
+      <!-- 3 -->
+      <a href="#" class="prod-card reveal reveal-d2" data-cat="wedding">
+        <div class="prod-img">
+          <img src="https://clientassets.floristtouch.co.uk/user/site491/productImages/1003/lrg-p1003-3.jpg?v=1.03" alt="Forest Whisper">
+          <span class="prod-badge new">New</span>
+          <button class="prod-add" onclick="event.preventDefault(); event.stopPropagation(); addToCart(3, 'Forest Whisper', 1450, this.closest('.prod-card').querySelector('img').src)">Add to Cart</button>
+        </div>
+        <div class="prod-info">
+          <div class="prod-top-row"><div class="prod-name">Forest Whisper</div><div class="prod-price">₱1,450</div></div>
+          <div class="prod-variant">Greenery &amp; wildflower · Small bouquet</div>
+          <div class="prod-bottom-row"><div class="prod-stars">★★★★☆</div><div class="prod-cta">Add to Cart</div></div>
+        </div>
+      </a>
+
+      <!-- 4 -->
+      <a href="#" class="prod-card reveal reveal-d3" data-cat="birthday corporate congratulations">
+        <div class="prod-img">
+          <img src="https://i.pinimg.com/736x/31/75/fc/3175fc6ef66f75728e0d89f7418e3c1d.jpg" alt="Garden Luxe">
+          <span class="prod-badge sale">Premium</span>
+          <button class="prod-add" onclick="event.preventDefault(); event.stopPropagation(); addToCart(4, 'Garden Luxe', 4500, this.closest('.prod-card').querySelector('img').src)">Add to Cart</button>
+        </div>
+        <div class="prod-info">
+          <div class="prod-top-row"><div class="prod-name">Garden Luxe</div><div class="prod-price">₱4,500</div></div>
+          <div class="prod-variant">Premium mixed blooms · Extra Large</div>
+          <div class="prod-bottom-row"><div class="prod-stars">★★★★★</div><div class="prod-cta">Add to Cart</div></div>
+        </div>
+      </a>
+
+      <!-- 5 -->
+      <a href="#" class="prod-card reveal" data-cat="birthday romance congratulations">
+        <div class="prod-img">
+          <img src="https://i.pinimg.com/webp80/1200x/e3/fb/a3/e3fba377f0eefa8fd5246daed0169ba8.webp" alt="Thumbelina">
+          <span class="prod-badge">Popular</span>
+          <button class="prod-add" onclick="event.preventDefault(); event.stopPropagation(); addToCart(5, 'Thumbelina', 2980, this.closest('.prod-card').querySelector('img').src)">Add to Cart</button>
+        </div>
+        <div class="prod-info">
+          <div class="prod-top-row"><div class="prod-name">Thumbelina</div><div class="prod-price">₱2,980</div></div>
+          <div class="prod-variant">Mixed wildflowers &amp; roses · Medium</div>
+          <div class="prod-bottom-row"><div class="prod-stars">★★★★★</div><div class="prod-cta">Add to Cart</div></div>
+        </div>
+      </a>
+
+      <!-- 6 -->
+      <a href="#" class="prod-card reveal reveal-d1" data-cat="birthday congratulations">
+        <div class="prod-img">
+          <img src="https://i.pinimg.com/736x/ad/17/9f/ad179fba5d179354be9d32f7b8155de1.jpg" alt="Ivory Dream">
+          <span class="prod-badge">Bestseller</span>
+          <button class="prod-add" onclick="event.preventDefault(); event.stopPropagation(); addToCart(6, 'Ivory Dream', 1700, this.closest('.prod-card').querySelector('img').src)">Add to Cart</button>
+        </div>
+        <div class="prod-info">
+          <div class="prod-top-row"><div class="prod-name">Ivory Dream</div><div class="prod-price">₱1,700</div></div>
+          <div class="prod-variant">White lilies &amp; roses · Large bouquet</div>
+          <div class="prod-bottom-row"><div class="prod-stars">★★★★★</div><div class="prod-cta">Add to Cart</div></div>
+        </div>
+      </a>
+
+      <!-- 7 -->
+      <a href="#" class="prod-card reveal reveal-d2" data-cat="birthday congratulations">
+        <div class="prod-img">
+          <img src="https://i.pinimg.com/736x/72/1c/fa/721cfaa02ddc35576110bf1242434904.jpg" alt="Blossom Basket">
+          <span class="prod-badge new">New</span>
+          <button class="prod-add" onclick="event.preventDefault(); event.stopPropagation(); addToCart(7, 'Blossom Basket', 1500, this.closest('.prod-card').querySelector('img').src)">Add to Cart</button>
+        </div>
+        <div class="prod-info">
+          <div class="prod-top-row"><div class="prod-name">Blossom Basket</div><div class="prod-price">₱1,500</div></div>
+          <div class="prod-variant">Mixed blooms in wicker basket · Large</div>
+          <div class="prod-bottom-row"><div class="prod-stars">★★★★☆</div><div class="prod-cta">Add to Cart</div></div>
+        </div>
+      </a>
+
+      <!-- 8 -->
+      <a href="#" class="prod-card reveal reveal-d3" data-cat="birthday romance congratulations">
+        <div class="prod-img">
+          <img src="https://i.pinimg.com/736x/05/9b/8b/059b8b0d214b857dedf5cb36baf9375b.jpg" alt="Blush Peony Bunch">
+          <span class="prod-badge">Popular</span>
+          <button class="prod-add" onclick="event.preventDefault(); event.stopPropagation(); addToCart(8, 'Blush Peony Bunch', 1850, this.closest('.prod-card').querySelector('img').src)">Add to Cart</button>
+        </div>
+        <div class="prod-info">
+          <div class="prod-top-row"><div class="prod-name">Blush Peony Bunch</div><div class="prod-price">₱1,850</div></div>
+          <div class="prod-variant">Blush peonies &amp; ranunculus · Medium</div>
+          <div class="prod-bottom-row"><div class="prod-stars">★★★★★</div><div class="prod-cta">Add to Cart</div></div>
+        </div>
+      </a>
+
+      <!-- 9 -->
+      <a href="#" class="prod-card reveal" data-cat="birthday congratulations">
+        <div class="prod-img">
+          <img src="https://i.pinimg.com/736x/39/de/af/39deaf0ae73caba2015fb0272eb8c618.jpg" alt="Lily Dream">
+          <button class="prod-add" onclick="event.preventDefault(); event.stopPropagation(); addToCart(9, 'Lily Dream', 3080, this.closest('.prod-card').querySelector('img').src)">Add to Cart</button>
+        </div>
+        <div class="prod-info">
+          <div class="prod-top-row"><div class="prod-name">Lily Dream</div><div class="prod-price">₱3,080</div></div>
+          <div class="prod-variant">Lilies in soft tones · Medium bouquet</div>
+          <div class="prod-bottom-row"><div class="prod-stars">★★★★★</div><div class="prod-cta">Add to Cart</div></div>
+        </div>
+      </a>
+
+      <!-- 10 -->
+      <a href="#" class="prod-card reveal reveal-d1" data-cat="birthday romance">
+        <div class="prod-img">
+          <img src="https://i.pinimg.com/736x/ec/0f/ba/ec0fba3fd134176ad0f9f133c83882b7.jpg" alt="Rose Medley">
+          <button class="prod-add" onclick="event.preventDefault(); event.stopPropagation(); addToCart(10, 'Rose Medley', 3800, this.closest('.prod-card').querySelector('img').src)">Add to Cart</button>
+        </div>
+        <div class="prod-info">
+          <div class="prod-top-row"><div class="prod-name">Rose Medley</div><div class="prod-price">₱3,800</div></div>
+          <div class="prod-variant">Pink roses &amp; soft blooms · Small bouquet</div>
+          <div class="prod-bottom-row"><div class="prod-stars">★★★★☆</div><div class="prod-cta">Add to Cart</div></div>
+        </div>
+      </a>
+
+      <!-- 11 -->
+      <a href="#" class="prod-card reveal reveal-d2" data-cat="birthday corporate congratulations">
+        <div class="prod-img">
+          <img src="https://i.pinimg.com/736x/a2/7e/2d/a27e2d6d5908bae12dafdfcc0b1a37a3.jpg" alt="Sunflower Bliss">
+          <span class="prod-badge new">New</span>
+          <button class="prod-add" onclick="event.preventDefault(); event.stopPropagation(); addToCart(11, 'Sunflower Bliss', 1750, this.closest('.prod-card').querySelector('img').src)">Add to Cart</button>
+        </div>
+        <div class="prod-info">
+          <div class="prod-top-row"><div class="prod-name">Sunflower Bliss</div><div class="prod-price">₱1,750</div></div>
+          <div class="prod-variant">Sunflowers &amp; warm blooms · Medium</div>
+          <div class="prod-bottom-row"><div class="prod-stars">★★★★★</div><div class="prod-cta">Add to Cart</div></div>
+        </div>
+      </a>
+
+      <!-- 12 -->
+      <a href="#" class="prod-card reveal reveal-d3" data-cat="romance birthday">
+        <div class="prod-img">
+          <img src="https://www.prettythingsvancouver.ca/cdn/shop/files/8BDF1A97-0E2F-460E-AE5B-FBC69510D6C1.jpg?v=1715056680" alt="Crimson Affair">
+          <span class="prod-badge sale">Premium</span>
+          <button class="prod-add" onclick="event.preventDefault(); event.stopPropagation(); addToCart(12, 'Crimson Affair', 2000, this.closest('.prod-card').querySelector('img').src)">Add to Cart</button>
+        </div>
+        <div class="prod-info">
+          <div class="prod-top-row"><div class="prod-name">Crimson Affair</div><div class="prod-price">₱2,000</div></div>
+          <div class="prod-variant">Red &amp; blush roses · Large bouquet</div>
+          <div class="prod-bottom-row"><div class="prod-stars">★★★★★</div><div class="prod-cta">Add to Cart</div></div>
+        </div>
+      </a>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="footer-brand-logo">Blume Daily</a>
+      <p>Thoughtfully arranged flowers for every moment. Based in Villa Arevalo, Iloilo.</p>
+    </div>
+    <div class="footer-col"><h4>Shop</h4><ul><li><a href="flowers.html">All Arrangements</a></li><li><a href="flowers.html">Birthdays</a></li><li><a href="flowers.html">Weddings</a></li><li><a href="flowers.html">Custom Orders</a></li></ul></div>
+    <div class="footer-col"><h4>Info</h4><ul><li><a href="index.html#how">How It Works</a></li><li><a href="#">Track My Order</a></li><li><a href="about.html">About Us</a></li></ul></div>
+    <div class="footer-col">
+      <h4>Stay in Bloom</h4>
+      <p>Get seasonal promotions and new arrangement alerts.</p>
+      <div class="subscribe-row"><input type="email" placeholder="Your email address"><button>Go</button></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Blume Daily. All rights reserved.</span>
+    <span>blumedaily@gmail.com · 09983984888</span>
+  </div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => observer.observe(el));
+
+function filter(btn, cat) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const cards = document.querySelectorAll('.prod-card');
+  let count = 0;
+  cards.forEach(card => {
+    const cats = card.dataset.cat || '';
+    if (cat === 'all' || cats.includes(cat)) {
+      card.classList.remove('hidden');
+      card.classList.add('visible');
+      count++;
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+  document.getElementById('result-count').textContent = `Showing ${count} arrangement${count !== 1 ? 's' : ''}`;
+}
+
+function addToCart(id, name, price, img) {
+  let cart = JSON.parse(localStorage.getItem('bd_cart') || '[]');
+  const existing = cart.find(i => String(i.id) === String(id));
+  if (existing) { existing.qty++; }
+  else { cart.push({ id, name, price, qty: 1, img }); }
+  localStorage.setItem('bd_cart', JSON.stringify(cart));
+  const count = cart.reduce((s,i) => s + i.qty, 0);
+  document.querySelectorAll('#cart-count,.cart-count').forEach(el => el.textContent = count);
+  showToast(name + ' added to cart!');
+}
+
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('cat-toast');
+  document.getElementById('cat-toast-msg').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+(function(){
+  const cart = JSON.parse(localStorage.getItem('bd_cart') || '[]');
+  const count = cart.reduce((s,i) => s + i.qty, 0);
+  document.querySelectorAll('#cart-count,.cart-count').forEach(el => el.textContent = count);
+})();
+
+// Auto-apply filter from URL param e.g. catalogue.html?filter=birthday
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  const f = params.get('filter');
+  if (f) {
+    const btn = Array.from(document.querySelectorAll('.filter-btn')).find(b => b.textContent.trim().toLowerCase() === f.toLowerCase() || b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + f + "'"));
+    if (btn) { btn.click(); }
+  }
+})();
+</script>
+<div id="cat-toast" style="position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);background:#1e1a15;color:#fff;padding:13px 24px;font-size:13px;font-weight:300;z-index:600;opacity:0;transition:all .4s cubic-bezier(.22,1,.36,1);pointer-events:none;display:flex;align-items:center;gap:10px;white-space:nowrap;">
+  <span style="color:#a06070;">&#10003;</span><span id="cat-toast-msg"></span>
+  <a href="checkout.html" style="color:#a06070;font-size:11px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;margin-left:8px;">View Cart &rarr;</a>
+</div>
+<style>#cat-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}</style>
+</body>
+</html>

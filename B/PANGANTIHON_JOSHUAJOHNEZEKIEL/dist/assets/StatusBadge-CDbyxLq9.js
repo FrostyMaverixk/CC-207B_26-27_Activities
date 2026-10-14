@@ -1,0 +1,1 @@
+import{a as e,s as t}from"./AuthContext-eygSQ0Yj.js";var n=t(),r=e(),i={present:`Present`,late:`Late`,absent:`Absent`,dash:`—`,active:`Active`,ended:`Ended`};function a(e){let t=(0,n.c)(3),{status:a,label:o}=e,s=a===void 0?`dash`:a,c=`badge ${s}`,l=o||i[s]||s,u;return t[0]!==c||t[1]!==l?(u=(0,r.jsx)(`span`,{className:c,children:l}),t[0]=c,t[1]=l,t[2]=u):u=t[2],u}export{a as t};

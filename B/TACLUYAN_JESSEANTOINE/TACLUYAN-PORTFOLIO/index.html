@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <h2>My Portfolio</h2>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero container">
+            <div>
+                <p class="tag">BSIT Student</p>
+                <h1>Hello, I'm <span id="name">YOUR NAME</span>.</h1>
+                <p class="intro">
+                    I am an Information Technology student interested in web development,
+                    programming, networking, and learning new technologies.
+                </p>
+                <button id="welcomeButton" type="button">Say Hello</button>
+            </div>
+        </section>
+
+        <section id="about" class="card container">
+            <h2>About Me</h2>
+            <p>
+                I am currently studying Information Technology and building my skills
+                through school projects and hands-on practice.
+            </p>
+            <p id="extraInfo" class="hidden">
+                My goal is to become a capable IT professional by improving my
+                technical, communication, and problem-solving skills.
+            </p>
+            <button id="moreButton" type="button">Show More</button>
+        </section>
+
+        <section id="skills" class="card container">
+            <h2>My Skills</h2>
+            <div class="skills-grid">
+                <div class="skill">HTML</div>
+                <div class="skill">CSS</div>
+                <div class="skill">JavaScript</div>
+                <div class="skill">Git &amp; GitHub</div>
+                <div class="skill">Networking</div>
+                <div class="skill">Problem Solving</div>
+            </div>
+        </section>
+
+        <section id="contact" class="card container">
+            <h2>Contact</h2>
+            <p>Email: <span id="email">your.email@example.com</span></p>
+            <p>Location: <span id="location">YOUR CITY, PHILIPPINES</span></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> <span id="footerName">YOUR NAME</span>. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
