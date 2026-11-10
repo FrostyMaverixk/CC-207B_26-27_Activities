@@ -1,0 +1,128 @@
+{
+   "checksum": "1aa1afb3deafc25a0564b9a01a0c9780",
+   "roots": {
+      "bookmark_bar": {
+         "children": [ {
+            "date_added": "13438806355902346",
+            "date_last_used": "0",
+            "guid": "02e772f5-18d3-4469-b2aa-24002640b9d9",
+            "id": "19",
+            "name": "Agoda",
+            "show_icon": false,
+            "source": "oem_preload",
+            "type": "url",
+            "url": "https://s3.amazonaws.com/amundsen/redirect/19q2/agoda.html?utm_source=win32&utm_medium=favorite",
+            "visit_count": 0
+         }, {
+            "date_added": "13438805911148543",
+            "date_last_used": "0",
+            "guid": "8685fb61-62a0-4e6c-ad6a-9ea494d18e1d",
+            "id": "17",
+            "name": "Agoda",
+            "show_icon": false,
+            "source": "oem_preload",
+            "type": "url",
+            "url": "https://s3.amazonaws.com/amundsen/redirect/19q2/agoda.html?utm_source=win32&utm_medium=favorite",
+            "visit_count": 0
+         }, {
+            "date_added": "13438727480895249",
+            "date_last_used": "0",
+            "guid": "d8b303b5-e59a-471c-af5d-15f92049949a",
+            "id": "15",
+            "name": "Agoda",
+            "show_icon": false,
+            "source": "oem_preload",
+            "type": "url",
+            "url": "https://s3.amazonaws.com/amundsen/redirect/19q2/agoda.html?utm_source=win32&utm_medium=favorite",
+            "visit_count": 0
+         }, {
+            "date_added": "13438727316051161",
+            "date_last_used": "0",
+            "guid": "d86aa1f7-5af1-4aec-9f1d-dee8e7133cde",
+            "id": "13",
+            "name": "Agoda",
+            "show_icon": false,
+            "source": "oem_preload",
+            "type": "url",
+            "url": "https://s3.amazonaws.com/amundsen/redirect/19q2/agoda.html?utm_source=win32&utm_medium=favorite",
+            "visit_count": 0
+         }, {
+            "date_added": "13438503623384325",
+            "date_last_used": "0",
+            "guid": "c961e32d-354f-4eb4-8785-d1960d91c3f4",
+            "id": "11",
+            "name": "Agoda",
+            "show_icon": false,
+            "source": "oem_preload",
+            "type": "url",
+            "url": "https://s3.amazonaws.com/amundsen/redirect/19q2/agoda.html?utm_source=win32&utm_medium=favorite",
+            "visit_count": 0
+         }, {
+            "date_added": "13438501633947978",
+            "date_last_used": "0",
+            "guid": "a8a4b2d1-edde-4ca0-9805-d909ed32ddeb",
+            "id": "9",
+            "name": "Agoda",
+            "show_icon": false,
+            "source": "oem_preload",
+            "type": "url",
+            "url": "https://s3.amazonaws.com/amundsen/redirect/19q2/agoda.html?utm_source=win32&utm_medium=favorite",
+            "visit_count": 0
+         }, {
+            "date_added": "13438500822160650",
+            "date_last_used": "0",
+            "guid": "7e45f7f6-4abe-4daa-af8f-df73df410965",
+            "id": "7",
+            "name": "Agoda",
+            "show_icon": false,
+            "source": "oem_preload",
+            "type": "url",
+            "url": "https://s3.amazonaws.com/amundsen/redirect/19q2/agoda.html?utm_source=win32&utm_medium=favorite",
+            "visit_count": 0
+         } ],
+         "date_added": "13438500821875815",
+         "date_last_used": "0",
+         "date_modified": "13438806355902346",
+         "guid": "0bc5d13f-2cba-5d74-951f-3f233fe6c908",
+         "id": "1",
+         "name": "Favorites bar",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "other": {
+         "children": [  ],
+         "date_added": "13438500821875815",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "82b081ec-3dd3-529c-8475-ab6c344590dd",
+         "id": "2",
+         "name": "Other favorites",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "synced": {
+         "children": [  ],
+         "date_added": "13438500821875815",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "4cf2e351-0e85-532b-bb37-df045d8f8d0f",
+         "id": "3",
+         "name": "Mobile favorites",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "workspaces_v2": {
+         "children": [  ],
+         "date_added": "13438500821875815",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "75aa6670-344f-549d-b742-660f029506ab",
+         "id": "5",
+         "name": "Workspaces",
+         "source": "unknown",
+         "type": "folder"
+      }
+   },
+   "sync_metadata": "CkEKHgiIgQISCKPSjcahAQAAKg4QABgBIAAoBTAAOABAABIAKhhndVRyamQrbFlpenRVTW5NSjl0V2pRPT1IA6AGDBKMAQgDEocBChxuamdEdTg4ZUNydlhwODZwRDdmSEdjcUZwODg9EiRjZGEzZjVjMS1jNTViLTUyNjItOWQ2Yi1iYjBjZmEyNmE5MTUYACAAKAAwx86O9eczOKzXjvXnM0Cs14715zNKHHl6TkIwMWNuNTRBN2NSVTB1VCsvUGdtVHRVbz1lAAAAAMI+AmAAEowBCAIShwEKHFljU1RvbnZFU1B3cUNzNEwyY3JWaHY2OEw5OD0SJDZjOGZkYTAxLTRhNjAtNTBjYS05NGMwLTIyY2UxYzcxODFiORgAIAAoADDBzo715zM41daO9eczQNXWjvXnM0ocb1BWa2h3QlJiVjY1S0NXUjIrSU9OSFdvT3U4PWUAAAAAwj4CYAASjAEIARKHAQoceXhKLzZmdmtlY3I3a3A1RVF6QjR0V0xwZGJFPRIkMzJjZjllYzktMGQ1Ny01NzQ4LWFjYzEtOTA5ZTZlN2NmMjE1GAAgACgAMMDOjvXnMzi41o715zNAuNaO9eczShxhUkNXTGdoRjliNUlucUtJRHZ1Si9qdlFrRmM9ZQAAAADCPgJgABKMAQgFEocBChx3UkJyWkwrNlBBOWF2S2dqTlA3SlhETGNmdnM9EiQwMzdiNzQ3NS1hYzBlLTUzNDItOGE0My0wOTBlNzJiYjU1ZGYYACAAKAAwxs6O9eczOI/XjvXnM0CP14715zNKHG5teDY1c1FEdnhJOFRnRWV2K0ErbnR0b1NuND1lAAAAAMI+AmAAMAA4AA==",
+   "version": 1
+}
